@@ -1,22 +1,10 @@
 FROM php:8.3-fpm
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    libzip-dev zip unzip curl git \
-    && docker-php-ext-install pdo pdo_mysql zip
+    zip unzip git curl libzip-dev \
+    && docker-php-ext-install zip pdo pdo_mysql
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy project files
-COPY . .
-
-# Give permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-
-EXPOSE 9000
-CMD ["php-fpm"]
+WORKDIR /var/www
