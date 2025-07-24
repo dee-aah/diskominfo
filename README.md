@@ -2,9 +2,9 @@
 **Project Web Profil DPPKBP3A Kota Tasikmalaya**
 
 **Kelompok**
-Dede Ahmad Maolana : 10222065
-Febry Widiana : 10222078
-Maulia Astuti Suryaningrum : 10222052
+Dede Ahmad Maolana : 10222065</br>
+Febry Widiana : 10222078</br>
+Maulia Astuti Suryaningrum : 10222052</br>
 
 **Cara Run Proyek laravel**
 
