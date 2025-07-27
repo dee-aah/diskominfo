@@ -1,9 +1,9 @@
 <x-layouts.app>
 <body class="bg-gray-100">
  <!-- Hero Section -->
-    <<section class="relative h-screen overflow-hidden pt-16">
+    <section class="relative h-screen overflow-hidden pt-16">
         <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
-            <source src="{{ asset('img/tasik.mp4') }}" type="video/mp4" />
+            <img src="{{ asset('video/tasik.mp4') }}" type="video/mp4" />
             Your browser does not support the video tag.
         </video>
         <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
@@ -72,7 +72,8 @@
   </div>
 
  <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10"
-     style="background-image: url('bg.jpg');">
+    style="background-image: url('{{ url('storage/img/gambar.jpg') }}'); background-size: cover; background-position: center;">
+
 
   <!-- Slide Area -->
   <div class="relative w-full max-w-screen-xl flex items-center overflow-hidden">
@@ -359,7 +360,7 @@
 
   typeEffect();
 
-    const backgrounds = ["bg3.jpg", "bg.jpg", "bg1.jpg", "bg.jpg", "bg3.jpg"];
+  const backgrounds = ["gambar.jpg", "gambar1.jpg", "gambar2.jpg", "gambar3.jpg", "gambar3.jpg"];
   const cards = document.querySelectorAll('#slideWrapper > div');
   const carousel = document.getElementById('carousel');
   const slideWrapper = document.getElementById('slideWrapper');
