@@ -4,9 +4,9 @@
   <!-- Navbar -->
   <nav class="bg-white shadow-md w-full fixed top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between h-16 items-center">
+      <div class="flex justify-between h-20 items-center">
         <div class="flex items-center">
-          <img src="/we.jpg" alt="Logo" class="h-10 mr-3">
+          <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
           <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
         </div>
 
