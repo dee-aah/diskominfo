@@ -3,10 +3,10 @@
  <!-- Hero Section -->
     <section class="relative h-screen overflow-hidden pt-16">
         <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
-            <img src="{{ asset('video/tasik.mp4') }}" type="video/mp4" />
+           <source src="{{ asset('video/tasik.mp4') }}" type="video/mp4"/>
             Your browser does not support the video tag.
         </video>
-        <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+        <div class="absolute bg-black bg-opacity-50 z-10"></div>
 
     <!-- Konten Hero -->
         <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
@@ -38,7 +38,7 @@
 
       <!-- Gambar Kiri -->
       <div class="flex justify-center">
-        <img src="{{asset('img/pelayanan.jpg')}}" alt="Energizing You" class="w-72 md:w-96">
+        <img src="{{ asset('img/pelayanan.jpg')}}"alt="Energizing You" class="w-72 md:w-96">
       </div>
 
       <!-- Konten Teks Kanan -->
@@ -71,8 +71,8 @@
     <p class="text-gray-600 mt-2 text-sm">Dapatkan pelayanan kami melalui menu di bawah yang tersedia di DPPKBP3A</p>
   </div>
 
- <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10"
-    style="background-image: url('{{ url('storage/img/gambar.jpg') }}'); background-size: cover; background-position: center;">
+ <div id="carousel" data-bg="{{ asset('img/gambar2.jpg') }}" class="relative bg-transition h-screen flex items-center justify-start px-10"
+    style=" background-size: cover; background-position: center;">
 
 
   <!-- Slide Area -->
@@ -368,7 +368,8 @@
 
   function updateView() {
     // Update background
-    carousel.style.backgroundImage = `url('${backgrounds[currentIndex]}')`;
+    carousel.style.backgroundImage = `url('/img/${backgrounds[currentIndex]}')`;
+
 
     // Update card colors
     cards.forEach((card, index) => {

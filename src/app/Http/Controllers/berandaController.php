@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use Illuminate\Http\Request;
 
 class berandaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view("beranda.index");
+        $images = Image::all();
+        return view('beranda.index', compact('images'));
     }
-
     public function create()
     {
         //
