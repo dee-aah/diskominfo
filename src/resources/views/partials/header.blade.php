@@ -12,41 +12,41 @@
 
         <!-- Desktop Menu -->
         <div class="hidden md:flex space-x-6 items-center">
-          <a href="#" class="hover:text-blue-600">Beranda</a>
+          <a href="{{url('/beranda')}}" class="hover:text-blue-600">Beranda</a>
           <div class="relative group">
             <button class="hover:text-blue-600">Profil</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-              <a href="footer.html" class="block px-4 py-2 hover:bg-green-100">Visi Misi</a>
-              <a href="contoh.html" class="block px-4 py-2 hover:bg-green-100">Tupoksi</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Tentang Kami</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Struktur Organisasi</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Maklumat Pelayanan</a>
-              <a href="profil.html" class="block px-4 py-2 hover:bg-green-100">Profil Pimpinan</a>
+              <a href="{{url('/visimisi')}}" class="block px-4 py-2 hover:bg-green-100">Visi Misi</a>
+              <a href="{{url('/tupoksi')}}" class="block px-4 py-2 hover:bg-green-100">Tupoksi</a>
+              <a href="{{url('/tentang')}}" class="block px-4 py-2 hover:bg-green-100">Tentang Kami</a>
+              <a href="{{url('/struktur')}}" class="block px-4 py-2 hover:bg-green-100">Struktur Organisasi</a>
+              <a href="{{url('/maklumat')}}" class="block px-4 py-2 hover:bg-green-100">Maklumat Pelayanan</a>
+              <a href="{{url('/profil')}}" class="block px-4 py-2 hover:bg-green-100">Profil Pimpinan</a>
             </div>
           </div>
           <div class="relative group">
             <button class="hover:text-blue-600">Layanan</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">IKM</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">PPID</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
+              <a href="{{url('/standarpelayanan')}}" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
+              <a href="{{url('/ikm')}}"class="block px-4 py-2 hover:bg-green-100">IKM</a>
+              <a href="{{url('/ppid')}}" class="block px-4 py-2 hover:bg-green-100">PPID</a>
+              <a href="{{url('/spanlapor')}}" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
+              <a href="{{url('/informasi')}}"class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
             </div>
           </div>
           <div class="relative group">
             <button class="hover:text-blue-600">Dokumen</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Produk Hukum</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Evaluasi</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Perencanaan</a>
+              <a href="{{url('/produkhukum')}}" class="block px-4 py-2 hover:bg-green-100">Produk Hukum</a>
+              <a href="{{url('/dokevaluasi')}}" class="block px-4 py-2 hover:bg-green-100">Dokumen Evaluasi</a>
+              <a href="{{url('/dokperencanaan')}}" class="block px-4 py-2 hover:bg-green-100">Dokumen Perencanaan</a>
             </div>
           </div>
           <div class="relative group">
             <button class="hover:text-blue-600">Berita</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Berita</a>
-              <a href="#" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
+              <a href="{{url('/berita')}}" class="block px-4 py-2 hover:bg-green-100">Berita</a>
+              <a href="{{url('/artikel')}}" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
             </div>
           </div>
           <a href="#" class="hover:text-blue-600">Data Statistik Sektoral</a>

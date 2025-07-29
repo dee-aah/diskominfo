@@ -1,8 +1,8 @@
 <x-layouts.app>
 <body class="bg-gray-100">
  <!-- Hero Section -->
-    <section class="relative h-screen overflow-hidden pt-16">
-        <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
+    <section class="relative h-screen overflow-hidden pt-16 ">
+        <video autoplay muted loop playsinline class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
            <source src="{{ asset('video/tasik.mp4') }}" type="video/mp4"/>
             Your browser does not support the video tag.
         </video>
@@ -17,9 +17,9 @@
             </div>
         </div>
     <!-- Wave SVG -->
-    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
+    <div class="absolute bottom-0 left-0 right-0  overflow-hidden leading-[0] z-20">
       <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-        <path fill="#f9fafb" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z"></path>
+        <path fill="oklch(0.967 0.003 264.542)" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z"></path>
       </svg>
     </div>
   </section>
@@ -28,7 +28,7 @@
     <!-- Wave SVG -->
   <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0]">
     <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-      <path fill="#f9fafb" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path fill="oklch(0.967 0.003 264.542)" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
     </svg>
   </div>
 </section>
@@ -38,7 +38,7 @@
 
       <!-- Gambar Kiri -->
       <div class="flex justify-center">
-        <img src="{{ asset('img/pelayanan.jpg')}}"alt="Energizing You" class="w-72 md:w-96">
+        <img src="{{ asset('img/gambar.jpg')}}"alt="Energizing You" class="border-2 border-sky-500 rounded-sm">
       </div>
 
       <!-- Konten Teks Kanan -->
@@ -344,7 +344,7 @@
       element.textContent = text.substring(0, index + 1);
       index++;
       if (index === text.length) {
-        isDeleting = true;
+        isDeleting = false;
         setTimeout(typeEffect, 1500); // jeda saat selesai mengetik
         return;
       }
