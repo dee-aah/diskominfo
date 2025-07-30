@@ -33,7 +33,7 @@
             <div x-data="{ show: false }" class="relative mb-4">
                 <input :type="show ? 'text' : 'password'" name="password" id="password"
                     class="w-full border rounded px-4 py-2 pr-10 focus:outline-none focus:ring"
-                    placeholder="Masukkan password">
+                    placeholder="Masukkan Password">
                 <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show"
                     tabindex="-1">
                     <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
@@ -61,13 +61,12 @@
     <!-- Right Panel (Register Prompt) -->
     <div class="bg-[#476A9A] text-white flex flex-col justify-center items-center p-8">
         <div class="flex items-center">
-            <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-30 ">
-            <div>
-                <h2 class="text-2xl font-bold mb-2">DPPKBP3A</h2>
-                <h2 class="text-2xl font-bold mb-2">Kota Tasikmalaya</h2>
-            </div>
+            <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-45 ">
+
         </div>
-        <p class="mb-6 text-center">Daftarkan diri anda dan mulai gunakan layanan kami segera</p>
+        <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
+        <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>
+        <p class="mb-6 text-center">Daftarkan Data Diri Anda</p>
         <a href="{{ url('/register') }}"
             class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">SIGN UP</a>
     </div>

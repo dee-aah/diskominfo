@@ -1,5 +1,5 @@
 <x-layouts.app>
-<body class="bg-gray-100">
+<body class="bg-blue-100">
  <!-- Hero Section -->
     <section class="relative h-screen overflow-hidden pt-16 ">
         <video autoplay muted loop playsinline class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
@@ -28,7 +28,7 @@
     <!-- Wave SVG -->
   <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0]">
     <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
-      <path fill="oklch(0.967 0.003 264.542)" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+      <path fill="oklch(0.932 0.032 255.585) fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
     </svg>
   </div>
 </section>
@@ -71,10 +71,7 @@
     <p class="text-gray-600 mt-2 text-sm">Dapatkan pelayanan kami melalui menu di bawah yang tersedia di DPPKBP3A</p>
   </div>
 
- <div id="carousel" data-bg="{{ asset('img/gambar2.jpg') }}" class="relative bg-transition h-screen flex items-center justify-start px-10"
-    style=" background-size: cover; background-position: center;">
-
-
+ <div id="carousel" data-bg="{{ asset('img/gambar2.jpg') }}" class="relative bg-transition h-screen flex items-center justify-start px-10"style=" background-size: cover; background-position: center;">
   <!-- Slide Area -->
   <div class="relative w-full max-w-screen-xl flex items-center overflow-hidden">
     <div id="slideWrapper" class="flex space-x-6 transition-transform duration-500 ease-in-out">
