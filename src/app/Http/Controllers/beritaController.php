@@ -23,7 +23,7 @@ class beritaController extends Controller
      */
     public function create()
     {
-         return view('berita.create');
+
     }
 
     /**
@@ -31,27 +31,32 @@ class beritaController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
+       $request->validate([
         'judul' => 'required',
         'isi' => 'required',
         'penulis' => 'required',
         'tag' => 'required',
-        'gambar' => 'image|nullable'
+        'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:10240',
     ]);
 
-    $data = $request->all();
+    $filename = null;
 
     if ($request->hasFile('gambar')) {
-        $data['gambar'] = $request->file('gambar')->store('gambar', 'public');
+        $file = $request->file('gambar');
+        $filename = strtolower($file->getClientOriginalName());
+        $file->storeAs('public/berita', $filename);
     }
 
-    Berita::create($data);
-    return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan!');
-    }
+    Berita::create([
+        'judul' => $request->judul,
+        'isi' => $request->isi,
+        'penulis' => $request->penulis,
+        'tag' => $request->tag,
+        'gambar' => $filename ? 'berita/' . $filename : null,
+    ]);
 
-    /**
-     * Display the specified resource.
-     */
+    return redirect()->back()->with('success', 'Berita berhasil ditambahkan.');
+    }
     public function show(string $id)
     {
         //
@@ -76,16 +81,20 @@ class beritaController extends Controller
         'isi' => 'required',
         'penulis' => 'required',
         'tag' => 'required',
-        'gambar' => 'nullable|image|max:2048',
+        'gambar' => 'nullable|image|max:10240',
     ]);
 
-    $data = $request->all();
+    $berita = Berita::findOrFail($id);
+
+    $data = $request->only(['judul', 'isi', 'penulis', 'tag']);
 
     if ($request->hasFile('gambar')) {
-        $data['gambar'] = $request->file('gambar')->store('gambar', 'public');
+        $file = $request->file('gambar');
+        $filename = strtolower($file->getClientOriginalName());
+        $file->storeAs('public/berita', $filename);
+        $data['gambar'] = 'berita/' . $filename;
     }
 
-    $berita = Berita::findOrFail($id);
     $berita->update($data);
 
     return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');

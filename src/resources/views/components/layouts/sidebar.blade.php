@@ -10,13 +10,11 @@
 
 <body>
 @include('partials.sidebar')
-    <div class="flex h-screen " >
+    <div class="flex min-h-screen " >
         <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
             <div class="flex items-center justify-center h-16 ">
                 <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
                     <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
-                    <span class="text-xl font-bold text-blue-700">{{ Auth::user()->name }}</span>
-
             </div>
             <nav class="flex-1 p-4 space-y-2">
                 <a href="{{ route('berita.index') }}" class="flex items-center p-2 text-gray-700 rounded hover:bg-gray-100">
@@ -33,7 +31,7 @@
                 </a>
             </nav>
         </aside>
-        <main>
+        <main class="flex-1 p-6 ">
             {{ $slot }}
         </main>
     </div>
