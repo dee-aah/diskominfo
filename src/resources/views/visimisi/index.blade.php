@@ -1,7 +1,7 @@
 <x-layouts.app>
     <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
-            <img class="absolute top-0 left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+            <img class="absolute brightness-50 top-0 left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
                 src="{{ asset('img/gambar.jpg') }}" alt="">
         </div>
 
