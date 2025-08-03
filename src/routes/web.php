@@ -7,6 +7,8 @@ use App\Http\Controllers\berandaController;
 use App\Http\Controllers\tupoksiController;
 use App\Http\Controllers\visimisiController;
 use App\Http\Controllers\beritaController;
+use App\Http\Controllers\maklumatController;
+use App\Http\Controllers\strukturController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +16,9 @@ Route::get('/', function () {
 Route::get('/beranda', [berandaController::class, 'index']);
 Route::resource( '/visimisi',   visimisiController::class);
 Route::resource( '/tupoksi',  tupoksiController::class);
+Route::resource( '/struktur',  strukturController::class);
+Route::resource( '/maklumat',  maklumatController::class);
+
 
 // login
 Route::get('/login', [loginController::class, 'showLoginForm'])->name('login');

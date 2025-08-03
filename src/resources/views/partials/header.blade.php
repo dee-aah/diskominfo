@@ -1,5 +1,5 @@
 <header>
-<body class="bg-gray-100">
+<body class="bg-green-50">
 
   <!-- Navbar -->
   <nav class="bg-white shadow-md w-full fixed top-0 z-50">
@@ -7,11 +7,11 @@
       <div class="flex justify-between h-20 items-center">
         <div class="flex items-center">
           <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
-          <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
+          <span class="text-xl font-bold text-blue-500">DPPKBP3A</span>
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-6 items-center">
+        <div class="hidden md:flex space-x-6 font-medium items-center">
           <a href="{{url('/beranda')}}" class="hover:text-blue-600">Beranda</a>
           <div class="relative group">
             <button class="hover:text-blue-600">Profil</button>

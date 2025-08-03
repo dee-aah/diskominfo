@@ -1,6 +1,6 @@
 <footer>
 
-    <body class="bg-gray-100">
+    <body>
         <footer class="bg-[#476A9A] text-white py-10 px-6">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
                 <div>
@@ -8,7 +8,7 @@
                     <ul class="space-y-2 text-sm text-ligt">
                         <li>
                             <a href="https://maps.app.goo.gl/MwXGxt5hHYp9X7gr7" class="flex items-start space-x-2">
-                                <i class="fa-solid fa-location-dot mt-1" style="color: black"></i>
+                                <img width="20" height="20" class="mr-4" src="https://img.icons8.com/fluency/48/place-marker.png" alt="place-marker"/>
                                 <span>
                                     Jl. Perintis Kemerdekaan No 283, Kelurahan Kersamenak, Kecamatan Kawalu, Kota
                                     Tasikmalaya 46182
@@ -18,21 +18,21 @@
 
                         <li>
                             <a href="" class="flex items-center space-x-2">
-                                <i class="fa-solid fa-phone" style="color: black"></i>
+                                <img width="20" height="20" class="mr-4" src="https://img.icons8.com/fluency/48/phone.png" alt="phone"/>
                                 <span>(021) 123-4567</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="" class="flex items-center space-x-2">
-                                <i class="fa-regular fa-envelope"style="color: black"></i>
+                                <img width="20" height="20" class="mr-4" src="https://img.icons8.com/fluency/48/gmail-new.png" alt="gmail-new"/>
                                 <span>dppkbp3a@gmail.go.id</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="https://www.instagram.com/dppkbp3a_kotatasikmalaya?igsh=OXhqdTBxOGV3MjAz" class="flex items-center space-x-2">
-                                <i class="fa-brands fa-instagram " style="color: black"></i>
+                                <img width="25" height="25" class="mr-4" src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new"/>
                                 <span>dppkbp3a_kotatasikmalaya</span>
                             </a>
                         </li>
@@ -64,13 +64,13 @@
                     <h3 class="font-bold text-base mb-3">Butuh informasi lebih lanjut?</h3>
                     <p class="mb-3">Tim humas DPPKBP3A siap membantu menjawab pertanyaan Anda</p>
                     <div class="flex justify-center gap-4 flex-wrap">
-                        <a href="dppkbp3a@gmail.go.id" class="w-full flex items-center px-5 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-                            <i class="fa-regular fa-envelope px-3"></i>
+                        <a href="dppkbp3a@gmail.go.id" class="w-full flex items-center px-5 py-3 bg-blue-800 text-white rounded-md hover:bg-blue-700 transition">
+                            <img width="20" class="mr-6" height="20" src="https://img.icons8.com/fluency/48/gmail-new.png" alt="gmail-new"/>
                             Kirim Email
                         </a>
 
-                        <a href="tel:+6281234567890" class="bg-white w-full flex items-center px-5 py-3 border border-white-300 rounded-md text-blue-800 hover:bg-blue-100 transition">
-                            <i class="fa-solid fa-phone px-3" style="color: black"></i>
+                        <a href="tel:+6281234567890" class="bg-green-50 w-full flex items-center px-5 py-3 border border-white-300 rounded-md text-blue-700 hover:bg-blue-100 transition">
+                            <img width="20" height="20" class="mr-6" src="https://img.icons8.com/fluency/48/phone.png" alt="gmail-new"/>
                             Hubungi Langsung
                         </a>
                     </div>

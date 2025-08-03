@@ -9,7 +9,7 @@
 <body>
     @include('partials.header')
 
-    <main ">
+    <main class="bg-green-50">
         {{ $slot }}
     </main>
 

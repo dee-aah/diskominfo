@@ -1,6 +1,5 @@
 <x-layouts.app>
-
-    <body class="bg-blue-100">
+    <body class="bg-blue-50">
         <!-- Hero Section -->
         <section class="relative h-screen overflow-hidden pt-16 ">
             <video autoplay muted loop playsinline
@@ -27,7 +26,7 @@
             <div class="absolute bottom-0 left-0 right-0  overflow-hidden leading-[0] z-20">
                 <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                     preserveAspectRatio="none">
-                    <path fill="oklch(0.967 0.003 264.542)" fill-opacity="1"
+                    <path fill="oklch(0.982 0.018 155.826)" fill-opacity="1"
                         d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
                     </path>
                 </svg>
@@ -39,8 +38,7 @@
         <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0]">
             <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                 preserveAspectRatio="none">
-                <path fill="oklch(0.932 0.032 255.585) fill-opacity="1"
-                    d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                <path fill="oklch(0.982 0.018 155.826)" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
                 </path>
             </svg>
         </div>
