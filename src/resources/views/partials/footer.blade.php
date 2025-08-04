@@ -46,7 +46,7 @@
                         <li><a href="{{ url('/visimisi') }}"class="hover:underline">Visi Misi</a></li>
                         <li><a href="{{ url('/tupoksi') }}" class="hover:underline">Tupoksi</a></li>
                         <li><a href="{{ url('/struktur') }}" class="hover:underline">Struktur Organisasi</a></li>
-                        <li><a href="{{ url('/berita') }}" class="hover:underline">Berita</a></li>
+                        <li><a href="{{ url('/beritakita') }}" class="hover:underline">Berita</a></li>
                         <li><a href="{{ url('/artikel') }}" class="hover:underline">Artikel</a></li>
                     </ul>
                 </div>

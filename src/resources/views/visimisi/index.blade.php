@@ -1,9 +1,9 @@
 <x-layouts.app>
     <body>
-    <section class="relative h-screen overflow-hidden pt-20 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+    <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
             <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{ asset('img/gambar4.jpg') }}" alt="">
+                src="{{ asset('img/3.jpg') }}" alt="">
         </div>
 
         <!-- Overlay -->

@@ -45,7 +45,7 @@
           <div class="relative group">
             <button class="hover:text-blue-600">Berita</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-              <a href="{{url('/berita')}}" class="block px-4 py-2 hover:bg-green-100">Berita</a>
+              <a href="{{url('/beritakita')}}" class="block px-4 py-2 hover:bg-green-100">Berita</a>
               <a href="{{url('/artikel')}}" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
             </div>
           </div>

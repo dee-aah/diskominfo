@@ -6,9 +6,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\tupoksiController;
 use App\Http\Controllers\visimisiController;
-use App\Http\Controllers\beritaController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\maklumatController;
 use App\Http\Controllers\strukturController;
+use App\Http\Controllers\ArtikelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -29,9 +30,20 @@ Route::get('/register', [registerController::class, 'showRegistrationForm'])->na
 Route::post('/register', [registerController::class, 'register']);
 Route::post('/register', [registerController::class, 'store'])->name('register.store');
 Route::middleware(['auth'])->group(function () {
-Route::resource('berita', BeritaController::class);
 });
 
 //berita
-Route::resource('/berita', beritaController::class);
-Route::get('/', [beritaController::class, 'index'])->name('beranda');
+Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
+Route::post('/beritakita', [BeritaController::class, 'store'])->name('beritakita.store');
+Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
+Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update');
+Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+
+//artikel
+
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
+Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
+Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
+Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
+Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+

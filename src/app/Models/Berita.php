@@ -3,20 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Berita extends Model
 {
-   protected $table = 'berita';
+   use HasFactory;
+    protected $table = 'berita';
 
-    protected $fillable = [
-        'judul',
-        'slug',
-        'isi',
-        'penulis',
-        'tag',
-        'gambar',
-        'kategori_id',
-    ];
+    // app/Models/Berita.php
+protected $fillable = ['judul', 'isi', 'penulis', 'tag', 'gambar', 'kategori_id'];
+
 
     // Relasi ke kategori
     public function kategori()

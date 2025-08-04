@@ -7,7 +7,7 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-class beritaController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,7 @@ class beritaController extends Controller
     {
         $beritas = Berita::with('kategori')->latest()->get();
         $kategoris = Kategori::all();
-
-        return view('berita.index', compact('beritas', 'kategoris'));
+        return view('beritakita.index', compact('beritas', 'kategoris'));
 
     }
 
@@ -35,31 +34,31 @@ class beritaController extends Controller
     public function store(Request $request)
     {
        $request->validate([
-            'judul' => 'required|string|max:255',
-            'isi' => 'required|string',
-            'penulis' => 'required|string|max:100',
-            'tag' => 'nullable|string',
-            'kategori_id' => 'nullable|exists:kategori,id',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-        ]);
+        'judul' => 'required',
+        'isi' => 'required',
+        'penulis' => 'required',
+        'tag' => 'nullable',
+        'kategori_id' => 'required',
+        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+    ]);
 
-        $data = $request->only(['judul', 'isi', 'penulis', 'tag', 'kategori_id']);
-
-        if ($request->hasFile('gambar')) {
+    $filename = null;
+    if ($request->hasFile('gambar')) {
         $file = $request->file('gambar');
-        $namaGambar = $file->getClientOriginalName(); // nama asli tanpa diubah
-
-        // Pindahkan ke folder public/berita
-        $tujuanPath = public_path('berita'); // = public/berita
-        $file->move($tujuanPath, $namaGambar); // simpan file
-
-        // Simpan nama gambar ke database (relatif terhadap public)
-        $data['gambar'] = 'berita/' . $namaGambar;
+        $filename = $file->getClientOriginalName();
+        $file->storeAs('berita', $filename);
     }
 
-        Berita::create($data);
+    Berita::create([
+        'judul' => $request->judul,
+        'isi' => $request->isi,
+        'penulis' => $request->penulis,
+        'tag' => $request->tag,
+        'kategori_id' => $request->kategori_id,
+        'gambar' => $filename
+    ]);
 
-    return redirect()->back()->with('success', 'Berita berhasil ditambahkan.');
+    return redirect()->back()->with('success', 'Berita berhasil ditambahkan');
     }
     public function show(string $id)
     {
@@ -71,9 +70,9 @@ class beritaController extends Controller
      */
     public function edit(string $id)
     {
-        $berita = Berita::findOrFail($id);
-        $kategoris = Kategori::all();
-        return view('berita.edit', compact('berita', 'kategoris'));
+         $berita = Berita::findOrFail($id);
+    $kategoris = Kategori::all();
+    return view('berita.edit', compact('berita', 'kategoris'));
     }
 
     /**
@@ -81,31 +80,30 @@ class beritaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-     $berita = Berita::findOrFail($id);
+    $berita = Berita::findOrFail($id);
 
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'isi' => 'required|string',
-            'penulis' => 'required|string|max:100',
-            'tag' => 'nullable|string',
-            'kategori_id' => 'nullable|exists:kategori,id',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-        ]);
+    $request->validate([
+        'judul' => 'required',
+        'isi' => 'required',
+        'penulis' => 'required',
+        'tag' => 'nullable',
+        'kategori_id' => 'required',
+        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+    ]);
 
-        $data = $request->only(['judul', 'isi', 'penulis', 'tag', 'kategori_id']);
-        $data['slug'] = Str::slug($request->judul);
-
-        if ($request->hasFile('gambar')) {
-            // Hapus gambar lama jika ada
-            if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
-                Storage::disk('public')->delete($berita->gambar);
-            }
-
-            $data['gambar'] = $request->file('gambar')->store('berita', 'public');
+    if ($request->hasFile('gambar')) {
+        $file = $request->file('gambar');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/berita', $filename);
+        if ($berita->gambar) {
+            Storage::delete('public/berita/' . $berita->gambar);
         }
+        $berita->gambar = $filename;
+    }
 
-        $berita->update($data);
-    return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui!');
+    $berita->update($request->only(['judul', 'isi', 'penulis', 'tag', 'kategori_id']));
+
+    return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui');
     }
 
     /**
@@ -114,13 +112,11 @@ class beritaController extends Controller
     public function destroy(string $id)
     {
      $berita = Berita::findOrFail($id);
+    if ($berita->gambar) {
+        Storage::delete('public/berita/' . $berita->gambar);
+    }
+    $berita->delete();
 
-        if ($berita->gambar && Storage::disk('public')->exists($berita->gambar)) {
-            Storage::disk('public')->delete($berita->gambar);
-        }
-
-        $berita->delete();
-
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus.');
+    return redirect()->back()->with('success', 'Berita berhasil dihapus');
     }
 }

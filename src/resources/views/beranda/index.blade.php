@@ -82,7 +82,7 @@
             </div>
         </div>
 
-        <section class="bg-gray-100 py-10">
+        <section class="bg-green-50 py-10">
             <div id="container1"></div>
             <div class="text-center mb-6">
                 <h2 class="text-2xl font-bold">Layanan Utama</h2>
@@ -94,7 +94,7 @@
             <div id="carousel" data-bg="{{ asset('img/gambar2.jpg') }}"
                 class="relative bg-transition h-screen flex items-center justify-start px-10"style=" background-size: cover; background-position: center;">
                 <!-- Slide Area -->
-                <div class="relative w-full max-w-screen-xl flex items-center overflow-hidden">
+                <div class="relative w-full max-w-screen-xl flex items-center max-w-7xl mx-auto overflow-hidden">
                     <div id="slideWrapper" class="flex space-x-6 transition-transform duration-500 ease-in-out">
 
                         <!-- Card 1 -->
@@ -228,18 +228,18 @@
             </div>
         </section>
 
-        <div class="text-center mb-6">
+        <div class="text-center mb-6 max-w-7xl mx-auto" >
             <h2 class="text-2xl font-bold">Tentang kami</h2>
             <div class="h-1 w-16 bg-blue-500 mx-auto mt-2 rounded"></div>
             <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sit
                 possimus adipisci vel, expedita a, veniam rem amet et quisquam sapiente, nisi reprehenderit! Quidem quod
                 aliquid aspernatur perspiciatis perferendis repellat.</p>
         </div>
-        <section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: url('{{ asset('img/gambar1.jpg') }}') "  >
+        <section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: url('{{ asset('img/gambar1.png') }}') "  >
             <!-- Overlay gelap -->
             <div class="absolute inset-0 bg-black/50"></div>
             <!-- Konten -->
-            <div class="relative z-10 w-full px-6 md:px-16 lg:px-24">
+            <div class="relative max-w-7xl mx-auto z-10 w-full px-6 md:px-16 lg:px-24">
                 <div class="max-w-xl text-left text-white space-y-4">
                     <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">Sekilas DPPKBP3A</p>
                     <h2 class="text-4xl font-bold">Tentang Kami</h2>
@@ -416,7 +416,7 @@
 
         typeEffect();
 
-        const backgrounds = ["gambar.jpg", "gambar1.jpg", "gambar2.jpg", "gambar3.jpg", "gambar3.jpg"];
+        const backgrounds = ["2.jpg", "3.jpg", "gambar2.jpg", "gambar3.jpg", "gambar1.jpg"];
         const cards = document.querySelectorAll('#slideWrapper > div');
         const carousel = document.getElementById('carousel');
         const slideWrapper = document.getElementById('slideWrapper');
