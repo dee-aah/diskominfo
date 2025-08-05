@@ -72,7 +72,7 @@ class BeritaController extends Controller
     {
          $berita = Berita::findOrFail($id);
     $kategoris = Kategori::all();
-    return view('berita.edit', compact('berita', 'kategoris'));
+    return view('beritakita.edit', compact('berita', 'kategoris'));
     }
 
     /**
@@ -103,7 +103,7 @@ class BeritaController extends Controller
 
     $berita->update($request->only(['judul', 'isi', 'penulis', 'tag', 'kategori_id']));
 
-    return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui');
+    return redirect()->route('beritakita.index')->with('success', 'Berita berhasil diperbarui');
     }
 
     /**
