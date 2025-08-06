@@ -1,5 +1,5 @@
 <header>
-<body class="bg-green-50">
+<body class="bg-stone-50">
 
   <!-- Navbar -->
   <nav class="bg-white shadow-md w-full fixed top-0 z-50">
@@ -28,9 +28,9 @@
             <button class="hover:text-blue-600">Layanan</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
               <a href="{{url('/standarpelayanan')}}" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
-              <a href="{{url('/ikm')}}"class="block px-4 py-2 hover:bg-green-100">IKM</a>
-              <a href="{{url('/ppid')}}" class="block px-4 py-2 hover:bg-green-100">PPID</a>
-              <a href="{{url('/spanlapor')}}" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
+              <a href="{{url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/')}}"class="block px-4 py-2 hover:bg-green-100">IKM</a>
+              <a href="{{url('https://ppid.tasikmalayakota.go.id/')}}" class="block px-4 py-2 hover:bg-green-100">PPID</a>
+              <a href="{{url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/')}}" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
               <a href="{{url('/informasi')}}"class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
             </div>
           </div>

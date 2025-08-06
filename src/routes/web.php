@@ -10,6 +10,9 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\maklumatController;
 use App\Http\Controllers\strukturController;
 use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\ProdukhukumController;
+use App\Http\Controllers\TentangController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +22,9 @@ Route::resource( '/visimisi',   visimisiController::class);
 Route::resource( '/tupoksi',  tupoksiController::class);
 Route::resource( '/struktur',  strukturController::class);
 Route::resource( '/maklumat',  maklumatController::class);
+Route::resource( '/tentang',  TentangController::class);
+Route::resource( '/profil',  ProfilController::class);
+Route::resource( '/produkhukum',  ProdukhukumController::class);
 
 
 // login

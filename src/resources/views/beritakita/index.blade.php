@@ -2,8 +2,8 @@
     <div class="p-6 bg-blue-50">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-2xl font-bold">Daftar Berita</h2>
-            <button onclick="toggleModal(true)" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
-                Tambah Berita
+            <button onclick="toggleModal(true)" class="bg-blue-500 space-x-2 flex hover:bg-blue-600 text-white px-4 py-2 rounded">
+            <i class="fa-solid fa-plus mr-3 mt-2"></i>   Tambah Berita
             </button>
         </div>
 
@@ -110,9 +110,9 @@
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="button" onclick="toggleModal(false)"
-                            class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</button>
+                            class="bg-gray-400 hover:bg-gray-500 text-white mb-4 px-4 py-2 rounded">Batal</button>
                         <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
+                            class="bg-blue-600 hover:bg-blue-700 text-white mb-4 px-4 py-2 rounded">Simpan</button>
                     </div>
                 </form>
             </div>

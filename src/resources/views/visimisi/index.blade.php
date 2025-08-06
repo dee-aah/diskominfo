@@ -26,13 +26,13 @@
         <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
             <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                 preserveAspectRatio="none">
-                <path fill="oklch(0.982 0.018 155.826)" fill-opacity="1"
+                <path fill="oklch(0.985 0.001 106.423)" fill-opacity="1"
                     d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
                 </path>
             </svg>
         </div>
     </section>
-    <section class="bg-green-50 text-center py-10 -mt-1">
+    <section class="bg-stone-50 text-center py-10 -mt-1">
         <h2 class="text-2xl font-bold text-black mb-4">Visi dan Misi DPPKBP3A</h2>
         <p class="text-black max-w-2xl mx-auto px-4">
             Panduan dan arah kebijakan pembangunan daerah untuk mewujudkan masyarakat yang sejahtera, adil, dan makmur
@@ -40,7 +40,7 @@
     </section>
 
     <!-- Container Grid Visi Misi (Atas Bawah) -->
-    <div class="flex justify-center px-4 py-10 bg-green-50">
+    <div class="flex justify-center px-4 py-10 bg-stone-50">
         <div class="grid grid-cols-1 gap-6 max-w-4xl w-full">
 
             <!-- Visi -->
@@ -72,7 +72,7 @@
 
         </div>
     </div>
-    <section class="bg-green-50 py-16 text-center">
+    <section class="bg-stone-50 py-16 text-center">
         <h2 class="text-2xl md:text-3xl font-bold mb-2">Pencapaian & Dampak</h2>
         <p class="text-gray-600 mb-10">Komitmen nyata dalam melayani masyarakat Kota Tasikmalaya</p>
 

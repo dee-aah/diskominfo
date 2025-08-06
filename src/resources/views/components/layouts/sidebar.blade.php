@@ -22,9 +22,7 @@
                 <a href="{{route('artikel.index')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                     <i class="fas fa-wallet w-5 h-5 mr-3"></i> <span>Artikel</span>
                 </a>
-                <a href="#" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
-                    <i class="fas fa-chart-line w-5 h-5 mr-3"></i> <span>Laporan Bulanan</span>
-                </a>
+                
                 <a href="#" class="flex items-center p-2 text-red-600 rounded hover:bg-red-100">
                     <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
                 </a>
