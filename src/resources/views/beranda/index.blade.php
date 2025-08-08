@@ -280,112 +280,102 @@
             </p>
 
             <div class="grid md:grid-cols-3 gap-6">
-                <!-- Berita Utama -->
-                <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
-                    <div class="relative">
-                        <img src="bg1.jpg" alt="Gambar Berita" class="w-full h-64 object-cover">
-                        <div class="absolute bottom-4 left-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded">Berita</span>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-2">
-                            Program Pemberdayaan Perempuan UMKM Raih Penghargaan Nasional
-                        </h2>
-                        <p class="text-sm text-gray-600 mb-4">
-                            DPPKBP3A berhasil meraih penghargaan dari Kementerian Pemberdayaan Perempuan dan
-                            Perlindungan Anak atas program unggulan pemberdayaan perempuan di sektor UMKM.
-                        </p>
-                        <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
-                            <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8 7V3m8 4V3M3 11h18M5 19h14M12 15v2" />
-                                </svg>
-                                <span>15 Januari 2024</span>
-                            </div>
-                            <div class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M5.121 17.804A10.002 10.002 0 0112 2a10 10 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                                <span>Admin DPPKBP3A</span>
-                            </div>
-                        </div>
-                        <a href="#"
-                            class="inline-flex items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
-                            Baca Selengkapnya
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
+        <!-- Berita Utama -->
+        <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
+            @if ($utama)
+                <div class="relative">
+                    @if ($utama->gambar)
+                        <img src="{{ asset('storage/artikel/' . $utama->gambar) }}" alt="Gambar Berita"
+                             class="w-full h-64 object-cover">
+                    @else
+                        <img src="{{ asset('images/default.jpg') }}" alt="Default Gambar"
+                             class="w-full h-64 object-cover">
+                    @endif
+
+                    <div class="absolute bottom-4 left-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded">Berita</span>
                     </div>
                 </div>
-
-                <!-- Konten Samping -->
-                <div class="space-y-4">
-                    <!-- Kartu 1 -->
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <div class="flex justify-between text-xs text-gray-500 mb-1">
-                            <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Program</span>
-                            <span>12 Januari 2024</span>
-                        </div>
-                        <h3 class="font-semibold text-sm text-gray-800 mb-1">
-                            Sosialisasi Perlindungan Anak di Era Digital
-                        </h3>
-                        <p class="text-sm text-gray-600 mb-2">
-                            Workshop edukasi untuk orang tua dan pendidik mengenai cara melindungi anak dari bahaya
-                            digital dan cyber bullying.
-                        </p>
-                        <a href="#"
-                            class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
-                            Baca Selengkapnya <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <!-- Kartu 2 -->
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <div class="flex justify-between text-xs text-gray-500 mb-1">
-                            <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Laporan</span>
-                            <span>10 Januari 2024</span>
-                        </div>
-                        <h3 class="font-semibold text-sm text-gray-800 mb-1">
-                            Hasil Survey IKM Triwulan IV 2023
-                        </h3>
-                        <p class="text-sm text-gray-600 mb-2">
-                            Indeks Kepuasan Masyarakat terhadap pelayanan DPPKBP3A mencapai 89.5%, meningkat 5% dari
-                            triwulan sebelumnya.
-                        </p>
-                        <a href="#"
-                            class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
-                            Baca Selengkapnya <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <!-- CTA Update -->
-                    <div class="bg-white rounded-lg shadow p-4 text-center">
-                        <p class="text-sm text-gray-700 mb-3">Ikuti terus informasi dan program terbaru dari DPPKBP3A
-                        </p>
-                        <a href="#"
-                            class="inline-flex items-center justify-center px-6 py-2 bg-[#476A9A] text-white rounded hover:bg-blue-800 transition">
-                            Lihat Semua Berita
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-2">
+                        {{ $utama->judul }}
+                    </h2>
+                    <p class="text-sm text-gray-600 mb-4">
+                        {{ Str::limit(strip_tags($utama->isi), 180) }}
+                    </p>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                        <div class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 7V3m8 4V3M3 11h18M5 19h14M12 15v2" />
                             </svg>
-                        </a>
+                            <span>{{ \Carbon\Carbon::parse($utama->created_at)->translatedFormat('d F Y') }}</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M5.121 17.804A10.002 10.002 0 0112 2a10 10 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>{{ $utama->penulis ?? 'Admin' }}</span>
+                        </div>
                     </div>
+                    <a href="{{ route('artikel.show', $utama->id) }}"
+                        class="inline-flex items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
+                        Baca Selengkapnya
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
                 </div>
+            @else
+                <div class="p-4 text-gray-500">Belum ada berita utama.</div>
+            @endif
+        </div>
+
+        <!-- Konten Samping -->
+        <div class="space-y-4">
+            @foreach ($lainnya as $item)
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="flex justify-between text-xs text-gray-500 mb-1">
+                        <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">{{ ucfirst($item->tag ?? 'Berita') }}</span>
+                        <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</span>
+                    </div>
+                    <h3 class="font-semibold text-sm text-gray-800 mb-1">
+                        {{ $item->judul }}
+                    </h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                        {{ Str::limit(strip_tags($item->isi), 100) }}
+                    </p>
+                    <a href="{{ route('artikel.show', $item->id) }}"
+                        class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+                        Baca Selengkapnya
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                            stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            @endforeach
+
+            <!-- CTA -->
+            <div class="bg-white rounded-lg shadow p-4 text-center">
+                <p class="text-sm text-gray-700 mb-3">
+                    Ikuti terus informasi dan program terbaru dari DPPKBP3A
+                </p>
+                <a href="{{ route('artikel.index') }}"
+                    class="inline-flex items-center justify-center px-6 py-2 bg-[#476A9A] text-white rounded hover:bg-blue-800 transition">
+                    Lihat Semua Berita
+                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </a>
             </div>
+        </div>
+    </div>
         </div>
     </body>
     <script>

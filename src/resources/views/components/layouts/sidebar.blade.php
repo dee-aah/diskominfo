@@ -2,36 +2,61 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'Dashboard' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body>
-@include('partials.sidebar')
-    <div class="flex min-h-screen " >
-        <aside class="w-64 bg-green-50 border-r-1 border-gray-200 flex flex-col">
-            <div class="flex items-center justify-center h-16 ">
+<body class="bg-blue-50">
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div id="sidebar" class="w-64 bg-green-50 border-r-2 border-gray-200 flex flex-col space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+            <!-- Logo -->
+            <div class="flex items-center justify-center h-16">
                 <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
-                    <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
+                <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
             </div>
+
+            <!-- Navigation -->
             <nav class="flex-1 p-4 space-y-2">
                 <a href="{{ route('beritakita.index') }}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                     <i class="fas fa-newspaper w-5 h-5 mr-3"></i> <span>Berita</span>
                 </a>
-                <a href="{{route('artikel.index')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                <a href="{{ route('artikel.index') }}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                     <i class="fas fa-wallet w-5 h-5 mr-3"></i> <span>Artikel</span>
                 </a>
-                
                 <a href="#" class="flex items-center p-2 text-red-600 rounded hover:bg-red-100">
                     <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
                 </a>
             </nav>
-        </aside>
-        <main class="flex-1 p-6 bg-blue-50">
-            {{ $slot }}
-        </main>
-    </div>
-</body>
+        </div>
 
+        <!-- Content Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header (Topbar) -->
+            <header class="bg-stone-50  p-4 flex items-center justify-between md:justify-end">
+                <button id="toggleSidebar" class="md:hidden text-2xl focus:outline-none">
+                    &#9776;
+                </button>
+            </header>
+
+            <!-- Main Content -->
+            <main class="flex-1 bg-stone-50 overflow-y-auto p-6">
+                {{ $slot ?? '' }}
+            </main>
+        </div>
+    </div>
+
+    <!-- JS Sidebar Toggle -->
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleSidebar = document.getElementById('toggleSidebar');
+
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+    </script>
+</body>
 </html>

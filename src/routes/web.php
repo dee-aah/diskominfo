@@ -44,12 +44,22 @@ Route::post('/beritakita', [BeritaController::class, 'store'])->name('beritakita
 Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
 Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update');
 Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
+Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
+Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
+
 
 //artikel
-
+Route::get('/artikel/dashboard', [ArtikelController::class, 'dashboard'])->name('artikel.dashboard');
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
 Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
 Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
 Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
 Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
+Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
+Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::get('/artikel/search', [ArtikelController::class, 'searching'])->name('artikel.search');
+
+
+
+
 

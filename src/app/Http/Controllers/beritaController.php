@@ -82,28 +82,24 @@ class BeritaController extends Controller
     {
     $berita = Berita::findOrFail($id);
 
-    $request->validate([
-        'judul' => 'required',
-        'isi' => 'required',
-        'penulis' => 'required',
-        'tag' => 'nullable',
-        'kategori_id' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
-    ]);
+    $berita->judul = $request->judul;
+    $berita->isi = $request->isi;
+    $berita->penulis = $request->penulis;
+    $berita->tag = $request->tag;
+    $berita->kategori_id = $request->kategori_id;
 
     if ($request->hasFile('gambar')) {
         $file = $request->file('gambar');
-        $filename = time() . '_' . $file->getClientOriginalName();
+        $filename = $file->getClientOriginalName();
         $file->storeAs('public/berita', $filename);
         if ($berita->gambar) {
-            Storage::delete('public/berita/' . $berita->gambar);
+            Storage::delete('berita/' . $berita->gambar);
         }
         $berita->gambar = $filename;
     }
 
-    $berita->update($request->only(['judul', 'isi', 'penulis', 'tag', 'kategori_id']));
-
-    return redirect()->route('beritakita.index')->with('success', 'Berita berhasil diperbarui');
+    $berita->save();
+    return redirect()->back()->with('success', 'Berita berhasil diperbarui');
     }
 
     /**

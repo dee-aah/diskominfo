@@ -5,17 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\Artikel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ArtikelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function dashboard(Request $request)
+    {
+      $query = Artikel::query();
 
+    if ($request->filled('d')) {
+        $search = $request->d;
+        $query->where(function ($q) use ($search) {
+            $q->where('judul', 'like', "%{$search}%")
+              ->orWhere('penulis', 'like', "%{$search}%")
+              ->orWhere('tag', 'like', "%{$search}%");
+        });
+    }
+
+    $artikels = $query->latest()->get();
+
+        // $artikels = Artikel::latest()->get();
+        return view('artikel.dashboard', compact('artikels'));
+
+    }
     public function index()
     {
         $artikels = Artikel::latest()->get();
         return view('artikel.index', compact('artikels'));
+
     }
 
     /**
@@ -23,7 +43,7 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        //
+        return view ('artikel.create');
     }
 
     /**
@@ -39,11 +59,11 @@ class ArtikelController extends Controller
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
-        $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/artikel', $filename);
+    $filename = null;
+    if ($request->hasFile('gambar')) {
+        $file = $request->file('gambar');
+        $filename = $file->getClientOriginalName();
+        $file->storeAs('artikel', $filename);
         }
 
         Artikel::create([
@@ -51,10 +71,9 @@ class ArtikelController extends Controller
             'isi' => $request->isi,
             'penulis' => $request->penulis,
             'tag' => $request->tag,
-            'gambar' => $filename,
+            'gambar' => $filename
         ]);
-
-        return redirect()->back()->with('success', 'Artikel berhasil ditambahkan');
+       return redirect()->route('artikel.index')->with('success', 'Artikel berhasil ditambahkan');
     }
 
     /**
@@ -62,7 +81,8 @@ class ArtikelController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $artikel = Artikel::findOrFail($id);
+    return view('artikel.show', compact('artikel'));
     }
 
     /**
@@ -89,17 +109,20 @@ class ArtikelController extends Controller
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
+        $filename = null;
         if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/artikel', $filename);
-            if ($artikel->gambar) {
-                Storage::delete('public/artikel/' . $artikel->gambar);
-            }
-            $artikel->gambar = $filename;
+        $file = $request->file('gambar');
+        $filename = $file->getClientOriginalName();
+        $file->storeAs('artikel', $filename);
         }
 
-        $artikel->update($request->only(['judul', 'isi', 'penulis', 'tag']));
+        Artikel::update([
+            'judul' => $request->judul,
+            'isi' => $request->isi,
+            'penulis' => $request->penulis,
+            'tag' => $request->tag,
+            'gambar' => $filename
+        ]);
 
         return redirect()->route('artikel.index')->with('success', 'Artikel berhasil diperbarui');
     }
@@ -117,4 +140,17 @@ class ArtikelController extends Controller
 
         return redirect()->back()->with('success', 'Artikel berhasil dihapus');
     }
+    public function searching(Request $request)
+    {
+    $search = $request->input('q');
+
+    $artikel = Artikel::where('judul', 'like', '%' . $search . '%')
+        ->orWhere('penulis', 'like', '%' . $search . '%')
+        ->orWhere('tag', 'like', '%' . $search . '%')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('artikel.dashboard', compact('artikels'));
+    }
+
 }

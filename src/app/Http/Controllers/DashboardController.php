@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artikel;
 use Illuminate\Http\Request;
 
-class berandaController extends Controller
+class DashboardController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-    $utama = Artikel::latest()->first();
-
-    $lainnya = Artikel::where('id', '!=', optional($utama)->id)
-                      ->latest()
-                      ->take(5)
-                      ->get();
-
-    return view('beranda.index', compact('utama', 'lainnya'));
+        //
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
         //
