@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('isi');
+            $table->text('deskripsi');
             $table->string('penulis');
+            $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
             $table->string('tag')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();

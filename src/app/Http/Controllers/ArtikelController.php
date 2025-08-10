@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -14,28 +15,50 @@ class ArtikelController extends Controller
      */
     public function dashboard(Request $request)
     {
-      $query = Artikel::query();
+        $query = Artikel::query();
 
-    if ($request->filled('d')) {
-        $search = $request->d;
-        $query->where(function ($q) use ($search) {
+        if ($request->filled('d')) {
+            $search = $request->d;
+            $query->where(function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%")
+                    ->orWhere('penulis', 'like', "%{$search}%")
+                    ->orWhere('tag', 'like', "%{$search}%");
+            });
+        }
+
+        $artikels = $query->latest()->get();
+
+        // $artikels = Artikel::latest()->get();
+        return view('artikel.dashboard', compact('artikels'));
+    }
+    public function index(Request $request)
+    {
+      $search = $request->input('search');
+
+    // Query utama
+    $query = Artikel::with('kategori');
+
+    if ($search) {
+        $query->where(function($q) use ($search) {
             $q->where('judul', 'like', "%{$search}%")
               ->orWhere('penulis', 'like', "%{$search}%")
               ->orWhere('tag', 'like', "%{$search}%");
         });
     }
 
-    $artikels = $query->latest()->get();
+    // Artikel terbaru untuk 1 di highlight
+    $artikel = Artikel::latest()->first();
 
-        // $artikels = Artikel::latest()->get();
-        return view('artikel.dashboard', compact('artikels'));
+    // Artikel lainnya (skip yang terbaru)
+    $artikels = $query->latest()->skip(1)->take(6)->get();
 
-    }
-    public function index()
-    {
-        $artikels = Artikel::latest()->get();
-        return view('artikel.index', compact('artikels'));
+    // Latest stories
+    $latest = Artikel::latest()->take(5)->get();
 
+    // Semua kategori
+    $kategoris = Kategori::all();
+
+    return view('artikel.index', compact('artikels', 'artikel', 'search', 'latest', 'kategoris'));
     }
 
     /**
@@ -43,7 +66,8 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        return view ('artikel.create');
+        $kategoris = Kategori::where('type', 'artikel')->get();
+        return view('artikel.create', compact('kategoris'));
     }
 
     /**
@@ -53,27 +77,29 @@ class ArtikelController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'isi' => 'required',
+            'deskripsi' => 'required',
             'penulis' => 'required',
             'tag' => 'nullable',
+            'kategori_id' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
-    $filename = null;
-    if ($request->hasFile('gambar')) {
-        $file = $request->file('gambar');
-        $filename = $file->getClientOriginalName();
-        $file->storeAs('artikel', $filename);
+        $filename = null;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('artikel', $filename);
         }
 
         Artikel::create([
             'judul' => $request->judul,
-            'isi' => $request->isi,
+            'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'tag' => $request->tag,
+            'kategori_id' => $request->kategori_id,
             'gambar' => $filename
         ]);
-       return redirect()->route('artikel.index')->with('success', 'Artikel berhasil ditambahkan');
+        return redirect()->route('artikel.dashboard')->with('success', 'Artikel berhasil ditambahkan');
     }
 
     /**
@@ -82,49 +108,44 @@ class ArtikelController extends Controller
     public function show(string $id)
     {
         $artikel = Artikel::findOrFail($id);
-    return view('artikel.show', compact('artikel'));
+        $latest = Artikel::latest()->take(5)->get();
+        return view('artikel.show', compact('artikel', 'latest'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-         $artikel = Artikel::findOrFail($id);
-        return view('artikel.edit', compact('artikel'));
+        $kategoris = Kategori::where('type', 'artikel')->get();
+        $artikel = Artikel::findOrFail($id);
+        return view('artikel.edit', compact('artikel','kategoris'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,$id)
     {
         $artikel = Artikel::findOrFail($id);
 
-        $request->validate([
-            'judul' => 'required',
-            'isi' => 'required',
-            'penulis' => 'required',
-            'tag' => 'nullable',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
-        ]);
-
-        $filename = null;
-        if ($request->hasFile('gambar')) {
+    if ($request->hasFile('gambar')) {
         $file = $request->file('gambar');
         $filename = $file->getClientOriginalName();
         $file->storeAs('artikel', $filename);
-        }
+    } else {
+        $filename = $artikel->gambar; 
+    }
 
-        Artikel::update([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'penulis' => $request->penulis,
-            'tag' => $request->tag,
-            'gambar' => $filename
-        ]);
-
-        return redirect()->route('artikel.index')->with('success', 'Artikel berhasil diperbarui');
+    $artikel->update([
+        'judul' => $request->judul,
+        'deskripsi' => $request->deskripsi,
+        'penulis' => $request->penulis,
+        'tag' => $request->tag,
+        'kategori_id' => $request->kategori_id,
+        'gambar' => $filename
+    ]);
+        return redirect()->route('artikel.dashboard')->with('success', 'Artikel berhasil diperbarui');
     }
 
     /**
@@ -142,15 +163,21 @@ class ArtikelController extends Controller
     }
     public function searching(Request $request)
     {
-    $search = $request->input('q');
+      $query = Artikel::query();
 
-    $artikel = Artikel::where('judul', 'like', '%' . $search . '%')
-        ->orWhere('penulis', 'like', '%' . $search . '%')
-        ->orWhere('tag', 'like', '%' . $search . '%')
-        ->orderBy('created_at', 'desc')
-        ->get();
-
-    return view('artikel.dashboard', compact('artikels'));
+    if ($request->filled('keyword')) {
+        $query->where('judul', 'like', '%' . $request->keyword . '%')
+              ->orWhere('deskripsi', 'like', '%' . $request->keyword . '%');
     }
 
+    if ($request->filled('kategori')) {
+        $query->where('kategori_id', $request->kategori);
+    }
+
+    $artikels = $query->orderBy('created_at', 'desc')->get();
+
+    return view('artikel.index', [
+        'artikels' => $artikels,
+        'kategoris' => Kategori::all()
+    ]);}
 }

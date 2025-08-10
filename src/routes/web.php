@@ -25,6 +25,7 @@ Route::resource( '/maklumat',  maklumatController::class);
 Route::resource( '/tentang',  TentangController::class);
 Route::resource( '/profil',  ProfilController::class);
 Route::resource( '/produkhukum',  ProdukhukumController::class);
+//Route::resource( '/artikel.edit',  ArtikelController::class);
 
 
 // login
@@ -39,13 +40,15 @@ Route::middleware(['auth'])->group(function () {
 });
 
 //berita
+Route::get('/beritakita/dashboard', [BeritaController::class, 'dashboard'])->name('beritakita.dashboard');
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
 Route::post('/beritakita', [BeritaController::class, 'store'])->name('beritakita.store');
-Route::get('/berita/{id}/edit', [BeritaController::class, 'edit'])->name('berita.edit');
-Route::put('/berita/{id}', [BeritaController::class, 'update'])->name('berita.update');
-Route::delete('/berita/{id}', [BeritaController::class, 'destroy'])->name('berita.destroy');
-Route::get('/berita/create', [BeritaController::class, 'create'])->name('berita.create');
-Route::post('/berita', [BeritaController::class, 'store'])->name('berita.store');
+Route::get('/beritakita/{id}/edit', [BeritaController::class, 'edit'])->name('beritakita.edit');
+Route::put('/beritakita/{id}', [BeritaController::class, 'update'])->name('beritakita.update');
+Route::delete('/beritakita/{id}', [BeritaController::class, 'destroy'])->name('beritakita.destroy');
+Route::get('/beritakita/create', [BeritaController::class, 'create'])->name('beritakita.create');
+Route::get('/beritakita/{id}', [BeritaController::class, 'show'])->name('beritakita.show');
+Route::get('/beritakita/kategori/{type}', [BeritaController::class, 'kategori'])->name('beritakita.kategori');
 
 
 //artikel
@@ -58,6 +61,10 @@ Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('art
 Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
 Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
 Route::get('/artikel/search', [ArtikelController::class, 'searching'])->name('artikel.search');
+Route::get('/artikel-terbaru', [ArtikelController::class, 'showLatest'])->name('artikel.terbaru');
+Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
+
+
 
 
 

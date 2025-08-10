@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Berita;
 use Illuminate\Http\Request;
 
 class berandaController extends Controller
 {
     public function index()
     {
-    $utama = Artikel::latest()->first();
-
-    $lainnya = Artikel::where('id', '!=', optional($utama)->id)
-                      ->latest()
-                      ->take(5)
-                      ->get();
-
-    return view('beranda.index', compact('utama', 'lainnya'));
+    $artikel = Artikel::latest()->first();
+    $artikellain = Artikel::where('id', '!=', optional($artikel)->id)
+                    ->latest()
+                    ->take(5)
+                    ->get();
+    $berita = Berita::latest()->first();
+    $beritalain = Berita::where('id', '!=', optional($berita)->id)
+                    ->latest()
+                    ->take(5)
+                    ->get();
+    return view('beranda.index', compact('artikel','berita', 'artikellain','beritalain'));
     }
     public function create()
     {

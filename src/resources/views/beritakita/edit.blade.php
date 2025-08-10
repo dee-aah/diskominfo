@@ -5,35 +5,35 @@
                 <div class="flex justify-center items-center mb-4">
                     <h3 class="text-3xl text-center font-bold">Edit Artikel</h3>
                 </div>
-                <form action="{{ route('artikel.update', $artikel->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('beritakita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Judul</label>
-                        <input type="text" name="judul" value="{{ old('judul', $artikel->judul) }}"
-                            placeholder="Masukkan Judul Artikel"
+                        <label class="block text-lg font-medium">Judul Berita</label>
+                        <input type="text" name="judul" value="{{ old('judul', $berita->judul) }}"
+                            placeholder="Masukkan Judul Berita"
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi</label>
                         <textarea name="deskripsi" rows="12"
-                            placeholder="Masukkan Deskripsi Artikel"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $artikel->deskripsi) }}</textarea>
+                            placeholder="Masukkan Deskripsi Berita"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $berita->deskripsi) }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Penulis</label>
-                        <input type="text" name="penulis" value="{{ old('penulis', $artikel->penulis) }}"
+                        <input type="text" name="penulis" value="{{ old('penulis', $berita->penulis) }}"
                             placeholder="Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Tag</label>
-                        <input type="text" name="tag" value="{{ old('tag', $artikel->tag) }}"
-                            placeholder="Masukkan Tag Artikel"
+                        <input type="text" name="tag" value="{{ old('tag', $berita->tag) }}"
+                            placeholder="Masukkan Tag Berita"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2">
                     </div>
                     <div class="mb-3">
@@ -49,14 +49,14 @@
                         <label class="block text-lg font-medium">Gambar</label>
                         <input type="file" name="gambar"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2">
-                        @if ($artikel->gambar)
+                        @if ($berita->gambar)
                             <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                            <img src="{{ asset('storage/artikel/' . $artikel->gambar) }}" class="w-32 mt-1 rounded">
+                            <img src="{{ asset('storage/berita/' . $berita->gambar) }}" class="w-32 mt-1 rounded">
                         @endif
                     </div>
 
                     <div class="flex justify-end gap-2 mt-4">
-                        <a href="{{ route('artikel.dashboard') }}"
+                        <a href="{{ route('beritakita.dashboard') }}"
                             class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
                         <button type="submit"
                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>

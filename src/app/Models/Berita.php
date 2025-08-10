@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Berita extends Model
 {
    use HasFactory;
-    protected $table = 'berita';
+    protected $table = 'beritas';
 
     // app/Models/Berita.php
-protected $fillable = ['judul', 'isi', 'penulis', 'tag', 'gambar', 'kategori_id'];
+protected $fillable = ['judul', 'deskripsi', 'penulis', 'tag', 'gambar', 'kategori_id'];
 
 
     // Relasi ke kategori

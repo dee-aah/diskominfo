@@ -33,17 +33,6 @@
             </div>
         </section>
 
-        <!-- Fitur, CTA, dst. -->
-        <!-- Wave SVG -->
-        <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0]">
-            <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
-                preserveAspectRatio="none">
-                <path fill="oklch(0.985 0.001 106.423)" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-                </path>
-            </svg>
-        </div>
-        </section>
-
         <div class="min-h-screen flex items-center justify-center px-6 py-12">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
@@ -276,16 +265,16 @@
         <div class="max-w-7xl mx-auto p-6">
             <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Berita & Informasi Terkini</h1>
             <p class="text-center text-gray-600 mb-10">
-                Dapatkan informasi terbaru mengenai program, kegiatan, dan perkembangan terkini dari DPPKBP3A
+                Dapatkan Informasi Terbaru Mengenai Program, Kegiatan, dan Perkembangan Terkini Dari DPPKBP3A Kota Tasikmalaya
             </p>
 
             <div class="grid md:grid-cols-3 gap-6">
         <!-- Berita Utama -->
         <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
-            @if ($utama)
+            @if ($berita)
                 <div class="relative">
-                    @if ($utama->gambar)
-                        <img src="{{ asset('storage/artikel/' . $utama->gambar) }}" alt="Gambar Berita"
+                    @if ($berita->gambar)
+                        <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="Gambar Berita"
                              class="w-full h-64 object-cover">
                     @else
                         <img src="{{ asset('images/default.jpg') }}" alt="Default Gambar"
@@ -298,30 +287,21 @@
                 </div>
                 <div class="p-4">
                     <h2 class="text-lg font-semibold text-gray-800 mb-2">
-                        {{ $utama->judul }}
+                        {{ $berita->judul }}
                     </h2>
                     <p class="text-sm text-gray-600 mb-4">
-                        {{ Str::limit(strip_tags($utama->isi), 180) }}
+                        {{ Str::limit(strip_tags($berita->deskripsi), 220) }}
                     </p>
                     <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
                         <div class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M8 7V3m8 4V3M3 11h18M5 19h14M12 15v2" />
-                            </svg>
-                            <span>{{ \Carbon\Carbon::parse($utama->created_at)->translatedFormat('d F Y') }}</span>
+                            <i class="fa-solid fa-upload mr-3" ></i>
+                            <span>{{ \Carbon\Carbon::parse($berita->created_at)->translatedFormat('d F Y') }}</span>
                         </div>
                         <div class="flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5.121 17.804A10.002 10.002 0 0112 2a10 10 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span>{{ $utama->penulis ?? 'Admin' }}</span>
+                            <i class="fa-solid fa-user mr-3"></i><span>{{ $berita->penulis ?? 'Admin' }}</span>
                         </div>
                     </div>
-                    <a href="{{ route('artikel.show', $utama->id) }}"
+                    <a href="{{ route('beritakita.show', $berita->id) }}"
                         class="inline-flex items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
                         Baca Selengkapnya
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
@@ -337,17 +317,17 @@
 
         <!-- Konten Samping -->
         <div class="space-y-4">
-            @foreach ($lainnya as $item)
+            @foreach ($beritalain as $item)
                 <div class="bg-white rounded-lg shadow p-4">
                     <div class="flex justify-between text-xs text-gray-500 mb-1">
-                        <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">{{ ucfirst($item->tag ?? 'Berita') }}</span>
+                        <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">{{ ucfirst($item->kategori->nama ?? 'Berita') }}</span>
                         <span>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</span>
                     </div>
                     <h3 class="font-semibold text-sm text-gray-800 mb-1">
                         {{ $item->judul }}
                     </h3>
                     <p class="text-sm text-gray-600 mb-2">
-                        {{ Str::limit(strip_tags($item->isi), 100) }}
+                        {{ Str::limit(strip_tags($item->deskripsi), 100) }}
                     </p>
                     <a href="{{ route('artikel.show', $item->id) }}"
                         class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">

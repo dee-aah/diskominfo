@@ -12,12 +12,62 @@ class BeritaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function dashboard(Request $request)
     {
-        $beritas = Berita::with('kategori')->latest()->get();
-        $kategoris = Kategori::all();
-        return view('beritakita.index', compact('beritas', 'kategoris'));
+        $query = Berita::query();
 
+        if ($request->filled('d')) {
+            $search = $request->d;
+            $query->where(function ($q) use ($search) {
+                $q->where('judul', 'like', "%{$search}%")
+                    ->orWhere('penulis', 'like', "%{$search}%")
+                    ->orWhere('tag', 'like', "%{$search}%");
+            });
+        }
+
+        $beritas = $query->latest()->get();
+        return view('beritakita.dashboard', compact('beritas'));
+    }
+    public function kategori($type)
+    {
+            $kategori = Kategori::where('type', $type)->firstOrFail();
+            $beritas = Berita::where('kategori_id', $kategori->id)
+                    ->latest()
+                    ->paginate(10);
+
+    return view('beritakita.kategori', compact('kategori', 'beritas'));
+    }
+
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+
+    // Query utama
+    $query = Berita::with('kategori');
+
+    if ($search) {
+        $query->where(function($q) use ($search) {
+            $q->where('judul', 'like', "%{$search}%")
+              ->orWhere('penulis', 'like', "%{$search}%")
+              ->orWhere('tag', 'like', "%{$search}%");
+        });
+    }
+
+    $kategoris = Kategori::where('type', 'Berita')
+    ->with(['beritas' => function ($query) {
+        $query->latest()->take(3); // Ambil 3 artikel terbaru per kategori
+    }])->get();
+    // Artikel terbaru untuk 1 di highlight
+    $beritapertama = Berita::latest()->first();
+
+    // Artikel lainnya (skip yang terbaru)
+    $beritalain = $query->latest()->take(4)->get();
+
+    // Latest stories
+    // Semua kategori
+    //$berita = Kategori::all();
+
+    return view('beritakita.index', compact('beritalain', 'beritapertama', 'search', 'kategoris'));
     }
 
     /**
@@ -25,7 +75,8 @@ class BeritaController extends Controller
      */
     public function create()
     {
-
+    $kategoris = Kategori::where('type', 'Berita')->get();
+        return view('beritakita.create', compact('kategoris'));
     }
 
     /**
@@ -35,34 +86,35 @@ class BeritaController extends Controller
     {
        $request->validate([
         'judul' => 'required',
-        'isi' => 'required',
+        'deskripsi' => 'required',
         'penulis' => 'required',
         'tag' => 'nullable',
         'kategori_id' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
-
-    $filename = null;
-    if ($request->hasFile('gambar')) {
-        $file = $request->file('gambar');
-        $filename = $file->getClientOriginalName();
-        $file->storeAs('berita', $filename);
-    }
+        $filename = null;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $filename = $file->getClientOriginalName();
+            $file->storeAs('berita', $filename);
+        }
 
     Berita::create([
         'judul' => $request->judul,
-        'isi' => $request->isi,
+        'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
         'tag' => $request->tag,
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
     ]);
 
-    return redirect()->back()->with('success', 'Berita berhasil ditambahkan');
+    return redirect()->route('beritakita.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
     public function show(string $id)
     {
-        //
+        $berita = Berita::findOrFail($id);
+        $latest = Berita::latest()->take(5)->get();
+        return view('beritakita.show', compact('berita', 'latest'));
     }
 
     /**
@@ -70,8 +122,8 @@ class BeritaController extends Controller
      */
     public function edit(string $id)
     {
-         $berita = Berita::findOrFail($id);
-    $kategoris = Kategori::all();
+        $kategoris = Kategori::where('type', 'Berita')->get();
+        $berita = Berita::findOrFail($id);
     return view('beritakita.edit', compact('berita', 'kategoris'));
     }
 
@@ -82,24 +134,23 @@ class BeritaController extends Controller
     {
     $berita = Berita::findOrFail($id);
 
-    $berita->judul = $request->judul;
-    $berita->isi = $request->isi;
-    $berita->penulis = $request->penulis;
-    $berita->tag = $request->tag;
-    $berita->kategori_id = $request->kategori_id;
-
     if ($request->hasFile('gambar')) {
         $file = $request->file('gambar');
         $filename = $file->getClientOriginalName();
-        $file->storeAs('public/berita', $filename);
-        if ($berita->gambar) {
-            Storage::delete('berita/' . $berita->gambar);
-        }
-        $berita->gambar = $filename;
+        $file->storeAs('berita', $filename);
+    } else {
+        $filename = $berita->gambar;
     }
 
-    $berita->save();
-    return redirect()->back()->with('success', 'Berita berhasil diperbarui');
+    $berita->update([
+        'judul' => $request->judul,
+        'deskripsi' => $request->deskripsi,
+        'penulis' => $request->penulis,
+        'tag' => $request->tag,
+        'kategori_id' => $request->kategori_id,
+        'gambar' => $filename
+    ]);
+        return redirect()->route('beritakita.dashboard')->with('success', 'Berita Berhasil Diperbarui');
     }
 
     /**
@@ -108,11 +159,11 @@ class BeritaController extends Controller
     public function destroy(string $id)
     {
      $berita = Berita::findOrFail($id);
-    if ($berita->gambar) {
-        Storage::delete('public/berita/' . $berita->gambar);
-    }
-    $berita->delete();
+        if ($berita->gambar) {
+            Storage::delete('public/berita/' . $berita->gambar);
+        }
+        $berita->delete();
 
-    return redirect()->back()->with('success', 'Berita berhasil dihapus');
+        return redirect()->back()->with('success', 'Berita Berhasil Dihapus');
     }
 }
