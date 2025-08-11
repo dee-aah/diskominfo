@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Detail Dokumen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10 px-4">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <div id="konten"></div>
+  </div>
+
+  <script>
+    const dokumenData = {
+      1: {
+        jenis: "PERWALKOT",
+        judul: "Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak Pada Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak",
+        nomor: "15",
+        tahunTerbit: "2024",
+        singkatan: "PERWALKOT",
+        tahunPenetapan: "2024-08-08",
+        tahunPengundangan: "2024-08-08",
+        pengarang: "Bagian Hukum Setda Kota Tasikmalaya",
+        sumber: "BD Kota Tasikmalaya (15) 8 hlm",
+        tempat: "Kota Tasikmalaya",
+        bidang: "Hukum Administrasi Negara",
+        subjek: "Perlindungan Perempuan dan Anak",
+        bahasa: "Bahasa Indonesia",
+        lokasi: "Pemerintah Kota Tasikmalaya, Jawa Barat",
+        status: "BERLAKU",
+        gambar: "gambar/image.png",
+        preview: "files/dokumen1.pdf"
+      },
+      2: {
+        jenis: "PERDESA",
+        judul: "Unit Pelaksana Teknis Daerah Perlindungan Perempuan dan Anak Pada Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak",
+        nomor: "15",
+        tahunTerbit: "2024",
+        singkatan: "PERWALKOT",
+        tahunPenetapan: "2024-08-08",
+        tahunPengundangan: "2024-08-08",
+        pengarang: "Bagian Hukum Setda Kota Tasikmalaya",
+        sumber: "BD Kota Tasikmalaya (15) 8 hlm",
+        tempat: "Kota Tasikmalaya",
+        bidang: "Hukum Administrasi Negara",
+        subjek: "Perlindungan Perempuan dan Anak",
+        bahasa: "Bahasa Indonesia",
+        lokasi: "Pemerintah Kota Tasikmalaya, Jawa Barat",
+        status: "BERLAKU",
+        gambar: "gambar/image.png",
+        preview: "files/dokumen1.pdf"
+      }
+    };
+
+    const id = new URLSearchParams(window.location.search).get('id');
+    const data = dokumenData[id];
+
+    if (data) {
+      document.getElementById('konten').innerHTML = `
+        <div class="grid grid-cols-3 gap-4">
+          <div class="col-span-1">
+            <img src="${data.gambar}" alt="Thumbnail Dokumen" class="w-full h-auto border" />
+          </div>
+          <div class="col-span-2">
+            <table class="w-full text-sm border border-gray-300 mb-6">
+              <tbody>
+                ${baris("Jenis Peraturan", data.jenis)}
+                ${baris("Judul Peraturan", data.judul)}
+                ${baris("Nomor", data.nomor)}
+                ${baris("Tahun Terbit", data.tahunTerbit,)}
+                ${baris("Singkatan Jenis", data.singkatan)}
+                ${baris("Tahun Penetapan", data.tahunPenetapan)}
+                ${baris("Tahun Pengundangan", data.tahunPengundangan)}
+                ${baris("T.E.U Badan / Pengarang", data.pengarang)}
+                ${baris("Sumber", data.sumber)}
+                ${baris("Tempat Terbit", data.tempat)}
+                ${baris("Bidang Hukum", data.bidang)}
+                ${baris("Subjek", data.subjek)}
+                ${baris("Bahasa", data.bahasa)}
+                ${baris("Lokasi", data.lokasi)}
+                ${baris("Status", data.status, data.status === "BERLAKU" ? false : true)}
+              </tbody>
+            </table>
+
+            ${data.preview ? `
+              <div class="mt-6">
+                <h2 class="text-lg font-semibold mb-2">Pratinjau Dokumen</h2>
+                <iframe src="${data.preview}" class="w-full h-[800px] border" frameborder="0"></iframe>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    } else {
+      document.getElementById('konten').innerHTML = "<p class='text-red-500'>Dokumen tidak ditemukan.</p>";
+    }
+
+    function baris(label, isi, highlight = false) {
+      const bg = highlight ? "bg-red-200 font-semibold" : "bg-gray-100";
+      return `
+        <tr>
+          <td class="w-1/3 px-3 py-2 ${bg}">${label}</td>
+          <td class="px-3 py-2 border">${isi}</td>
+        </tr>
+      `;
+    }
+  </script>
+</body>
+</html>

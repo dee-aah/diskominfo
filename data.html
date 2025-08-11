@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Program</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body onload="animatePage()" class="opacity-0 translate-y-4 transition-all duration-700 ease-out bg-white">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md w-full fixed top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <img src="gambar/we.jpg" alt="Logo" class="h-10 mr-3">
+          <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="navbar.html" class="hover:text-blue-600">Beranda</a>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Profil</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="visi.html" class="block px-4 py-2 hover:bg-green-100">Visi Misi</a>
+              <a href="tufoksi.html" class="block px-4 py-2 hover:bg-green-100">Tupoksi</a>
+              <a href="tentang.html" class="block px-4 py-2 hover:bg-green-100">Tentang Kami</a>
+              <a href="struktur.html" class="block px-4 py-2 hover:bg-green-100">Struktur Organisasi</a>
+              <a href="maklumat.html" class="block px-4 py-2 hover:bg-green-100">Maklumat Pelayanan</a>
+              <a href="profil.html" class="block px-4 py-2 hover:bg-green-100">Profil Pimpinan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Layanan</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">IKM</a>
+              <a href="https://ppid.tasikmalayakota.go.id/" class="block px-4 py-2 hover:bg-green-100">PPID</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Dokumen</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="hukum.html" class="block px-4 py-2 hover:bg-green-100">Produk Hukum</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Evaluasi</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Perencanaan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Berita</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="berita.html" class="block px-4 py-2 hover:bg-green-100">Berita</a>
+              <a href="artikel.html" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
+            </div>
+          </div>
+          <a href="data.html" class="hover:text-blue-600">Data Statistik Sektoral</a>
+          <input type="text" placeholder="Cari..." class="px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-btn" class="text-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+   <!-- Hanya satu div dengan id="mobile-menu" -->
+<div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
+
+  <a href="#" class="block text-gray-700 hover:text-blue-600">Beranda</a>
+
+  <!-- Profil Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Profil
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="visi.html">Visi Misi</a></li>
+      <li><a href="data.html">Tupoksi</a></li>
+      <li><a href="#">Tentang Kami</a></li>
+      <li><a href="#">Struktur Organisasi</a></li>
+      <li><a href="#">Maklumat Pelayanan</a></li>
+      <li><a href="profil.html">Profil Pimpinan</a></li>
+    </ul>
+  </div>
+
+  <!-- Layanan Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Layanan
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Standar Pelayanan</a></li>
+      <li><a href="#">IKM</a></li>
+      <li><a href="#">PPID</a></li>
+      <li><a href="#">SP4N Lapor</a></li>
+      <li><a href="#">Informasi Layanan</a></li>
+    </ul>
+  </div>
+
+  <!-- Dokumen Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Dokumen
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Produk Hukum</a></li>
+      <li><a href="#">Dokumen Evaluasi</a></li>
+      <li><a href="#">Dokumen Perencanaan</a></li>
+    </ul>
+  </div>
+
+  <!-- Berita Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Berita
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Berita</a></li>
+      <li><a href="#">Artikel</a></li>
+    </ul>
+  </div>
+
+  <!-- Lain-lain -->
+  <a href="data.html" class="block text-gray-700 hover:text-blue-600">Data Statistik Sektoral</a>
+
+  <input type="text" placeholder="Cari..." class="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+</div>
+
+  </nav>
+  <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+  <div><img class="absolute top-0 left-0 w-full h-full object-cover object-top z-0 transform -translate-y-5" src="gambar/bg2.jpg" alt="">
+</div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+    <!-- Konten Hero -->
+ <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
+      <div class="text-white max-w-2xl">
+       <h1 id="typewriter" class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Data Statistik Sektoral</h1>
+
+        <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan Perlindungan Anak.</p>
+      
+      </div>
+    </div>
+
+    <!-- Wave SVG -->
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
+      <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#f9fafb" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z"></path>
+      </svg>
+    </div>
+  </section>
+  <!-- Header -->
+  <!-- <header class="bg-cover bg-center text-white py-10 px-6" style="background-image: url('/bg3.jpg')">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-4xl font-bold">Dashboard DPPKBP3A</h1>
+      <p class="text-lg mt-2">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan & Perlindungan Anak</p>
+    </div>
+  </header> -->
+
+  <!-- Ringkasan Data -->
+  <section class="max-w-7xl mx-auto px-6 py-10">
+    <h2 class="text-2xl font-semibold mb-6">Ringkasan Data Kependudukan</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+      <!-- Card Template -->
+      <!-- Repeat untuk setiap data dengan gaya seragam -->
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Total Penduduk</p>
+        <p class="text-2xl font-bold">2.847 <span class="text-lg">Juta</span></p>
+        <p class="text-green-600 text-sm">Jiwa terdaftar</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Angka Kelahiran</p>
+        <p class="text-2xl font-bold">2.28<span class="text-lg">%</span></p>
+        <p class="text-gray-500 text-sm">Per 1000 penduduk</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Rasio Jenis Kelamin</p>
+        <p class="text-2xl font-bold">101,20</p>
+        <p class="text-gray-500 text-sm">Laki-laki per 100 perempuan</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Partisipasi Perempuan</p>
+        <p class="text-2xl font-bold">34.5<span class="text-lg">%</span></p>
+        <p class="text-green-600 text-sm">Dalam angkatan kerja</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Kasus Kekerasan Anak</p>
+        <p class="text-2xl font-bold">234</p>
+        <p class="text-red-600 text-sm">Kasus per tahun</p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-5 text-center">
+        <p class="text-gray-500 text-sm mb-2">Peserta KB</p>
+        <p class="text-2xl font-bold">187.252 <span class="text-lg">Ribu</span></p>
+        <p class="text-green-600 text-sm">Akseptor aktif</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visualisasi Data -->
+  <section class="max-w-7xl mx-auto px-6">
+    <h2 class="text-2xl font-semibold mb-6">Visualisasi Data Program</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h3 class="text-xl font-semibold text-blue-800 mb-1">Jumlah Peserta per Program</h3>
+        <p class="text-sm text-gray-600 mb-4">Total peserta yang terdaftar dalam setiap program DPPKBP3A</p>
+        <canvas id="pesertaChart" class="w-full h-64"></canvas>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-6">
+        <h3 class="text-xl font-semibold text-emerald-800 mb-1">Capaian Target Program</h3>
+        <p class="text-sm text-gray-600 mb-4">Persentase pencapaian target per program (%)</p>
+        <canvas id="targetChart" class="w-full h-64"></canvas>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mt-6">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-1">Partisipasi Perempuan</h3>
+        <p class="text-sm text-gray-500 mb-4">Persentase partisipasi perempuan dalam setiap program</p>
+        <canvas id="pieChart" class="max-w-full"></canvas>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-1">Tren Program Bulanan</h3>
+        <p class="text-sm text-gray-500 mb-4">Perkembangan peserta KB, pemberdayaan perempuan, dan perlindungan anak</p>
+        <canvas id="lineChart" class="max-w-full"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Header -->
+  <footer class="bg-header text-gray-100 py-10 px-6 text-center mt-10">
+    <p class="text-sm mt-1">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan & Perlindungan Anak</p>
+  </footer>
+
+  <!-- Detail Data Program -->
+   <section class="px-6 pb-16">
+    <h2 class="text-xl font-bold mb-2">Detail Data Program DPPKBP3A</h2>
+    <p class="text-gray-500 text-sm mb-4">Ringkasan lengkap statistik program pengendalian penduduk, KB, pemberdayaan perempuan & perlindungan anak</p>
+    <div class="overflow-auto">
+      <table class="min-w-full divide-y divide-gray-200 bg-white rounded-xl shadow overflow-hidden">
+        <thead class="bg-gray-100">
+          <tr class="text-left text-sm font-semibold text-gray-600">
+            <th class="px-4 py-3">Program</th>
+            <th class="px-4 py-3">Jumlah Peserta</th>
+            <th class="px-4 py-3">Capaian Target</th>
+            <th class="px-4 py-3">Partisipasi Perempuan</th>
+            <th class="px-4 py-3">Anggaran</th>
+            <th class="px-4 py-3">Status</th>
+          </tr>
+        </thead>
+        <tbody class="text-sm divide-y divide-gray-100">
+          <tr class="hover:bg-blue-50 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-blue-700"><span class="w-3 h-3 bg-blue-500 rounded-full"></span> Keluarga Berencana</td>
+            <td class="px-4 py-3">45.782</td>
+            <td class="px-4 py-3">87,3%</td>
+            <td class="px-4 py-3">68,5%</td>
+            <td class="px-4 py-3">12,4 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-blue-500 px-2 py-1 rounded-full text-xs">Baik</span></td>
+          </tr>
+          <tr class="hover:bg-green-50 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-green-700"><span class="w-3 h-3 bg-green-500 rounded-full"></span> Pemberdayaan Perempuan</td>
+            <td class="px-4 py-3">23.456</td>
+            <td class="px-4 py-3">92,1%</td>
+            <td class="px-4 py-3">89,2%</td>
+            <td class="px-4 py-3">8,7 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-green-600 px-2 py-1 rounded-full text-xs">Sangat Baik</span></td>
+          </tr>
+          <tr class="hover:bg-yellow-50 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-yellow-700"><span class="w-3 h-3 bg-yellow-500 rounded-full"></span> Perlindungan Anak</td>
+            <td class="px-4 py-3">15.634</td>
+            <td class="px-4 py-3">78,4%</td>
+            <td class="px-4 py-3">52,1%</td>
+            <td class="px-4 py-3">15,2 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-yellow-500 px-2 py-1 rounded-full text-xs">Cukup</span></td>
+          </tr>
+          <tr class="hover:bg-purple-50 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-purple-700"><span class="w-3 h-3 bg-purple-500 rounded-full"></span> Pengendalian Penduduk</td>
+            <td class="px-4 py-3">67.890</td>
+            <td class="px-4 py-3">95,6%</td>
+            <td class="px-4 py-3">58,7%</td>
+            <td class="px-4 py-3">6,8 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-green-600 px-2 py-1 rounded-full text-xs">Sangat Baik</span></td>
+          </tr>
+          <tr class="hover:bg-red-50 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-red-700"><span class="w-3 h-3 bg-red-500 rounded-full"></span> Pembinaan Remaja</td>
+            <td class="px-4 py-3">34.567</td>
+            <td class="px-4 py-3">84,2%</td>
+            <td class="px-4 py-3">61,3%</td>
+            <td class="px-4 py-3">4,9 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-blue-500 px-2 py-1 rounded-full text-xs">Baik</span></td>
+          </tr>
+          <tr class="hover:bg-orange-100 transition">
+            <td class="px-4 py-3 flex items-center gap-2 text-blue-700"><span class="w-3 h-3 bg-blue-400 rounded-full"></span> Pembinaan Lansia</td>
+            <td class="px-4 py-3">18.923</td>
+            <td class="px-4 py-3">76,8%</td>
+            <td class="px-4 py-3">72,4%</td>
+            <td class="px-4 py-3">3,6 M</td>
+            <td class="px-4 py-3"><span class="text-white bg-yellow-500 px-2 py-1 rounded-full text-xs">Cukup</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+   <footer class="bg-[#476A9A] text-white py-10 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    <div>
+      <h3 class="font-bold text-base mb-3">Kontak Kami</h3>
+      <ul class="space-y-2">
+        <li class="flex items-start"><span class="mr-2">📍</span>Jl. rancabango No. 1, Kota Tasikmalaya 10110</li>
+        <li class="flex items-start"><span class="mr-2">📞</span>(021) 123-4567</li>
+        <li class="flex items-start"><span class="mr-2">📧</span>info@pemerintah.go.id</li>
+        <li class="flex items-start"><span class="mr-2">🌐</span>www.pemerintah.go.id</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-bold text-base mb-3">Tautan Cepat</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Visi Misi</a></li>
+        <li><a href="#" class="hover:underline">Tupoksi</a></li>
+        <li><a href="#" class="hover:underline">Struktur Organisasi</a></li>
+        <li><a href="#" class="hover:underline">Berita</a></li>
+        <li><a href="#" class="hover:underline">Artikel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-bold text-base mb-3">Layanan</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Maklumat Pelayanan</a></li>
+        <li><a href="#" class="hover:underline">Standar Pelayanan</a></li>
+        <li><a href="#" class="hover:underline">IKM</a></li>
+        <li><a href="#" class="hover:underline">SP4N Lapor</a></li>
+        <li><a href="#" class="hover:underline">PPID</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-bold text-base mb-3">Butuh informasi lebih lanjut?</h3>
+       <p class="mb-3">Tim humas DPPKBP3A siap membantu menjawab pertanyaan Anda</p>
+       <div class="flex justify-center gap-4 flex-wrap">
+      <a href="mailto:humas@bpbd.go.id" class="w-full flex items-center px-5 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.94 5.66A2 2 0 014.91 4h10.18a2 2 0 011.97 1.66L10 11 2.94 5.66zM2 6.78v7.44a2 2 0 002 2h12a2 2 0 002-2V6.78l-7.06 5.06a1 1 0 01-1.18 0L2 6.78z"/>
+        </svg>
+        Kirim Email
+      </a>
+
+      <a href="tel:+6281234567890" class="bg-white w-full flex items-center px-5 py-3 border border-white-300 rounded-md text-blue-800 hover:bg-blue-100 transition">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h2l3.6 7.59a1 1 0 00.9.41h7.28a1 1 0 00.9-.41L19 5H3z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 13a4 4 0 01-8 0"/>
+        </svg>
+        Hubungi Langsung
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <hr class="my-6 border-blue-400" />
+
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between text-sm px-6">
+    <p>© 2025 DPPKBP3A. Semua hak dilindungi.</p>
+    <div class="flex space-x-4 mt-2 md:mt-0">
+      <a href="#" class="hover:underline">Kebijakan Privasi</a>
+      <a href="#" class="hover:underline">Syarat & Ketentuan</a>
+      <a href="#" class="hover:underline">Peta Situs</a>
+    </div>
+  </div>
+</footer>
+  <script>
+    const pesertaCtx = document.getElementById('pesertaChart').getContext('2d');
+    new Chart(pesertaCtx, {
+      type: 'bar',
+      data: {
+        labels: [
+          'Keluarga Berencana',
+          'Pemberdayaan Perempuan',
+          'Perlindungan Anak',
+          'Pengendalian Penduduk',
+          'Pembinaan Remaja',
+          'Pembinaan Lansia'
+        ],
+        datasets: [{
+          label: 'Peserta',
+          data: [45000, 25000, 15000, 67890, 40000, 20000],
+          backgroundColor: '#3b82f6',
+          hoverBackgroundColor: '#1e40af',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const label = context.dataset.label || '';
+                const value = context.raw.toLocaleString('id-ID');
+                return `${label} : ${value}`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    const targetCtx = document.getElementById('targetChart').getContext('2d');
+    new Chart(targetCtx, {
+      type: 'bar',
+      data: {
+        labels: [
+          'Pembinaan Lansia',
+          'Pembinaan Remaja',
+          'Pengendalian Penduduk',
+          'Perlindungan Anak',
+          'Pemberdayaan Perempuan',
+          'Keluarga Berencana'
+        ],
+        datasets: [{
+          label: 'Capaian (%)',
+          data: [60, 75, 90, 50, 40, 70],
+          backgroundColor: '#10b981',
+          hoverBackgroundColor: '#047857',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return `Capaian: ${context.raw}%`;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+
+     const pieCtx = document.getElementById('pieChart').getContext('2d');
+      const pieChart = new Chart(pieCtx, {
+        type: 'pie',
+        data: {
+          labels: [
+            'Pemberdayaan',
+            'Keluarga',
+            'Perlindungan',
+            'Pengendalian',
+            'Pembinaan',
+            'Pembinaan Lain'
+          ],
+          datasets: [{
+            data: [89.2, 68.5, 52.1, 58.7, 61.3, 72.4],
+            backgroundColor: [
+              '#10B981', // green
+              '#3B82F6', // blue
+              '#F59E0B', // yellow
+              '#A855F7', // purple
+              '#EF4444', // red
+              '#06B6D4'  // cyan
+            ]
+          }]
+        },
+        options: {
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  return 'Partisipasi Perempuan : ' + context.parsed.toFixed(1) + '%';
+                }
+              }
+            },
+            legend: {
+              position: 'right'
+            }
+          }
+        }
+      });
+
+      const lineCtx = document.getElementById('lineChart').getContext('2d');
+      const lineChart = new Chart(lineCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+          datasets: [
+            {
+              label: 'KB',
+              data: [15, 16, 15.5, 17, 16.5, 18, 17, 16, 18.5, 19, 18, 20],
+              borderColor: '#3B82F6',
+              backgroundColor: '#3B82F6',
+              tension: 0.4,
+              fill: false
+            },
+            {
+              label: 'Pemberdayaan',
+              data: [2, 2.5, 3, 4, 3.5, 4.5, 3.9, 3.2, 4.8, 4.3, 4, 4.7],
+              borderColor: '#10B981',
+              backgroundColor: '#10B981',
+              tension: 0.4,
+              fill: false
+            },
+            {
+              label: 'Perlindungan Anak',
+              data: [1.8, 2.2, 2.3, 3, 2.8, 3.5, 2.9, 2.7, 3.6, 3.2, 3.1, 3.8],
+              borderColor: '#F59E0B',
+              backgroundColor: '#F59E0B',
+              tension: 0.4,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+      function animatePage() {
+    document.body.classList.remove('opacity-0', 'translate-y-4');
+  }
+  </script>
+
+</body>
+</html>

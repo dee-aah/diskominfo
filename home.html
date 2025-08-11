@@ -8,7 +8,148 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-100">
- <!-- Hero Section -->
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md w-full fixed top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16 items-center">
+        <div class="flex items-center">
+          <img src="/we.jpg" alt="Logo" class="h-10 mr-3">
+          <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="#" class="hover:text-blue-600">Beranda</a>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Profil</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="footer.html" class="block px-4 py-2 hover:bg-green-100">Visi Misi</a>
+              <a href="tufoksi.html" class="block px-4 py-2 hover:bg-green-100">Tupoksi</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Tentang Kami</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Struktur Organisasi</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Maklumat Pelayanan</a>
+              <a href="profil.html" class="block px-4 py-2 hover:bg-green-100">Profil Pimpinan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Layanan</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">IKM</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">PPID</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Dokumen</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Produk Hukum</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Evaluasi</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Perencanaan</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="hover:text-blue-600">Berita</button>
+            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Berita</a>
+              <a href="#" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
+            </div>
+          </div>
+          <a href="#" class="hover:text-blue-600">Data Statistik Sektoral</a>
+          <input type="text" placeholder="Cari..." class="px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden flex items-center">
+          <button id="menu-btn" class="text-gray-700 focus:outline-none">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+   <!-- Hanya satu div dengan id="mobile-menu" -->
+<div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
+
+  <a href="#" class="block text-gray-700 hover:text-blue-600">Beranda</a>
+
+  <!-- Profil Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Profil
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="visi.html">Visi Misi</a></li>
+      <li><a href="tufoksi.html">Tupoksi</a></li>
+      <li><a href="#">Tentang Kami</a></li>
+      <li><a href="#">Struktur Organisasi</a></li>
+      <li><a href="#">Maklumat Pelayanan</a></li>
+      <li><a href="profil.html">Profil Pimpinan</a></li>
+    </ul>
+  </div>
+
+  <!-- Layanan Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Layanan
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Standar Pelayanan</a></li>
+      <li><a href="#">IKM</a></li>
+      <li><a href="#">PPID</a></li>
+      <li><a href="visi.html">SP4N Lapor</a></li>
+      <li><a href="data.html">Informasi Layanan</a></li>
+    </ul>
+  </div>
+
+  <!-- Dokumen Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Dokumen
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Produk Hukum</a></li>
+      <li><a href="#">Dokumen Evaluasi</a></li>
+      <li><a href="#">Dokumen Perencanaan</a></li>
+    </ul>
+  </div>
+
+  <!-- Berita Dropdown -->
+  <div>
+    <button class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+      Berita
+      <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </button>
+    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+      <li><a href="#">Berita</a></li>
+      <li><a href="#">Artikel</a></li>
+    </ul>
+  </div>
+
+  <!-- Lain-lain -->
+  <a href="data.html" class="block text-gray-700 hover:text-blue-600">Data Statistik Sektoral</a>
+
+  <input type="text" placeholder="Cari..." class="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+</div>
+
+  </nav>
+
+  <!-- Hero Section -->
   <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
     <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
       <source src="video/WhatsApp Video 2025-07-23 at 09.22.07_9fe25626.mp4" type="video/mp4" />
@@ -147,7 +288,7 @@
 </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-6 py-10">
+ <section class="max-w-7xl mx-auto px-6 py-10">
     <h2 class="text-2xl font-semibold mb-6">Ringkasan Data Kependudukan</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
       <!-- Card Template -->
@@ -206,7 +347,6 @@
 
   </div>
   </section>
-
  <div class="text-center mb-6">
     <h2 class="text-2xl font-bold">Tentang kami</h2>
     <div class="h-1 w-16 bg-blue-500 mx-auto mt-2 rounded"></div>
@@ -342,8 +482,109 @@
       </div>
     </div>
   </div>
-  </body>
+
+
+
+<!-- Footer -->
+<footer class="bg-[#476A9A] text-white py-10 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    
+    <!-- Kontak Kami -->
+    <div>
+      <h3 class="font-bold text-base mb-3">Kontak Kami</h3>
+      <ul class="space-y-2">
+        <li class="flex items-start"><span class="mr-2">📍</span>Jl. rancabango No. 1, Kota Tasikmalaya 10110</li>
+        <li class="flex items-start"><span class="mr-2">📞</span>(021) 123-4567</li>
+        <li class="flex items-start"><span class="mr-2">📧</span>info@pemerintah.go.id</li>
+        <li class="flex items-start"><span class="mr-2">🌐</span>www.pemerintah.go.id</li>
+      </ul>
+    </div>
+
+    <!-- Tautan Cepat -->
+    <div>
+      <h3 class="font-bold text-base mb-3">Tautan Cepat</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Visi Misi</a></li>
+        <li><a href="#" class="hover:underline">Tupoksi</a></li>
+        <li><a href="#" class="hover:underline">Struktur Organisasi</a></li>
+        <li><a href="#" class="hover:underline">Berita</a></li>
+        <li><a href="#" class="hover:underline">Artikel</a></li>
+      </ul>
+    </div>
+
+    <!-- Layanan -->
+    <div>
+      <h3 class="font-bold text-base mb-3">Layanan</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline">Maklumat Pelayanan</a></li>
+        <li><a href="#" class="hover:underline">Standar Pelayanan</a></li>
+        <li><a href="#" class="hover:underline">IKM</a></li>
+        <li><a href="#" class="hover:underline">SP4N Lapor</a></li>
+        <li><a href="#" class="hover:underline">PPID</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div>
+      <h3 class="font-bold text-base mb-3">Butuh informasi lebih lanjut?</h3>
+       <p class="mb-3">Tim humas BPBD siap membantu menjawab pertanyaan Anda</p>
+       <div class="flex justify-center gap-4 flex-wrap">
+      <a href="mailto:humas@bpbd.go.id" class="w-full flex items-center px-5 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.94 5.66A2 2 0 014.91 4h10.18a2 2 0 011.97 1.66L10 11 2.94 5.66zM2 6.78v7.44a2 2 0 002 2h12a2 2 0 002-2V6.78l-7.06 5.06a1 1 0 01-1.18 0L2 6.78z"/>
+        </svg>
+        Kirim Email
+      </a>
+
+      <a href="tel:+6281234567890" class="bg-white w-full flex items-center px-5 py-3 border border-white-300 rounded-md text-blue-800 hover:bg-blue-100 transition">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h2l3.6 7.59a1 1 0 00.9.41h7.28a1 1 0 00.9-.41L19 5H3z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 13a4 4 0 01-8 0"/>
+        </svg>
+        Hubungi Langsung
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <hr class="my-6 border-blue-400" />
+
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between text-sm px-6">
+    <p>© 2025 DPPKBP3A. Semua hak dilindungi.</p>
+    <div class="flex space-x-4 mt-2 md:mt-0">
+      <a href="#" class="hover:underline">Kebijakan Privasi</a>
+      <a href="#" class="hover:underline">Syarat & Ketentuan</a>
+      <a href="#" class="hover:underline">Peta Situs</a>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
   <script>
+     document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll(".mobile-dropdown-toggle");
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", function () {
+        const target = this.nextElementSibling;
+        target.classList.toggle("hidden");
+
+        // Ganti ikon panah (jika dipakai)
+        const icon = this.querySelector("svg");
+        if (icon) {
+          icon.classList.toggle("rotate-180");
+        }
+      });
+    });
+
+    // Hamburger button toggle
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+  });
+
   const text = "Selamat Datang di DPPKBP3A";
   const element = document.getElementById("typewriter");
 

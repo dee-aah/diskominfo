@@ -5,19 +5,348 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Navbar Instansi</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
 </head>
-<body class="bg-gray-100">
-    <footer class="bg-[#476A9A] text-white py-10 px-6">
+<body>
+    <nav class="bg-transparent w-full fixed top-0 z-50 bg-white/70 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+      <div class="flex items-center">
+        <img src="/we.jpg" alt="Logo" class="h-10 mr-3">
+        <span class="text-xl font-bold text-blue-700">DPPKBP3A</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#" class="hover:text-blue-600">Beranda</a>
+        <div class="relative group">
+          <button class="hover:text-blue-600">Profil</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+            <a href="footer.html" class="block px-4 py-2 hover:bg-green-100">Visi Misi</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Tupoksi</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Tentang Kami</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Struktur Organisasi</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Maklumat Pelayanan</a>
+            <a href="profil.html" class="block px-4 py-2 hover:bg-green-100">Profil Pimpinan</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-blue-600">Layanan</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Standar Pelayanan</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">IKM</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">PPID</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">SP4N Lapor</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Informasi Layanan</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-blue-600">Dokumen</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Produk Hukum</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Evaluasi</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Dokumen Perencanaan</a>
+          </div>
+        </div>
+        <div class="relative group">
+          <button class="hover:text-blue-600">Berita</button>
+          <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Berita</a>
+            <a href="#" class="block px-4 py-2 hover:bg-green-100">Artikel</a>
+          </div>
+        </div>
+        <a href="#" class="hover:text-blue-600">Data Statistik Sektoral</a>
+        <input type="text" placeholder="Cari..." class="px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden flex items-center">
+        <button id="menu-btn" class="text-gray-700 focus:outline-none">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
+    <!-- isi seperti sebelumnya -->
+    ...
+  </div>
+</nav>
+ <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+  <div><img class="absolute top-0 left-0 w-full h-full object-cover object-top z-0 transform -translate-y-5" src="bg2.jpg" alt="">
+</div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
+    <!-- Konten Hero -->
+ <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
+      <div class="text-white max-w-2xl">
+       <h1 id="typewriter" class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap overflow-hidden typewriter"></h1>
+
+        <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan Perlindungan Anak.</p>
+        <input type="text" placeholder="Cari..." class="px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"/>
+      </div>
+    </div>
+
+    <!-- Wave SVG -->
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
+      <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <path fill="#f9fafb" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Fitur, CTA, dst. -->
+    <!-- Wave SVG -->
+  <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0]">
+    <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+      <path fill="#f9fafb" fill-opacity="1" d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+  </div>
+</section>
+<div class="min-h-screen flex items-center justify-center px-6 py-12">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Gambar Kiri -->
+      <div class="flex justify-center">
+        <img src="we.jpg" alt="Energizing You" class="w-72 md:w-96">
+      </div>
+
+      <!-- Konten Teks Kanan -->
+      <div>
+        <p class="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+          DPPKBP3A
+        </p>
+        <h1 class="text-2xl md:text-4xl font-bold mb-4">
+          Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan Perlindungan Anak. 
+        </h1>
+        <p class="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
+         Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus distinctio sint ex cum minus explicabo aliquid dolorem doloribus porro fugit in, ipsam cupiditate esse! Inventore nulla nemo, pariatur magnam modi sequi sint in nam rem, iste ut? Iure accusantium suscipit ab architecto, exercitationem asperiores quisquam iste, odit esse assumenda rerum itaque vitae vel aliquam optio harum veritatis repudiandae earum aspernatur perferendis porro corrupti obcaecati? Inventore accusantium minima, nemo quas pariatur .
+        </p>
+       <a href="#" class="inline-flex items-center px-6 py-2 border border-black text-black rounded-full hover:bg-blue-100 hover:text-black transition">
+            Selengkapnya
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+      </div>
+      
+    </div>
+  </div>
+
+<section class="bg-gray-100 py-10">
+  <div class="text-center mb-6">
+    <h2 class="text-2xl font-bold">Layanan Utama</h2>
+    <div class="h-1 w-16 bg-red-500 mx-auto mt-2 rounded"></div>
+    <p class="text-gray-600 mt-2 text-sm">Dapatkan pelayanan kami melalui menu di bawah yang tersedia di DPPKBP3A</p>
+  </div>
+
+ <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10"
+     style="background-image: url('bg.jpg');">
+
+  <!-- Slide Area -->
+  <div class="relative w-full max-w-screen-xl flex items-center overflow-hidden">
+    <div id="slideWrapper" class="flex space-x-6 transition-transform duration-500 ease-in-out">
+
+      <!-- Card 1 -->
+      <div id="card-0" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-2">Corporate Newsletters</h2>
+        <div class="h-[2px] w-10 bg-white mb-4"></div>
+        <p>Ikuti perkembangan industri terbaru dan strategi inovatif kami secara berkala.</p>
+        <div class="mt-4 text-right text-xl">↗</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div id="card-1" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-2">Bonds</h2>
+        <div class="h-[2px] w-10 bg-red-500 mb-4"></div>
+        <p>Jelajahi informasi terbaru tentang obligasi Pertamina, peluang investasi, serta komitmen kami terhadap pertumbuhan berkelanjutan.</p>
+        <div class="mt-4 text-right text-xl">↗</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div id="card-2" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-2">Shareholders</h2>
+        <div class="h-[2px] w-10 bg-pink-400 mb-4"></div>
+        <p>Ketahui struktur kepemilikan, peran, dan pengelolaan saham kami.</p>
+        <div class="mt-4 text-right text-xl">↗</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Nav Buttons -->
+  <div class="absolute bottom-10 right-10 flex space-x-3">
+    <button onclick="prevSlide()" class="bg-white p-2 rounded-full shadow hover:bg-gray-200">←</button>
+    <button onclick="nextSlide()" class="bg-white p-2 rounded-full shadow hover:bg-gray-200">→</button>
+  </div>
+</div>
+</section>
+ <div class="text-center mb-6">
+    <h2 class="text-2xl font-bold">Tentang kami</h2>
+    <div class="h-1 w-16 bg-red-500 mx-auto mt-2 rounded"></div>
+    <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sit possimus adipisci vel, expedita a, veniam rem amet et quisquam sapiente, nisi reprehenderit! Quidem quod aliquid aspernatur perspiciatis perferendis repellat.</p>
+  </div>
+<section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: url('bg.jpg');">
+    <!-- Overlay gelap -->
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <!-- Konten -->
+  
+    <div class="relative z-10 w-full px-6 md:px-16 lg:px-24">
+    
+      <div class="max-w-xl text-left text-white space-y-4">
+        <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">Sekilas DPPKBP3A</p>
+        <h2 class="text-4xl font-bold">Tentang Kami</h2>
+        <p class="text-lg text-gray-200">
+          Lebih dari enam dekade menyediakan energi untuk seluruh penjuru negeri dan sejumlah wilayah di luar negeri.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a href="#" class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+            Selengkapnya
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#" class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+            Direksi dan Komisaris
+            <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="max-w-7xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Berita & Informasi Terkini</h1>
+    <p class="text-center text-gray-600 mb-10">
+      Dapatkan informasi terbaru mengenai program, kegiatan, dan perkembangan terkini dari DPPKBP3A
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Berita Utama -->
+      <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
+        <div class="relative">
+          <img src="bg1.jpg" alt="Gambar Berita" class="w-full h-64 object-cover">
+          <div class="absolute bottom-4 left-4">
+            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded">Berita</span>
+          </div>
+        </div>
+        <div class="p-4">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">
+            Program Pemberdayaan Perempuan UMKM Raih Penghargaan Nasional
+          </h2>
+          <p class="text-sm text-gray-600 mb-4">
+            DPPKBP3A berhasil meraih penghargaan dari Kementerian Pemberdayaan Perempuan dan Perlindungan Anak atas program unggulan pemberdayaan perempuan di sektor UMKM.
+          </p>
+          <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+            <div class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M3 11h18M5 19h14M12 15v2" />
+              </svg>
+              <span>15 Januari 2024</span>
+            </div>
+            <div class="flex items-center gap-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A10.002 10.002 0 0112 2a10 10 0 016.879 15.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Admin DPPKBP3A</span>
+            </div>
+          </div>
+          <a href="#" class="inline-flex items-center justify-center w-full px-6 py-2 bg-blue-900 text-white text-sm rounded hover:bg-blue-800 transition">
+            Baca Selengkapnya
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Konten Samping -->
+      <div class="space-y-4">
+        <!-- Kartu 1 -->
+        <div class="bg-white rounded-lg shadow p-4">
+          <div class="flex justify-between text-xs text-gray-500 mb-1">
+            <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Program</span>
+            <span>12 Januari 2024</span>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-800 mb-1">
+            Sosialisasi Perlindungan Anak di Era Digital
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Workshop edukasi untuk orang tua dan pendidik mengenai cara melindungi anak dari bahaya digital dan cyber bullying.
+          </p>
+          <a href="#" class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+            Baca Selengkapnya <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Kartu 2 -->
+        <div class="bg-white rounded-lg shadow p-4">
+          <div class="flex justify-between text-xs text-gray-500 mb-1">
+            <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Laporan</span>
+            <span>10 Januari 2024</span>
+          </div>
+          <h3 class="font-semibold text-sm text-gray-800 mb-1">
+            Hasil Survey IKM Triwulan IV 2023
+          </h3>
+          <p class="text-sm text-gray-600 mb-2">
+            Indeks Kepuasan Masyarakat terhadap pelayanan DPPKBP3A mencapai 89.5%, meningkat 5% dari triwulan sebelumnya.
+          </p>
+          <a href="#" class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+            Baca Selengkapnya <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- CTA Update -->
+        <div class="bg-white rounded-lg shadow p-4 text-center">
+          <p class="text-sm text-gray-700 mb-3">Ikuti terus informasi dan program terbaru dari DPPKBP3A</p>
+          <a href="#" class="inline-flex items-center justify-center px-6 py-2 bg-blue-900 text-white rounded hover:bg-blue-800 transition">
+            Lihat Semua Berita
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!-- Footer -->
+<footer class="bg-[#0066e6] text-white py-10 px-6">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    
+    <!-- Kontak Kami -->
     <div>
       <h3 class="font-bold text-base mb-3">Kontak Kami</h3>
       <ul class="space-y-2">
-        <li class="flex items-start"><span class="mr-2">📍</span>Jl. rancabango No. 1, Kota Tasikmalaya 10110</li>
+        <li class="flex items-start"><span class="mr-2">📍</span>Jl. Protokol No. 1, Jakarta Pusat 10110</li>
         <li class="flex items-start"><span class="mr-2">📞</span>(021) 123-4567</li>
         <li class="flex items-start"><span class="mr-2">📧</span>info@pemerintah.go.id</li>
         <li class="flex items-start"><span class="mr-2">🌐</span>www.pemerintah.go.id</li>
       </ul>
     </div>
+
+    <!-- Tautan Cepat -->
     <div>
       <h3 class="font-bold text-base mb-3">Tautan Cepat</h3>
       <ul class="space-y-2">
@@ -28,6 +357,8 @@
         <li><a href="#" class="hover:underline">Artikel</a></li>
       </ul>
     </div>
+
+    <!-- Layanan -->
     <div>
       <h3 class="font-bold text-base mb-3">Layanan</h3>
       <ul class="space-y-2">
@@ -38,32 +369,20 @@
         <li><a href="#" class="hover:underline">PPID</a></li>
       </ul>
     </div>
-    <div>
-      <h3 class="font-bold text-base mb-3">Butuh informasi lebih lanjut?</h3>
-       <p class="mb-3">Tim humas DPPKBP3A siap membantu menjawab pertanyaan Anda</p>
-       <div class="flex justify-center gap-4 flex-wrap">
-      <a href="mailto:humas@bpbd.go.id" class="w-full flex items-center px-5 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
-        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M2.94 5.66A2 2 0 014.91 4h10.18a2 2 0 011.97 1.66L10 11 2.94 5.66zM2 6.78v7.44a2 2 0 002 2h12a2 2 0 002-2V6.78l-7.06 5.06a1 1 0 01-1.18 0L2 6.78z"/>
-        </svg>
-        Kirim Email
-      </a>
 
-      <a href="tel:+6281234567890" class="bg-white w-full flex items-center px-5 py-3 border border-white-300 rounded-md text-blue-800 hover:bg-blue-100 transition">
-        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5h2l3.6 7.59a1 1 0 00.9.41h7.28a1 1 0 00.9-.41L19 5H3z"/>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M16 13a4 4 0 01-8 0"/>
-        </svg>
-        Hubungi Langsung
-      </a>
-    </div>
+    <!-- Newsletter -->
+    <div>
+      <h3 class="font-bold text-base mb-3">Berlangganan Newsletter</h3>
+      <p class="mb-3">Dapatkan informasi terbaru dari kami</p>
+      <input type="email" placeholder="Email Anda" class="w-full px-4 py-2 rounded-md text-black focus:outline-none focus:ring-2 focus:ring-blue-300 border border-blue-300 mb-2">
+      <button class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 rounded-md">Berlangganan</button>
     </div>
   </div>
 
   <hr class="my-6 border-blue-400" />
 
   <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between text-sm px-6">
-    <p>© 2025 DPPKBP3A. Semua hak dilindungi.</p>
+    <p>© 2024 Portal Pemerintah Republik Indonesia. Semua hak dilindungi.</p>
     <div class="flex space-x-4 mt-2 md:mt-0">
       <a href="#" class="hover:underline">Kebijakan Privasi</a>
       <a href="#" class="hover:underline">Syarat & Ketentuan</a>
@@ -71,5 +390,100 @@
     </div>
   </div>
 </footer>
+
+
+
 </body>
+  <script>
+     document.addEventListener("DOMContentLoaded", function () {
+    const toggles = document.querySelectorAll(".mobile-dropdown-toggle");
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", function () {
+        const target = this.nextElementSibling;
+        target.classList.toggle("hidden");
+
+        // Ganti ikon panah (jika dipakai)
+        const icon = this.querySelector("svg");
+        if (icon) {
+          icon.classList.toggle("rotate-180");
+        }
+      });
+    });
+
+    // Hamburger button toggle
+    document.getElementById("menu-btn").addEventListener("click", function () {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+  });
+
+  const text = "Selamat Datang di DPPKBP3A";
+  const element = document.getElementById("typewriter");
+
+  let index = 0;
+  let isDeleting = false;
+
+  function typeEffect() {
+    if (!isDeleting) {
+      element.textContent = text.substring(0, index + 1);
+      index++;
+      if (index === text.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1500); // jeda saat selesai mengetik
+        return;
+      }
+    } else {
+      element.textContent = text.substring(0, index - 1);
+      index--;
+      if (index === 0) {
+        isDeleting = false;
+      }
+    }
+    setTimeout(typeEffect, isDeleting ? 50 : 100); // kecepatan ketik/hapus
+  }
+
+  typeEffect();
+
+    const backgrounds = ["bg.jpg", "bg1.jpg", "bg.jpg"];
+  const cards = document.querySelectorAll('#slideWrapper > div');
+  const carousel = document.getElementById('carousel');
+  const slideWrapper = document.getElementById('slideWrapper');
+  let currentIndex = 0;
+
+  function updateView() {
+    // Update background
+    carousel.style.backgroundImage = `url('${backgrounds[currentIndex]}')`;
+
+    // Update card colors
+    cards.forEach((card, index) => {
+      if (index === currentIndex) {
+        card.classList.remove("bg-white", "text-black", "bg-gray-100", "text-gray-700");
+        card.classList.add("bg-blue-700", "text-white");
+      } else {
+        card.classList.remove("bg-blue-700", "text-white");
+        card.classList.add("bg-white", "text-black");
+      }
+    });
+
+    // Move slideWrapper
+    slideWrapper.style.transform = `translateX(-${currentIndex * 320}px)`;
+  }
+
+  function nextSlide() {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      updateView();
+    }
+  }
+
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateView();
+    }
+  }
+
+  // Init on load
+  updateView();
+  </script>
 </html>
