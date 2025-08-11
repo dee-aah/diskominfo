@@ -48,7 +48,10 @@ Route::put('/beritakita/{id}', [BeritaController::class, 'update'])->name('berit
 Route::delete('/beritakita/{id}', [BeritaController::class, 'destroy'])->name('beritakita.destroy');
 Route::get('/beritakita/create', [BeritaController::class, 'create'])->name('beritakita.create');
 Route::get('/beritakita/{id}', [BeritaController::class, 'show'])->name('beritakita.show');
-Route::get('/beritakita/kategori/{type}', [BeritaController::class, 'kategori'])->name('beritakita.kategori');
+//Route::get('/beritakita/kategori_berita', [BeritaController::class, 'kategori_brt'])->name('beritakita.kategori_berita');
+
+Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
+
 
 
 //artikel

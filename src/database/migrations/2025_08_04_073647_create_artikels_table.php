@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('deskripsi');
             $table->string('penulis');
+            $table->text('deskripsi');
+            $table->string('slug')->unique(); 
             $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
+            $table->date('waktu');
             $table->string('tag')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();

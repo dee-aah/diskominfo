@@ -26,7 +26,7 @@
             <div class="absolute bottom-0 left-0 right-0  overflow-hidden leading-[0] z-20">
                 <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                     preserveAspectRatio="none">
-                    <path fill="oklch(0.982 0.018 155.826)" fill-opacity="1"
+                    <path fill="oklch(0.985 0.001 106.423)" fill-opacity="1"
                         d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
                     </path>
                 </svg>

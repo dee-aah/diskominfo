@@ -11,7 +11,7 @@ class Berita extends Model
     protected $table = 'beritas';
 
     // app/Models/Berita.php
-protected $fillable = ['judul', 'deskripsi', 'penulis', 'tag', 'gambar', 'kategori_id'];
+protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'gambar','waktu','view_count', 'kategori_id'];
 
 
     // Relasi ke kategori

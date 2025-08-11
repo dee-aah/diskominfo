@@ -36,6 +36,8 @@
                     <th class="px-4 border border-blue-400 py-2">Judul</th>
                     <th class="px-4 border border-blue-400 py-2">Penulis</th>
                     <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
+                    <th class="px-4 border border-blue-400 py-2">Kategori</th>
+                    <th class="px-4 border border-blue-400 py-2">Waktu</th>
                     <th class="px-4 border border-blue-400 py-2">Tag</th>
                     <th class="px-4 border border-blue-400 py-2">Gambar</th>
                     <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
@@ -48,6 +50,8 @@
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->judul }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->penulis }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->deskripsi }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $berita->kategori_id }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $berita->waktu }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->tag ?? '-' }}</td>
                         <td class="px-4 border border-blue-400 py-2">
                             @if ($berita->gambar)

@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 class BeritaController extends Controller
 {
     /**
@@ -15,29 +16,25 @@ class BeritaController extends Controller
     public function dashboard(Request $request)
     {
         $query = Berita::query();
-
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
                 $q->where('judul', 'like', "%{$search}%")
                     ->orWhere('penulis', 'like', "%{$search}%")
                     ->orWhere('tag', 'like', "%{$search}%");
-            });
-        }
-
+            });}
         $beritas = $query->latest()->get();
         return view('beritakita.dashboard', compact('beritas'));
     }
-    public function kategori($type)
-    {
-            $kategori = Kategori::where('type', $type)->firstOrFail();
-            $beritas = Berita::where('kategori_id', $kategori->id)
+    public function kategori_brt($slug)
+{
+    $kategori = Kategori::where('slug', $slug)->firstOrFail();
+    $beritas = Berita::where('kategori_id', $kategori->id)
                     ->latest()
-                    ->paginate(10);
+                    ->paginate(6);
 
-    return view('beritakita.kategori', compact('kategori', 'beritas'));
-    }
-
+    return view('beritakita.kategori_berita', compact('kategori', 'beritas'));
+}
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -57,19 +54,50 @@ class BeritaController extends Controller
     ->with(['beritas' => function ($query) {
         $query->latest()->take(3); // Ambil 3 artikel terbaru per kategori
     }])->get();
-    // Artikel terbaru untuk 1 di highlight
-    $beritapertama = Berita::latest()->first();
+    // berita populer
+    $beritapopuler = Berita::whereHas('kategori', function ($query) {
+        $query->whereIn('nama', [
+            'Berita Dinas DPPKBP3A',
+            'Pengendalian Penduduk',
+            'Keluarga Berencana',
+            'Pemberdayaan Perempuan',
+            'Perlindungan Anak'
+        ]);
+    })
+    ->orderBy('view_count', 'desc')
+    ->take(4)
+    ->get();
 
-    // Artikel lainnya (skip yang terbaru)
-    $beritalain = $query->latest()->take(4)->get();
 
-    // Latest stories
-    // Semua kategori
-    //$berita = Kategori::all();
+    // Berita terbaru
+    $beritaterbaru = Berita::whereHas('kategori', function ($query) {
+        $query->whereIn('nama', [
+            'Berita Dinas DPPKBP3A',
+            'Pengendalian Penduduk',
+            'Keluarga Berencana',
+            'Pemberdayaan Perempuan',
+            'Perlindungan Anak'
+            ]);
+        })
+        ->orderBy('created_at', 'desc')
+        ->take(4)
+        ->get();
 
-    return view('beritakita.index', compact('beritalain', 'beritapertama', 'search', 'kategoris'));
+
+    $beritalain = Berita::with('kategori')
+        ->whereHas('kategori', function($query) {
+            $query->whereln('nama', ['Berita Dinas DPPKBP3A','Pengendalian Penduduk','Keluarga Berencana','Pemberdayaan Perempuan','Perlindungan Anak']);
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('beritakita.index', compact('beritalain','beritaterbaru', 'beritapopuler','search', 'kategoris'));
     }
-
+    public function boot()
+    {
+    Paginator::useBootstrapFive(); // kalau mau Bootstrap
+    // atau biarkan default untuk Tailwind
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -88,6 +116,8 @@ class BeritaController extends Controller
         'judul' => 'required',
         'deskripsi' => 'required',
         'penulis' => 'required',
+        'waktu' => 'required',
+        'slug' => 'required',
         'tag' => 'nullable',
         'kategori_id' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
@@ -103,6 +133,8 @@ class BeritaController extends Controller
         'judul' => $request->judul,
         'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
+        'waktu' => $request->waktu,
+        'slug' => $request->slug,
         'tag' => $request->tag,
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
@@ -114,6 +146,10 @@ class BeritaController extends Controller
     {
         $berita = Berita::findOrFail($id);
         $latest = Berita::latest()->take(5)->get();
+
+    // Tambah jumlah view
+        $berita->increment('view_count');
+
         return view('beritakita.show', compact('berita', 'latest'));
     }
 
@@ -146,6 +182,8 @@ class BeritaController extends Controller
         'judul' => $request->judul,
         'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
+        'waktu' => $request->waktu,
+        'slug' => $request->slug,
         'tag' => $request->tag,
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename

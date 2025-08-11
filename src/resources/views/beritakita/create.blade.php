@@ -22,9 +22,15 @@
                         <input type="text" name="penulis" placeholder=" Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
                     </div>
+                    <div class="mb-4">
+                        <label class="block text-lg font-medium">Slug</label>
+                        <input type="text" name="slug" value="{{ old('slug') }}" placeholder=" Masukkan Slug Tanpa Spasi" required
+                        class="w-full bg-gray-100 border border-sky-500 rounded p-2">
+                        <small class="text-gray-500">Slug biasanya diisi otomatis dari judul, tapi bisa diubah.</small>
+                    </div>
                     <div class="mb-3">
-                        <label class="block  text-lg font-medium">Tag</label>
-                        <input type="text" name="tag" placeholder=" Masukkan Tag Berita"
+                        <label class="block  text-lg font-medium">Waktu Kegiatan</label>
+                        <input type="date" name="waktu" placeholder=" Masukkan Waktu Kegiatan"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2" required>
                     </div>
                     <div class="mb-3">
@@ -36,6 +42,11 @@
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block  text-lg font-medium">Tag</label>
+                        <input type="text" name="tag" placeholder=" Masukkan Tag Berita"
+                            class="w-full bg-gray-100 border-sky-500 border rounded p-2" required>
                     </div>
                     <div class="mb-3 mt-2">
                         <input type="file" name="gambar"

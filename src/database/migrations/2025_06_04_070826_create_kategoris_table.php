@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->enum('type', ['artikel', 'berita'])->nullable();
+            $table->enum('type', ['Artikel', 'Berita'])->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

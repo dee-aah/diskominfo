@@ -12,16 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('beritas', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul');
-            $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
-            $table->text('deskripsi');
-            $table->string('penulis')->nullable();
-            $table->text('tag')->nullable();
-            $table->string('gambar')->nullable();
-            $table->timestamps();
+        $table->id();
+        $table->string('judul');
+        $table->string('slug')->unique(); 
+        $table->foreignId('kategori_id')
+            ->nullable()
+            ->constrained('kategoris')
+            ->nullOnDelete();
+        $table->text('deskripsi');
+        $table->string('penulis')->nullable();
+        $table->date('waktu');
+        $table->text('tag')->nullable();
+        $table->string('gambar')->nullable();
+        $table->unsignedBigInteger('view_count')->default(0);
+        $table->timestamps();
         });
-
     }
 
     /**

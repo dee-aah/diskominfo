@@ -29,7 +29,18 @@
                             placeholder="Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
                     </div>
-
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Waktu Kegiatan</label>
+                        <input type="date" name="waktu" value="{{ old('waktu', $berita->waktu) }}"
+                            placeholder="Masukkan Waktu Kegiatan"
+                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Slug</label>
+                        <input type="text" name="slug" value="{{ old('slug', $berita->slug) }}"
+                            placeholder="Masukkan Slug Tanpa Spasi"
+                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                    </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Tag</label>
                         <input type="text" name="tag" value="{{ old('tag', $berita->tag) }}"
