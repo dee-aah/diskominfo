@@ -1,6 +1,5 @@
 <x-layouts.sidebar>
     <main>
-        <div class="@container">
             <div class="max-w-3xl mx-auto">
                 <div class="flex justify-center items-center mb-4">
                     <h3 class="text-3xl text-center font-bold">Edit Artikel</h3>
@@ -22,19 +21,11 @@
                             placeholder="Masukkan Deskripsi Artikel"
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $artikel->deskripsi) }}</textarea>
                     </div>
-
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Penulis</label>
                         <input type="text" name="penulis" value="{{ old('penulis', $artikel->penulis) }}"
                             placeholder="Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Tag</label>
-                        <input type="text" name="tag" value="{{ old('tag', $artikel->tag) }}"
-                            placeholder="Masukkan Tag Artikel"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
                     </div>
                     <div class="mb-3">
                         <label class="block text-base font-medium">Kategori</label>
@@ -42,9 +33,26 @@
                             required>
                             <option value="">-- Pilih Kategori --</option>
                             @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
+                                <option value="{{ $kategori->id }}" {{ old('kategori_id', $berita->kategori_id ?? '') == $kategori->id ? 'selected' : '' }}>
+                                    {{ $kategori->nama }}
+                                </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Tag</label>
+                        <input type="text" name="tag" value="{{ old('tag', $artikel->tag) }}"
+                            placeholder="Masukkan Tag Artikel"
+                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                            <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Slug</label>
+                        <input type="text" name="slug" value="{{ old('slug', $artikel->slug) }}"
+                            placeholder="Masukkan SlugArtikel"
+                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                    </div>
+
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Gambar</label>
                         <input type="file" name="gambar"
@@ -63,6 +71,6 @@
                     </div>
                 </form>
             </div>
-        </div>
+        
     </main>
 </x-layouts.sidebar>

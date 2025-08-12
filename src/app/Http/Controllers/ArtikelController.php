@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class ArtikelController extends Controller
 {
@@ -47,23 +48,25 @@ class ArtikelController extends Controller
     }
 
     // Artikel terbaru untuk 1 di highlight
-    $artikel = Artikel::latest()->first();
+    $artikelpopuler = Artikel::whereHas('kategori')
+    ->orderBy('view_count', 'desc')
+    ->take(4)
+    ->get();
+    $artikellain = Artikel::with('kategori')
+    ->orderBy('created_at', 'desc')
+    ->take(4)
+    ->get();
 
-    // Artikel lainnya (skip yang terbaru)
-    $artikels = $query->latest()->skip(1)->take(6)->get();
-
-    // Latest stories
-    $latest = Artikel::latest()->take(5)->get();
-
-    // Semua kategori
-    $kategoris = Kategori::all();
-
-    return view('artikel.index', compact('artikels', 'artikel', 'search', 'latest', 'kategoris'));
+    return view('artikel.index', compact('artikelpopuler', 'artikellain', 'search'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+    public function boot()
+    {
+        Carbon::setLocale('id');
+    }
     public function create()
     {
         $kategoris = Kategori::where('type', 'artikel')->get();
@@ -79,7 +82,8 @@ class ArtikelController extends Controller
             'judul' => 'required',
             'deskripsi' => 'required',
             'penulis' => 'required',
-            'tag' => 'nullable',
+            'tag' => 'required',
+            'slug' => 'required',
             'kategori_id' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
@@ -96,6 +100,7 @@ class ArtikelController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'tag' => $request->tag,
+            'slug' => $request->slug,
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename
         ]);
@@ -105,11 +110,19 @@ class ArtikelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        $artikel = Artikel::findOrFail($id);
-        $latest = Artikel::latest()->take(5)->get();
-        return view('artikel.show', compact('artikel', 'latest'));
+        $artikel = Artikel::with('kategori')->where('slug', $slug)->firstOrFail();
+        Carbon::setLocale('id');
+        $artikel->waktu = Carbon::parse($artikel->waktu);
+        $artikelTerkait = Artikel::with('kategori')
+        ->where('kategori_id', $artikel->kategori_id)
+        ->where('id', '!=', $artikel->id)
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('artikel.show', compact('artikel', 'artikelTerkait'));
     }
 
     /**
@@ -134,7 +147,7 @@ class ArtikelController extends Controller
         $filename = $file->getClientOriginalName();
         $file->storeAs('artikel', $filename);
     } else {
-        $filename = $artikel->gambar; 
+        $filename = $artikel->gambar;
     }
 
     $artikel->update([
@@ -142,6 +155,7 @@ class ArtikelController extends Controller
         'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
         'tag' => $request->tag,
+        'slug' => $request->slug,
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
     ]);

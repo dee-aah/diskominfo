@@ -12,7 +12,10 @@ use App\Http\Controllers\strukturController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProdukhukumController;
+use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TentangController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\LayananDetailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +42,30 @@ Route::post('/register', [registerController::class, 'store'])->name('register.s
 Route::middleware(['auth'])->group(function () {
 });
 
+//layanan
+Route::get('/layanan/dashboard', [LayananController::class, 'dashboard'])->name('layanan.dashboard');
+Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
+Route::get('/layanan', [LayananController::class, 'create'])->name('layanan.create');
+Route::delete('/layanan/{id}', [LayananController::class, 'destroy'])->name('layanan.destroy');
+Route::get('/layanan/{id}/edit', [LayananController::class, 'edit'])->name('layanan.edit');
+Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
+//program
+Route::get('/program/dashboard', [ProgramController::class, 'dashboard'])->name('program.dashboard');
+Route::get('/program', [ProgramController::class, 'index'])->name('program.index');
+Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
+Route::get('/program', [ProgramController::class, 'create'])->name('program.create');
+Route::delete('/program/{id}', [ProgramController::class, 'destroy'])->name('program.destroy');
+Route::get('/program/{id}/edit', [ProgramController::class, 'edit'])->name('program.edit');
+Route::put('/program/{id}', [ProgramController::class, 'update'])->name('program.update');
+//Detail layanan
+Route::get('/layanan_detail/dashboard', [LayananDetailController::class, 'dashboard'])->name('layanan_detail.dashboard');
+Route::get('/layanan_detail', [LayananDetailController::class, 'index'])->name('layanan_detail.index');
+Route::post('/layanan_detail', [LayananDetailController::class, 'store'])->name('layanan_detail.store');
+Route::get('/layanan_detail', [LayananDetailController::class, 'create'])->name('layanan_detail.create');
+Route::delete('/layanan_detail/{id}', [LayananDetailController::class, 'destroy'])->name('layanan_detail.destroy');
+Route::get('/layanan_detail/{id}/edit', [LayananDetailController::class, 'edit'])->name('layanan_detail.edit');
+Route::put('/layanan_detail/{id}', [LayananDetailController::class, 'update'])->name('layanan_detail.update');
 //berita
 Route::get('/beritakita/dashboard', [BeritaController::class, 'dashboard'])->name('beritakita.dashboard');
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
@@ -47,8 +74,7 @@ Route::get('/beritakita/{id}/edit', [BeritaController::class, 'edit'])->name('be
 Route::put('/beritakita/{id}', [BeritaController::class, 'update'])->name('beritakita.update');
 Route::delete('/beritakita/{id}', [BeritaController::class, 'destroy'])->name('beritakita.destroy');
 Route::get('/beritakita/create', [BeritaController::class, 'create'])->name('beritakita.create');
-Route::get('/beritakita/{id}', [BeritaController::class, 'show'])->name('beritakita.show');
-//Route::get('/beritakita/kategori_berita', [BeritaController::class, 'kategori_brt'])->name('beritakita.kategori_berita');
+Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
 
 Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
 
@@ -62,7 +88,7 @@ Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('arti
 Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
 Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
 Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
-Route::get('/artikel/{id}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
 Route::get('/artikel/search', [ArtikelController::class, 'searching'])->name('artikel.search');
 Route::get('/artikel-terbaru', [ArtikelController::class, 'showLatest'])->name('artikel.terbaru');
 Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');

@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Berita extends Model
 {
-   use HasFactory;
+    use HasFactory;
     protected $table = 'beritas';
+    protected $casts = [
+    'waktu' => 'datetime',
+    ];
 
     // app/Models/Berita.php
-protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'gambar','waktu','view_count', 'kategori_id'];
+    protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'gambar','waktu','view_count', 'kategori_id'];
 
 
     // Relasi ke kategori

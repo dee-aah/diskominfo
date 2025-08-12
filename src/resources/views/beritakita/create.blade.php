@@ -47,9 +47,10 @@
                         <label class="block  text-lg font-medium">Tag</label>
                         <input type="text" name="tag" placeholder=" Masukkan Tag Berita"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2" required>
+                            <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
                     <div class="mb-3 mt-2">
-                        <input type="file" name="gambar"
+                        <input required class="file" name="gambar"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                             file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-400 hover:file:bg-violet-100 dark:file:bg-blue-400 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>
