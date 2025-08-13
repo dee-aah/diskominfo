@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class Layanan extends Model
 {
     protected $fillable = [
-        'program_id', 'nama', 'slug', 'deskripsi', 'gambar', 'urutan'
+        'program_id', 'nama', 'slug', 'deskripsi','des_singkat', 'gambar'
     ];
 
     // Relasi ke Program

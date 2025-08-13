@@ -8,11 +8,11 @@ use Illuminate\Support\Str;
 class Program extends Model
 {
     protected $fillable = [
-        'nama', 'slug', 'deskripsi', 'gambar', 'urutan'
+        'nama', 'slug', 'deskripsi', 'gambar'
     ];
 
     // Relasi ke Service
-    public function services()
+    public function layanans()
     {
         return $this->hasMany(Layanan::class);
     }

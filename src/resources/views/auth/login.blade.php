@@ -1,6 +1,7 @@
 <x-layouts.auth title="Login">
     <!-- Left Panel (Login) -->
     <div class="p-4 flex flex-col justify-center">
+        {{-- Flash message sukses --}}
         @if (session('success'))
             <div id="flash-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
                 {{ session('success') }}
@@ -12,6 +13,7 @@
 
             <h2 class="text-2xl text-center font-bold text-gray-800 mb-4">Login</h2>
 
+            {{-- Error list --}}
             @if ($errors->any())
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
                     <ul class="list-disc list-inside text-sm">
@@ -21,21 +23,25 @@
                     </ul>
                 </div>
             @endif
+
+            {{-- Email --}}
             <div class="mb-4">
                 <h2 class="text-lg font-semibold mt-2">Alamat Email</h2>
-                <input type="email" name="email" placeholder="Masukkan Email"
-                    class="w-full px-4 py-2 mb-3 border rounded">
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="Masukkan Email"
+                    class="w-full px-4 py-2 mb-3 border rounded focus:outline-none focus:ring focus:border-blue-300">
                 @error('email')
                     <p class="text-red-500 text-sm mb-3">{{ $message }}</p>
                 @enderror
             </div>
-            <h2 class="text-lg font-semibold ">Password</h2>
+
+            {{-- Password --}}
+            <h2 class="text-lg font-semibold">Password</h2>
             <div x-data="{ show: false }" class="relative mb-4">
                 <input :type="show ? 'text' : 'password'" name="password" id="password"
                     class="w-full border rounded px-4 py-2 pr-10 focus:outline-none focus:ring"
                     placeholder="Masukkan Password">
-                <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show"
-                    tabindex="-1">
+                <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show" tabindex="-1">
+                    {{-- Icon Hide --}}
                     <svg x-show="!show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,6 +49,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg>
+                    {{-- Icon Show --}}
                     <svg x-show="show" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                         viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -54,22 +61,30 @@
                     <p class="text-red-500 text-sm mb-3">{{ $message }}</p>
                 @enderror
             </div>
-            <button type="submit" class="w-full my-6 bg-[#476A9A] text-white font-bold py-2 rounded">Login</button>
-        </form>
 
+            {{-- Tombol Login --}}
+            <button type="submit"
+                class="w-full my-6 bg-[#476A9A] text-white font-bold py-2 rounded hover:bg-[#36527a] transition">
+                Login
+            </button>
+        </form>
     </div>
+
     <!-- Right Panel (Register Prompt) -->
     <div class="bg-[#476A9A] text-white flex flex-col justify-center items-center p-8">
         <div class="flex items-center">
-            <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-45 ">
-
+            <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-45">
         </div>
         <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
         <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>
-        <p class="mb-6 text-center">Daftarkan Data Diri Anda</p>
-        <a href="{{ url('/register') }}"
-            class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">SIGN UP</a>
+        <p class="mb-6 text-center">Masukkan Data Diri Anda</p>
+        <a href="{{ route('register.form') }}"
+            class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">
+            SIGN UP
+        </a>
     </div>
+
+    {{-- Flash message fade out --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const flash = document.getElementById('flash-message');
@@ -77,12 +92,9 @@
                 setTimeout(() => {
                     flash.style.transition = 'opacity 0.5s ease';
                     flash.style.opacity = '0';
-                    setTimeout(() => {
-                        flash.remove();
-                    }, 500); // tunggu animasi selesai sebelum dihapus
-                }, 3000); // tunggu 3 detik
+                    setTimeout(() => flash.remove(), 500);
+                }, 3000);
             }
         });
     </script>
-
 </x-layouts.auth>

@@ -3,7 +3,7 @@
         <div class="@container">
             <div class="max-w-3xl mx-auto">
                 <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-3xl text-center font-bold">Edit Artikel</h3>
+                    <h3 class="text-3xl text-center font-bold">Edit Berita</h3>
                 </div>
                 <form action="{{ route('beritakita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -31,14 +31,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Waktu Kegiatan</label>
-                        <input type="date" name="waktu" value="{{ old('waktu', $berita->waktu) }}"
+                        <input type="date" name="waktu" required ="{{ old('waktu', $berita->waktu) }}"
                             placeholder="Masukkan Waktu Kegiatan"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Slug</label>
-                        <input type="text" name="slug" value="{{ old('slug', $berita->slug) }}"
-                            placeholder="Masukkan Slug Tanpa Spasi"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2">
                     </div>
                     <div class="mb-3">
@@ -56,10 +50,10 @@
                                 <option value="{{ $kategori->id }}">{{ $kategori->nama }}</option>
                             @endforeach
                         </select>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Gambar</label>
+                    <div class="mb-3 mt-3">
                         <input type="file" name="gambar"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
+                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-400 hover:file:bg-violet-100 dark:file:bg-blue-400 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                         @if ($berita->gambar)
                             <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
                             <img src="{{ asset('storage/berita/' . $berita->gambar) }}" class="w-32 mt-1 rounded">

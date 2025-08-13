@@ -33,10 +33,10 @@
             <thead>
                 <tr class="bg-blue-100 text-center">
                     <th class="px-2 border border-blue-400 py-2">No</th>
-                    <th class="px-4 border border-blue-400 py-2">Nama</th>
-                    <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
-                    <th class="px-4 border border-blue-400 py-2">Urutan</th>
                     <th class="px-4 border border-blue-400 py-2">Program</th>
+                    <th class="px-4 border border-blue-400 py-2">Nama</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi Singkat</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
                     <th class="px-4 border border-blue-400 py-2">Slug</th>
                     <th class="px-4 border border-blue-400 py-2">Gambar</th>
                     <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
@@ -46,10 +46,10 @@
                 @forelse ($layanans as $layanan)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-blue-400 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->nama }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->deskripsi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->urutan }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $layanan->program_id }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->nama }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->des_singkat }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->deskripsi }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $layanan->slug }}</td>
                         <td class="px-4 border border-blue-400 py-2">
                             @if ($layanan->gambar)

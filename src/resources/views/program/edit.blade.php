@@ -22,12 +22,6 @@
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $program->deskripsi) }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Urutan</label>
-                        <input type="number" name="urutan" value="{{ old('urutan', $program->urutan) }}"
-                            placeholder="Masukkan Urutan Program"
-                            class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
-                    </div>
-                    <div class="mb-3">
                         <label class="block text-lg font-medium">Gambar</label>
                         <input type="file" name="gambar"
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2">

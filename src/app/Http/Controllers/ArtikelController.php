@@ -83,7 +83,6 @@ class ArtikelController extends Controller
             'deskripsi' => 'required',
             'penulis' => 'required',
             'tag' => 'required',
-            'slug' => 'required',
             'kategori_id' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
@@ -100,7 +99,6 @@ class ArtikelController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'tag' => $request->tag,
-            'slug' => $request->slug,
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename
         ]);
@@ -155,7 +153,6 @@ class ArtikelController extends Controller
         'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
         'tag' => $request->tag,
-        'slug' => $request->slug,
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
     ]);

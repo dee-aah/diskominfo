@@ -22,12 +22,6 @@
                         <input type="text" name="penulis" placeholder=" Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
                     </div>
-                    <div class="mb-4">
-                        <label class="block text-lg font-medium">Slug</label>
-                        <input type="text" name="slug" value="{{ old('slug') }}" placeholder=" Masukkan Slug Tanpa Spasi" required
-                        class="w-full bg-gray-100 border border-sky-500 rounded p-2">
-                        <small class="text-gray-500">Slug biasanya diisi otomatis dari judul, tapi bisa diubah.</small>
-                    </div>
                     <div class="mb-3">
                         <label class="block  text-lg font-medium">Waktu Kegiatan</label>
                         <input type="date" name="waktu" placeholder=" Masukkan Waktu Kegiatan"
@@ -50,7 +44,7 @@
                             <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
                     <div class="mb-3 mt-2">
-                        <input required class="file" name="gambar"
+                        <input required type="file" name="gambar"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                             file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-400 hover:file:bg-violet-100 dark:file:bg-blue-400 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>

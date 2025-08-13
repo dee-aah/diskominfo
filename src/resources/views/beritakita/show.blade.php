@@ -1,14 +1,14 @@
 <x-layouts.app>
     <div class=" container max-w-5xl mx-auto mt-20 px-4 py-8">
         {{-- Tombol kembali --}}
-        <div class="flex text-[13px] text-gray-500justify-start">
+        <div class="flex text-[13px] text-gray-500 justify-start">
             <a href="{{ url('/beranda') }}" class="inline-block mb-6  hover:underline">
                 Beranda
             </a>
-            <span class="mx-2">/</span>
+            <span class="mx-2">></span>
             <a href="{{ route('beritakita.index') }}" class="inline-block mb-6  hover:underline">
                 Berita
-            </a> <span class="mx-2">/</span>
+            </a> <span class="mx-2">></span>
             <a href="{{ route('beritakita.index') }}" class="inline-block mb-6 hover:underline">
                 {{ $berita->judul }}
             </a>

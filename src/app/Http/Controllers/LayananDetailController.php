@@ -6,6 +6,7 @@ use App\Models\Layanan;
 use App\Models\Layanan_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class LayananDetailController extends Controller
 {
@@ -39,7 +40,10 @@ class LayananDetailController extends Controller
     public function create()
     {
         $layanans = Layanan::all();
-        return view('layanan_detail.create', compact('layanans'));
+        $enumValues = DB::select("SHOW COLUMNS FROM layanan_details WHERE Field = 'jenis'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('layanan_detail.create', compact('layanans','jenisOptions'));
     }
 
     /**
@@ -48,9 +52,12 @@ class LayananDetailController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'judul' => 'required',
-        'isi' => 'required',
-        'urutan' => 'required',
+        'jenis' => 'required',
+        'isi_1' => 'required',
+        'isi_2' => 'required',
+        'isi_3' => 'nullable',
+        'isi_4' => 'nullable',
+        'isi_5' => 'nullable',
         'layanan_id' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
@@ -62,10 +69,13 @@ class LayananDetailController extends Controller
         }
 
     Layanan_detail::create([
-        'judul' => $request->judul,
+        'jenis' => $request->jenis,
         'layanan_id' => $request->layanan_id,
-        'isi' => $request->isi,
-        'urutan' => $request->urutan,
+        'isi_1' => $request->isi_1,
+        'isi_2' => $request->isi_2 ,
+        'isi_3' => $request->isi_3 ?: null,
+        'isi_4' => $request->isi_4 ?: null,
+        'isi_5' => $request->isi_5 ?: null,
         'gambar' => $filename
     ]);
 
@@ -75,9 +85,11 @@ class LayananDetailController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($slug)
     {
-        //
+        $layanan = Layanan::where('slug', $slug)->firstOrFail();
+
+        return view('layanan_detail.show', compact('layanan'));
     }
 
     /**
@@ -86,8 +98,11 @@ class LayananDetailController extends Controller
     public function edit(string $id)
     {
         $layanans = Layanan::all();
+        $enumValues = DB::select("SHOW COLUMNS FROM layanan_details WHERE Field = 'jenis'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
         $layanan_detail = Layanan_detail::findOrFail($id);
-        return view('layanan_detail.edit', compact('layanan_detail','layanans'));
+        return view('layanan_detail.edit', compact('layanan_detail','layanans','jenisOptions'));
     }
 
     /**
@@ -105,9 +120,12 @@ class LayananDetailController extends Controller
             $filename = $layanan_detail->gambar;
         }
         $layanan_detail->update([
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'urutan' => $request->urutan,
+            'jenis' => $request->jenis,
+            'isi_1' => $request->isi_1,
+            'isi_2' => $request->isi_2 ,
+            'isi_3' => $request->isi_3 ?: null,
+            'isi_4' => $request->isi_4 ?: null,
+            'isi_5' => $request->isi_5 ?: null,
             'layanan_id' => $request->layanan_id,
             'gambar' => $filename
         ]);

@@ -27,7 +27,9 @@ class LayananController extends Controller
      */
     public function index()
     {
-        //
+        $programs = Program::with('layanans')->get();
+        $programlain = Program::with('layanans')->skip(1)->take(3)->get();
+        return view('layanan.index', compact('programs','programlain'));
     }
 
     /**
@@ -46,8 +48,8 @@ class LayananController extends Controller
     {
         $request->validate([
         'nama' => 'required',
+        'des_singkat' => 'required',
         'deskripsi' => 'required',
-        'urutan' => 'required',
         'program_id' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
@@ -61,8 +63,8 @@ class LayananController extends Controller
     Layanan::create([
         'nama' => $request->nama,
         'program_id' => $request->program_id,
+        'des_singkat' => $request->des_singkat,
         'deskripsi' => $request->deskripsi,
-        'urutan' => $request->urutan,
         'gambar' => $filename
     ]);
 
@@ -103,8 +105,8 @@ class LayananController extends Controller
         }
         $layanan->update([
             'nama' => $request->nama,
+            'des_singkat' => $request->des_singkat,
             'deskripsi' => $request->deskripsi,
-            'urutan' => $request->urutan,
             'program_id' => $request->program_id,
             'gambar' => $filename
         ]);

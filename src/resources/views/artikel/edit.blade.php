@@ -46,12 +46,6 @@
                             class="w-full bg-gray-100 border-sky-500 border rounded p-2">
                             <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Slug</label>
-                        <input type="text" name="slug" value="{{ old('slug', $artikel->slug) }}"
-                            placeholder="Masukkan SlugArtikel"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
-                    </div>
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Gambar</label>
@@ -71,6 +65,6 @@
                     </div>
                 </form>
             </div>
-        
+
     </main>
 </x-layouts.sidebar>

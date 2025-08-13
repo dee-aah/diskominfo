@@ -3,7 +3,7 @@
         <div class="@container">
             <div class="max-w-3xl mx-auto ">
                 <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-3xl text-center font-bold">Tambah Layanan</h3>
+                    <h3 class="text-3xl text-center font-bold">Tambah Program</h3>
                 </div>
                 <form action="{{ route('program.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -17,11 +17,7 @@
                         <textarea name="deskripsi" rows="10" placeholder=" Masukkan Deskripsi Program"
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label class="block  text-lg font-medium">Urutan</label>
-                        <input type="number" value="0" name="urutan" placeholder=" Masukkan Urutan Program"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2" required>
-                    </div>
+                    
                     <div class="mb-3 mt-2">
                         <input required type="file" name="gambar"
                         class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50 file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />

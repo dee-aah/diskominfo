@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Berita extends Model
 {
@@ -21,5 +22,21 @@ class Berita extends Model
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($beritas) {
+            if (empty($beritas->slug)) {
+                $beritas->slug = Str::slug($beritas->judul);
+            }
+        });
+
+        static::updating(function ($beritas) {
+            if ($beritas->isDirty('judul')) {
+                $beritas->slug = Str::slug($beritas->judul);
+            }
+        });
     }
 }

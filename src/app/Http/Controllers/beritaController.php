@@ -171,7 +171,6 @@ class BeritaController extends Controller
             'deskripsi' => 'required',
             'penulis' => 'required',
             'waktu' => 'required',
-            'slug' => 'required',
             'tag' => 'nullable',
             'kategori_id' => 'required',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
@@ -188,7 +187,6 @@ class BeritaController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'waktu' => $request->waktu,
-            'slug' => $request->slug,
             'tag' => $request->tag,
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename
@@ -242,7 +240,6 @@ class BeritaController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'waktu' => $request->waktu,
-            'slug' => $request->slug,
             'tag' => $request->tag,
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename

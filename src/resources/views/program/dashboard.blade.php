@@ -35,7 +35,6 @@
                     <th class="px-2 border border-blue-400 py-2">No</th>
                     <th class="px-4 border border-blue-400 py-2">Nama</th>
                     <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
-                    <th class="px-4 border border-blue-400 py-2">Urutan</th>
                     <th class="px-4 border border-blue-400 py-2">Slug</th>
                     <th class="px-4 border border-blue-400 py-2">Gambar</th>
                     <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
@@ -47,7 +46,6 @@
                         <td class="px-2 border border-blue-400 py-2">{{ $loop->iteration }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $program->nama }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $program->deskripsi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $program->urutan }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $program->slug }}</td>
                         <td class="px-4 border border-blue-400 py-2">
                             @if ($program->gambar)

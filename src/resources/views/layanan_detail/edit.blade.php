@@ -2,32 +2,11 @@
     <main>
             <div class="max-w-3xl mx-auto">
                 <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-3xl text-center font-bold">Edit Program</h3>
+                    <h3 class="text-3xl text-center font-bold">Edit Detail Layanan</h3>
                 </div>
                 <form action="{{ route('layanan_detail.update', $layanan_detail->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Judul Detail Layanan</label>
-                        <input type="text" name="judul" value="{{ old('judul', $layanan_detail->judul) }}"
-                            placeholder="Masukkan Judul Detail Layanan"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi</label>
-                        <textarea name="isi" rows="12"
-                            placeholder="Masukkan Deskripsi Detail Layanan"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('isi', $layanan_detail->isi) }}</textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Urutan</label>
-                        <input type="number" name="urutan" value="{{ old('urutan', $layanan_detail->urutan) }}"
-                            placeholder="Masukkan Urutan Detail layanan"
-                            class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
-                    </div>
                     <div class="mb-3">
                         <label class="block text-base font-medium">Layanan</label>
                         <select name="layanan_id" class="w-full bg-gray-100 border-sky-500 border rounded p-2"
@@ -39,6 +18,46 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Jenis Layanan</label>
+                        <select name="jenis" class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
+                            <option value="">-- Pilih Jenis Layanan --</option>
+                            @foreach ($jenisOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
+                        <textarea name="isi_1" rows="5"
+                            placeholder="Masukkan Deskripsi Layanan ke 1"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('isi_1', $layanan_detail->isi_1) }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
+                        <textarea name="isi_2" rows="5"
+                            placeholder="Masukkan Deskripsi Layanan ke 2"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('isi_2', $layanan_detail->isi_2) }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
+                        <textarea name="isi_3" rows="5"
+                            placeholder="Masukkan Deskripsi Layanan ke 3"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_3', $layanan_detail->isi_3) }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
+                        <textarea name="isi_4" rows="5"
+                            placeholder="Masukkan Deskripsi Layanan ke 4"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_4', $layanan_detail->isi_4) }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
+                        <textarea name="isi_5" rows="5"
+                            placeholder="Masukkan Deskripsi Layanan ke 5"
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_5', $layanan_detail->isi_5) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <input type="file" name="gambar"

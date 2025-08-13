@@ -1,7 +1,7 @@
 <x-layouts.sidebar>
     <main>
         <div class="@container">
-            <div class="max-w-6xl mx-auto ">
+            <div class="max-w-4xl mx-auto ">
                 <div class="flex justify-center items-center mb-4">
                     <h3 class="text-3xl text-center font-bold">Tambah Artikel</h3>
                 </div>
@@ -14,19 +14,13 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi</label>
-                        <textarea name="deskripsi" rows="3" placeholder=" Masukkan Deskripsi Artikel"
+                        <textarea name="deskripsi" rows="10" placeholder=" Masukkan Deskripsi Artikel"
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Penulis</label>
                         <input type="text" name="penulis" placeholder=" Masukkan Nama Penulis"
                             class="w-full bg-gray-100 border border-sky-500 rounded p-2" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block  text-lg font-medium">Slug Artikel</label>
-                        <input type="text" name="slug" placeholder=" Masukkan Slug Artikel"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2" required>
-                            <small class="text-gray-500">Slug biasanya diisi otomatis dari judul, tapi bisa diubah.</small>
                     </div>
                     <div class="mb-3">
                         <label class="block text-base font-medium">Kategori</label>
@@ -45,9 +39,9 @@
                         <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
                     <div class="mb-3 mt-2">
-                        <input required ="file" name="gambar"
+                        <input required type="file" name="gambar"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
-                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-400 hover:file:bg-violet-100 dark:file:bg-blue-400 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
+                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-500 hover:file:bg-violet-100 dark:file:bg-blue-500 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <a href="{{ route('artikel.dashboard') }}" type="button"

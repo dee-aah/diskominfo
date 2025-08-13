@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('deskripsi')->nullable();
             $table->string('slug')->unique();
             $table->string('gambar')->nullable();
-            $table->integer('urutan')->default(0);
             $table->timestamps();
         });
 
@@ -27,10 +26,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
             $table->string('nama');
+            $table->text('des_singkat')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('slug')->unique();
             $table->string('gambar')->nullable();
-            $table->integer('urutan')->default(0);
             $table->timestamps();
         });
 
@@ -38,10 +37,20 @@ return new class extends Migration
         Schema::create('layanan_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('layanan_id')->constrained('layanans')->onDelete('cascade');
-            $table->string('judul');
-            $table->text('isi')->nullable();
-            $table->string('gambar')->nullable(); // opsional
-            $table->integer('urutan')->default(0);
+            $table->enum('jenis', [
+                'Tujuan Layanan',
+                'Manfaat Layanan',
+                'Jenis Konsultasi',
+                'Syarat & Alur Pelayanan',
+                'Tempat Layanan',
+                'Kontak Layanan'
+            ])->nullable();
+            $table->text('isi_1')->nullable();
+            $table->text('isi_2')->nullable();
+            $table->text('isi_3')->nullable();
+            $table->text('isi_4')->nullable();
+            $table->text('isi_5')->nullable();
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

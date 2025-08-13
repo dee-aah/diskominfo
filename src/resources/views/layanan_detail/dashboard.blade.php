@@ -33,10 +33,13 @@
             <thead>
                 <tr class="bg-blue-100 text-center">
                     <th class="px-2 border border-blue-400 py-2">No</th>
-                    <th class="px-4 border border-blue-400 py-2">Nama</th>
-                    <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
-                    <th class="px-4 border border-blue-400 py-2">Urutan</th>
                     <th class="px-4 border border-blue-400 py-2">Layanan</th>
+                    <th class="px-4 border border-blue-400 py-2">Jenis </th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi 1</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi 2</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi 3</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi 4</th>
+                    <th class="px-4 border border-blue-400 py-2">Deskripsi 5</th>
                     <th class="px-4 border border-blue-400 py-2">Gambar</th>
                     <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
                 </tr>
@@ -45,10 +48,13 @@
                 @forelse ($layanan_details as $layanan)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-blue-400 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->judul }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->urutan }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $layanan->layanan_id }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->jenis }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi_1 }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi_2 }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi_3 }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi_4 }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->isi_5 }}</td>
                         <td class="px-4 border border-blue-400 py-2">
                             @if ($layanan->gambar)
                                 <img src="{{ asset('storage/layanan_detail/' . $layanan->gambar) }}"

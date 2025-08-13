@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,8 @@
 
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <div id="sidebar" class="w-64 bg-green-50 border-r-2 border-gray-200 flex flex-col space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+        <div id="sidebar"
+            class="w-64 bg-green-50 border-r-2 border-gray-200 flex flex-col space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
             <!-- Logo -->
             <div class="flex items-center justify-center h-16">
                 <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
@@ -21,15 +23,42 @@
 
             <!-- Navigation -->
             <nav class="flex-1 p-4 space-y-2">
-                <a href="{{ route('beritakita.dashboard') }}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
-                    <i class="fas fa-newspaper w-5 h-5 mr-3"></i> <span>Berita</span>
-                </a>
-                <a href="{{ route('artikel.dashboard') }}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
-                    <i class="fas fa-wallet w-5 h-5 mr-3"></i> <span>Artikel</span>
-                </a>
-                <a href="#" class="flex items-center p-2 text-red-600 rounded hover:bg-red-100">
-                    <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
-                </a>
+                <ul>
+                    <li class="mb-2">
+                        <a href="{{ route('beritakita.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Berita</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('artikel.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Artikel</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <button class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100"
+                            onclick="toggleMenu('Menu')">
+                            <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>Informasi Layanan
+                        </button>
+
+                        <!-- Sub Menu -->
+                        <ul id="Menu" class="hidden ml-6 pl-6">
+                            <li><a href="{{route('program.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Program</a></li>
+                            <li><a href="{{route('layanan.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Layanan</a>
+                            </li>
+                            <li><a href="{{route('layanan_detail.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Detail Layanan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 text-red-600 rounded hover:bg-red-100">
+                            <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
         </div>
 
@@ -57,6 +86,14 @@
         toggleSidebar.addEventListener('click', () => {
             sidebar.classList.toggle('-translate-x-full');
         });
+
+        function toggleMenu(id) {
+            const menu = document.getElementById(id);
+            const icon = document.getElementById("icon-" + id);
+            menu.classList.toggle("hidden");
+            icon.classList.toggle("rotate-180");
+        }
     </script>
 </body>
+
 </html>

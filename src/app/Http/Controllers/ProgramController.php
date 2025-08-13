@@ -45,7 +45,6 @@ class ProgramController extends Controller
         $request->validate([
         'nama' => 'required',
         'deskripsi' => 'required',
-        'urutan' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
@@ -58,7 +57,6 @@ class ProgramController extends Controller
     Program::create([
         'nama' => $request->nama,
         'deskripsi' => $request->deskripsi,
-        'urutan' => $request->urutan,
         'gambar' => $filename
     ]);
 
@@ -100,7 +98,6 @@ class ProgramController extends Controller
         $program->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
-            'urutan' => $request->urutan,
             'gambar' => $filename
         ]);
         return redirect()->route('program.dashboard')->with('success', 'Program Berhasil Diperbarui');

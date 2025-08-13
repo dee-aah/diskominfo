@@ -8,6 +8,29 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 class registerController extends Controller
 {
+
+
+    public function register(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:8|confirmed',
+        'role' => 'in:admin,user' // kalau mau bisa pilih role
+    ]);
+
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => $request->role ?? 'user', // default 'user'
+    ]);
+
+    return response()->json([
+        'message' => 'User registered successfully',
+        'data' => $user
+    ], 201);
+}
     /**
      * Display a listing of the resource.
      */
@@ -33,29 +56,26 @@ class registerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+       $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
-            ], [
-            'name.required' => 'Nama wajib diisi.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah terdaftar.',
-            'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password minimal 6 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak cocok.',
-            ]);;
-
-        // Simpan user
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password), // enkripsi
+            'role' => 'nullable|in:admin,user', // bisa dipilih atau default
         ]);
 
-        // Redirect atau login otomatis
-        return redirect('/login')->with('success', 'Registrasi berhasil!');
+        // Jika role tidak diisi, set default jadi 'user'
+        $role = $validated['role'] ?? 'user';
+
+        // Simpan ke database
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $role,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('login')->with('success', 'Registrasi berhasil! Silakan login.');
     }
 
     /**

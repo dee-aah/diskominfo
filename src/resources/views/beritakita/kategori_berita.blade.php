@@ -11,9 +11,9 @@
                      alt="{{ $berita->judul }}" class="w-full h-48 object-cover rounded">
 
                 <h2 class="mt-2 text-lg font-bold hover:text-blue-600">
-                    <a href="{{ route('artikel.show', $berita->id) }}">{{ $berita->judul }}</a>
+                    <a href="{{ route('beritakita.show', $berita->slug) }}">{{ $berita->judul }}</a>
                 </h2>
-                <a href="{{ route('beritakita.show', $berita->id) }}" class="text-gray-500 my-4  text-center text-[11px]">
+                <a href="{{ route('beritakita.show', $berita->slug) }}" class="text-gray-500 my-4  text-center text-[11px]">
                     BACA SELENGKAPNYA...
                 </a>
             </div>
