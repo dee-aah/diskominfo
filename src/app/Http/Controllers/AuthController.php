@@ -41,28 +41,32 @@ class AuthController extends Controller
         return redirect()->route('login')->with('success', 'Registrasi berhasil!');
     }
      public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email'    => 'required|email',
-            'password' => 'required',
-        ]);
+{
+    $credentials = $request->validate([
+        'email'    => 'required|email',
+        'password' => 'required',
+    ]);
 
-        if (Auth::attempt($credentials)) {
-    $request->session()->regenerate();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate();
 
-    if (Auth::user()->role === 'admin') {
-    return redirect()->route('artikel.dashboard')->with('success', 'Login berhasil!');
-} elseif (Auth::user()->role === 'user') {
-    return redirect()->route('beritakita.dashboard')->with('success', 'Login berhasil!'); // atau dashboard user utama
+        $role = Auth::user()->role;
+
+        if ($role === 'admin') {
+            return redirect()->route('layanan.dashboard')->with('success', 'Login berhasil!');
+        } elseif ($role === 'user') {
+            return redirect()->route('beritakita.dashboard')->with('success', 'Login berhasil!');
+        } else {
+            Auth::logout(); // role tidak valid
+            return redirect()->route('login')->withErrors(['email' => 'Role tidak valid.']);
+        }
     }
-    }
 
+    return back()->withErrors([
+        'email' => 'Email atau password salah.',
+    ]);
+}
 
-
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ]);
-    }
 
     public function logout(Request $request)
     {

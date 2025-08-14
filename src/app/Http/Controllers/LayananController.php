@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Layanan;
 use App\Models\Program;
+use App\Models\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,6 +12,7 @@ class LayananController extends Controller
 {
      public function dashboard(Request $request)
     {
+        
         $query = Layanan::query();
         if ($request->filled('d')) {
             $search = $request->d;
@@ -27,6 +29,7 @@ class LayananController extends Controller
      */
     public function index()
     {
+
         $programs = Program::with('layanans')->get();
         $programlain = Program::with('layanans')->skip(1)->take(3)->get();
         return view('layanan.index', compact('programs','programlain'));
