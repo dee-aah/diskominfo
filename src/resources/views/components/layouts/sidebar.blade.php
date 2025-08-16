@@ -25,6 +25,12 @@
             <nav class="flex-1 p-4 space-y-2">
                 <ul>
                     <li class="mb-2">
+                        <a href="{{ route('visimisi.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Visi Misi</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
                         <a href="{{ route('beritakita.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Berita</span>
@@ -54,9 +60,12 @@
                         </ul>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="flex items-center p-2 text-red-600 rounded hover:bg-red-100">
-                            <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
-                        </a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full flex items-center p-2 text-red-600 rounded hover:bg-red-100">
+                                <i class="fas fa-sign-out-alt w-5 h-5 mr-3"></i> <span>Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </nav>

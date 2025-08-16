@@ -50,7 +50,7 @@
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->judul }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->penulis }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->deskripsi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $berita->kategori_id }}</td>
+                        <td class="px-4 border border-blue-400 py-2">{{ $berita->kategori->nama }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->waktu }}</td>
                         <td class="px-4 border border-blue-400 py-2">{{ $berita->tag ?? '-' }}</td>
                         <td class="px-4 border border-blue-400 py-2">

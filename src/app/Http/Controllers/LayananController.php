@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Layanan;
 use App\Models\Program;
-use App\Models\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +11,7 @@ class LayananController extends Controller
 {
      public function dashboard(Request $request)
     {
-        
+
         $query = Layanan::query();
         if ($request->filled('d')) {
             $search = $request->d;
@@ -60,7 +59,7 @@ class LayananController extends Controller
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $filename = $file->getClientOriginalName();
-            $file->storeAs('program', $filename);
+            $file->storeAs('layanan', $filename);
         }
 
     Layanan::create([

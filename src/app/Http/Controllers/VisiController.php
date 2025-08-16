@@ -15,10 +15,10 @@ class VisiController extends Controller
             $search = $request->d;
             $query->where(function ($q) use ($search) {
                 $q->where('visi', 'like', "%{$search}%")
-                    ->orWhere('visi', 'like', "%{$search}%")
+                    ->orWhere('misi', 'like', "%{$search}%")
                     ->orWhere('des_singkat', 'like', "%{$search}%");
             });}
-        $visis = Visimisi::all();
+        $visis = $query->latest()->get();
         return view('visimisi.dashboard', compact('visis'));
     }
     /**
@@ -26,7 +26,8 @@ class VisiController extends Controller
      */
     public function index()
     {
-        return view("visimisi.index");
+        $visimisi = Visimisi::first();
+        return view("visimisi.index", compact('visimisi'));
 
     }
 
@@ -59,7 +60,7 @@ class VisiController extends Controller
     Visimisi::create([
         'visi' => $request->visi,
         'des_singkat' => $request->des_singkat,
-        'misi' => $request->visi,
+        'misi' => $request->misi,
         'gambar' => $filename
     ]);
 
