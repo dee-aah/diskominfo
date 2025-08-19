@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use App\Http\Controllers\Controller;
 class ProgramController extends Controller
 {
      public function dashboard(Request $request)
@@ -19,7 +19,7 @@ class ProgramController extends Controller
                     ->orWhere('tag', 'like', "%{$search}%");
             });}
         $programs = $query->latest()->get();
-        return view('program.dashboard', compact('programs'));
+        return view('admin.program.dashboard', compact('programs'));
     }
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        return view('program.create');
+        return view('admin.program.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class ProgramController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('program.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('admin.program.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
 
     /**
@@ -77,7 +77,7 @@ class ProgramController extends Controller
     public function edit(string $id)
     {
         $program = Program::findOrFail($id);
-        return view('program.edit', compact('program'));
+        return view('admin.program.edit', compact('program'));
     }
 
     /**
@@ -88,19 +88,19 @@ class ProgramController extends Controller
         $program = Program::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
+            if ($program->gambar) {
+                Storage::delete('public/berita/' . $program->gambar);
+            }
             $file = $request->file('gambar');
-            $filename = $file->getClientOriginalName();
+            $filename =  $file->getClientOriginalName();
             $file->storeAs('program', $filename);
-        } else {
-            $filename = $program->gambar;
         }
-
         $program->update([
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'gambar' => $filename
         ]);
-        return redirect()->route('program.dashboard')->with('success', 'Program Berhasil Diperbarui');
+        return redirect()->route('admin.program.dashboard')->with('success', 'Program Berhasil Diperbarui');
     }
 
     /**

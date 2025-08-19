@@ -2,11 +2,11 @@
     <div class="p-6">
         <div class="flex justify-between grid grid-cols-3 items-center mb-4">
             <div class="justify-start col-1">
-                <h2 class="text-2xl  font-bold">Daftar Program</h2>
+                <h2 class="text-2xl  font-bold">Daftar Layanan</h2>
             </div>
             <div class="col-span-2 flex justify-end">
                 <form action="{{ route('layanan.dashboard') }}" method="GET" class="flex justify-end  mr-2">
-                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Artikel..."
+                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Layanan..."
                         class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
                     <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
                         <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i>Cari
@@ -18,7 +18,7 @@
                 </button>
                 <a href="{{ route('layanan.create') }}" type="button"
                     class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
-                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah Layanan
+                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
                 </a>
             </div>
         </div>
@@ -29,29 +29,29 @@
             </div>
         @endif
 
-        <table class="w-full table-auto border text-sm">
+        <table class="w-full table-auto border-gray-400 border-2 border text-sm">
             <thead>
-                <tr class="bg-blue-100 text-center">
-                    <th class="px-2 border border-blue-400 py-2">No</th>
-                    <th class="px-4 border border-blue-400 py-2">Program</th>
-                    <th class="px-4 border border-blue-400 py-2">Nama</th>
-                    <th class="px-4 border border-blue-400 py-2">Deskripsi Singkat</th>
-                    <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
-                    <th class="px-4 border border-blue-400 py-2">Slug</th>
-                    <th class="px-4 border border-blue-400 py-2">Gambar</th>
-                    <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
+                <tr class="bg-slate-300 text-center">
+                    <th class="px-2 border border-gray-400 border-2 py-2">No</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Program</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Nama</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi Singkat</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Slug</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Gambar</th>
+                    <th class="px-4 border aksi hidden border-gray-400 border-20 py-2">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-gray-100">
                 @forelse ($layanans as $layanan)
                     <tr class="text-center items-center ">
-                        <td class="px-2 border border-blue-400 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->program_id }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->nama }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->des_singkat }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->deskripsi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $layanan->slug }}</td>
-                        <td class="px-4 border border-blue-400 py-2">
+                        <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->program_id }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->nama }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->des_singkat }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->deskripsi }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->slug }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">
                             @if ($layanan->gambar)
                                 <img src="{{ asset('storage/layanan/' . $layanan->gambar) }}"
                                     class="w-16 h-16 object-cover justify-content-center rounded">
@@ -59,13 +59,13 @@
                                 -
                             @endif
                         </td>
-                        <td class="px-3 py-3 flex grid grip-rows border border-blue-400 justify-center aksi hidden">
+                        <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
                             <a href="{{ route('layanan.edit', $layanan->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
                                 <i class="fa-solid fa-pen mr-2"></i>Edit
                             </a>
                             <form action="{{ route('layanan.destroy', $layanan->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
+                                onsubmit="return confirm(' Anda Yakin Ingin Menghapus Layanan ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -77,7 +77,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center border border-blue-400 py-4">Belum ada artikel</td>
+                        <td colspan="5" class="text-center border border-gray-400 border-2 py-4">Belum ada artikel</td>
                     </tr>
                 @endforelse
             </tbody>

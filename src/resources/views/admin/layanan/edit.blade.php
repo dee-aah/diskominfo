@@ -9,7 +9,7 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label class="block text-base font-medium">Program</label>
-                        <select name="program_id" class="w-full bg-gray-100 border-sky-500 border rounded p-2"
+                        <select name="program_id" class="w-full bg-gray-100 border-gray-400 border-2 border rounded p-2"
                             required>
                             <option value="">-- Pilih Program --</option>
                             @foreach ($programs as $program)
@@ -23,20 +23,20 @@
                         <label class="block text-lg font-medium">Nama Layanan</label>
                         <input type="text" name="nama" value="{{ old('nama', $layanan->nama) }}"
                             placeholder="Masukkan Nama Program"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
+                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi</label>
                         <textarea name="deskripsi" rows="12"
                             placeholder="Masukkan Deskripsi Program"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $layanan->deskripsi) }}</textarea>
+                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('deskripsi', $layanan->deskripsi) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Singkat</label>
                         <textarea name="des_singkat" rows="5"
                             placeholder="Masukkan Deskripsi Program"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('des_sikat', $layanan->des_sikat) }}</textarea>
+                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('des_sikat', $layanan->des_sikat) }}</textarea>
                     </div>
 
                     <div class="mb-3">

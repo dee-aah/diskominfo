@@ -78,7 +78,7 @@
         <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
         <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>
         <p class="mb-6 text-center">Masukkan Data Diri Anda</p>
-        <a href="{{ route('register.form') }}"
+        <a href="{{ route('register') }}"
             class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">
             SIGN UP
         </a>

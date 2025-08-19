@@ -7,31 +7,10 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 class BeritaController extends Controller
 {
-    /**
-     * Menampilkan dashboard manajemen berita dengan paginasi dan fitur pencarian.
-     */
-    public function dashboard(Request $request)
-    {
-        $query = Berita::query()->with('kategori'); // Eager load relasi kategori
-
-        if ($request->filled('d')) {
-            $search = $request->d;
-            $query->where(function ($q) use ($search) {
-                $q->where('judul', 'like', "%{$search}%")
-                    ->orWhere('penulis', 'like', "%{$search}%")
-                    ->orWhere('tag', 'like', "%{$search}%");
-            });
-        }
-
-        // PERBAIKAN: Menggunakan paginate() untuk performa yang lebih baik
-        $beritas = $query->latest()->paginate(15);
-
-        return view('beritakita.dashboard', compact('beritas'));
-    }
-
     /**
      * Menampilkan halaman daftar berita publik (tanpa login).
      * Logika pengambilan data dirapikan agar tidak berulang.
@@ -83,44 +62,6 @@ class BeritaController extends Controller
             ->take($limit)
             ->get();
     }
-
-    /**
-     * Menampilkan form untuk membuat berita baru.
-     */
-    public function create()
-    {
-        $kategoris = Kategori::where('type', 'Berita')->get();
-        return view('beritakita.create', compact('kategoris'));
-    }
-
-    /**
-     * Menyimpan berita baru ke database.
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'penulis' => 'required|string|max:100',
-            'waktu' => 'required|date',
-            'tag' => 'nullable|string',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
-
-        $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            // PERBAIKAN: Beri nama unik dan simpan ke folder public
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/berita', $filename);
-        }
-
-        Berita::create($request->except('gambar') + ['gambar' => $filename]);
-
-        return redirect()->route('beritakita.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
-    }
-
     /**
      * Menampilkan detail satu berita.
      */
@@ -140,53 +81,6 @@ class BeritaController extends Controller
             ->get();
 
         return view('beritakita.show', compact('berita', 'beritaTerkait'));
-    }
-
-    /**
-     * Menampilkan form untuk mengedit berita.
-     */
-    public function edit(string $id)
-    {
-        $kategoris = Kategori::where('type', 'Berita')->get();
-        $berita = Berita::findOrFail($id);
-        return view('beritakita.edit', compact('berita', 'kategoris'));
-    }
-
-    /**
-     * Memperbarui berita di database.
-     */
-    public function update(Request $request, string $id)
-    {
-        $berita = Berita::findOrFail($id);
-
-        $filename = $berita->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($berita->gambar) {
-                Storage::delete('public/berita/' . $berita->gambar);
-            }
-            $file = $request->file('gambar');
-            // PERBAIKAN: Beri nama unik dan simpan ke folder public
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/berita', $filename);
-        }
-
-        $berita->update($request->except('gambar') + ['gambar' => $filename]);
-
-        return redirect()->route('beritakita.dashboard')->with('success', 'Berita Berhasil Diperbarui');
-    }
-
-    /**
-     * Menghapus berita dari database.
-     */
-    public function destroy(string $id)
-    {
-        $berita = Berita::findOrFail($id);
-        if ($berita->gambar) {
-            Storage::delete('public/berita/' . $berita->gambar);
-        }
-        $berita->delete();
-
-        return redirect()->back()->with('success', 'Berita Berhasil Dihapus');
     }
 
     /**

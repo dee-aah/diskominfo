@@ -9,7 +9,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="block text-base font-medium">Program</label>
-                        <select name="program_id" class="w-full bg-gray-100 border-sky-500 border rounded p-2"
+                        <select name="program_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
                             required>
                             <option value="">-- Pilih Program --</option>
                             @foreach ($programs as $program)
@@ -20,17 +20,17 @@
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Nama Layanan</label>
                         <input type="text" name="nama" placeholder=" Masukkan Nama Layanan"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Singkat</label>
                         <textarea name="des_singkat" rows="5" placeholder=" Masukkan Deskripsi Singkat"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi</label>
                         <textarea name="deskripsi" rows="10" placeholder=" Masukkan Deskripsi Layanan"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
+                            class="w-full border bg-gray-100 -border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="mb-3 mt-2">
                         <input required type="file" name="gambar"

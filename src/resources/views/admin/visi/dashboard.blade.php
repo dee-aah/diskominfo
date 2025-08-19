@@ -5,8 +5,8 @@
                 <h2 class="text-2xl  font-bold">Daftar Visi Misi</h2>
             </div>
             <div class="col-span-2 flex justify-end">
-                <form action="{{ route('visimisi.dashboard') }}" method="GET" class="flex justify-end  mr-2">
-                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Artikel..."
+                <form action="{{ route('visi.dashboard') }}" method="GET" class="flex justify-end  mr-2">
+                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Visi Misi..."
                         class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
                     <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
                         <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i>Cari
@@ -16,9 +16,9 @@
                     class="bg-green-600 space-x-2 flex   mr-2   hover:bg-green-500 text-white mt-2 px-3 mr-2 py-2  rounded">
                     <i class="fa-solid fa-check mr-2 mt-1"></i> Pilih
                 </button>
-                <a href="{{ route('visimisi.create') }}" type="button"
+                <a href="{{ route('visi.create') }}" type="button"
                     class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
-                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah Artikel
+                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
                 </a>
             </div>
         </div>
@@ -29,38 +29,38 @@
             </div>
         @endif
 
-        <table class="w-full table-auto border text-sm">
+        <table class="w-full border border-gray-400 border-2 table-auto  text-sm">
             <thead>
-                <tr class="bg-blue-100 text-center">
-                    <th class="px-2 border border-blue-400 py-2">No</th>
-                    <th class="px-4 border border-blue-400 py-2">Visi</th>
-                    <th class="px-4 border border-blue-400 py-2">Misi</th>
-                    <th class="px-4 border border-blue-400 py-2">Deskripsi</th>
-                    <th class="px-4 border border-blue-400 py-2">Gambar</th>
-                    <th class="px-4 border aksi hidden border-blue-400 py-2">Aksi</th>
+                <tr class="bg-slate-300 text-center">
+                    <th class="px-2 border border-gray-400 border-2 py-2">No</th>
+                    <th class="px-2 border border-gray-400 border-2 py-2">Visi</th>
+                    <th class="px-2 border border-gray-400 border-2 py-2">Misi</th>
+                    <th class="px-2 border border-gray-400 border-2 py-2">Deskripsi Singkat</th>
+                    <th class="px-2 border border-gray-400 border-2 py-2">Gambar</th>
+                    <th class="px-2 aksi hidden border border-gray-400 border-2 py-2">Aksi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-gray-100">
                 @forelse ($visis as $visi)
-                    <tr class="text-center items-center ">
-                        <td class="px-2 border border-blue-400 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $visi->visi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $visi->misi }}</td>
-                        <td class="px-4 border border-blue-400 py-2">{{ $visi->des_singkat }}</td>
-                        <td class="px-4 border border-blue-400 py-2">
+                    <tr class="text-center  items-center ">
+                        <td class="px-2 border border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $visi->visi }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $visi->misi }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $visi->des_singkat }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">
                             @if ($visi->gambar)
                                 <img src="{{ asset('storage/visi/' . $visi->gambar) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
+                                    class="w-15 h-15 object-cover flex justify-center rounded">
                             @else
                                 -
                             @endif
                         </td>
                         <td class="px-3 py-3 flex grid grip-rows border border-blue-400 justify-center aksi hidden">
-                            <a href="{{ route('visimisi.edit', $visi->id) }}"
+                            <a href="{{ route('visi.edit', $visi->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
                                 <i class="fa-solid fa-pen mr-2"></i>Edit
                             </a>
-                            <form action="{{ route('visimisi.destroy', $visi->id) }}" method="POST"
+                            <form action="{{ route('visi.destroy', $visi->id) }}" method="POST"
                                 onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
                                 @csrf
                                 @method('DELETE')
@@ -73,7 +73,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center border border-blue-400 py-4">Belum ada artikel</td>
+                        <td colspan="5" class="text-center border border-gray-400 border-2 py-4">Belum ada artikel</td>
                     </tr>
                 @endforelse
             </tbody>

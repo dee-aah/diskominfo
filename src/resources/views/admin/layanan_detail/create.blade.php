@@ -9,7 +9,7 @@
                     @csrf
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Program</label>
-                        <select name="layanan_id" class="w-full bg-gray-100 border-sky-500 border rounded p-2"
+                        <select name="layanan_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
                             required>
                             <option value="">-- Pilih Program --</option>
                             @foreach ($layanans as $layanan)
@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Jenis Layanan</label>
-                        <select name="jenis" class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
+                        <select name="jenis" class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
                             <option value="">-- Pilih Jenis Layanan --</option>
                             @foreach ($jenisOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
@@ -29,29 +29,29 @@
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
                         <textarea name="isi_1" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 1"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
                         <textarea name="isi_2" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 2"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required></textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
                         <textarea name="isi_3" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 3 (Opsional)"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" ></textarea>
-                            
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
+
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
                         <textarea name="isi_4" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 4 (Opsional)"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" ></textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
 
                     </div>
                    <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
                         <textarea name="isi_5" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 5 (Opsional)"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" ></textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
 
                     </div>
                     <div class="mb-3 mt-2">
@@ -61,8 +61,8 @@
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <a href="{{ route('layanan_detail.dashboard') }}" type="button"
-                            class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
-                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan
+                            class="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded">Batal</a>
+                        <button type="submit" class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded">Simpan
                         </button>
                     </div>
                 </form>

@@ -9,7 +9,7 @@
                     @method('PUT')
                     <div class="mb-3">
                         <label class="block text-base font-medium">Layanan</label>
-                        <select name="layanan_id" class="w-full bg-gray-100 border-sky-500 border rounded p-2"
+                        <select name="layanan_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
                             required>
                             <option value="">-- Pilih Program --</option>
                             @foreach ($layanans as $layanan)
@@ -21,7 +21,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Jenis Layanan</label>
-                        <select name="jenis" class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>
+                        <select name="jenis" class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
                             <option value="">-- Pilih Jenis Layanan --</option>
                             @foreach ($jenisOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>

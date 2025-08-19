@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Layanan;
 use App\Models\Layanan_detail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class LayananDetailController extends Controller
 {
@@ -24,7 +25,7 @@ class LayananDetailController extends Controller
                     ->orWhere('isi', 'like', "%{$search}%");
             });}
         $layanan_details = Layanan_detail::all();
-        return view('layanan_detail.dashboard', compact('layanan_details'));
+        return view('admin.layanan_detail.dashboard', compact('layanan_details'));
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +44,7 @@ class LayananDetailController extends Controller
         $enumValues = DB::select("SHOW COLUMNS FROM layanan_details WHERE Field = 'jenis'");
         preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
         $jenisOptions = explode("','", $matches[1]);
-        return view('layanan_detail.create', compact('layanans','jenisOptions'));
+        return view('admin.layanan_detail.create', compact('layanans','jenisOptions'));
     }
 
     /**
@@ -79,7 +80,7 @@ class LayananDetailController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('admin.layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
 
     /**
@@ -89,7 +90,7 @@ class LayananDetailController extends Controller
     {
         $layanan = Layanan::where('slug', $slug)->firstOrFail();
 
-        return view('layanan_detail.show', compact('layanan'));
+        return view('admin.layanan_detail.show', compact('layanan'));
     }
 
     /**
@@ -102,7 +103,7 @@ class LayananDetailController extends Controller
         preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
         $jenisOptions = explode("','", $matches[1]);
         $layanan_detail = Layanan_detail::findOrFail($id);
-        return view('layanan_detail.edit', compact('layanan_detail','layanans','jenisOptions'));
+        return view('admin.layanan_detail.edit', compact('layanan_detail','layanans','jenisOptions'));
     }
 
     /**
@@ -113,11 +114,12 @@ class LayananDetailController extends Controller
         $layanan_detail = Layanan_detail::findOrFail($id);
 
         if ($request->hasFile('gambar')) {
+            if ($layanan_detail->gambar) {
+                Storage::delete('public/layanan/' . $layanan_detail->gambar);
+            }
             $file = $request->file('gambar');
-            $filename = $file->getClientOriginalName();
+            $filename =  $file->getClientOriginalName();
             $file->storeAs('layanan_detail', $filename);
-        } else {
-            $filename = $layanan_detail->gambar;
         }
         $layanan_detail->update([
             'jenis' => $request->jenis,
@@ -129,7 +131,7 @@ class LayananDetailController extends Controller
             'layanan_id' => $request->layanan_id,
             'gambar' => $filename
         ]);
-        return redirect()->route('layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
+        return redirect()->route('admin.layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }
 
     /**

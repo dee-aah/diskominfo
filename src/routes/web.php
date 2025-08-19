@@ -1,169 +1,147 @@
 <?php
-
-use App\Http\Controllers\auth\loginController;
-use App\Http\Controllers\auth\registerController;
 use Illuminate\Support\Facades\Route;
+/*
+|--------------------------------------------------------------------------
+| Web Routes User
+|--------------------------------------------------------------------------
+*/
+use App\Http\Controllers\User\UserArtikelController;
+use App\Http\Controllers\User\UserBeritaController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes Admin
+|--------------------------------------------------------------------------
+*/
+use App\Http\Controllers\Admin\AdminLayananController;
+use App\Http\Controllers\Admin\AdminVisiController;
+use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\LayananDetailController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes Publik
+|--------------------------------------------------------------------------
+*/
 use App\Http\Controllers\berandaController;
 use App\Http\Controllers\tupoksiController;
 use App\Http\Controllers\VisiController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\maklumatController;
 use App\Http\Controllers\strukturController;
-use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProdukhukumController;
-use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\TentangController;
 use App\Http\Controllers\LayananController;
-use App\Http\Controllers\LayananDetailController;
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AuthController;
 
+
+//======================================================================
+// 1. RUTE PUBLIK (Dapat diakses oleh semua pengunjung)
+//======================================================================
 
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/beranda', [berandaController::class, 'index']);
-Route::resource( '/visimisi',   VisiController::class);
-Route::resource( '/tupoksi',  tupoksiController::class);
-Route::resource( '/struktur',  strukturController::class);
-Route::resource( '/maklumat',  maklumatController::class);
-Route::resource( '/tentang',  TentangController::class);
-Route::resource( '/profil',  ProfilController::class);
-Route::resource( '/produkhukum',  ProdukhukumController::class);
 
-//Route::middleware(['auth'])->group(function () {
-// layanan
-    // Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
-    // Route::get('/layanan/{slug}', [LayananController::class, 'show'])->name('layanan.show');
-//program
-   // Route::get('/program', [ProgramController::class, 'index'])->name('program.index');
-
-// //Detail layanan
-    Route::get('/layanan_detail', [LayananDetailController::class, 'index'])->name('layanan_detail.index');
-   // Route::get('/layanan_detail/{slug}', [LayananDetailController::class, 'show'])->name('layanan_detail.show');
-//Route::get('/beritakita/dashboard', [BeritaController::class, 'dashboard'])
-    // ->middleware('role:admin');
-
-// //berita
-//Route::get('/beritakita/dashboard', [BeritaController::class, 'dashboard'])->name('beritakita.dashboard');
-Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
-// Route::post('/beritakita', [BeritaController::class, 'store'])->name('beritakita.store');
-// Route::get('/beritakita/{id}/edit', [BeritaController::class, 'edit'])->name('beritakita.edit');
-// Route::put('/beritakita/{id}', [BeritaController::class, 'update'])->name('beritakita.update');
-// Route::delete('/beritakita/{id}', [BeritaController::class, 'destroy'])->name('beritakita.destroy');
-// Route::get('/beritakita/create', [BeritaController::class, 'create'])->name('beritakita.create');
- Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
- Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
-
-
-
-// //artikel
-// Route::get('/artikel/dashboard', [ArtikelController::class, 'dashboard'])->name('artikel.dashboard');
- Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-// Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
-// Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
-// Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
-// Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
-// Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
-// Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
-// Route::get('/artikel/search', [ArtikelController::class, 'searching'])->name('artikel.search');
-// Route::get('/artikel-terbaru', [ArtikelController::class, 'showLatest'])->name('artikel.terbaru');
-// Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
-
-// Halaman publik
 Route::get('/beranda', [berandaController::class, 'index'])->name('beranda');
-//Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
+
+// Rute untuk halaman-halaman statis atau semi-statis
+Route::resource('/visimisi', VisiController::class)->only(['index', 'show']);
+Route::resource('/tupoksi', tupoksiController::class)->only(['index', 'show']);
+Route::resource('/struktur', strukturController::class)->only(['index', 'show']);
+Route::resource('/maklumat', maklumatController::class)->only(['index', 'show']);
+Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
+Route::resource('/profil', ProfilController::class)->only(['index', 'show']);
+Route::resource('/produkhukum', ProdukhukumController::class)->only(['index', 'show']);
+
+// Rute untuk Berita (Publik)
+Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
+Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
+Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
+
+// Rute untuk artikel (Publik)
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
 Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::get('/artikel/search', [ArtikelController::class, 'search'])->name('artikel.search');
 
-// Auth routes
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+//======================================================================
+// 2. RUTE AUTENTIKASI (Login, Register)
+//======================================================================
 
-// Route::middleware(['auth'])->group(function () {
-//     // Berita & Artikel (boleh diakses admin dan user)
-//     Route::middleware(['role:admin,user'])->group(function () {
-        // --- Rute Berita ---
-        Route::get('/beritakita/dashboard', [BeritaController::class, 'dashboard'])->name('beritakita.dashboard');
-        Route::get('/beritakita/create', [BeritaController::class, 'create'])->name('beritakita.create');
-        Route::post('/beritakita', [BeritaController::class, 'store'])->name('beritakita.store');
-        Route::get('/beritakita/{id}/edit', [BeritaController::class, 'edit'])->name('beritakita.edit');
-        Route::put('/beritakita/{id}', [BeritaController::class, 'update'])->name('beritakita.update');
-        Route::delete('/beritakita/{id}', [BeritaController::class, 'destroy'])->name('beritakita.destroy');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
-        // --- Rute Artikel ---
-        Route::get('/artikel/dashboard', [ArtikelController::class, 'dashboard'])->name('artikel.dashboard');
-        Route::get('/artikel/create', [ArtikelController::class, 'create'])->name('artikel.create');
-        Route::post('/artikel', [ArtikelController::class, 'store'])->name('artikel.store');
-        Route::get('/artikel/{id}/edit', [ArtikelController::class, 'edit'])->name('artikel.edit');
-        Route::put('/artikel/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
-        Route::delete('/artikel/{id}', [ArtikelController::class, 'destroy'])->name('artikel.destroy');
-    // });
 
-    // Rute yang HANYA bisa diakses oleh Admin
-    // Route::middleware(['role:admin'])->group(function () {
-        // --- Rute Layanan ---
-        Route::get('/layanan/dashboard', [LayananController::class, 'dashboard'])->name('layanan.dashboard');
-        Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
-         Route::get('/layanan/create', [LayananController::class, 'create'])->name('layanan.create');
-        Route::delete('/layanan/{id}', [LayananController::class, 'destroy'])->name('layanan.destroy');
-         Route::get('/layanan/{id}/edit', [LayananController::class, 'edit'])->name('layanan.edit');
-        // Route::put('/layanan/{id}', [LayananController::class, 'update'])->name('layanan.update');
+//======================================================================
+// 3. RUTE TERPROTEKSI (Membutuhkan Login)
+//======================================================================
+
+Route::middleware(['auth'])->group(function () {
+
+    // Rute Logout (hanya bisa diakses setelah login)
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    //------------------------------------------------------------------
+    // A. RUTE UNTUK ROLE 'ADMIN' & 'USER'
+    //------------------------------------------------------------------
+
+    Route::middleware(['role:admin,user'])->group(function () {
+        // --- Manajemen Berita ---
+        Route::get('/berita/dashboard', [UserBeritaController::class, 'dashboard'])->name('berita.dashboard');
+        Route::get('/berita/create', [UserBeritaController::class, 'create'])->name('berita.create');
+        Route::post('/berita', [UserBeritaController::class, 'store'])->name('berita.store');
+        Route::get('/berita/{id}/edit', [UserBeritaController::class, 'edit'])->name('berita.edit');
+        Route::put('/berita/{id}', [UserBeritaController::class, 'update'])->name('berita.update');
+        Route::delete('/berita/{id}', [UserBeritaController::class, 'destroy'])->name('berita.destroy');
+
+        // --- Manajemen artikel ---
+        Route::get('/artikel/dashboard', [UserArtikelController::class, 'dashboard'])->name('artikel.dashboard');
+        Route::get('/artikel/create', [UserArtikelController::class, 'create'])->name('artikel.create');
+        Route::post('/artikel', [UserArtikelController::class, 'store'])->name('artikel.store');
+        Route::get('/artikel/{id}/edit', [UserArtikelController::class, 'edit'])->name('artikel.edit');
+        Route::put('/artikel/{id}', [UserArtikelController::class, 'update'])->name('artikel.update');
+        Route::delete('/artikel/{id}', [UserArtikelController::class, 'destroy'])->name('artikel.destroy');
+    });
+
+    //------------------------------------------------------------------
+    // B. RUTE KHUSUS UNTUK ROLE 'ADMIN'
+    //------------------------------------------------------------------
+    Route::middleware(['role:admin'])->group(function () {
+        // --- Manajemen Layanan ---
+        Route::get('/layanan/dashboard', [AdminLayananController::class, 'dashboard'])->name('layanan.dashboard');
+        Route::get('/layanan/create', [AdminLayananController::class, 'create'])->name('layanan.create');
+        Route::post('/layanan', [AdminLayananController::class, 'store'])->name('layanan.store');
+        Route::get('/layanan/{id}/edit', [AdminLayananController::class, 'edit'])->name('layanan.edit');
+        Route::put('/layanan/{id}', [AdminLayananController::class, 'update'])->name('layanan.update');
+        Route::delete('/layanan/{id}', [AdminLayananController::class, 'destroy'])->name('layanan.destroy');
+
+        // --- Manajemen Detail Layanan ---
+        Route::get('/layanan_detail/dashboard', [LayananDetailController::class, 'dashboard'])->name('layanan_detail.dashboard');
+        Route::get('/layanan_detail/create', [LayananDetailController::class, 'create'])->name('layanan_detail.create');
+        Route::post('/layanan_detail', [LayananDetailController::class, 'store'])->name('layanan_detail.store');
+        Route::get('/layanan_detail/{id}/edit', [LayananDetailController::class, 'edit'])->name('layanan_detail.edit');
+        Route::put('/layanan_detail/{id}', [LayananDetailController::class, 'update'])->name('layanan_detail.update');
+        Route::delete('/layanan_detail/{id}', [LayananDetailController::class, 'destroy'])->name('layanan_detail.destroy');
+
+        // --- Manajemen Program ---
         Route::get('/program/dashboard', [ProgramController::class, 'dashboard'])->name('program.dashboard');
-         Route::get('/layanan_detail/dashboard', [LayananDetailController::class, 'dashboard'])->name('layanan_detail.dashboard');
-        // ... rute khusus admin lainnya
-Route::post('/layanan_detail', [LayananDetailController::class, 'store'])->name('layanan_detail.store');
-Route::get('/layanan_detail', [LayananDetailController::class, 'create'])->name('layanan_detail.create');
-Route::delete('/layanan_detail/{id}', [LayananDetailController::class, 'destroy'])->name('layanan_detail.destroy');
-Route::get('/layanan_detail/{id}/edit', [LayananDetailController::class, 'edit'])->name('layanan_detail.edit');
-Route::put('/layanan_detail/{id}', [LayananDetailController::class, 'update'])->name('layanan_detail.update');
-Route::get('/program/dashboard', [ProgramController::class, 'dashboard'])->name('program.dashboard');
-Route::get('/program', [ProgramController::class, 'create'])->name('program.create');
-Route::delete('/program/{id}', [ProgramController::class, 'destroy'])->name('program.destroy');
-Route::get('/program/{id}/edit', [ProgramController::class, 'edit'])->name('program.edit');
-Route::put('/program/{id}', [ProgramController::class, 'update'])->name('program.update');
-Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
+        Route::get('/program/create', [ProgramController::class, 'create'])->name('program.create');
+        Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
+        Route::get('/program/{id}/edit', [ProgramController::class, 'edit'])->name('program.edit');
+        Route::put('/program/{id}', [ProgramController::class, 'update'])->name('program.update');
+        Route::delete('/program/{id}', [ProgramController::class, 'destroy'])->name('program.destroy');
 
-Route::get('/visimisi/dashboard', [VisiController::class, 'dashboard'])->name('visimisi.dashboard');
-Route::get('/visimisi', [VisiController::class, 'create'])->name('visimisi.create');
-Route::delete('/visimisi/{id}', [VisiController::class, 'destroy'])->name('visimisi.destroy');
-Route::get('/visimisi/{id}/edit', [VisiController::class, 'edit'])->name('visimisi.edit');
-Route::put('/visimisi/{id}', [VisiController::class, 'update'])->name('visimisi.update');
-Route::post('/visimisi', [VisiController::class, 'store'])->name('visimisi.store');
-//     });
-// });
-//Route::resource( '/artikel.edit',  ArtikelController::class);
+        // --- Manajemen Visi Misi ---
+        Route::get('/visi/dashboard', [AdminVisiController::class, 'dashboard'])->name('visi.dashboard');
+        Route::get('/visi/create', [AdminVisiController::class, 'create'])->name('visi.create');
+        Route::post('/visi', [AdminVisiController::class, 'store'])->name('visi.store');
+        Route::get('/visi/{id}/edit', [AdminVisiController::class, 'edit'])->name('visi.edit');
+        Route::put('/visi/{id}', [AdminVisiController::class, 'update'])->name('visi.update');
+        Route::delete('/visi/{id}', [AdminVisiController::class, 'destroy'])->name('visi.destroy');
 
+        // ... Tambahkan rute khusus admin lainnya di sini
+    });
+});
 
-// login
-// Route::get('/login', [loginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [loginController::class, 'login']);
-// Route::post('/logout', [loginController::class, 'logout'])->name('logout');
-// //register
-// Route::get('/register', [registerController::class, 'showRegistrationForm'])->name('register');
-// Route::post('/register', [registerController::class, 'register']);
-// Route::post('/register', [registerController::class, 'store'])->name('register.store');
-// Route::middleware(['auth'])->group(function () {
-// });
-
-// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
-// Route::post('/login', [AuthController::class, 'login'])->name('login');
-// Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
-// Route::post('/register', [AuthController::class, 'register'])->name('register');
-// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Route::get('/register', function () {
-//     return view('auth.register');
-// })->name('register.form');
-
-// Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->name('login.form');
-
-// Route::post('/login', [AuthController::class, 'login'])->name('login');
-
-// Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

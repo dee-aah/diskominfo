@@ -19,12 +19,12 @@
                         <label class="block text-lg font-medium">Deskripsi</label>
                         <textarea name="deskripsi" rows="12"
                             placeholder="Masukkan Deskripsi Program"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $program->deskripsi) }}</textarea>
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>{{ old('deskripsi', $program->deskripsi) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Gambar</label>
                         <input type="file" name="gambar"
-                            class="w-full bg-gray-100 border-sky-500 border rounded p-2">
+                            class="w-full bg-gray-100 border-gray-400 border rounded p-2">
                         @if ($program->gambar)
                             <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
                             <img src="{{ asset('storage/program/' . $program->gambar) }}" class="w-32 mt-1 rounded">

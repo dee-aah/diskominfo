@@ -55,7 +55,7 @@ class AuthController extends Controller
         if ($role === 'admin') {
             return redirect()->route('program.dashboard')->with('success', 'Login berhasil!');
         } elseif ($role === 'user') {
-            return redirect()->route('beritakita.dashboard')->with('success', 'Login berhasil!');
+            return redirect()->route('admin_art.dashboard')->with('success', 'Login berhasil!');
         } else {
             Auth::logout(); // role tidak valid
             return redirect()->route('login')->withErrors(['email' => 'Role tidak valid.']);

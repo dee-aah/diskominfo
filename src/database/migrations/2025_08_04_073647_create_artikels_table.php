@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('slug')->unique();
             $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
-            $table->date('waktu');
             $table->string('tag')->nullable();
             $table->string('gambar')->nullable();
             $table->unsignedBigInteger('view_count')->default(0);

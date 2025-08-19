@@ -9,7 +9,7 @@
             <a href="{{ route('artikel.index') }}" class="inline-block mb-6  hover:underline">
                 Artikel
             </a> <span class="mx-2">/</span>
-            <a href="{{ route('artikel.index') }}" class="inline-block mb-6 hover:underline">
+            <a  class="inline-block mb-6 hover:underline">
                 {{ $artikel->judul }}
             </a>
         </div>

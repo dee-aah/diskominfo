@@ -25,13 +25,13 @@
             <nav class="flex-1 p-4 space-y-2">
                 <ul>
                     <li class="mb-2">
-                        <a href="{{ route('visimisi.dashboard') }}"
+                        <a href="{{ route('visi.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Visi Misi</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('beritakita.dashboard') }}"
+                        <a href="{{ route('berita.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Berita</span>
                         </a>
