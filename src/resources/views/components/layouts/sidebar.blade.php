@@ -25,6 +25,18 @@
             <nav class="flex-1 p-4 space-y-2">
                 <ul>
                     <li class="mb-2">
+                        <a href="{{ route('tentang_kami.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Tentang kami</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('struktur_.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Struktur Organisasi</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
                         <a href="{{ route('visi.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Visi Misi</span>
@@ -37,7 +49,7 @@
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('artikel.dashboard') }}"
+                        <a href="{{ route('artikell.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Artikel</span>
                         </a>
@@ -56,6 +68,20 @@
                             <li><a href="{{route('layanan.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Layanan</a>
                             </li>
                             <li><a href="{{route('layanan_detail.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Detail Layanan</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="mb-2">
+                        <button class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100"
+                            onclick="toggleMenu('Menu1')">
+                            <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>Tupoksi
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu1" class="hidden ml-6 pl-6">
+                            <li><a href="{{route('tupoksii.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Tugas & Fungsi</a></li>
+                            <li><a href="{{route('uraian.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Uraian Tugas</a>
                             </li>
                         </ul>
                     </li>

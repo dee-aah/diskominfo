@@ -36,7 +36,7 @@
                         <label class="block text-lg font-medium">Deskripsi Singkat</label>
                         <textarea name="des_singkat" rows="5"
                             placeholder="Masukkan Deskripsi Program"
-                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('des_sikat', $layanan->des_sikat) }}</textarea>
+                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('des_singkat', $layanan->des_singkat) }}</textarea>
                     </div>
 
                     <div class="mb-3">

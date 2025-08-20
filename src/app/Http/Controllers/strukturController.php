@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Struktur;
 use Illuminate\Http\Request;
 
 class strukturController extends Controller
@@ -11,7 +12,8 @@ class strukturController extends Controller
      */
     public function index()
     {
-        return view("struktur.index");
+        $struktur = Struktur::first();
+        return view('struktur.index',compact('struktur'));
     }
 
     /**
@@ -43,7 +45,7 @@ class strukturController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**

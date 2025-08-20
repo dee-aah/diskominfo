@@ -16,6 +16,10 @@ use App\Http\Controllers\Admin\AdminLayananController;
 use App\Http\Controllers\Admin\AdminVisiController;
 use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\LayananDetailController;
+use App\Http\Controllers\Admin\AdminTupoksiController;
+use App\Http\Controllers\Admin\UraianController;
+use App\Http\Controllers\Admin\AdminTentangController;
+use App\Http\Controllers\Admin\AdminStrukturController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -97,12 +101,12 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/berita/{id}', [UserBeritaController::class, 'destroy'])->name('berita.destroy');
 
         // --- Manajemen artikel ---
-        Route::get('/artikel/dashboard', [UserArtikelController::class, 'dashboard'])->name('artikel.dashboard');
-        Route::get('/artikel/create', [UserArtikelController::class, 'create'])->name('artikel.create');
-        Route::post('/artikel', [UserArtikelController::class, 'store'])->name('artikel.store');
-        Route::get('/artikel/{id}/edit', [UserArtikelController::class, 'edit'])->name('artikel.edit');
-        Route::put('/artikel/{id}', [UserArtikelController::class, 'update'])->name('artikel.update');
-        Route::delete('/artikel/{id}', [UserArtikelController::class, 'destroy'])->name('artikel.destroy');
+        Route::get('/artikell/dashboard', [UserArtikelController::class, 'dashboard'])->name('artikell.dashboard');
+        Route::get('/artikell/create', [UserArtikelController::class, 'create'])->name('artikell.create');
+        Route::post('/artikell', [UserArtikelController::class, 'store'])->name('artikell.store');
+        Route::get('/artikell/{id}/edit', [UserArtikelController::class, 'edit'])->name('artikell.edit');
+        Route::put('/artikell/{id}', [UserArtikelController::class, 'update'])->name('artikell.update');
+        Route::delete('/artikell/{id}', [UserArtikelController::class, 'destroy'])->name('artikell.destroy');
     });
 
     //------------------------------------------------------------------
@@ -141,7 +145,25 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/visi/{id}', [AdminVisiController::class, 'update'])->name('visi.update');
         Route::delete('/visi/{id}', [AdminVisiController::class, 'destroy'])->name('visi.destroy');
 
-        // ... Tambahkan rute khusus admin lainnya di sini
+        // ... tupoksi
+        Route::get('/tupoksii/dashboard', [AdminTupoksiController::class, 'dashboard'])->name('tupoksii.dashboard');
+        Route::get('/tupoksii/create', [AdminTupoksiController::class, 'create'])->name('tupoksii.create');
+        Route::post('/tupoksii', [AdminTupoksiController::class, 'store'])->name('tupoksii.store');
+        Route::get('/tupoksii/{id}/edit', [AdminTupoksiController::class, 'edit'])->name('tupoksii.edit');
+        Route::put('/tupoksii/{id}', [AdminTupoksiController::class, 'update'])->name('tupoksii.update');
+        Route::delete('/tupoksii/{id}', [AdminTupoksiController::class, 'destroy'])->name('tupoksii.destroy');
+        // ... uraian
+        Route::get('/uraian/dashboard', [UraianController::class, 'dashboard'])->name('uraian.dashboard');
+        Route::get('/uraian/create', [UraianController::class, 'create'])->name('uraian.create');
+        Route::post('/uraian', [UraianController::class, 'store'])->name('uraian.store');
+        Route::get('/uraian/{id}/edit', [uraianController::class, 'edit'])->name('uraian.edit');
+        Route::put('/uraian/{id}', [UraianController::class, 'update'])->name('uraian.update');
+        Route::delete('/uraian/{id}', [UraianController::class, 'destroy'])->name('uraian.destroy');
+
+        Route::resource('/tentang_kami', AdminTentangController::class)->except(['index', 'show']);
+        Route::get('/tentang_kami/dashboard', [AdminTentangController::class, 'dashboard'])->name('tentang_kami.dashboard');
+
+        Route::resource('/struktur_', AdminStrukturController::class)->except(['index', 'show']);
+        Route::get('/struktur_/dashboard', [AdminStrukturController::class, 'dashboard'])->name('struktur_.dashboard');
     });
 });
-

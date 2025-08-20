@@ -4,7 +4,7 @@
         <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
             <div>
                 <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                    src="{{ asset('img/gambar2.png') }}" alt="">
+                    src="{{ asset('storage/tupoksi/' . $tupoksi->gambar) }}" alt="">
             </div>
 
             <!-- Overlay -->
@@ -37,7 +37,7 @@
             <h1 class="text-center text-2xl font-bold text-black mb-2">
                 Tugas Pokok dan Fungsi Organisasi
             </h1>
-            <p class="text-center text-sm text-gray-600 mb-8">
+            <p class="text-center text-sm text-gray-600 mb-8"> {{ $tupoksi->des_singkat }}
                 Tugas Pokok dan Fungsi merupakan pedoman peran strategis dalam mendukung tercapainya visi organisasi.
                 Setiap elemen dalam Tupoksi mencerminkan kontribusi nyata terhadap efisiensi, pelayanan, dan
                 pengembangan berkelanjutan.
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Tugas Pokok</h3>
-                    <p class="text-sm text-gray-700 p-6">
+                    <p class="text-sm text-gray-700 p-6"> {{ $tupoksi->tugas_utama }}
                         Kepala Dinas mempunyai tugas pokok membantu Bupati melaksanakan urusan pemerintahan yang menjadi
                         kewenangan daerah dan tugas pembantuan di bidang Pengendalian Penduduk, Keluarga Berencana,
                         Pemberdayaan Perempuan dan Perlindungan Anak
@@ -71,6 +71,7 @@
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Fungsi Utama</h3>
                     <ol class="text-sm text-gray-700 text-left list-decimal p-6 list-inside space-y-1">
+                        {{ $tupoksi->fungsi_utama }}
                         <li>Perumusan dan Pelaksanaan Kebijakan Daerah di bidang : Kesekretariatan, Pengendalian
                             Penduduk dan KB, Advokasi dan Bina Lini Lapangan, Pemberdayaan Perempuan dan Perlindungan
                             Anak.</li>
@@ -90,81 +91,102 @@
                         alt="paste" />
                     <h2 class="text-xl font-bold text-gray-800 border-b border-gray-300 pb-1">Uraian Tugas</h2>
                 </div>
-
                 <!-- Grid Card Layout -->
                 <div class="w-full flex justify-center">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full px-4 py-10">
-                        <div class="bg-gradient-to-br from-blue-200 to-red-100 p-6 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
-                            <div
-                                class="flex items-center gap-3 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner justify-center">
-                                <img width="26" height="26" src="https://img.icons8.com/stickers/100/manager.png" alt="manager"/>
-                                <h3 class="text-white text-lg font-bold">Kepala Dinas</h3>
-                            </div>
-                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                <li>Merumuskan Kebijakan Strategis</li>
-                                <li>Mengkoordinasikan Seluruh Bidang dan Sekretariat</li>
-                                <li>Memberikan saran Kepada Kepala Daerah</li>
-                                <li>Menyusun Laporan Pelaksanaan Tugas</li>
-                            </ol>
+                        <div
+                            class="bg-gradient-to-br from-blue-200 to-red-100 p-6 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
+                            @if (isset($uraians[0]))
+                                <div
+                                    class="flex items-center gap-3 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner justify-center">
+                                    <img width="26" height="26"
+                                        src="https://img.icons8.com/stickers/100/manager.png" alt="manager" />
+                                    <h3 class="text-white text-lg font-bold">{{ $uraians[0]->bidang }}</h3>
+                                </div>
+                                <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
+                                    @foreach (explode(',', $uraians[0]->uraian) as $index => $point)
+                                        @if (trim($point) != '')
+                                            <li>{{ trim($point) }}</li>
+                                        @endif
+                                    @endforeach
+                                </ol>
+                            @endif
                         </div>
                         <div
                             class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
-                            <div
-                                class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
-                                <img width="26" height="26" src="https://img.icons8.com/fluency/48/clerk.png" alt="clerk"/>
-                                <h3 class="text-white text-lg font-bold">Sekretariat</h3>
-                            </div>
-                            <ol class="list-decimal list-inside text-base text-gray-800 space-y-1">
-                                <li>Mengelola Administrasi Umum, Kepegawaian, Keuangan dan Perencanaan</li>
-                                <li>Menyusun Program Kerja dan Laporan Kegiatan</li>
-                            </ol>
+                            @if (isset($uraians[1]))
+                                <div
+                                    class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
+                                    <img width="26" height="26" src="https://img.icons8.com/fluency/48/clerk.png"
+                                        alt="clerk" />
+                                    <h3 class="text-white text-lg font-bold">{{$uraians[1]->bidang}}</h3>
+                                </div>
+                                <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
+                                    @foreach (explode(',', $uraians[1]->uraian) as $index => $point)
+                                        @if (trim($point) != '')
+                                            <li>{{ trim($point) }}</li>
+                                        @endif
+                                    @endforeach
+                                </ol>
+                            @endif
                         </div>
-
                         <div
                             class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                            @if (isset($uraians[2]))
                             <div
                                 class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
-                                 <img width="26" height="26" src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/external-population-world-population-day-smashingstocks-circular-smashing-stocks-15.png" alt="external-population-world-population-day-smashingstocks-circular-smashing-stocks-15"/>
-                                <h3 class="text-white text-lg font-bold">Bidang Pengendalian Penduduk</h3>
+                                <img width="26" height="26"
+                                    src="https://img.icons8.com/external-smashingstocks-circular-smashing-stocks/65/external-population-world-population-day-smashingstocks-circular-smashing-stocks-15.png"
+                                    alt="external-population-world-population-day-smashingstocks-circular-smashing-stocks-15" />
+                                <h3 class="text-white text-lg font-bold">{{$uraians[2]->bidang}}</h3>
                             </div>
-                            <ol class="list-decimal list-inside text-base text-gray-800 space-y-1">
-                                <li>Advokasi dan Penggerakan Masyarakat</li>
-                                <li>Penyuluhan dan Pendayagunaan Petugas KB</li>
-                                <li>Pengumpulan dan Analisis Data Kependudukan</li>
+                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
+                                @foreach (explode(',', $uraians[2]->uraian) as $index => $point)
+                                    @if (trim($point) != '')
+                                        <li>{{ trim($point) }}</li>
+                                    @endif
+                                @endforeach
                             </ol>
+                            @endif
                         </div>
 
-                        <div
-                            class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                        <div class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                            @if (isset($uraians[3]))
                             <div
                                 class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
-                                 <img width="26" height="26" src="https://img.icons8.com/office/50/family.png" alt="family"/>
-                                <h3 class="text-white text-lg font-bold">Bidang Keluarga Berencana</h3>
+                                <img width="26" height="26" src="https://img.icons8.com/office/50/family.png"
+                                    alt="family" />
+                                <h3 class="text-white text-lg font-bold">{{$uraians[3]->bidang}}</h3>
                             </div>
-                            <ol class="list-decimal list-inside text-base text-gray-800 space-y-1">
-                                <li>Distribusi Alat dan Obat Kontrasepsi</li>
-                                <li>Jaminan Pelayanan KB</li>
-                                <li>Pembinaan KB</li>
+                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
+                                @foreach (explode(',', $uraians[3]->uraian) as $index => $point)
+                                    @if (trim($point) != '')
+                                        <li>{{ trim($point) }}</li>
+                                    @endif
+                                @endforeach
                             </ol>
+                            @endif
                         </div>
-                        <div
-                            class="bg-gradient-to-br col-span-2  from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
-                            <div
-                                class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
-                                <img width="26" height="26" src="https://img.icons8.com/color/48/playing-children.png" alt="playing-children"/>
-                                <h3 class="text-white text-lg font-bold">Bidang Pemberdayaan Perempuan dan Perlindungan Anak
+                        <div class="bg-gradient-to-br col-span-2  from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                            @if (isset($uraians[4]))
+                            <div class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
+                                <img width="26" height="26"
+                                    src="https://img.icons8.com/color/48/playing-children.png" alt="playing-children" />
+                                <h3 class="text-white text-lg font-bold"> {{$uraians[4]->bidang}}
                                 </h3>
                             </div>
-                            <ol class="list-decimal list-inside text-base text-gray-800 space-y-1">
-                                <li>Pengarusutamaan Gender dan Hak Anak</li>
-                                <li>Perlindungan Perempuan dan Anak dari Kekerasan</li>
-                                <li>Pembinaan Organisasi Perempuan</li>
+                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
+                                @foreach (explode(',', $uraians[4]->uraian) as $index => $point)
+                                    @if (trim($point) != '')
+                                        <li>{{ trim($point) }}</li>
+                                    @endif
+                                @endforeach
                             </ol>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </body>
 </x-layouts.app>

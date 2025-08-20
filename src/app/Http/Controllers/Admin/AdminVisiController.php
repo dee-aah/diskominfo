@@ -66,6 +66,7 @@ class AdminVisiController extends Controller
     {
         $visi = Visimisi::findOrFail($id);
 
+        $filename = $visi->gambar;
         if ($request->hasFile('gambar')) {
             if ($visi->gambar) {
                 Storage::delete('public/visi/' . $visi->gambar);
@@ -81,7 +82,7 @@ class AdminVisiController extends Controller
             'des_singkat' => $request->des_singkat,
             'gambar' => $filename
         ]);
-        return redirect()->route('admin.visi.dashboard')->with('success', 'Visi Misi Berhasil Diperbarui');
+        return redirect()->route('visi.dashboard')->with('success', 'Visi Misi Berhasil Diperbarui');
     }
 
     /**

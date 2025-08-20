@@ -2,7 +2,7 @@
     <main>
         <section class="relative h-screen overflow-hidden "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
             <div>
-                <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5" src="{{ asset('img/mesjid2.jpg') }}" alt="">
+                <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5" src="{{ asset('storage/tentang/'. $tentang->gambar) }}" alt="">
             </div>
 
             <!-- Overlay -->
@@ -49,7 +49,7 @@
                 <!-- Teks -->
                 <div class="md:w-1/2 text-gray-700 text-justify px-2">
                     <p class="text-md leading-relaxed font-medium">
-                        Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incididunt ut labore
+                        {{$tentang->deskripsi}}Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incididunt ut labore
                         et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
                         aliquid ex ea
@@ -62,7 +62,7 @@
 
                 <!-- Gambar -->
                 <div class="md:w-1/2">
-                    <img src="{{ asset('img/cirahong1.jpg') }}" alt="Foto Kegiatan" class="rounded-md shadow-md w-full object-cover" />
+                    <img src="{{ asset('storage/tentang/'.$tentang->gambar_cont ) }}" alt="Foto Kegiatan" class="rounded-md shadow-md w-full object-cover" />
                 </div>
             </div>
         </div>

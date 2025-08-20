@@ -3,7 +3,7 @@
     <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
             <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{ asset('img/gambar4.jpg') }}" alt="">
+                src="{{ asset('storage/struktur/'. $struktur->gambar) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute bg-black bg-opacity-50 z-10"></div>
@@ -34,11 +34,11 @@
                 Struktur Organisasi
             </h2>
             <p class="text-center text-sm text-gray-600 mb-8">
-                Struktur organisasi pemerintah adalah susunan atau tata urutan berbagai elemen atau unit dalam lembaga
+                {{$struktur->deskripsi}}Struktur organisasi pemerintah adalah susunan atau tata urutan berbagai elemen atau unit dalam lembaga
                 pemerintahan yang berfungsi untuk menyelenggarakan tugas pemerintahan secara terstruktur.
             </p>
             <div class="flex justify-center my-6">
-                <img src="{{ asset('img/struktur.jpg') }}" alt="Gambar" class="w-[70%] mx-auto" />
+                <img src="{{ asset('storage/struktur/'. $struktur->gambar_cont) }}" alt="Gambar" class="w-[70%] mx-auto" />
             </div>
         </div>
 </body>

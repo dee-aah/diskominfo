@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tupoksi;
+use App\Models\Uraian_tugas;
 use Illuminate\Http\Request;
 
 class tupoksiController extends Controller
@@ -11,7 +13,9 @@ class tupoksiController extends Controller
      */
     public function index()
     {
-        return view("tupoksi.index");
+        $uraians = Uraian_tugas::all();
+        $tupoksi = Tupoksi::first();
+        return view('tupoksi.index',compact('tupoksi','uraians'));
     }
 
     /**

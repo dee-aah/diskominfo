@@ -26,12 +26,12 @@ class UserArtikelController extends Controller
         $artikels = $query->latest()->get();
 
         // $artikels = Artikel::latest()->get();
-        return view('user.artikel.dashboard', compact('artikels'));
+        return view('user.artikell.dashboard', compact('artikels'));
     }
     public function create()
     {
         $kategoris = Kategori::where('type', 'artikel')->get();
-        return view('user.artikel.create', compact('kategoris'));
+        return view('user.artikell.create', compact('kategoris'));
     }
 
     /**
@@ -63,13 +63,13 @@ class UserArtikelController extends Controller
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename
         ]);
-        return redirect()->route('user.artikel.dashboard')->with('success', 'Artikel berhasil ditambahkan');
+        return redirect()->route('user.artikell.dashboard')->with('success', 'Artikel berhasil ditambahkan');
     }
     public function edit($id)
     {
         $kategoris = Kategori::where('type', 'artikel')->get();
         $artikel = Artikel::findOrFail($id);
-        return view('user.artikel.edit', compact('artikel','kategoris'));
+        return view('user.artikell.edit', compact('artikel','kategoris'));
     }
 
     /**
@@ -96,7 +96,7 @@ class UserArtikelController extends Controller
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
     ]);
-        return redirect()->route('user.artikel.dashboard')->with('success', 'Artikel berhasil diperbarui');
+        return redirect()->route('user.artikell.dashboard')->with('success', 'Artikel berhasil diperbarui');
     }
 
     /**

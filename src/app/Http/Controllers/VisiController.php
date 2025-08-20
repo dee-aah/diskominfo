@@ -14,8 +14,8 @@ class VisiController extends Controller
      */
     public function index()
     {
-        $visimisi = Visimisi::first();
-        return view("visimisi.index", compact('visimisi'));
+        $visi = Visimisi::first();
+        return view("visimisi.index", compact('visi'));
 
     }
 

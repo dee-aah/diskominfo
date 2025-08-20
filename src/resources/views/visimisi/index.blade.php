@@ -3,7 +3,7 @@
     <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
             <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{ asset('img/3.jpg') }}" alt="">
+                src="{{asset('storage/visi/' . $visi->gambar) }}" alt="">
         </div>
 
         <!-- Overlay -->
@@ -35,7 +35,7 @@
     <section class="bg-stone-50 text-center py-10 -mt-1">
         <h2 class="text-2xl font-bold text-black mb-4">Visi dan Misi DPPKBP3A</h2>
         <p class="text-black max-w-2xl mx-auto px-4">
-            Panduan dan arah kebijakan pembangunan daerah untuk mewujudkan masyarakat yang sejahtera, adil, dan makmur
+            {{$visi->des_singkat}}
         </p>
     </section>
 
@@ -51,10 +51,7 @@
                 </div>
                 <hr class="w-29 mx-auto border-t-2 border-blue-300 mb-4" />
                 <p class="text-gray-700 leading-relaxed">
-                    Terwujudnya Kemandirian Masyarakat yang berwawasan Kependudukan, Gender dan Anak
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident tempora pariatur molestiae
-                    assumenda maiores quia rem perspiciatis natus eaque error voluptas incidunt in, nobis aliquid
-                    inventore, similique sequi mollitia ratione.
+                    {{$visi->visi}}
                 </p>
             </div>
 
@@ -66,7 +63,7 @@
                 </div>
                 <hr class="w-29 mx-auto border-t-2 border-blue-300 mb-4" />
                 <p class="text-gray-700 leading-relaxed">
-                    Mewujudkan Program Nyata yang Berorientasi Pada Pembangunan Masyarakat Inklusif
+                    {{$visi->misi}}
                 </p>
             </div>
 
