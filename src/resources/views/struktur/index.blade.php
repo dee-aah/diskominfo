@@ -29,17 +29,17 @@
             </svg>
         </div>
     </section>
-        <div class="bg-white justify-center max-w-7xl mx-auto">
+        <div class="bg-white justify-center max-w-3xl mx-auto">
             <h2 class="text-center text-lg font-semibold text-gray-800 mb-2">
                 Struktur Organisasi
             </h2>
             <p class="text-center text-sm text-gray-600 mb-8">
-                {{$struktur->deskripsi}}Struktur organisasi pemerintah adalah susunan atau tata urutan berbagai elemen atau unit dalam lembaga
-                pemerintahan yang berfungsi untuk menyelenggarakan tugas pemerintahan secara terstruktur.
+                {{$struktur->deskripsi}}
             </p>
             <div class="flex justify-center my-6">
                 <img src="{{ asset('storage/struktur/'. $struktur->gambar_cont) }}" alt="Gambar" class="w-[70%] mx-auto" />
             </div>
+
         </div>
 </body>
 </x-layouts.app>

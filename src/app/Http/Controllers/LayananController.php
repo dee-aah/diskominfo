@@ -14,7 +14,7 @@ class LayananController extends Controller
 
         $programs = Program::with('layanans')->get();
         $programlain = Program::with('layanans')->skip(1)->take(3)->get();
-        return view('layanan.index', compact('programs','programlain'));
+        return view('layanans.index', compact('programs','programlain'));
     }
 
 

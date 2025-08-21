@@ -60,7 +60,7 @@ class AdminLayananController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('admin.layanan.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('layanan.dashboard')->with('success', 'Layanan  Berhasil Ditambahkan');
     }
 
     /**
@@ -98,7 +98,7 @@ class AdminLayananController extends Controller
             'program_id' => $request->program_id,
             'gambar' => $filename
         ]);
-        return redirect()->route('admin.layanan.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
+        return redirect()->route('layanan.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }
 
     /**

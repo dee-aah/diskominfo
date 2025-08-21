@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
 /*
 |--------------------------------------------------------------------------
 | Web Routes User
@@ -20,6 +21,7 @@ use App\Http\Controllers\Admin\AdminTupoksiController;
 use App\Http\Controllers\Admin\UraianController;
 use App\Http\Controllers\Admin\AdminTentangController;
 use App\Http\Controllers\Admin\AdminStrukturController;
+use App\Http\Controllers\Admin\AdminMaklumatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -37,23 +39,34 @@ use App\Http\Controllers\TentangController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\PdfController;
 
 //======================================================================
 // 1. RUTE PUBLIK (Dapat diakses oleh semua pengunjung)
 //======================================================================
 
+
+// ... route Anda yang lain
+
+
+// Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/beranda', [berandaController::class, 'index'])->name('beranda');
-
+Route::prefix('pdf')->name('pdf.')->group(function () {
+    Route::get('/', [PdfController::class, 'index'])->name('index');
+    Route::post('/', [PdfController::class, 'store'])->name('store');
+    Route::get('/{id}', [PdfController::class, 'show'])->name('show');
+    Route::get('/{id}/download', [PdfController::class, 'download'])->name('download');
+    Route::delete('/{id}', [PdfController::class, 'destroy'])->name('destroy');
+});
 // Rute untuk halaman-halaman statis atau semi-statis
 Route::resource('/visimisi', VisiController::class)->only(['index', 'show']);
+Route::resource('/beranda', berandaController::class)->only(['index']);
+Route::get('/layanans', [LayananController::class, 'index'])->name('layanans.index');
 Route::resource('/tupoksi', tupoksiController::class)->only(['index', 'show']);
 Route::resource('/struktur', strukturController::class)->only(['index', 'show']);
-Route::resource('/maklumat', maklumatController::class)->only(['index', 'show']);
+Route::resource('/maklumatt', maklumatController::class)->only(['index']);
 Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
 Route::resource('/profil', ProfilController::class)->only(['index', 'show']);
 Route::resource('/produkhukum', ProdukhukumController::class)->only(['index', 'show']);
@@ -165,5 +178,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/struktur_', AdminStrukturController::class)->except(['index', 'show']);
         Route::get('/struktur_/dashboard', [AdminStrukturController::class, 'dashboard'])->name('struktur_.dashboard');
+
+        Route::resource('/maklumat', AdminMaklumatController::class)->except(['index', 'show']);
+        Route::get('/maklumat/dashboard', [AdminMaklumatController::class, 'dashboard'])->name('maklumat.dashboard');
     });
 });

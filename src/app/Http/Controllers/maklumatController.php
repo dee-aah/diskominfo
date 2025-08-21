@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Maklumat;
 use Illuminate\Http\Request;
 
 class maklumatController extends Controller
@@ -11,7 +12,8 @@ class maklumatController extends Controller
      */
     public function index()
     {
-        return view("maklumat.index");
+         $maklumat = Maklumat::first();
+        return view('maklumatt.index', compact('maklumat'));
     }
 
     /**

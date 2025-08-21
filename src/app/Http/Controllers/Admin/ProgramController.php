@@ -60,7 +60,7 @@ class ProgramController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('admin.program.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('program.dashboard')->with('success', 'Program Berhasil Ditambahkan');
     }
 
     /**
@@ -89,7 +89,7 @@ class ProgramController extends Controller
 
         if ($request->hasFile('gambar')) {
             if ($program->gambar) {
-                Storage::delete('public/berita/' . $program->gambar);
+                Storage::delete('public/program/' . $program->gambar);
             }
             $file = $request->file('gambar');
             $filename =  $file->getClientOriginalName();
@@ -100,7 +100,7 @@ class ProgramController extends Controller
             'deskripsi' => $request->deskripsi,
             'gambar' => $filename
         ]);
-        return redirect()->route('admin.program.dashboard')->with('success', 'Program Berhasil Diperbarui');
+        return redirect()->route('program.dashboard')->with('success', 'Program Berhasil Diperbarui');
     }
 
     /**
