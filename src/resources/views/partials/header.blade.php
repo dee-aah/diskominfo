@@ -21,7 +21,7 @@
                 <a href="{{url('/profil')}}" class="block px-4 py-2 hover:bg-blue-100">Profil Pimpinan</a>
                 <a href="{{url('/struktur')}}" class="block px-4 py-2 hover:bg-blue-100">Struktur Organisasi</a>
                 <a href="{{url('/tupoksi')}}" class="block px-4 py-2 hover:bg-blue-100">Tupoksi</a>
-                <a href="{{url('/maklumat')}}" class="block px-4 py-2 hover:bg-blue-100">Maklumat Pelayanan</a>
+                <a href="{{url('/maklumatt')}}" class="block px-4 py-2 hover:bg-blue-100">Maklumat Pelayanan</a>
 
             </div>
           </div>

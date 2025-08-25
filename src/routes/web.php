@@ -104,7 +104,7 @@ Route::middleware(['auth'])->group(function () {
     // A. RUTE UNTUK ROLE 'ADMIN' & 'USER'
     //------------------------------------------------------------------
 
-    Route::middleware(['role:admin,user'])->group(function () {
+    Route::middleware(['role:user'])->group(function () {
         // --- Manajemen Berita ---
         Route::get('/berita/dashboard', [UserBeritaController::class, 'dashboard'])->name('berita.dashboard');
         Route::get('/berita/create', [UserBeritaController::class, 'create'])->name('berita.create');

@@ -9,12 +9,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-blue-50 ">
+<body class="bg-white ">
 
     <div class="flex min-h-screen">
         <!-- Sidebar -->
         <div id="sidebar"
-            class="w-64 bg-green-50 border-r-2 border-gray-200 flex flex-col space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+            class="w-64 bg-stone-50 border-r-2 border-gray-200 flex flex-col space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
             <!-- Logo -->
             <div class="flex items-center justify-center h-16">
                 <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
@@ -25,24 +25,31 @@
             <nav class="flex-1 p-4 space-y-2">
                 <ul>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('tentang_kami.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Tentang kami</span>
                         </a>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('visi.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Visi Misi</span>
                         </a>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('struktur_.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Struktur Organisasi</span>
                         </a>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <button class="flex items-center p-2 text-gray-700 rounded w-51 hover:bg-blue-100"
                             onclick="toggleMenu('Menu1')">
                             <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,14 +62,18 @@
                             <li><a href="{{route('uraian.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Uraian Tugas</a>
                             </li>
                         </ul>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('maklumat.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Maklumat</span>
                         </a>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <button class="flex items-center p-2 text-gray-700 rounded w-51 hover:bg-blue-100"
                             onclick="toggleMenu('Menu')">
                             <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,21 +89,26 @@
                             <li><a href="{{route('layanan_detail.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Detail Layanan</a>
                             </li>
                         </ul>
+                        @endif
                     </li>
 
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'user')
                         <a href="{{ route('artikell.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Artikel</span>
                         </a>
+                        @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'user')
                         <a href="{{ route('berita.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Berita</span>
                         </a>
+                        @endif
                     </li>
-                    <li class="mb-2">
+                    <li class="my-8">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="w-full flex items-center p-2 text-red-600 rounded hover:bg-red-100">
@@ -108,14 +124,14 @@
         <!-- Content Area -->
         <div class="flex-1 flex flex-col">
             <!-- Header (Topbar) -->
-            <header class="bg-stone-50  p-4 flex items-center justify-between md:justify-end">
+            <header class="bg-white  p-4 flex items-center justify-between md:justify-end">
                 <button id="toggleSidebar" class="md:hidden text-2xl focus:outline-none">
                     &#9776;
                 </button>
             </header>
 
             <!-- Main Content -->
-            <main class="flex-1 bg-stone-50 overflow-y-auto p-6">
+            <main class="flex-1 bg-white overflow-y-auto p-6">
                 {{ $slot ?? '' }}
             </main>
         </div>

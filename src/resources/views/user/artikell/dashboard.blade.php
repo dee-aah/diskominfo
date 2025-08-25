@@ -18,10 +18,16 @@
                 </button>
                 <a href="{{ route('artikell.create') }}" type="button"
                     class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
-                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah 
+                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
                 </a>
             </div>
         </div>
+        @if(session('error'))
+    <div id="flash-message" class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+        <span>{{ session('error') }}</span>
+        <button onclick="this.parentElement.remove()"></button>
+    </div>
+@endif
 
         @if (session('success'))
             <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
