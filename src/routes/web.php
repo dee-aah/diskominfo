@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\UraianController;
 use App\Http\Controllers\Admin\AdminTentangController;
 use App\Http\Controllers\Admin\AdminStrukturController;
 use App\Http\Controllers\Admin\AdminMaklumatController;
+use App\Http\Controllers\Admin\AdminProfilController;
+use App\Http\Controllers\Admin\AdminProdukHukumController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -65,6 +67,7 @@ Route::resource('/visimisi', VisiController::class)->only(['index', 'show']);
 Route::resource('/beranda', berandaController::class)->only(['index']);
 Route::get('/layanans', [LayananController::class, 'index'])->name('layanans.index');
 Route::resource('/tupoksi', tupoksiController::class)->only(['index', 'show']);
+Route::resource('/layanan_details', LayananDetailController::class)->only(['index', 'show']);
 Route::resource('/struktur', strukturController::class)->only(['index', 'show']);
 Route::resource('/maklumatt', maklumatController::class)->only(['index']);
 Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
@@ -181,5 +184,11 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/maklumat', AdminMaklumatController::class)->except(['index', 'show']);
         Route::get('/maklumat/dashboard', [AdminMaklumatController::class, 'dashboard'])->name('maklumat.dashboard');
+
+        Route::resource('/profill', AdminProfilController::class)->except(['index', 'show']);
+        Route::get('/profill/dashboard', [AdminProfilController::class, 'dashboard'])->name('profill.dashboard');
+
+        Route::resource('/produk_hukum', AdminProdukHukumController::class)->except(['index', 'show']);
+        Route::get('/produk_hukum/dashboard', [AdminProdukHukumController::class, 'dashboard'])->name('produk_hukum.dashboard');
     });
 });

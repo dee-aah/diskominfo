@@ -34,6 +34,14 @@
                     </li>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'admin')
+                        <a href="{{ route('profill.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Profil Pimpinan</span>
+                        </a>
+                        @endif
+                    </li>
+                    <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('visi.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Visi Misi</span>
@@ -91,7 +99,22 @@
                         </ul>
                         @endif
                     </li>
-
+                    <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
+                        <button class="flex items-center p-2 text-gray-700 rounded w-51 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu2')">
+                            <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>Produk Hukum
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu2" class="hidden ml-6 pl-6">
+                            <li><a href="{{route('produk_hukum.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Produk Hukum</a></li>
+                            <li><a href="{{route('uraian.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Uraian Tugas</a>
+                            </li>
+                        </ul>
+                        @endif
+                    </li>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'user')
                         <a href="{{ route('artikell.dashboard') }}"

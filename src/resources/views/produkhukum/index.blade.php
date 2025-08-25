@@ -1,6 +1,5 @@
 <x-layouts.app>
     <main>
-
         <body onload="animatePage()" class="opacity-0 translate-y-4 transition-all duration-700 ease-out bg-indigo-100">
             <div class="min-h-screen flex items-center justify-center px-6 py-12 bg-indigo-100">
                 <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">

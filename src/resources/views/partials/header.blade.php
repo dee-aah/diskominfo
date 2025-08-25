@@ -28,7 +28,7 @@
           <div class="relative group">
             <button class="hover:text-blue-600">Layanan</button>
             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-                <a href="{{url('/layanan')}}"class="block px-4 py-2 hover:bg-blue-100">Informasi Layanan</a>
+                <a href="{{url('/layanans')}}"class="block px-4 py-2 hover:bg-blue-100">Informasi Layanan</a>
               <a href="{{url('/standarpelayanan')}}" class="block px-4 py-2 hover:bg-blue-100">Standar Pelayanan</a>
               <a href="{{url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/')}}"class="block px-4 py-2 hover:bg-blue-100">IKM</a>
               <a href="{{url('https://ppid.tasikmalayakota.go.id/')}}" class="block px-4 py-2 hover:bg-blue-100">PPID</a>

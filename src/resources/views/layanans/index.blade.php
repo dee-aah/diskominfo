@@ -48,7 +48,7 @@
                         <h3 class="text-lg font-semibold">{{ $program->nama }}</h3>
                         <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-5">
                             @foreach ($program->layanans as $layanan)
-                                <a href="{{ route('layanan_detail.show', $layanan->slug) }}">
+                                <a href="{{ route('layanan_details.show', $layanan->slug) }}">
                                     <div class="bg-gray-300 text-center overflow-hidden card-shadow">
                                         <div class="h-40 w-full overflow-hidden">
                                             <img src="{{ asset('storage/layanan/' . $layanan->gambar) }}"

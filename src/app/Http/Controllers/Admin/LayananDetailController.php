@@ -90,7 +90,7 @@ class LayananDetailController extends Controller
     {
         $layanan = Layanan::where('slug', $slug)->firstOrFail();
 
-        return view('admin.layanan_detail.show', compact('layanan'));
+        return view('layanan_details.show', compact('layanan'));
     }
 
     /**
