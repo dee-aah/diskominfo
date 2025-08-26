@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class="max-w-4xl mx-auto mt-8 bg-white  pt-20">
     <h1 class="text-xl font-bold text-red-700  mb-4">
-        {{ strtoupper($produk->jenis_peraturan) }} Nomor: {{ $produk->nomor }} Tahun: {{ $produk->tahun_terbit }}
+        {{ strtoupper($produk->jenis_peraturan) }} Nomor {{ $produk->nomor }} Tahun {{ $produk->tahun_terbit }}
     </h1>
     <h4 class="border-b-3 my-4 text-[12px]">Dokumen Detail
     </h4>
@@ -10,7 +10,7 @@
         <div class="text-center justify-start">
             <img src="{{ asset('storage/produkimg/'.$ProdukHukumCont->img_pdf) }}"
                  alt="Thumbnail"
-                 class="mx-auto w-48 shadow-md border" />
+                 class="mx-auto w-48 shadow-md border rounded" />
             <a href="{{ route('produkhukum.download', $produk->id) }}"
                class="mt-3 inline-block bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">
                 Unduh
@@ -55,15 +55,10 @@
                 @else
                     <p class="text-gray-500 text-sm">Tidak tersedia</p>
                 @endif
+                <iframe src="{{asset('/storage/produk/'.$produk->lampiran)}}" width="100%" class="mb-6" height="600px"></iframe>
             </div>
         </div>
+    </div>
 
-    </div>@if ($pdfUrl)
-        <iframe
-            src="{{ asset('pdfjs-5.4.54-dist/web/viewer.html') }}?file={{ rawurlencode($pdfUrl) }}"
-            class="w-full h-[80vh] border rounded-lg"></iframe>
-    @else
-        <p class="text-gray-500 text-sm">Lampiran belum tersedia</p>
-    @endif
-</div>
+    </div>
 </x-layouts.app>

@@ -24,7 +24,7 @@
                 <div class="mt-6 flex gap-4 items-center">
                     @foreach ($programlain as $item)
         <div class="items-center gap-3">
-            <a href="{{route('artikel.dashboard')}}">
+            <a>
             <img src="{{ asset('storage/program/' . $item->gambar) }}" class="size-50" alt="{{ $item->nama }}"></a>
             <span class="text-sm text-center text-slate-600">{{ $item->nama }}</span>
         </div>

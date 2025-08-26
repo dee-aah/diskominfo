@@ -1,5 +1,4 @@
 <x-layouts.app>
-
     <body>
         <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
             <div>
@@ -27,20 +26,17 @@
             <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
                 <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                     preserveAspectRatio="none">
-                    <path fill="oklch(0.985 0.001 106.423)" fill-opacity="1"
+                    <path fill="#ffffff" fill-opacity="1"
                         d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
                     </path>
                 </svg>
             </div>
         </section>
-        <div class="bg-stone-50 justify-center max-w-7xl mx-auto  ">
+        <div class="bg-white justify-center max-w-5xl mt-10 mx-auto  ">
             <h1 class="text-center text-2xl font-bold text-black mb-2">
                 Tugas Pokok dan Fungsi Organisasi
             </h1>
             <p class="text-center text-sm text-gray-600 mb-8"> {{ $tupoksi->des_singkat }}
-                Tugas Pokok dan Fungsi merupakan pedoman peran strategis dalam mendukung tercapainya visi organisasi.
-                Setiap elemen dalam Tupoksi mencerminkan kontribusi nyata terhadap efisiensi, pelayanan, dan
-                pengembangan berkelanjutan.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 my-6 gap-6 ">
                 <!-- Tugas -->
@@ -54,9 +50,7 @@
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Tugas Pokok</h3>
                     <p class="text-sm text-gray-700 p-6"> {{ $tupoksi->tugas_utama }}
-                        Kepala Dinas mempunyai tugas pokok membantu Bupati melaksanakan urusan pemerintahan yang menjadi
-                        kewenangan daerah dan tugas pembantuan di bidang Pengendalian Penduduk, Keluarga Berencana,
-                        Pemberdayaan Perempuan dan Perlindungan Anak
+
                     </p>
                 </div>
 
@@ -71,19 +65,16 @@
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Fungsi Utama</h3>
                     <ol class="text-sm text-gray-700 text-left list-decimal p-6 list-inside space-y-1">
-                        {{ $tupoksi->fungsi_utama }}
-                        <li>Perumusan dan Pelaksanaan Kebijakan Daerah di bidang : Kesekretariatan, Pengendalian
-                            Penduduk dan KB, Advokasi dan Bina Lini Lapangan, Pemberdayaan Perempuan dan Perlindungan
-                            Anak.</li>
-                        <li>Koordinasi dan Fasilitasi</li>
-                        <li>Monitoring dan Evaluasi</li>
-                        <li>Pembinaan terhadap UPTD dan Tenaga Penyuluh KB</li>
-                        <li>Pelayanan Administrasi dan Pengelolaan Alat Kontrasepsi</li>
+                        @foreach (explode('.', $tupoksi->fungsi_utama) as $point)
+        @if (trim($point) != '')
+            <li>{{ trim($point) }}</li>
+        @endif
+    @endforeach
                     </ol>
                 </div>
             </div>
         </div>
-        <div class="bg-stone-50 pb-8">
+        <div class="bg-white max-w-5xl mx-auto pb-8">
             <div class="bg-white rounded-md p-6 w-full shadow-md shadow-blue-500/50 max-w-screen-xl mx-auto ">
                 <div class="flex flex-col items-center mb-6">
                     <!-- Ikon Folder -->
@@ -93,9 +84,9 @@
                 </div>
                 <!-- Grid Card Layout -->
                 <div class="w-full flex justify-center">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full px-4 py-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full px-2 py-10">
                         <div
-                            class="bg-gradient-to-br from-blue-200 to-red-100 p-6 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
+                            class="bg-white p-6 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
                             @if (isset($uraians[0]))
                                 <div
                                     class="flex items-center gap-3 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner justify-center">
@@ -113,7 +104,7 @@
                             @endif
                         </div>
                         <div
-                            class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
+                            class="bg-white p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
                             @if (isset($uraians[1]))
                                 <div
                                     class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
@@ -131,7 +122,7 @@
                             @endif
                         </div>
                         <div
-                            class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                            class="bg-white p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
                             @if (isset($uraians[2]))
                             <div
                                 class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
@@ -150,7 +141,7 @@
                             @endif
                         </div>
 
-                        <div class="bg-gradient-to-br from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                        <div class="bg-white p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
                             @if (isset($uraians[3]))
                             <div
                                 class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
@@ -167,7 +158,7 @@
                             </ol>
                             @endif
                         </div>
-                        <div class="bg-gradient-to-br col-span-2  from-blue-200 to-red-100 p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
+                        <div class="bg-white col-span-2  p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
                             @if (isset($uraians[4]))
                             <div class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">
                                 <img width="26" height="26"

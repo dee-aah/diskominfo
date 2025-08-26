@@ -54,9 +54,10 @@ class ProdukhukumController extends Controller
     public function show( $id)
     {
         $produk = ProdukHukum::findOrFail($id);
-        $pdfUrl = $produk->lampiran
-            ? asset('storage/'.$produk->lampiran)
-            : null;
+        $pdfUrl = null;
+        if ($produk->lampiran) {
+        $pdfUrl = asset('storage/produk/' , $produk->lampiran);
+        }
     $ProdukHukumCont = ProdukHukumCont::first();
     return view('produkhukum.show', compact('produk','ProdukHukumCont','pdfUrl'));
 

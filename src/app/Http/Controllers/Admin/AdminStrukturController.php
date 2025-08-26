@@ -41,7 +41,7 @@ class AdminStrukturController extends Controller
         'gambar_cont' => 'nullable|image|mimes:jpg,jpeg,png',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
-        $filename = null;
+        $filenames = null;
         if ($request->hasFile('gambar_cont')) {
             $file = $request->file('gambar_cont');
             $filenames = $file->getClientOriginalName();
@@ -79,7 +79,7 @@ class AdminStrukturController extends Controller
     {
         $struktur = Struktur::findOrFail($id);
 
-        $filename = $struktur->gambar_cont;
+        $filenames = $struktur->gambar_cont;
         if ($request->hasFile('gambar_cont')) {
             if ($struktur->gambar_cont) {
                 Storage::delete('public/struktur/' . $struktur->gambar_cont);

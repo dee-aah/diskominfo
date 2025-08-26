@@ -22,14 +22,14 @@
             <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
                 <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
                     preserveAspectRatio="none">
-                    <path  fill="oklch(0.985 0.001 106.423)" fill-opacity="1"
+                    <path  fill="#ffffff" fill-opacity="1"
                         d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
                     </path>
                 </svg>
             </div>
         </section>
-        <div class="bg-stone-50 justify-center max-w-7xl mx-auto">
-            <h2 class="text-center text-lg font-semibold text-gray-800 mb-2">
+        <div class="bg-white justify-center mt-10 max-w-5xl mx-auto">
+            <h2 class="text-center text-[25px] font-semibold text-gray-800 mb-2">
                 Tugas Pokok dan Fungsi Organisasi
             </h2>
             <p class="text-center text-sm text-gray-600 mb-8">
