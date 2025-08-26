@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('produk_hukum_conts', function (Blueprint $table) {
             $table->id();
-            $table->text('deskripsi_cont');
+            $table->text('deskripsi');
             $table->string('img_cont');
+            $table->string('img_pdf');
             $table->timestamps();
         });
         Schema::create('produk_hukums', function (Blueprint $table) {
             $table->id();
+            $table->string('reg')->nullable();
             $table->string('jenis_peraturan')->nullable();
             $table->string('judul_peraturan')->nullable();
             $table->string('nomor')->nullable();

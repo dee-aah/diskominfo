@@ -110,7 +110,7 @@
                         <!-- Sub Menu -->
                         <ul id="Menu2" class="hidden ml-6 pl-6">
                             <li><a href="{{route('produk_hukum.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Produk Hukum</a></li>
-                            <li><a href="{{route('uraian.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Uraian Tugas</a>
+                            <li><a href="{{route('produk_hukum_cont.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Isi Konten</a>
                             </li>
                         </ul>
                         @endif

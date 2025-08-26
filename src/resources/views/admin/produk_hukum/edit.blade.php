@@ -8,13 +8,18 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Jenis Hukum</label>
-                        <input type="string" name="jenis_hukum" value="{{ old('jenis_hukum', $produk->jenis_hukum) }}" placeholder=" Masukkan Jenis Hukum"
+                        <label class="block text-lg font-medium">Registrasi</label>
+                        <input type="text" name="reg" value="{{ old('reg', $produk->reg) }}" placeholder=" Masukkan Registrasi"
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-lg font-medium">Jenis Peraturan</label>
+                        <input type="string" name="jenis_peraturan" value="{{ old('jenis_peraturan', $produk->jenis_peraturan) }}" placeholder=" Masukkan Jenis Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Judul Hukum</label>
-                        <input type="string" name="judul_hukum" value="{{ old('judul_hukum', $produk->judul_hukum) }}" placeholder=" Masukkan Judul Hukum"
+                        <input type="string" name="judul_peraturan" value="{{ old('judul_peraturan', $produk->judul_peraturan) }}" placeholder=" Masukkan Judul Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
@@ -88,7 +93,7 @@
                     <div class="flex ">
                     <div class="mb-3 mt-2">
                         <label class="block text-lg font-medium">Lampiran</label>
-                        <input required type="file" name="lampiran"
+                        <input  type="file" name="lampiran"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                     file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>
@@ -97,17 +102,6 @@
                         <input  type="file" name="naskah_akademik"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                             file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
-                    </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Gambar Latar</label>
-                        <input  type="file" name="gambar"
-                            class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
-                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
-                        @if ($profil->gambar)
-                            <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                            <img src="{{ asset('storage/profil/' . $profil->gambar) }}" class="w-32 mt-1 rounded">
-                        @endif
                     </div>
                     </div>
 

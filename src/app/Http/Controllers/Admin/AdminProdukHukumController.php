@@ -39,9 +39,10 @@ class AdminProdukHukumController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+        'reg'                 => 'required|string',
         'jenis_peraturan'     => 'required|string|max:255',
         'judul_peraturan'     => 'required|string',
-        'nomor'               => 'required|string|max:50',
+        'nomor'               => 'required',
         'tahun_terbit'        => 'required|digits:4',
         'singkatan_jenis'     => 'nullable|string|max:50',
         'tahun_penetapan'     => 'nullable|date',
@@ -57,19 +58,23 @@ class AdminProdukHukumController extends Controller
         'lampiran'            => 'nullable|file|mimes:pdf',
         'naskah_akademik'     => 'nullable|file|mimes:pdf',
     ]);
-        $filenames = null;
-        if ($request->hasFile('lampiran')) {
-            $file = $request->file('lampiran');
-            $filenames = $file->getClientOriginalName();
-            $file->storeAs('produk', $filenames);
-        }
-        $filename = null;
-        if ($request->hasFile('naskah_akademik')) {
-            $file = $request->file('naskah_akademik');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('produk', $filename);
-        }
-    ProdukHukum::create([
+        // $filenames = null;
+        // if ($request->hasFile('lampiran')) {
+        //     $file = $request->file('lampiran');
+        //     $filenames = $file->getClientOriginalName();
+        //     $file->storeAs('produk', $filenames);
+        // }
+        // $filename = null;
+        // if ($request->hasFile('naskah_akademik')) {
+        //     $file = $request->file('naskah_akademik');
+        //     $filename = $file->getClientOriginalName();
+        //     $file->storeAs('produk', $filename);
+        // }
+        $path = $request->file('lampiran')->storeAs(
+        'produk',$request->file('lampiran')->getClientOriginalName(),'public');
+        $paths = $request->file('naskah_akademik')->store('produk', 'public');
+        ProdukHukum::create([
+            'reg'                  => $request->reg,
             'jenis_peraturan'      => $request->jenis_peraturan,
             'judul_peraturan'      => $request->judul_peraturan,
             'nomor'                => $request->nomor,
@@ -85,8 +90,8 @@ class AdminProdukHukumController extends Controller
             'bahasa'               => $request->bahasa,
             'lokasi'               => $request->lokasi,
             'status'               => $request->status,
-            'lampiran'             => $filenames,
-            'naskah_akademik'      => $filename
+            'lampiran'             => $path,
+            'naskah_akademik'      => $paths
     ]);
     return redirect()->route('produk_hukum.dashboard')->with('success', 'Produk Hukum  Berhasil Ditambahkan');
     }
@@ -126,6 +131,7 @@ class AdminProdukHukumController extends Controller
             $file->storeAs('produk', $filename);
         }
         $produk->update([
+            'reg'                  => $request->reg,
             'jenis_peraturan'      => $request->jenis_peraturan,
             'judul_peraturan'      => $request->judul_peraturan,
             'nomor'                => $request->nomor,

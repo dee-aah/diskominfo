@@ -33,6 +33,7 @@
             <thead>
                 <tr class="bg-slate-300 text-center">
                     <th class="px-2 border border-gray-400 border-2 py-2">No</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Registrasi</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Jenis Peraturan</th>
                     <th class="px-2 border border-gray-400 border-2 py-2">Judul Peraturan</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Nomor</th>
@@ -48,8 +49,8 @@
                     <th class="px-4 border border-gray-400 border-2 py-2">Bahasa</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Lokasi</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Status</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Lampiran</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Naskah Akademik</th>
+                    {{-- <th class="px-4 border border-gray-400 border-2 py-2">Lampiran</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Naskah Akademik</th> --}}
                     <th class="px-4 border aksi hidden border-gray-400 border-2 py-2">Aksi</th>
                 </tr>
             </thead>
@@ -57,8 +58,9 @@
                 @forelse ($produks as $produk)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->reg }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->jenis_peraturan }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $Produk->judul_peraturan}}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->judul_peraturan}}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->nomor }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->tahun_terbit }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->singkatan_jenis }}</td>
@@ -72,9 +74,9 @@
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->bahasa }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->lokasi }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $produk->status }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">
+                        {{-- <td class="px-4 border border-gray-400 border-2 py-2">
                             @if ($produk->lampiran)
-                                <img src="{{ asset('storage/produk/' . $produk->lampiran) }}"
+                                <iframe src="{{ asset('storage/produk/' . $produk->lampiran) }}"
                                     class="w-16 h-16 object-cover justify-content-center rounded">
                             @else
                                 -
@@ -82,12 +84,12 @@
                         </td>
                         <td class="px-4 border border-gray-400 border-2 py-2">
                             @if ($produk->naskah_akademik)
-                                <img src="{{ asset('storage/produk/' . $profil->naskah_akademik) }}"
+                                <iframe src="{{ asset('storage/produk/' . $produk->naskah_akademik) }}"
                                     class="w-16 h-16 object-cover justify-content-center rounded">
                             @else
                                 -
                             @endif
-                        </td>
+                        </td> --}}
                         <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
                             <a href="{{ route('produk_hukum.edit', $produk->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
@@ -106,7 +108,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="20" class="text-center border border-gray-400 border-2 py-4">Belum ada Produk Hukum</td>
+                        <td colspan="24" class="text-center border border-gray-400 border-2 py-4">Belum ada Produk Hukum</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -119,7 +121,7 @@
             aksiKoloms.forEach(function(el) {
                 el.classList.toggle('hidden');
             });
-        });
+        })
         document.addEventListener('DOMContentLoaded', function() {
             const flash = document.getElementById('flash-message');
             if (flash) {

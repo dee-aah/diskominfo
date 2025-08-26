@@ -1,24 +1,19 @@
 <x-layouts.app>
-    <main>
+    <main class="bg-white">
         <body onload="animatePage()" class="opacity-0 translate-y-4 transition-all duration-700 ease-out bg-indigo-100">
-            <div class="min-h-screen flex items-center justify-center px-6 py-12 bg-indigo-100">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
+            <div class="min-h-screen flex items-center justify-center px-6 pt-10 bg-indigo-100">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
                     <!-- Gambar Kiri -->
                     <div class="flex justify-center">
-                        <img src="hhh.png" alt="Energizing You" class="w-64 md:w-96">
+                        <img src="{{ asset('storage/produkimg/'. $ProdukHukumCont->img_cont) }}"  class="w-70 md:w-100 rounded shadow-lg">
                     </div>
-
                     <!-- Konten Teks Kanan -->
                     <div>
-                        <h1 class="text-2xl md:text-4xl font-bold mb-4">
-                            JDIH DPPKBP3A Kota Tasikmalaya
+                        <h1 class="text-2xl text-center md:text-3xl font-bold mb-4">
+                            <span>JDIH DPPKBP3A</span> Kota Tasikmalaya
                         </h1>
-                        <p class="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
-                            Jaringan Dokumentasi dan Informasi Hukum yang selanjutnya disebut JDIH adalah wadah
-                            pendayagunaan bersama atas dokumen hukum secara tertib terpadu, dan berkesinambungan, serta
-                            merupakan sarana pemberian pelayanan informasi hukum secara lengkap, akurat, mudah, dan
-                            cepat.
+                        <p class="text-base md:text-lg text-gray-700 mb-6 text-justify leading-relaxed">
+                            {{$ProdukHukumCont->deskripsi}}
                         </p>
                     </div>
 
@@ -57,92 +52,39 @@
 
                 <!-- LIST ITEM -->
                 <div class="space-y-6">
-                    <!-- ITEM -->
-                    <div class="bg-blue-50 rounded-md shadow p-4 flex items-start gap-4">
-                        <div class="w-24 text-center">
-                            <img src="image.png" class="mx-auto w-24 h-auto" />
-                            <p class="text-sm mt-2 font-semibold">1</p>
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <a href="#" class="text-sm font-semibold text-blue-900 hover:underline">
-                                Anggaran Pendapatan Dan Belanja Daerah Kota Tasikmalaya Tahun Anggaran 2003
-                            </a>
-                            <p class="text-sm text-gray-800 leading-snug">
-                                Reg: 2003P0372826001<br />
-                                No: 1<br />
-                                Tahun: 2003
-                            </p>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-gray-300 text-xs px-2 py-1 rounded">TIDAK BERLAKU</span>
-                                <button
-                                    class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-100 rounded-md shadow p-4 flex items-start gap-4">
-                        <div class="w-24 text-center">
-                            <img src="image.png" class="mx-auto w-24 h-auto" />
-                            <p class="text-sm mt-2 font-semibold">1</p>
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <a href="#" class="text-sm font-semibold text-blue-900 hover:underline">
-                                Anggaran Pendapatan Dan Belanja Daerah Kota Tasikmalaya Tahun Anggaran 2003
-                            </a>
-                            <p class="text-sm text-gray-800 leading-snug">
-                                Reg: 2003P0372826001<br />
-                                No: 1<br />
-                                Tahun: 2003
-                            </p>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-gray-300 text-xs px-2 py-1 rounded">TIDAK BERLAKU</span>
-                                <button
-                                    class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-blue-50 rounded-md shadow p-4 flex items-start gap-4">
-                        <div class="w-24 text-center">
-                            <img src="image.png" class="mx-auto w-24 h-auto" />
-                            <p class="text-sm mt-2 font-semibold">1</p>
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <a href="#" class="text-sm font-semibold text-blue-900 hover:underline">
-                                Anggaran Pendapatan Dan Belanja Daerah Kota Tasikmalaya Tahun Anggaran 2003
-                            </a>
-                            <p class="text-sm text-gray-800 leading-snug">
-                                Reg: 2003P0372826001<br />
-                                No: 1<br />
-                                Tahun: 2003
-                            </p>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-gray-300 text-xs px-2 py-1 rounded">TIDAK BERLAKU</span>
-                                <button
-                                    class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-100 rounded-md shadow p-4 flex items-start gap-4">
-                        <div class="w-24 text-center">
-                            <img src="image.png" class="mx-auto w-24 h-auto" />
-                            <p class="text-sm mt-2 font-semibold">1</p>
-                        </div>
-                        <div class="flex-1 space-y-2">
-                            <a href="#" class="text-sm font-semibold text-blue-900 hover:underline">
-                                Anggaran Pendapatan Dan Belanja Daerah Kota Tasikmalaya Tahun Anggaran 2003
-                            </a>
-                            <p class="text-sm text-gray-800 leading-snug">
-                                Reg: 2003P0372826001<br />
-                                No: 1<br />
-                                Tahun: 2003
-                            </p>
-                            <div class="flex gap-2 mt-2">
-                                <span class="bg-gray-300 text-xs px-2 py-1 rounded">TIDAK BERLAKU</span>
-                                <button
-                                    class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH</button>
-                            </div>
-                        </div>
-                    </div>
+    @foreach($produkhukum as $item)
+        <div class="{{ $loop->odd ? 'bg-blue-50' : 'bg-gray-100' }} rounded-md shadow p-4 flex items-start gap-10">
+            <div class="w-24 text-center">
+                <img src="{{ asset('storage/produkimg/'. $ProdukHukumCont->img_pdf) }}"
+                    class="mx-auto w-24 h-auto" alt="PDF Thumbnail" />
+            </div>
+            <div class="flex-1 space-y-2">
+                <a href="{{ asset('storage/produk/'.$item->lampiran) }}"
+                   class="text-sm  font-semibold text-blue-900 underline" target="_blank">
+                    {{ $item->judul }}
+                </a>
+                <p class="text-[14px] text-gray-800 leading-snug">
+                    <p class="font-bold text-[20px]">{{ $item->judul_peraturan }}</p>
+                    Registrasi : {{ $item->reg }}<br/>
+                    Nomor      : {{ $item->nomor }}<br/>
+                    Tahun      : {{ $item->tahun_terbit }}<br/>
+                </p>
+                <div class="flex gap-2 mt-2">
+                    <a  class="bg-green-700 hover:bg-green-800 text-white text-xs px-4 py-1 rounded">
+                        {{ strtoupper($item->status) }}
+                    </a>
+                    <a href="{{ route('produkhukum.download', $item->id) }}"
+                        class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH
+                    </a>
+                    <a href="{{ route('produkhukum.show',$item->id)}}"
+                        class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">
+                        Lihat Detail
+                    </a>
                 </div>
+            </div>
+        </div>
+    @endforeach
+</div>
             </div>
             <script>
                 function toggleDropdown() {

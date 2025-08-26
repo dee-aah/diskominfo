@@ -8,13 +8,18 @@
                 <form action="{{ route('produk_hukum.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
+                        <label class="block text-lg font-medium">Registrasi</label>
+                        <input type="text" name="reg" placeholder=" Masukkan Registrasi"
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
+                    </div>
+                    <div class="mb-3">
                         <label class="block text-lg font-medium">Jenis Hukum</label>
-                        <input type="text" name="jenis_hukum" placeholder=" Masukkan Jenis Hukum"
+                        <input type="text" name="jenis_peraturan" placeholder=" Masukkan Jenis Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Judul Hukum</label>
-                        <input type="text" name="judul_hukum" placeholder=" Masukkan Judul Hukum"
+                        <input type="text" name="judul_peraturan" placeholder=" Masukkan Judul Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
@@ -39,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Tahun Pengundangan</label>
-                        <input type="date" name="tahun_pengundangan" placeholder=" Masukkan Tahun Pengundangan"
+                        <input type="date" name="tanggal_pengundangan" placeholder=" Masukkan Tahun Pengundangan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">

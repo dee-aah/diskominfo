@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminStrukturController;
 use App\Http\Controllers\Admin\AdminMaklumatController;
 use App\Http\Controllers\Admin\AdminProfilController;
 use App\Http\Controllers\Admin\AdminProdukHukumController;
+use App\Http\Controllers\Admin\AdminPHContController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -73,6 +74,10 @@ Route::resource('/maklumatt', maklumatController::class)->only(['index']);
 Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
 Route::resource('/profil', ProfilController::class)->only(['index', 'show']);
 Route::resource('/produkhukum', ProdukhukumController::class)->only(['index', 'show']);
+Route::get('/produkhukum/{id}/download', [App\Http\Controllers\ProdukhukumController::class, 'download'])
+        ->name('produkhukum.download');
+Route::get('/produkhukum/{id}', [ProdukHukumController::class, 'show'])->name('produkhukum.show');
+Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::class, 'preview'])->name('produkhukum.preview');
 
 // Rute untuk Berita (Publik)
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
@@ -190,5 +195,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/produk_hukum', AdminProdukHukumController::class)->except(['index', 'show']);
         Route::get('/produk_hukum/dashboard', [AdminProdukHukumController::class, 'dashboard'])->name('produk_hukum.dashboard');
+
+        Route::resource('/produk_hukum_cont', AdminPHContController::class)->except(['index', 'show']);
+        Route::get('/produk_hukum_cont/dashboard', [AdminPHContController::class, 'dashboard'])->name('produk_hukum_cont.dashboard');
     });
 });

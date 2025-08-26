@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProdukHukum extends Model
 {
     protected $fillable = [
+    'reg',
     'jenis_peraturan',
     'judul_peraturan',
     'nomor',
