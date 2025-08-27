@@ -5,7 +5,7 @@
                 <h2 class="text-2xl  font-bold">Daftar Berita</h2>
             </div>
             <div class="col-span-2 flex justify-end">
-                <form action="{{ route('berita.dashboard') }}" method="GET" class="flex justify-end  mr-2">
+                <form action="{{ route('beritaa.dashboard') }}" method="GET" class="flex justify-end  mr-2">
                     <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Berita..."
                         class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
                     <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
@@ -16,7 +16,7 @@
                     class="bg-green-600 space-x-2 flex   mr-2   hover:bg-green-500 text-white mt-2 px-3 mr-2 py-2  rounded">
                     <i class="fa-solid fa-check mr-2 mt-1"></i> Pilih
                 </button>
-                <a href="{{ route('berita.create') }}" type="button"
+                <a href="{{ route('beritaa.create') }}" type="button"
                     class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
                     <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
                 </a>
@@ -62,11 +62,11 @@
                             @endif
                         </td>
                         <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
-                            <a href="{{ route('berita.edit', $berita->id) }}"
+                            <a href="{{ route('beritaa.edit', $berita->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
                                 <i class="fa-solid fa-pen mr-2"></i>Edit
                             </a>
-                            <form action="{{ route('berita.destroy', $berita->id) }}" method="POST"
+                            <form action="{{ route('beritaa.destroy', $berita->id) }}" method="POST"
                                 onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
                                 @csrf
                                 @method('DELETE')

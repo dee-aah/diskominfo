@@ -26,7 +26,7 @@ class UserBeritaController extends Controller
         // PERBAIKAN: Menggunakan paginate() untuk performa yang lebih baik
         $beritas = $query->latest()->paginate(15);
 
-        return view('user.berita.dashboard', compact('beritas'));
+        return view('user.beritaa.dashboard', compact('beritas'));
     }
 
     /**
@@ -50,7 +50,7 @@ class UserBeritaController extends Controller
     public function create()
     {
         $kategoris = Kategori::where('type', 'Berita')->get();
-        return view('user.berita.create', compact('kategoris'));
+        return view('user.beritaa.create', compact('kategoris'));
     }
 
     /**
@@ -74,8 +74,16 @@ class UserBeritaController extends Controller
             $filename = $file->getClientOriginalName();
             $file->storeAs('berita', $filename);
         }
-
-        return redirect()->route('user.berita.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+        Berita::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'penulis' => $request->penulis,
+            'waktu' =>$request->waktu,
+            'tag' => $request->tag,
+            'kategori_id' => $request->kategori_id,
+            'gambar' => $filename
+        ]);
+        return redirect()->route('beritaa.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
 
 
@@ -87,7 +95,7 @@ class UserBeritaController extends Controller
     {
         $kategoris = Kategori::where('type', 'Berita')->get();
         $berita = Berita::findOrFail($id);
-        return view('user.berita.edit', compact('berita', 'kategoris'));
+        return view('user.beritaa.edit', compact('berita', 'kategoris'));
     }
 
     /**
@@ -109,7 +117,7 @@ class UserBeritaController extends Controller
 
         $berita->update($request->except('gambar') + ['gambar' => $filename]);
 
-        return redirect()->route('user.berita.dashboard')->with('success', 'Berita Berhasil Diperbarui');
+        return redirect()->route('beritaa.dashboard')->with('success', 'Berita Berhasil Diperbarui');
     }
 
     /**

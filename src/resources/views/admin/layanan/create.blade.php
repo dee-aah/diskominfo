@@ -8,14 +8,9 @@
                 <form action="{{ route('layanan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label class="block text-base font-medium">Program</label>
-                        <select name="program_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
-                            required>
-                            <option value="">-- Pilih Program --</option>
-                            @foreach ($programs as $program)
-                                <option value="{{ $program->id }}">{{ $program->nama }}</option>
-                            @endforeach
-                        </select>
+                        <label class="block text-base font-medium">Nama Program</label>
+                        <input type="text" name="program" placeholder=" Masukkan Nama Program"
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Nama Layanan</label>

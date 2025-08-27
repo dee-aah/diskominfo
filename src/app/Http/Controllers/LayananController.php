@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Layanan;
 use App\Models\Program;
 
 class LayananController extends Controller
@@ -12,9 +13,9 @@ class LayananController extends Controller
     public function index()
     {
 
-        $programs = Program::with('layanans')->get();
-        $programlain = Program::with('layanans')->skip(1)->take(3)->get();
-        return view('layanans.index', compact('programs','programlain'));
+        $layanans = layanan::with('layanans')->get();
+        $layananlain = Layanan::with('layanans')->skip(1)->take(3)->get();
+        return view('layanans.index', compact('layanans','layananlain'));
     }
 
 

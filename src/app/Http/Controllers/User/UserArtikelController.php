@@ -63,7 +63,7 @@ class UserArtikelController extends Controller
             'kategori_id' => $request->kategori_id,
             'gambar' => $filename
         ]);
-        return redirect()->route('user.artikell.dashboard')->with('success', 'Artikel berhasil ditambahkan');
+        return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil ditambahkan');
     }
     public function edit($id)
     {
@@ -96,7 +96,7 @@ class UserArtikelController extends Controller
         'kategori_id' => $request->kategori_id,
         'gambar' => $filename
     ]);
-        return redirect()->route('user.artikell.dashboard')->with('success', 'Artikel berhasil diperbarui');
+        return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil diperbarui');
     }
 
     /**

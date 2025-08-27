@@ -53,7 +53,7 @@ class AuthController extends Controller
         $role = Auth::user()->role;
 
         if ($role === 'admin') {
-            return redirect()->route('program.dashboard')->with('success', 'Login berhasil!');
+            return redirect()->route('tentang_kami.dashboard')->with('success', 'Login berhasil!');
         } elseif ($role === 'user') {
             return redirect()->route('artikell.dashboard')->with('success', 'Login berhasil!');
         } else {

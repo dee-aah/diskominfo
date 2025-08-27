@@ -54,11 +54,7 @@ class LayananDetailController extends Controller
     {
         $request->validate([
         'jenis' => 'required',
-        'isi_1' => 'required',
-        'isi_2' => 'required',
-        'isi_3' => 'nullable',
-        'isi_4' => 'nullable',
-        'isi_5' => 'nullable',
+        'deskripsi' => 'required',
         'layanan_id' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
@@ -72,11 +68,7 @@ class LayananDetailController extends Controller
     Layanan_detail::create([
         'jenis' => $request->jenis,
         'layanan_id' => $request->layanan_id,
-        'isi_1' => $request->isi_1,
-        'isi_2' => $request->isi_2 ,
-        'isi_3' => $request->isi_3 ?: null,
-        'isi_4' => $request->isi_4 ?: null,
-        'isi_5' => $request->isi_5 ?: null,
+        'deskripsi' => $request->deskripsi,
         'gambar' => $filename
     ]);
 
@@ -123,11 +115,7 @@ class LayananDetailController extends Controller
         }
         $layanan_detail->update([
             'jenis' => $request->jenis,
-            'isi_1' => $request->isi_1,
-            'isi_2' => $request->isi_2 ,
-            'isi_3' => $request->isi_3 ?: null,
-            'isi_4' => $request->isi_4 ?: null,
-            'isi_5' => $request->isi_5 ?: null,
+            'deskripsi' => $request->deskripsi,
             'layanan_id' => $request->layanan_id,
             'gambar' => $filename
         ]);

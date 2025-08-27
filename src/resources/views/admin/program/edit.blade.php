@@ -24,7 +24,8 @@
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Gambar</label>
                         <input type="file" name="gambar"
-                            class="w-full bg-gray-100 border-gray-400 border rounded p-2">
+                            class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
+                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                         @if ($program->gambar)
                             <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
                             <img src="{{ asset('storage/program/' . $program->gambar) }}" class="w-32 mt-1 rounded">

@@ -11,20 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // 1. Tabel Program
-        Schema::create('programs', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->text('deskripsi')->nullable();
-            $table->string('slug')->unique();
-            $table->string('gambar')->nullable();
-            $table->timestamps();
-        });
 
-        // 2. Tabel Layanan
+        // Tabel Layanan
         Schema::create('layanans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
+            $table->string('program');
             $table->string('nama');
             $table->text('des_singkat')->nullable();
             $table->text('deskripsi')->nullable();
@@ -45,11 +36,7 @@ return new class extends Migration
                 'Tempat Layanan',
                 'Kontak Layanan'
             ])->nullable();
-            $table->text('isi_1')->nullable();
-            $table->text('isi_2')->nullable();
-            $table->text('isi_3')->nullable();
-            $table->text('isi_4')->nullable();
-            $table->text('isi_5')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();
         });
@@ -62,6 +49,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('layanan_details');
         Schema::dropIfExists('layanans');
-        Schema::dropIfExists('programs');
     }
 };

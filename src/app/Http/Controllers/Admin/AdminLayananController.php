@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Layanan;
-use App\Models\Program;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 class AdminLayananController extends Controller
@@ -29,8 +28,8 @@ class AdminLayananController extends Controller
      */
     public function create()
     {
-        $programs = Program::all();
-        return view('admin.layanan.create', compact('programs'));
+        $layanans =Layanan::all();
+        return view('admin.layanan.create', compact('layanans'));
     }
 
     /**
@@ -42,7 +41,7 @@ class AdminLayananController extends Controller
         'nama' => 'required',
         'des_singkat' => 'required',
         'deskripsi' => 'required',
-        'program_id' => 'required',
+        'program' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
@@ -54,7 +53,7 @@ class AdminLayananController extends Controller
 
     Layanan::create([
         'nama' => $request->nama,
-        'program_id' => $request->program_id,
+        'program' => $request->program,
         'des_singkat' => $request->des_singkat,
         'deskripsi' => $request->deskripsi,
         'gambar' => $filename
@@ -72,9 +71,8 @@ class AdminLayananController extends Controller
      */
     public function edit(string $id)
     {
-        $programs = Program::all();
         $layanan = Layanan::findOrFail($id);
-        return view('admin.layanan.edit', compact('layanan','programs'));
+        return view('admin.layanan.edit', compact('layanan'));
     }
 
     /**
@@ -95,7 +93,7 @@ class AdminLayananController extends Controller
             'nama' => $request->nama,
             'des_singkat' => $request->des_singkat,
             'deskripsi' => $request->deskripsi,
-            'program_id' => $request->program_id,
+            'program' => $request->program,
             'gambar' => $filename
         ]);
         return redirect()->route('layanan.dashboard')->with('success', 'Layanan Berhasil Diperbarui');

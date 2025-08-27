@@ -15,7 +15,6 @@ use App\Http\Controllers\User\UserBeritaController;
 */
 use App\Http\Controllers\Admin\AdminLayananController;
 use App\Http\Controllers\Admin\AdminVisiController;
-use App\Http\Controllers\Admin\ProgramController;
 use App\Http\Controllers\Admin\LayananDetailController;
 use App\Http\Controllers\Admin\AdminTupoksiController;
 use App\Http\Controllers\Admin\UraianController;
@@ -114,12 +113,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::middleware(['role:user'])->group(function () {
         // --- Manajemen Berita ---
-        Route::get('/berita/dashboard', [UserBeritaController::class, 'dashboard'])->name('berita.dashboard');
-        Route::get('/berita/create', [UserBeritaController::class, 'create'])->name('berita.create');
-        Route::post('/berita', [UserBeritaController::class, 'store'])->name('berita.store');
-        Route::get('/berita/{id}/edit', [UserBeritaController::class, 'edit'])->name('berita.edit');
-        Route::put('/berita/{id}', [UserBeritaController::class, 'update'])->name('berita.update');
-        Route::delete('/berita/{id}', [UserBeritaController::class, 'destroy'])->name('berita.destroy');
+        Route::get('/beritaa/dashboard', [UserBeritaController::class, 'dashboard'])->name('beritaa.dashboard');
+        Route::get('/beritaa/create', [UserBeritaController::class, 'create'])->name('beritaa.create');
+        Route::post('/beritaa', [UserBeritaController::class, 'store'])->name('beritaa.store');
+        Route::get('/beritaa/{id}/edit', [UserBeritaController::class, 'edit'])->name('beritaa.edit');
+        Route::put('/beritaa/{id}', [UserBeritaController::class, 'update'])->name('beritaa.update');
+        Route::delete('/beritaa/{id}', [UserBeritaController::class, 'destroy'])->name('beritaa.destroy');
 
         // --- Manajemen artikel ---
         Route::get('/artikell/dashboard', [UserArtikelController::class, 'dashboard'])->name('artikell.dashboard');
@@ -149,14 +148,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/layanan_detail/{id}/edit', [LayananDetailController::class, 'edit'])->name('layanan_detail.edit');
         Route::put('/layanan_detail/{id}', [LayananDetailController::class, 'update'])->name('layanan_detail.update');
         Route::delete('/layanan_detail/{id}', [LayananDetailController::class, 'destroy'])->name('layanan_detail.destroy');
-
-        // --- Manajemen Program ---
-        Route::get('/program/dashboard', [ProgramController::class, 'dashboard'])->name('program.dashboard');
-        Route::get('/program/create', [ProgramController::class, 'create'])->name('program.create');
-        Route::post('/program', [ProgramController::class, 'store'])->name('program.store');
-        Route::get('/program/{id}/edit', [ProgramController::class, 'edit'])->name('program.edit');
-        Route::put('/program/{id}', [ProgramController::class, 'update'])->name('program.update');
-        Route::delete('/program/{id}', [ProgramController::class, 'destroy'])->name('program.destroy');
 
         // --- Manajemen Visi Misi ---
         Route::get('/visi/dashboard', [AdminVisiController::class, 'dashboard'])->name('visi.dashboard');

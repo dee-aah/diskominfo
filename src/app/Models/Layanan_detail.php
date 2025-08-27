@@ -9,11 +9,7 @@ class Layanan_detail extends Model
     protected $fillable = [
     'layanan_id',
     'jenis',
-    'isi_1',
-    'isi_2',
-    'isi_3',
-    'isi_4',
-    'isi_5',
+    'deskripsi',
     'gambar'
     ];
 

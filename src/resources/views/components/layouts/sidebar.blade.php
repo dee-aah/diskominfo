@@ -91,8 +91,7 @@
 
                         <!-- Sub Menu -->
                         <ul id="Menu" class="hidden ml-6 pl-6">
-                            <li><a href="{{route('program.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Program</a></li>
-                            <li><a href="{{route('layanan.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Layanan</a>
+                            <li><a href="{{route('layanan.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Program & Layanan</a>
                             </li>
                             <li><a href="{{route('layanan_detail.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Detail Layanan</a>
                             </li>
@@ -125,7 +124,7 @@
                     </li>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'user')
-                        <a href="{{ route('berita.dashboard') }}"
+                        <a href="{{ route('beritaa.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Berita</span>
                         </a>

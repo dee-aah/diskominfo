@@ -28,31 +28,9 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_1" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 1"
+                        <textarea name="deskripsi" rows="3" placeholder=" Masukkan Deskripsi Layanan "
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_2" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 2"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_3" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 3 (Opsional)"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
-
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_4" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 4 (Opsional)"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
-
-                    </div>
-                   <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_5" rows="" placeholder=" Masukkan Deskripsi Layanan Ke 5 (Opsional)"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" ></textarea>
-
+                            <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
                     <div class="mb-3 mt-2">
                         <input required type="file" name="gambar"

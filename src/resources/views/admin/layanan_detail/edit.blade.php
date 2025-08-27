@@ -31,33 +31,10 @@
 
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_1" rows="5"
-                            placeholder="Masukkan Deskripsi Layanan ke 1"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('isi_1', $layanan_detail->isi_1) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_2" rows="5"
-                            placeholder="Masukkan Deskripsi Layanan ke 2"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('isi_2', $layanan_detail->isi_2) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_3" rows="5"
-                            placeholder="Masukkan Deskripsi Layanan ke 3"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_3', $layanan_detail->isi_3) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_4" rows="5"
-                            placeholder="Masukkan Deskripsi Layanan ke 4"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_4', $layanan_detail->isi_4) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="isi_5" rows="5"
-                            placeholder="Masukkan Deskripsi Layanan ke 5"
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" >{{ old('isi_5', $layanan_detail->isi_5) }}</textarea>
+                        <textarea name="deskripsi" rows="3"
+                            placeholder="Masukkan Deskripsi Layanan "
+                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $layanan_detail->deskripsi) }}</textarea>
+                            <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
                     </div>
                     <div class="mb-3">
                         <input type="file" name="gambar"

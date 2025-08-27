@@ -21,6 +21,7 @@
                         <label class="block text-lg font-medium">Fungsi Utama</label>
                         <textarea name="fungsi_utama" rows="5" placeholder=" Masukkan Fungsi Utama"
                             class="w-full border bg-gray-100 -border-gray-400 rounded p-2" required></textarea>
+                            <small class="text-gray-500">Pisahkan Tag Dengan Titik ('.').</small>
                     </div>
                     <div class="mb-3 mt-2">
                         <label class="block text-lg font-medium">Gambar Latar</label>

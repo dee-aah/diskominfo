@@ -5,7 +5,7 @@
                 <div class="flex justify-center items-center mb-4">
                     <h3 class="text-3xl text-center font-bold">Tambah Berita</h3>
                 </div>
-                <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('beritaa.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Judul Berita</label>
@@ -49,7 +49,7 @@
                             file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-500 hover:file:bg-violet-100 dark:file:bg-blue-500 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
-                        <a href="{{ route('berita.dashboard') }}" type="button"
+                        <a href="{{ route('beritaa.dashboard') }}" type="button"
                             class="bg-gray-500 hover:bg-gray-400 text-white px-4 py-2 rounded">Batal</a>
                         <button type="submit" class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded">Simpan
                         </button>

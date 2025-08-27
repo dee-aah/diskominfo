@@ -33,7 +33,7 @@
             <thead>
                 <tr class="bg-slate-300 text-center">
                     <th class="px-2 border border-gray-400 border-2 py-2">No</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Program</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Nama Program</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Nama</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi Singkat</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
@@ -46,7 +46,7 @@
                 @forelse ($layanans as $layanan)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->program_id }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->program }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->nama }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->des_singkat }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->deskripsi }}</td>
@@ -77,7 +77,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center border border-gray-400 border-2 py-4">Belum ada artikel</td>
+                        <td colspan="9" class="text-center border border-gray-400 border-2 py-4">Belum ada artikel</td>
                     </tr>
                 @endforelse
             </tbody>

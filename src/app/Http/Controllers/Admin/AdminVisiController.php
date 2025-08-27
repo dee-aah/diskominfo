@@ -51,7 +51,7 @@ class AdminVisiController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('admin.visi.dashboard')->with('success', 'Visi Misi Berhasil Ditambahkan');
+    return redirect()->route('visi.dashboard')->with('success', 'Visi Misi Berhasil Ditambahkan');
     }
     public function edit(string $id)
     {
