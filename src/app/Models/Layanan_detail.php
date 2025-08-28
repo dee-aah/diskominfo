@@ -12,6 +12,10 @@ class Layanan_detail extends Model
     'deskripsi',
     'gambar'
     ];
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 
     // Relasi ke Service
     public function layanans()

@@ -26,7 +26,7 @@
                         <li>
                             <a href="" class="flex items-center space-x-2">
                                 <img width="20" height="20" class="mr-4" src="https://img.icons8.com/fluency/48/gmail-new.png" alt="gmail-new"/>
-                                <span>dppkbp3a@gmail.go.id</span>
+                                <span>dppkbp3atasikmalayakota.go.id</span>
                             </a>
                         </li>
 

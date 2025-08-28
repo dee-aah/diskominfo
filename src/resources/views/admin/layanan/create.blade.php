@@ -9,8 +9,12 @@
                     @csrf
                     <div class="mb-3">
                         <label class="block text-base font-medium">Nama Program</label>
-                        <input type="text" name="program" placeholder=" Masukkan Nama Program"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
+                        <select name="program" class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
+                            <option value="">-- Pilih Program --</option>
+                            @foreach ($jenisOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Nama Layanan</label>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Layanan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 class AdminLayananController extends Controller
 {
     public function dashboard(Request $request)
@@ -29,7 +30,10 @@ class AdminLayananController extends Controller
     public function create()
     {
         $layanans =Layanan::all();
-        return view('admin.layanan.create', compact('layanans'));
+        $enumValues = DB::select("SHOW COLUMNS FROM layanans WHERE Field = 'program'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.layanan.create', compact('layanans','jenisOptions'));
     }
 
     /**
@@ -72,7 +76,10 @@ class AdminLayananController extends Controller
     public function edit(string $id)
     {
         $layanan = Layanan::findOrFail($id);
-        return view('admin.layanan.edit', compact('layanan'));
+        $enumValues = DB::select("SHOW COLUMNS FROM layanans WHERE Field = 'program'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.layanan.edit', compact('layanan','jenisOptions'));
     }
 
     /**

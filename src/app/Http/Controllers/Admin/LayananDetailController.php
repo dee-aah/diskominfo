@@ -72,16 +72,17 @@ class LayananDetailController extends Controller
         'gambar' => $filename
     ]);
 
-    return redirect()->route('admin.layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($slug)
+    public function show(Layanan_detail $layanan_detail)
     {
-        $layanan = Layanan::where('slug', $slug)->firstOrFail();
-
+        // $layanan = Layanan::where('slug', $slug)->firstOrFail();
+        // $layanan_detail = Layanan_detail::first();
+        $layanan = $layanan_detail->layanan;
         return view('layanan_details.show', compact('layanan'));
     }
 
@@ -104,7 +105,7 @@ class LayananDetailController extends Controller
     public function update(Request $request, string $id)
     {
         $layanan_detail = Layanan_detail::findOrFail($id);
-
+        $filename = $layanan_detail->gambar;
         if ($request->hasFile('gambar')) {
             if ($layanan_detail->gambar) {
                 Storage::delete('public/layanan/' . $layanan_detail->gambar);
@@ -119,7 +120,7 @@ class LayananDetailController extends Controller
             'layanan_id' => $request->layanan_id,
             'gambar' => $filename
         ]);
-        return redirect()->route('admin.layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
+        return redirect()->route('layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }
 
     /**

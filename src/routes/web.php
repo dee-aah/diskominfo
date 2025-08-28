@@ -66,6 +66,8 @@ Route::prefix('pdf')->name('pdf.')->group(function () {
 Route::resource('/visimisi', VisiController::class)->only(['index', 'show']);
 Route::resource('/beranda', berandaController::class)->only(['index']);
 Route::get('/layanans', [LayananController::class, 'index'])->name('layanans.index');
+Route::get('/layanans/{layanan:slug}', [LayananController::class, 'show'])->name('layanans.show');
+
 Route::resource('/tupoksi', tupoksiController::class)->only(['index', 'show']);
 Route::resource('/layanan_details', LayananDetailController::class)->only(['index', 'show']);
 Route::resource('/struktur', strukturController::class)->only(['index', 'show']);

@@ -39,7 +39,7 @@
                     <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Slug</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Gambar</th>
-                    <th class="px-4 border aksi hidden border-gray-400 border-20 py-2">Aksi</th>
+                    <th class="px-4 border aksi hidden border-gray-400 border-2 py-2">Aksi</th>
                 </tr>
             </thead>
             <tbody class="bg-gray-100">

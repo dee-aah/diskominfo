@@ -8,10 +8,10 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label class="block text-base font-medium">Layanan</label>
+                        <label class="block text-lg font-medium">Layanan</label>
                         <select name="layanan_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
                             required>
-                            <option value="">-- Pilih Program --</option>
+                            <option value="">-- Pilih Layanan --</option>
                             @foreach ($layanans as $layanan)
                                 <option value="{{ $layanan->id }}" {{ old('layanan_id', $layanan_detail->layanan_id ?? '') == $layanan->id ? 'selected' : '' }}>
                                     {{ $layanan->nama }}
@@ -34,7 +34,7 @@
                         <textarea name="deskripsi" rows="3"
                             placeholder="Masukkan Deskripsi Layanan "
                             class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $layanan_detail->deskripsi) }}</textarea>
-                            <small class="text-gray-500">Pisahkan Tag Dengan Koma (',').</small>
+                            <small class="text-gray-500">Pisahkan Tag Dengan Titik ('.').</small>
                     </div>
                     <div class="mb-3">
                         <input type="file" name="gambar"

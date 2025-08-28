@@ -16,7 +16,10 @@ class Layanan extends Model
     {
         return $this->hasMany(Layanan_detail::class);
     }
-
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
     // Auto-generate slug
     protected static function boot()
     {

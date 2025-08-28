@@ -15,7 +15,12 @@ return new class extends Migration
         // Tabel Layanan
         Schema::create('layanans', function (Blueprint $table) {
             $table->id();
-            $table->string('program');
+            $table->enum('program', [
+                'Pengendalian Penduduk dan Keluarga Berencana',
+                'Pemberdayaan Perempuan',
+                'Perlindungan Anak',
+                'Keluarga Sejahtera dan Pembangunan Keluarga'
+            ])->nullable();
             $table->string('nama');
             $table->text('des_singkat')->nullable();
             $table->text('deskripsi')->nullable();

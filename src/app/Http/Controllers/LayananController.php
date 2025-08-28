@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
-use App\Models\Program;
+use App\Models\Layanan_detail;
 
 class LayananController extends Controller
 {
@@ -12,19 +12,21 @@ class LayananController extends Controller
      */
     public function index()
     {
-
-        $layanans = layanan::with('layanans')->get();
-        $layananlain = Layanan::with('layanans')->skip(1)->take(3)->get();
-        return view('layanans.index', compact('layanans','layananlain'));
+        $layanann = Layanan::all();
+        $layanans = Layanan::all()->groupBy('program');
+        $layananlain = Layanan::skip(1)->take(3)->get();
+        return view('layanans.index', compact('layanans','layanann','layananlain'));
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Layanan $layanan)
     {
-        //
+        $layanan->load('layanan_details');
+
+        return view('layanans.show', compact('layanan'));
     }
 
     /**
