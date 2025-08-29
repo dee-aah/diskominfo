@@ -13,12 +13,12 @@
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Jenis Hukum</label>
+                        <label class="block text-lg font-medium">Jenis Peraturan</label>
                         <input type="text" name="jenis_peraturan" placeholder=" Masukkan Jenis Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Judul Hukum</label>
+                        <label class="block text-lg font-medium">Judul Peraturan</label>
                         <input type="text" name="judul_peraturan" placeholder=" Masukkan Judul Peraturan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>

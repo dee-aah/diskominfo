@@ -13,6 +13,10 @@ class Berita extends Model
     protected $casts = [
     'waktu' => 'datetime',
     ];
+    public function getRouteKeyName()
+{
+    return 'slug';
+}
 
     // app/Models/Berita.php
     protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'gambar','waktu','view_count', 'kategori_id'];

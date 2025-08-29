@@ -11,8 +11,23 @@ class ProdukhukumController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = ProdukHukum::query();
+
+    // Filter berdasarkan jenis_peraturan
+    if ($request->filled('jenis_peraturan')) {
+        $query->where('jenis_peraturan', $request->jenis_peraturan);
+    }
+
+    // Pencarian berdasarkan judul atau nomor
+    if ($request->filled('search')) {
+        $search = $request->search;
+        $query->where(function ($q) use ($search) {
+            $q->where('judul_peraturan', 'like', "%$search%")
+                ->orWhere('nomor', 'like', "%$search%");
+        });
+    }
         $produkhukum = ProdukHukum::all();
         $ProdukHukumCont = ProdukHukumCont::first();
         return view ('produkhukum.index',compact('ProdukHukumCont','produkhukum'));

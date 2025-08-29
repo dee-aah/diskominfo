@@ -70,8 +70,22 @@ class AdminProdukHukumController extends Controller
         //     $filename = $file->getClientOriginalName();
         //     $file->storeAs('produk', $filename);
         // }
-        $path = $request->file('lampiran')->store('produk','public');
-        $paths = $request->file('naskah_akademik')->store('produk', 'public');
+
+$path = null;
+if ($request->hasFile('lampiran')) {
+    $fileLampiran = $request->file('lampiran');
+    $filenameLampiran =  $fileLampiran->getClientOriginalName();
+    $path = $fileLampiran->storeAs('produk', $filenameLampiran, 'public');
+}
+
+// Naskah Akademik
+$paths = null;
+if ($request->hasFile('naskah_akademik')) {
+    $fileNaskah = $request->file('naskah_akademik');
+    $filenameNaskah = $fileNaskah->getClientOriginalName();
+    $paths = $fileNaskah->storeAs('produk', $filenameNaskah, 'public');
+}
+
         ProdukHukum::create([
             'reg'                  => $request->reg,
             'jenis_peraturan'      => $request->jenis_peraturan,

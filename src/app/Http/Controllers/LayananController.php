@@ -25,8 +25,8 @@ class LayananController extends Controller
     public function show(Layanan $layanan)
     {
         $layanan->load('layanan_details');
-
-        return view('layanans.show', compact('layanan'));
+        $layanan_detail = Layanan_detail::first();
+        return view('layanans.show', compact('layanan','layanan_detail'));
     }
 
     /**

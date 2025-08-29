@@ -26,6 +26,14 @@
                 <ul>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'admin')
+                        <a href="{{ route('pimpinan.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Sambutan Pimpinan</span>
+                        </a>
+                        @endif
+                    </li>
+                    <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
                         <a href="{{ route('tentang_kami.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
                              <span>Tentang kami</span>

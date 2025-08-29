@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-lg font-medium">Tahun Pengundangan</label>
-                        <input type="date" name="tahun_pengundangan" value="{{ old('tahun_pengundangan', $produk->tahun_pengundangan) }}" placeholder=" Masukkan Tahun Pengundangan"
+                        <input type="date" name="tanggal_pengundangan" value="{{ old('tahun_pengundangan', $produk->tahun_pengundangan) }}" placeholder=" Masukkan Tahun Pengundangan"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
                     </div>
                     <div class="mb-3">
@@ -93,13 +93,13 @@
                     <div class="flex ">
                     <div class="mb-3 mt-2">
                         <label class="block text-lg font-medium">Lampiran</label>
-                        <input  type="file" name="lampiran"
+                        <input  type="file" name="lampiran" accept="application/pdf"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                     file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>
                     <div class="mb-3 mt-2">
                         <label class="block text-lg font-medium">Naskah Akademik</label>
-                        <input  type="file" name="naskah_akademik"
+                        <input  type="file" name="naskah_akademik" accept="application/pdf"
                             class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
                             file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
                     </div>

@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdminMaklumatController;
 use App\Http\Controllers\Admin\AdminProfilController;
 use App\Http\Controllers\Admin\AdminProdukHukumController;
 use App\Http\Controllers\Admin\AdminPHContController;
+use App\Http\Controllers\Admin\AdminPimpinanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -84,6 +85,8 @@ Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::cla
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
 Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
 Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
+Route::get('/beritakita/{id}', [BeritaController::class, 'show'])->name('beritakita.show');
+
 
 // Rute untuk artikel (Publik)
 Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
@@ -191,5 +194,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/produk_hukum_cont', AdminPHContController::class)->except(['index', 'show']);
         Route::get('/produk_hukum_cont/dashboard', [AdminPHContController::class, 'dashboard'])->name('produk_hukum_cont.dashboard');
+
+        Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index', 'show']);
+        Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])->name('pimpinan.dashboard');
     });
 });

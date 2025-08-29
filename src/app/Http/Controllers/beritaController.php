@@ -19,7 +19,7 @@ class BeritaController extends Controller
     {
         // Daftar nama kategori untuk pemfilteran
         $kategoriDinas = [
-            'Berita Dinas DPPKBP3A', 'Pengendalian Penduduk', 'Keluarga Berencana',
+            'Berita DPPKBP3A', 'Pengendalian Penduduk', 'Keluarga Berencana',
             'Pemberdayaan Perempuan', 'Perlindungan Anak'
         ];
         $kategoriTasik = ['Berita Kota Tasikmalaya'];

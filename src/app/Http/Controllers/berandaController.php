@@ -4,23 +4,41 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\Pimpinan;
 use Illuminate\Http\Request;
 
-class berandaController extends Controller
+class BerandaController extends Controller
 {
     public function index()
     {
-    $artikel = Artikel::latest()->first();
-    $artikellain = Artikel::where('id', '!=', optional($artikel)->id)
+        $pimpinan = Pimpinan::first();
+    //artikel
+    $artikel = Artikel::latest()
+                ->take(4)
+                ->get();
+    //berita kota tasikmalaya
+    $beritatasik = Berita::whereHas('kategori', function($q) {
+                $q->where('nama', 'Berita Kota Tasikmalaya');})
+                ->latest()
+                ->first();
+    $beritalaintasik = Berita::whereHas('kategori', function($q) {
+                $q->where('nama', 'Berita Kota Tasikmalaya');})
                     ->latest()
-                    ->take(5)
+                    ->skip(1)
+                    ->take(2)
                     ->get();
-    $berita = Berita::latest()->first();
-    $beritalain = Berita::where('id', '!=', optional($berita)->id)
+    //berita dppkbp3a
+    $berita = Berita::whereHas('kategori', function($q) {
+                $q->where('nama', 'Berita DPPKBP3A');})
+                ->latest()
+                ->first();
+    $beritalain = Berita::whereHas('kategori', function($q) {
+                $q->where('nama', 'Berita DPPKBP3A');})
                     ->latest()
-                    ->take(5)
+                    ->skip(1)
+                    ->take(2)
                     ->get();
-    return view('beranda.index', compact('artikel','berita', 'artikellain','beritalain'));
+    return view('beranda.index', compact('pimpinan','artikel','berita','beritatasik', 'beritalain','beritalaintasik'));
     }
     public function create()
     {
