@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jumlah Peserta KB</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 font-sans p-6">
+
+  <div class="bg-white shadow-md rounded-lg p-6 max-w-5xl mx-auto">
+    <!-- Judul -->
+    <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
+      Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
+    </h1>
+
+    <!-- Box Deskripsi -->
+    <div class="border rounded-lg p-4 mb-6">
+      <h2 class="text-center font-semibold text-gray-700 border-b pb-2 mb-4">
+        Deskripsi
+      </h2>
+      <p class="text-gray-700 text-sm leading-relaxed mb-3">
+        Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari tahun 2019 s.d. 2024.
+        Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk, Keluarga Berencana,
+        Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun sekali.
+      </p>
+
+      <p class="text-gray-700 text-sm leading-relaxed mb-3">
+        Penjelasan mengenai variabel di dalam dataset ini:
+      </p>
+
+      <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
+        <li><b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
+        <li><b>nama_provinsi:</b>menyatakan lingkup data berasal dari wilayah Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data teks.</li>
+        <li><b>kode_kabupaten_kota:</b>menyatakan kode Kota Tasikmalaya sesuai ketentuan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
+        <li><b>nama_kabupaten_kota:</b> menyatakan lingkup data berasal dari wilayah Kota Tasikmalaya sesuai penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data teks.</li>
+        <li><b>kode_kecamatan:</b>  menyatakan kode dari setiap kecamatan di Kota Tasikmalaya sesuai ketentuan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
+        <li><b>nama_kecamatan:</b> menyatakan lingkup data berasal dari setiap kecamatan di Kota Tasikmalaya sesuai penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor Nomor 3 Tahun 2019 dengan tipe data teks.</li>
+        <li><b>jumlah_pasangan_usia_subur:</b> menyatakan jumlah pasangan usia subur dengan tipe data numerik.</li>
+        <li><b>satuan:</b> menyatakan satuan dari pengukuran jumlah pasangan usia subur dalam orang dengan tipe data teks.</li>
+        <li><b>tahun: </b> menyatakan tahun produksi data dengan tipe data numerik.</li>
+      </ul>
+    </div>
+
+    <!-- Tabs -->
+    <div class="border rounded-lg">
+      <div class="flex border-b">
+        <button id="tabTabel" class="flex-1 text-center py-2 font-semibold text-blue-600 border-b-2 border-blue-600">Tabel</button>
+        <button id="tabGrafik" class="flex-1 text-center py-2 font-semibold text-gray-600">Grafik</button>
+      </div>
+
+      <!-- Konten Tabel -->
+      <div id="contentTabel" class="p-4">
+        <div class="overflow-x-auto">
+          <table class="w-full border text-sm text-gray-700">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="border px-3 py-2">NO</th>
+                <th class="border px-3 py-2">Kecamatan</th>
+                <th class="border px-3 py-2">Jumlah PUS</th>
+                <th class="border px-3 py-2">Target KB (%)</th>
+                <th class="border px-3 py-2">Realisasi (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-center"><td class="border">1</td><td class="border">Mangkubumi</td><td class="border">8456</td><td class="border">85</td><td class="border">78</td></tr>
+              <tr class="text-center"><td class="border">2</td><td class="border">Tamansari</td><td class="border">7234</td><td class="border">80</td><td class="border">82</td></tr>
+              <tr class="text-center"><td class="border">3</td><td class="border">Kawalu</td><td class="border">6892</td><td class="border">85</td><td class="border">78</td></tr>
+              <tr class="text-center"><td class="border">4</td><td class="border">Cihideung</td><td class="border">5678</td><td class="border">75</td><td class="border">79</td></tr>
+              <tr class="text-center"><td class="border">5</td><td class="border">Indihiang</td><td class="border">5234</td><td class="border">80</td><td class="border">81</td></tr>
+              <tr class="text-center"><td class="border">6</td><td class="border">Tawang</td><td class="border">4567</td><td class="border">75</td><td class="border">77</td></tr>
+              <tr class="text-center"><td class="border">7</td><td class="border">Purbaratu</td><td class="border">4123</td><td class="border">70</td><td class="border">73</td></tr>
+              <tr class="text-center"><td class="border">8</td><td class="border">Cibeureum</td><td class="border">3789</td><td class="border">75</td><td class="border">71</td></tr>
+              <tr class="text-center"><td class="border">9</td><td class="border">Cipedes</td><td class="border">3456</td><td class="border">70</td><td class="border">74</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Konten Grafik -->
+      <div id="contentGrafik" class="p-4 hidden">
+        <canvas id="kbChart" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Tab & Grafik -->
+  <script>
+    const tabTabel = document.getElementById("tabTabel");
+    const tabGrafik = document.getElementById("tabGrafik");
+    const contentTabel = document.getElementById("contentTabel");
+    const contentGrafik = document.getElementById("contentGrafik");
+
+    // Tab handler
+    tabTabel.addEventListener("click", () => {
+      contentTabel.classList.remove("hidden");
+      contentGrafik.classList.add("hidden");
+      tabTabel.classList.add("text-blue-600","border-b-2","border-blue-600");
+      tabGrafik.classList.remove("text-blue-600","border-b-2","border-blue-600");
+      tabGrafik.classList.add("text-gray-600");
+    });
+
+    tabGrafik.addEventListener("click", () => {
+      contentGrafik.classList.remove("hidden");
+      contentTabel.classList.add("hidden");
+      tabGrafik.classList.add("text-blue-600","border-b-2","border-blue-600");
+      tabTabel.classList.remove("text-blue-600","border-b-2","border-blue-600");
+      tabTabel.classList.add("text-gray-600");
+    });
+
+    // Data untuk grafik
+    const labels = ["Mangkubumi","Tamansari","Kawalu","Cihideung","Indihiang","Tawang","Purbaratu","Cibeureum","Cipedes"];
+    const target = [85,80,85,75,80,75,70,75,70];
+    const realisasi = [78,82,78,79,81,77,73,71,74];
+
+    // Buat grafik Chart.js
+    new Chart(document.getElementById("kbChart"), {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Target KB (%)",
+            data: target,
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Realisasi (%)",
+            data: realisasi,
+            backgroundColor: "rgba(255, 99, 132, 0.7)"
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: {
+            display: true,
+            text: 'Perbandingan Target dan Realisasi KB per Kecamatan'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
