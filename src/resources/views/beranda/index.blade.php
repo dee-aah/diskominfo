@@ -8,9 +8,9 @@
             <div class="absolute bg-black bg-opacity-50 z-10"></div>
             <!-- Konten Hero -->
             <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
-                <div class="text-black max-w-2xl mx-auto">
+                <div class="text-white max-w-2xl mx-auto">
                     <h1 id="typewriter"
-                    class="text-4xl text-black md:text-5xl font-bold leading-normal mb-4  whitespace-nowrap overflow-hidden typewriter">
+                    class="text-4xl text-white md:text-5xl font-bold leading-normal mb-4  whitespace-nowrap overflow-hidden typewriter">
                     </h1>
                     <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                         Perlindungan Anak.</p>
@@ -455,12 +455,12 @@
                                 </div>
                             </div>
                         <a href="{{route('artikel.index')}}"
-                           class="inline-flex items-center justify-center px-6 text-sm py-2 bg-[#476A9A] text-white rounded hover:bg-blue-800 transition">
-                            Lihat Semua Berita
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
+                           class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
+                                Baca Selengkapnya
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
                         </a>
                     </div>
                 </div>

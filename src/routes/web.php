@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 /*
 |--------------------------------------------------------------------------
 | Web Routes User
@@ -43,6 +44,7 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\KasusController;
 
 //======================================================================
 // 1. RUTE PUBLIK (Dapat diakses oleh semua pengunjung)
@@ -51,6 +53,9 @@ use App\Http\Controllers\PdfController;
 
 // ... route Anda yang lain
 
+//Route::get('/sektoral', [KasusController::class, 'index']);
+Route::resource('/sektoral', KasusController::class)->only(['index']);
+Route::get('/sektoral/kasus', [KasusController::class, 'kasus'])->name('sektoral.kasus');
 
 // Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {

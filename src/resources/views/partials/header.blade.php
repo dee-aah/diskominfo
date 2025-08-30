@@ -62,7 +62,7 @@
                                 <a href="{{ url('/artikel') }}" class="block px-4 py-2 hover:bg-blue-100">Artikel</a>
                             </div>
                         </div>
-                        <a href="#" class="hover:text-blue-600">Data Statistik Sektoral</a>
+                        <a href="{{url('/sektoral')}}" class="hover:text-blue-600">Data Statistik Sektoral</a>
 
                     </div>
 
