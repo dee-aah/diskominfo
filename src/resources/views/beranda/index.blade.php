@@ -58,15 +58,15 @@
                 <p class="text-gray-600 mt-2 text-sm">Dapatkan pelayanan kami melalui menu di bawah yang tersedia di
                     DPPKBP3A</p>
             </div>
-            <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10"
+            <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-15"
                 style="background-image: url('gambar/bg.jpg');">
                 <!-- Slide Area -->
-                <div class="relative w-full max-w-screen-xl flex items-center overflow-hidden">
+                <div class="relative w-full max-w-screen-xl flex pl-8 pr-15 items-center overflow-hidden">
                     <div id="slideWrapper" class="flex space-x-6 transition-transform duration-500 ease-in-out">
 
                         <!-- Card 1 -->
-                        <div id="card-0" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
-                            <a href="layanan.html">
+                        <div id="card-0" class="min-w-[310px] max-w-md mr-5 p-10 rounded-lg shadow-lg">
+                            <a href="{{url('/sektoral')}}">
                                 <h2 class="text-2xl font-bold mb-2">Layanan DPPKBP3A</h2>
                                 <div class="h-[2px] w-10 bg-white mb-4"></div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi maxime repellendus
@@ -75,7 +75,7 @@
                                 <div class="mt-4 text-right text-xl">↗</div>
                             </a>
                         </div>
-                        <div id="card-0" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
+                        <div id="card-0" class="min-w-[310px] mx-5 max-w-md p-10 rounded-lg shadow-lg">
                             <a href="">
                                 <h2 class="text-2xl font-bold mb-2">Standar Pelayanan</h2>
                                 <div class="h-[2px] w-10 bg-white mb-4"></div>
@@ -86,7 +86,7 @@
                             </a>
                         </div>
                         <!-- Card 2 -->
-                        <div id="card-1" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
+                        <div id="card-1" class="min-w-[310px] mx-5 max-w-md p-10 rounded-lg shadow-lg">
                             <a href="">
                                 <h2 class="text-2xl font-bold mb-2">IKM</h2>
                                 <div class="h-[2px] w-10 bg-white mb-4"></div>
@@ -97,8 +97,8 @@
                             </a>
                         </div>
                         <!-- Card 3 -->
-                        <div id="card-2" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
-                            <a href="https://ppid.tasikmalayakota.go.id/">
+                        <div id="card-2" class="min-w-[310px] mx-5 max-w-md p-10 rounded-lg shadow-lg">
+                            <a href="{{url('https://ppid.tasikmalayakota.go.id/')}}">
                                 <h2 class="text-2xl font-bold mb-2">PPID</h2>
                                 <div class="h-[2px] w-10 bg-white mb-4"></div>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit aut vero voluptatum
@@ -107,23 +107,13 @@
                                 <div class="mt-4 text-right text-xl">↗</div>
                             </a>
                         </div>
-                        <div id="card-2" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
-                            <a href="">
+                        <div id="card-2" class="min-w-[310px] mx-5 max-w-md p-10 rounded-lg shadow-lg">
+                            <a href="{{url('https://www.lapor.go.id/instansi/pemerintah-kota-tasikmalaya')}}">
                                 <h2 class="text-2xl font-bold mb-2">SP4N Lapor</h2>
                                 <div class="h-[2px] w-10 bg-white mb-4"></div>
                                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis iste consequatur
                                     ab voluptates, deleniti ipsa, dolores, quidem corrupti porro non consectetur. Esse,
                                     quas consequatur veniam laudantium temporibus nulla aperiam hic!</p>
-                                <div class="mt-4 text-right text-xl">↗</div>
-                            </a>
-                        </div>
-                        <div id="card-2" class="min-w-[300px] max-w-md p-6 rounded-lg shadow-lg">
-                            <a href="">
-                                <h2 class="text-2xl font-bold mb-2">Informasi Layanan</h2>
-                                <div class="h-[2px] w-10 bg-white mb-4"></div>
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel mollitia repellat,
-                                    earum ad at amet perferendis dolores sed totam molestiae illum assumenda ipsa
-                                    consectetur voluptatum rem. Nesciunt sed culpa doloremque.</p>
                                 <div class="mt-4 text-right text-xl">↗</div>
                             </a>
                         </div>
@@ -143,44 +133,42 @@
                 <!-- Repeat untuk setiap data dengan gaya seragam -->
                 <div class="bg-white rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Total Penduduk</p>
-                    <p class="text-2xl font-bold">2.847 <span class="text-lg">Juta</span></p>
-                    <p class="text-green-600 text-sm">Jiwa terdaftar</p>
+                    <p class="text-2xl font-bold">{{number_format($totalpenduduk, 0, ',', '.')}} </p>
+                    <p class="text-green-600 text-sm">Jiwa Terdaftar Pada Tahun {{$tahunpenduduk}}</p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-5 text-center">
-                    <p class="text-gray-500 text-sm mb-2">Angka Kelahiran</p>
-                    <p class="text-2xl font-bold">2.28<span class="text-lg">%</span></p>
-                    <p class="text-gray-500 text-sm">Per 1000 penduduk</p>
+                    <p class="text-gray-500 text-sm mb-2">Index Pemberdayaan Gender</p>
+                    <p class="text-2xl font-bold">{{number_format($datapemberdayaan, 2, ',', '.')}}</p>
+                    <p class="text-green-600 text-sm">Poin Pada Tahun {{$tahunpemberdayaan}} </p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Rasio Jenis Kelamin</p>
-                    <p class="text-2xl font-bold">101,20</p>
-                    <p class="text-gray-500 text-sm">Laki-laki per 100 perempuan</p>
+                    <p class="text-2xl font-bold">{{number_format($rasiojeniskelamin, 2, ',', '.')}}</p>
+                    <p class="text-green-600 text-sm">Laki-laki per 100 Perempuan Tahun {{$tahunpenduduk}}</p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-5 text-center">
-                    <p class="text-gray-500 text-sm mb-2">Partisipasi Perempuan</p>
-                    <p class="text-2xl font-bold">34.5<span class="text-lg">%</span></p>
-                    <p class="text-green-600 text-sm">Dalam angkatan kerja</p>
+                    <p class="text-gray-500 text-sm mb-2">Pasangan Usia Subur</p>
+                    <p class="text-2xl font-bold">{{number_format($datasuburterbaru, 0, ',', '.')}}</p>
+                    <p class="text-green-600 text-sm">Total Data Per Tahun {{$tahunsuburterbaru}} </p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-5 text-center">
-                    <p class="text-gray-500 text-sm mb-2">Kasus Kekerasan Anak</p>
-                    <p class="text-2xl font-bold">234</p>
-                    <p class="text-red-600 text-sm">Kasus per tahun</p>
+                    <p class="text-gray-500 text-sm mb-2">Kekerasan Pada Perempuan dan Anak</p>
+                    <p class="text-2xl font-bold">{{$datakasusterbaru}}</p>
+                    <p class="text-red-600 text-sm">Kasus Tahun {{$tahunkasusterbaru}}</p>
                 </div>
                 <div class="bg-white rounded-lg shadow p-5 text-center">
-                    <p class="text-gray-500 text-sm mb-2">Peserta KB</p>
-                    <p class="text-2xl font-bold">187.252 <span class="text-lg">Ribu</span></p>
-                    <p class="text-green-600 text-sm">Akseptor aktif</p>
+                    <p class="text-gray-500 text-sm mb-2">Peserta KB </p>
+                    <p class="text-2xl font-bold">{{number_format($datakbterbaru, 0, ',', '.')}} </p>
+                    <p class="text-green-600 text-sm">Akseptor Aktif Tahun {{$tahunkbterbaru}}</p>
                 </div>
             </div>
-            <div class="p-5 ">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati, nobis ipsam molestias quaerat
-                veritatis dolores at veniam tempore fugiat rerum nesciunt ex accusamus nam dolor vitae molestiae totam
-                nostrum reprehenderit.
+            <div class="p-5 text-justify ">
+                Data terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya dan Badan Pusat Statistik Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun sekali.
             </div>
 
             <!-- Kanan -->
             <div class="flex-shrink-0 l p-2">
-                <a href="data.html"
+                <a href="{{url('/sektoral')}}"
                     class="inline-flex items-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-full hover:bg-[#476A9A] hover:text-white transition">
                     Selengkapnya
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
@@ -204,7 +192,7 @@
             </div>
         </div>
         <section class="relative max-w-6xl mx-auto bg-cover bg-center min-h-screen flex items-center"
-            style="background-image: url('gambar/gambar.jpg');">
+            style="background-image: url('{{asset('storage/tentang/'. $tentang_kami->gambar)}}');">
             <!-- Overlay gelap -->
             <div class="absolute inset-0 bg-black/50"></div>
             <!-- Konten -->
@@ -212,12 +200,7 @@
                 <div class="max-w-xl text-left text-white space-y-4">
                     <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">Sekilas DPPKBP3A</p>
                     <p class="text-lg text-gray-200">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt eum laudantium velit vitae
-                        aliquam vel eius eaque, numquam voluptas aut odio delectus explicabo facere? Officiis nemo sequi
-                        cum quo? Cum, asperiores ratione. Delectus repudiandae tempore quis ipsa doloribus optio
-                        voluptatum, nihil recusandae dolorum cumque accusamus a, reprehenderit dicta eius mollitia sint
-                        eos totam fugit libero error. Adipisci sit culpa, quae iure eligendi assumenda a possimus at,
-                        cupiditate, dolores optio facilis recusandae corrupti deserunt eaque in temporibus!
+                        {{$tentang_kami->deskripsi}}
                     </p>
                     <div class="flex flex-wrap gap-4 pt-4">
                         <a href="tentang.html"

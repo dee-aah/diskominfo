@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminProfilController;
 use App\Http\Controllers\Admin\AdminProdukHukumController;
 use App\Http\Controllers\Admin\AdminPHContController;
 use App\Http\Controllers\Admin\AdminPimpinanController;
+use App\Http\Controllers\Admin\AdminSektoralController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -56,7 +57,7 @@ use App\Http\Controllers\KasusController;
 //Route::get('/sektoral', [KasusController::class, 'index']);
 Route::resource('/sektoral', KasusController::class)->only(['index']);
 Route::get('/sektoral/kasus', [KasusController::class, 'kasus'])->name('sektoral.kasus');
-
+Route::get('/sektoral/PasanganSubur', [KasusController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
 // Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {
     return view('welcome');
@@ -202,5 +203,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index', 'show']);
         Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])->name('pimpinan.dashboard');
+
+        Route::resource('/sektoral_cont', AdminSektoralController::class)->except(['index', 'show']);
+        Route::get('/sektoral_cont/dashboard', [AdminSektoralController::class, 'dashboard'])->name('sektoral_cont.dashboard');
     });
 });

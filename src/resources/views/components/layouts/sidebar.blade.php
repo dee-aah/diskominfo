@@ -123,6 +123,14 @@
                         @endif
                     </li>
                     <li class="mb-2">
+                        @if(auth()->check() && auth()->user()->role === 'admin')
+                        <a href="{{ route('sektoral_cont.dashboard') }}"
+                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
+                             <span>Sektoral</span>
+                        </a>
+                        @endif
+                    </li>
+                    <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'user')
                         <a href="{{ route('artikell.dashboard') }}"
                             class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">

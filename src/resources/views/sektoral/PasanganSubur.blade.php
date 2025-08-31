@@ -65,17 +65,17 @@
                                 <tr>
                                     <th class="border px-3 py-2">Nama Provinsi</th>
                                     <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Jumlah Kasus</th>
+                                    <th class="border px-3 py-2">Jumlah Pasangan</th>
                                     <th class="border px-3 py-2">Satuan</th>
                                     <th class="border px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $row)
+                                @foreach ($datasubur as $row)
                                     <tr>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }} </td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['jumlah_kasus'] ?? '-' }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['jumlah_pasangan_usia_subur'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
@@ -119,18 +119,18 @@
 
             // Data untuk grafik
             const labels = @json($tahunList);
-            const dataKasus = @json($totalKasusPerTahun);
+            const dataKasus = @json($totalSuburPerTahun);
             // Buat grafik Chart.js
             new Chart(document.getElementById("kasusChart"), {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Total Kasus Kekerasan",
+                        label: "Total Pasangan Subur",
                         data: dataKasus,
                         fill: true,
-                        backgroundColor: "rgba(255, 20, 0, 1)",
-                        borderColor: "rgba(255, 20, 0, 1)",
+                        backgroundColor: "rgba(54, 162, 235, 0.2)",
+                        borderColor: "rgba(54, 162, 235, 1)",
                         tension: 0.3
                     }]
                 },
@@ -142,7 +142,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Kasus Kekerasan Perempuan dan Anak Kota Tasikmalaya'
+                            text: 'Jumlah Pasangan Subur Kota Tasikmalaya'
                         }
                     },
                     scales: {

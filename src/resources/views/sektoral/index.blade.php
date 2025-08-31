@@ -1,16 +1,14 @@
 <x-layouts.app>
     <section class="relative bg-gray-800 text-white rounded-2xl overflow-hidden max-w-5xl mx-auto mt-24">
         <!-- Background Image -->
-        <img src="{{asset('img/keluarga.jpg')}}" alt="Family" class="w-full h-full object-cover opacity-80">
+        <img src="{{asset('storage/sektorall/'.$sektoral->gambar)}}" alt="Family" class="w-full h-full object-cover opacity-80">
 
         <!-- Overlay -->
         <div class="absolute inset-1 bg-gradient-to-r from-gray-900/70 to-transparent flex items-end">
             <div class="px-8 mb-6 py-10 max-w-2xl">
                 <h1 class="text-5xl font-bold mb-3">Data Statistik Sektoral</h1>
                 <p class="text-[20px] text-justify leading-relaxed">
-                    Data Statistik Sektoral DPPKBP3A berisi gambaran angka dan informasi seputar penduduk, keluarga
-                    berencana,
-                    perlindungan anak, serta pemberdayaan perempuan di Kota Tasikmalaya
+                    {{$sektoral->deskripsi}}
                 </p>
             </div>
         </div>
@@ -24,14 +22,14 @@
             <!-- Card 1 -->
             <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Pasangan Usia Subur</h3>
-                <p class="text-3xl font-bold mt-2">{{$datasuburterbaru}}</p>
+                <a href="{{route('sektoral.PasanganSubur')}}" class="text-3xl font-bold mt-2">{{number_format($datasuburterbaru, 0, ',', '.')}}</a>
                 <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya Tahun {{$tahunsuburterbaru}}.</p>
             </div>
 
             <!-- Card 2 -->
             <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Peserta Keluarga Berencana</h3>
-                <p class="text-3xl font-bold mt-2">{{$datakbterbaru}}</p>
+                <p class="text-3xl font-bold mt-2">{{number_format($datakbterbaru, 0, ',', '.')}}</p>
                 <p class="text-sm mt-2">Jumlah Akseptor Keluarga Berencana Aktif Tahun  {{ $tahunkbterbaru }}.</p>
             </div>
 
@@ -39,7 +37,7 @@
             <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Kasus Kekerasan</h3>
                     <a href="{{route('sektoral.kasus')}}"
-                     class="text-3xl font-bold mt-2">{{ $datakasusterbaru }}
+                        class="text-3xl font-bold mt-2">{{ $datakasusterbaru }}
                     </a>
                 <p class="text-sm mt-2">Kasus Kekerasan Terhadap Perempuan & Anak Ditangani Tahun {{ $tahunkasusterbaru }}</p>
             </div>

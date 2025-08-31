@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Berita;
 use App\Models\Tentang;
 use Illuminate\Http\Request;
-
+use App\Models\Kategori;
 class TentangController extends Controller
 {
     /**
@@ -12,10 +13,24 @@ class TentangController extends Controller
      */
     public function index()
     {
+        $kategoriDinas = [
+            'Berita DPPKBP3A', 'Pengendalian Penduduk', 'Keluarga Berencana',
+            'Pemberdayaan Perempuan', 'Perlindungan Anak'
+        ];
+        $beritaterbaru = $this->getBeritaByKategori($kategoriDinas, 'created_at', 8);
         $tentang = Tentang::first();
-        return view('tentang.index',compact('tentang'));
+        return view('tentang.index',compact('tentang','kategoriDinas','beritaterbaru'));
     }
-
+    private function getBeritaByKategori(array $kategoriNames, string $orderByColumn, int $limit)
+    {
+        return Berita::with('kategori')
+            ->whereHas('kategori', function ($query) use ($kategoriNames) {
+                $query->whereIn('nama', $kategoriNames);
+            })
+            ->orderBy($orderByColumn, 'desc')
+            ->take($limit)
+            ->get();
+    }
     /**
      * Show the form for creating a new resource.
      */

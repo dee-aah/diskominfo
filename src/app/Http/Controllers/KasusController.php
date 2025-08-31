@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sektoral;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 class KasusController extends Controller
 {
     public function index()
-    {   //subur
+    {
+        $sektoral = Sektoral::first();
+        //subur
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jumlah_pasangan_usia_subur_di_kota_tasikmalaya");
         $json = $response->json();
         $datasubur = collect($json['data'] ?? []);
@@ -30,6 +33,7 @@ class KasusController extends Controller
         $datakasusterbaru = $recordkasusterbaru['jumlah_kasus'] ?? 0;
 
         return view('sektoral.index',compact(
+            'sektoral',
   'datasubur',
  'recordsuburterbaru',
             'tahunsuburterbaru',
@@ -58,5 +62,18 @@ class KasusController extends Controller
     })->values();
 
     return view('sektoral.kasus', compact('data','groupedByYear', 'tahunList', 'totalKasusPerTahun'));
+    }
+    public function PasanganSubur()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jumlah_pasangan_usia_subur_di_kota_tasikmalaya");
+        $datasubur = collect($response->json()['data'] ?? []);
+
+        $groupedByYear = $datasubur->groupBy('tahun');
+        $tahunList = $groupedByYear->keys();
+        $totalSuburPerTahun = $groupedByYear->map(function ($items) {
+            return $items->sum('jumlah_pasangan_usia_subur');
+            })->values();
+
+    return view('sektoral.PasanganSubur', compact('datasubur','groupedByYear', 'tahunList', 'totalSuburPerTahun'));
     }
 }

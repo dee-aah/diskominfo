@@ -31,7 +31,7 @@
                 </svg>
             </div>
         </section>
-        <div class="bg-stone-50 py-12 px-4 md:px-12">
+        <div class="bg-white py-12 px-4 md:px-12">
             <!-- Header dengan logo dan judul sejajar -->
             <div class="flex items-center justify-center gap-3 mb-2">
                 <h2 class="text-xl md:text-2xl font-bold text-black border-b-2 border-black pb-1">
@@ -49,14 +49,7 @@
                 <!-- Teks -->
                 <div class="md:w-1/2 text-gray-700 text-justify px-2">
                     <p class="text-md leading-relaxed font-medium">
-                        {{$tentang->deskripsi}}Lorem ipsum dolor sit amet, consectetur adipisci elit, sed eiusmod tempor incididunt ut labore
-                        et dolore magna aliqua.
-                        Ut enim ad minim veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-                        aliquid ex ea
-                        commodi consequatur. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur.
-                        Excepteur sint occaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim
-                        id est laborum.
+                        {{$tentang->deskripsi}}
                     </p>
                 </div>
 
@@ -71,51 +64,18 @@
 
         <div class="bg-stone-50 py-12 px-4">
             <h2 class="text-center text-2xl font-bold mb-10">Kegiatan</h2>
-
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 max-w-6xl mx-auto">
-
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 max-w-5xl mx-auto">
                 <!-- Card 1 -->
-                <div
-                    class="relative group w-[300px] transition-all duration-500 hover:w-[50%] rounded-xl overflow-hidden shadow-md">
-                    <img src="bg1.jpg" alt="Kegiatan 1"
+                @foreach ($beritaterbaru as $berita)
+                <div class="relative group w-[300px] transition-all duration-500 hover:w-[50%] rounded-xl overflow-hidden shadow-md">
+                    <img src="{{asset('storage/berita/'.$berita->gambar)}}" alt="Kegiatan 1"
                         class="w-full h-auto object-cover transition-all duration-500 rounded-xl" />
                     <div
                         class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <p class="text-white font-bold text-xl text-center px-4">Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Eius officiis eos quaerat debitis eligendi mollitia tempora, animi
-                            voluptatem quos consectetur minus aut ab dolor pariatur excepturi perferendis doloribus
-                            maiores porro!</p>
+                        <p class="text-white font-bold text-xl text-center px-4">{{$berita->judul}}</p>
                     </div>
                 </div>
-
-                <!-- Card 2 -->
-                <div
-                    class="relative group w-[300px] transition-all duration-500 hover:w-[50%] rounded-xl overflow-hidden shadow-md">
-                    <img src="bg2.jpg" alt="Sosialisasi Anak"
-                        class="w-full h-auto object-cover transition-all duration-500 rounded-xl" />
-                    <div
-                        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <p class="text-white font-bold text-xl text-center px-4">Lorem ipsum dolor sit, amet consectetur
-                            adipisicing elit. Commodi explicabo velit possimus autem omnis recusandae delectus.
-                            Architecto, similique natus consequuntur aspernatur, odio, officia ab ratione est vero
-                            laboriosam perspiciatis ut?</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div
-                    class="relative group w-[300px] transition-all duration-500 hover:w-[50%] rounded-xl overflow-hidden shadow-md">
-                    <img src="bg3.jpg" alt="Kegiatan 3"
-                        class="w-full h-auto object-cover transition-all duration-500 rounded-xl" />
-                    <div
-                        class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <p class="text-white font-bold text-xl text-center px-4">Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Aut tenetur accusamus, iusto, facere impedit in eius tempore adipisci
-                            dolore saepe et similique cupiditate fugit repudiandae esse sapiente cumque dolorum
-                            consequatur?</p>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </main>
