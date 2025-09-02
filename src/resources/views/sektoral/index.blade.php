@@ -29,7 +29,7 @@
             <!-- Card 2 -->
             <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Peserta Keluarga Berencana</h3>
-                <p class="text-3xl font-bold mt-2">{{number_format($datakbterbaru, 0, ',', '.')}}</p>
+                <a href="{{route('sektoral.KeluargaBerencana')}}" class="text-3xl font-bold mt-2">{{number_format($datakbterbaru, 0, ',', '.')}}</a>
                 <p class="text-sm mt-2">Jumlah Akseptor Keluarga Berencana Aktif Tahun  {{ $tahunkbterbaru }}.</p>
             </div>
 
@@ -45,43 +45,35 @@
     </section>
     <section class="max-w-5xl mx-auto  py-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
             <!-- Card Kiri -->
             <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
                 <h2 class="text-lg font-semibold mb-4">Keluarga Berencana</h2>
                 <img src="gambar/layanan.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-
                 <div class="space-y-3">
-                    <a href="isi-sektoral.html">
-                        <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            Jumlah Peserta KB (2020-2024) - Metode Kontrasepsi
-                        </div>
-                    </a>
-                    <a href="isi.html">
-                        <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            Pasangan Usia Subur Kota Tasikmalaya (2019-2024)
-                        </div>
-                    </a>
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Pemakaian Alat Kontrasepsi Kota Tasikmalaya (2024)
+                            <a href="{{route('sektoral.KbKontrasepsi')}}">Jumlah Peserta KB Metode Alat Kontrasepsi</a>
+                    </div>
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                        <a href="{{route('sektoral.KbKontrasepsiKecamatan')}}">Jumlah Peserta KB Metode Alat Kontrasepsi Per Kecamatan</a>
+                    </div>
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                            <a href="{{route('sektoral.PasanganSubur')}}"> Pasangan Usia Subur Kota Tasikmalaya</a>
                     </div>
                 </div>
             </div>
-
             <!-- Card Kanan -->
             <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
                 <h2 class="text-lg font-semibold mb-4">Keluarga Sejahtera</h2>
                 <img src="gambar/layanan1.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-
                 <div class="space-y-3">
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Pra Sejahtera (2020-2024)
+                        Jumlah Keluarga Pra Sejahtera
                     </div>
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Sejahtera Tahap I (2019-2024)
+                        Jumlah Keluarga Sejahtera Tahap I
                     </div>
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Sejahtera Tahap II (2024)
+                        Jumlah Keluarga Sejahtera Tahap II
                     </div>
                 </div>
             </div>

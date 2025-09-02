@@ -38,6 +38,7 @@ class AdminTentangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+        'des_singkat' => 'required',
         'deskripsi' => 'required',
         'gambar_cont' => 'nullable|image|mimes:jpg,jpeg,png',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
@@ -56,6 +57,7 @@ class AdminTentangController extends Controller
             $file->storeAs('tentang', $filename);
         }
     Tentang::create([
+        'des_singkat' => $request->des_singkat,
         'deskripsi' => $request->deskripsi,
         'gambar_cont' => $filenames,
         'gambar' => $filename
@@ -80,7 +82,7 @@ class AdminTentangController extends Controller
     {
         $tentang = Tentang::findOrFail($id);
 
-        $filename = $tentang->gambar_cont;
+        $filenames = $tentang->gambar_cont;
         if ($request->hasFile('gambar_cont')) {
             if ($tentang->gambar_cont) {
                 Storage::delete('public/tentang/' . $tentang->gambar_cont);
@@ -99,6 +101,7 @@ class AdminTentangController extends Controller
             $file->storeAs('tentang', $filename);
         }
         $tentang->update([
+        'des_singkat' => $request->des_singkat,
         'deskripsi' => $request->deskripsi,
         'gambar_cont' => $filenames,
         'gambar' => $filename

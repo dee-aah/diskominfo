@@ -75,7 +75,7 @@
                                     <tr>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['jumlah_kasus'] ?? '-' }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_kasus'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>

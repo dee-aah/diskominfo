@@ -8,8 +8,13 @@
                 <form action="{{ route('tentang_kami.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Singkat</label>
+                        <textarea id="editor" name="des_singkat" rows="3" placeholder=" Masukkan Deskripsi Singkat"
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
+                    </div>
+                    <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi</label>
-                        <textarea name="deskripsi" rows="5" placeholder=" Masukkan Deskripsi"
+                        <textarea id="editor" name="deskripsi" rows="5" placeholder=" Masukkan Deskripsi"
                             class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="flex ">
@@ -36,4 +41,12 @@
             </div>
         </div>
     </main>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-layouts.sidebar>

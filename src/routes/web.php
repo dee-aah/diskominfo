@@ -58,6 +58,9 @@ use App\Http\Controllers\KasusController;
 Route::resource('/sektoral', KasusController::class)->only(['index']);
 Route::get('/sektoral/kasus', [KasusController::class, 'kasus'])->name('sektoral.kasus');
 Route::get('/sektoral/PasanganSubur', [KasusController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
+Route::get('/sektoral/KeluargaBerencana', [KasusController::class, 'KeluargaBerencana'])->name('sektoral.KeluargaBerencana');
+Route::get('/sektoral/KbKontrasepsi', [KasusController::class, 'KbKontrasepsi'])->name('sektoral.KbKontrasepsi');
+Route::get('/sektoral/KbKontrasepsiKecamatan', [KasusController::class, 'KbKontrasepsiKecamatan'])->name('sektoral.KbKontrasepsiKecamatan');
 // Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {
     return view('welcome');

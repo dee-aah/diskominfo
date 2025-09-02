@@ -8,8 +8,14 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
+                        <label class="block text-lg font-medium">Deskripsi Singkat </label>
+                        <textarea name="des_singkat" rows="3" 
+                            placeholder="Masukkan Deskripsi Singkat"
+                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('des_singkat', $tentang->des_singkat) }}</textarea>
+                    </div>
+                    <div class="mb-3">
                         <label class="block text-lg font-medium">Deskripsi </label>
-                        <textarea name="deskripsi" rows="5"
+                        <textarea name="deskripsi" rows="5" id="editor"
                             placeholder="Masukkan Deskripsi"
                             class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('deskripsi', $tentang->deskripsi) }}</textarea>
                     </div>
@@ -45,4 +51,12 @@
                 </form>
             </div>
     </main>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 </x-layouts.sidebar>

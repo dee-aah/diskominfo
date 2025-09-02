@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tentang extends Model
 {
     protected $fillable = [
-        'deskripsi','gambar','gambar_cont'
+        'des_singkat', 'deskripsi','gambar','gambar_cont'
     ];
 
 }

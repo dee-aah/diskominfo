@@ -33,6 +33,7 @@
             <thead>
                 <tr class="bg-slate-300 text-center">
                     <th class="px-2 border border-gray-400 border-2 py-2">No</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi Singkat</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Gambar Konten</th>
                     <th class="px-4 border border-gray-400 border-2 py-2">Gambar latar</th>
@@ -43,6 +44,7 @@
                 @forelse ($tentangs as $tentang)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $tentang->des_singkat }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">{{ $tentang->deskripsi }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">
                             @if ($tentang->gambar_cont)

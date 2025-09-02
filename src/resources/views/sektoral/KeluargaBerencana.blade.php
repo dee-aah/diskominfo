@@ -1,13 +1,10 @@
 <x-layouts.app>
-
     <body class="bg-gray-50 font-sans p-6">
-
         <div class="bg-white shadow-md rounded-lg mt-20 max-w-5xl mx-auto">
             <!-- Judul -->
             <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
                 Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
             </h1>
-
             <!-- Box Deskripsi -->
             <div class="border rounded-lg p-4 mb-6">
                 <h2 class="text-center font-semibold text-gray-700 border-b pb-2 mb-4">
@@ -21,11 +18,9 @@
                     Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
                     sekali.
                 </p>
-
                 <p class="text-gray-700 text-sm leading-relaxed mb-3">
                     Penjelasan mengenai variabel di dalam dataset ini:
                 </p>
-
                 <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
                     <li><b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada
                         aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
@@ -65,17 +60,17 @@
                                 <tr>
                                     <th class="border px-3 py-2">Nama Provinsi</th>
                                     <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Jumlah Pasangan</th>
+                                    <th class="border px-3 py-2">Jumlah Peserta KB</th>
                                     <th class="border px-3 py-2">Satuan</th>
                                     <th class="border px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datasubur as $row)
+                                @foreach ($datakb as $row)
                                     <tr>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }} </td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{number_format( $row['jumlah_pasangan_usia_subur'] ?? '-' , 0, ',', '.')}}</td>
+                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
@@ -87,7 +82,7 @@
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kasusChart" height="120"></canvas>
+                    <canvas id="kbChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -119,14 +114,14 @@
 
             // Data untuk grafik
             const labels = @json($tahunList);
-            const dataKasus = @json($totalSuburPerTahun);
+            const dataKasus = @json($totalKbPerTahun);
             // Buat grafik Chart.js
-            new Chart(document.getElementById("kasusChart"), {
+            new Chart(document.getElementById("kbChart"), {
                 type: 'line',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: "Total Pasangan Subur",
+                        label: "Peserta Keluarga Berencana Aktip",
                         data: dataKasus,
                         fill: true,
                         backgroundColor: "rgba(54, 162, 235, 0.2)",
@@ -142,7 +137,7 @@
                         },
                         title: {
                             display: true,
-                            text: 'Jumlah Pasangan Subur Kota Tasikmalaya'
+                            text: 'Jumlah Peserta Keluarga Berencana Aktip'
                         }
                     },
                     scales: {

@@ -3,7 +3,7 @@
         <!-- Hero Section -->
         <section class="relative h-screen overflow-hidden pt-16 ">
             <video autoplay muted loop playsinline class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
-                <source src="{{asset('storage/pimpinan/'. $pimpinan->vidio)}}"  type="video/mp4" />
+                <source src="{{asset('storage/pimpinan/'. $pimpinan->vidio)}}"  loading="lazy" type="video/mp4" />
             </video>
             <div class="absolute bg-black bg-opacity-50 z-10"></div>
             <!-- Konten Hero -->
@@ -33,7 +33,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Gambar Kiri -->
                 <div class="flex justify-center">
-                    <img src="{{asset('storage/pimpinan/'. $pimpinan->gambar)}}" alt="pimpinan" class="w-72 md:w-96">
+                    <img src="{{asset('storage/pimpinan/'. $pimpinan->gambar)}}" loading="lazy" alt="pimpinan" class="w-72 md:w-96">
                 </div>
                 <!-- Konten Teks Kanan -->
                 <div>
@@ -167,9 +167,9 @@
             </div>
 
             <!-- Kanan -->
-            <div class="flex-shrink-0 l p-2">
+            <div class="flex-shrink-0 l  p-2">
                 <a href="{{url('/sektoral')}}"
-                    class="inline-flex items-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-full hover:bg-[#476A9A] hover:text-white transition">
+                    class="inline-flex items-center px-4 justify-end py-2 border border-gray-400 text-sm font-medium rounded-full hover:bg-[#476A9A] hover:text-white transition">
                     Selengkapnya
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">

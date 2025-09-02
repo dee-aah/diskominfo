@@ -1,13 +1,10 @@
 <x-layouts.app>
-
     <body class="bg-gray-50 font-sans p-6">
-
         <div class="bg-white shadow-md rounded-lg mt-20 max-w-5xl mx-auto">
             <!-- Judul -->
             <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
                 Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
             </h1>
-
             <!-- Box Deskripsi -->
             <div class="border rounded-lg p-4 mb-6">
                 <h2 class="text-center font-semibold text-gray-700 border-b pb-2 mb-4">
@@ -21,11 +18,9 @@
                     Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
                     sekali.
                 </p>
-
                 <p class="text-gray-700 text-sm leading-relaxed mb-3">
                     Penjelasan mengenai variabel di dalam dataset ini:
                 </p>
-
                 <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
                     <li><b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada
                         aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
@@ -65,29 +60,34 @@
                                 <tr>
                                     <th class="border px-3 py-2">Nama Provinsi</th>
                                     <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Jumlah Pasangan</th>
+                                    <th class="border px-3 py-2">Nama Kecamatan</th>
+                                    <th class="border px-3 py-2">Jumlah Peserta Kb Aktip</th>
                                     <th class="border px-3 py-2">Satuan</th>
                                     <th class="border px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datasubur as $row)
+                                @foreach ($datakontrasepsi as $row)
                                     <tr>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }} </td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{number_format( $row['jumlah_pasangan_usia_subur'] ?? '-' , 0, ',', '.')}}</td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-4">
+                            {{ $datakontrasepsi->links('pagination::tailwind') }}
+                        </div>
                     </div>
                 </div>
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kasusChart" height="120"></canvas>
+                    <canvas id="kontrasepsikecamatanChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -118,40 +118,48 @@
             });
 
             // Data untuk grafik
-            const labels = @json($tahunList);
-            const dataKasus = @json($totalSuburPerTahun);
-            // Buat grafik Chart.js
-            new Chart(document.getElementById("kasusChart"), {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Total Pasangan Subur",
-                        data: dataKasus,
-                        fill: true,
-                        backgroundColor: "rgba(54, 162, 235, 0.2)",
-                        borderColor: "rgba(54, 162, 235, 1)",
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Jumlah Pasangan Subur Kota Tasikmalaya'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
+            const labels = @json($KecamatanList);
+const datasets = @json($datasets);
+
+// Tambahkan warna dinamis biar beda per tahun
+const colors = [
+    "rgba(54, 162, 235, 0.6)",
+    "rgba(255, 99, 132, 0.6)",
+    "rgba(255, 206, 86, 0.6)",
+    "rgba(75, 192, 192, 0.6)",
+    "rgba(153, 102, 255, 0.6)",
+    "rgba(255, 159, 64, 0.6)"
+];
+
+datasets.forEach((ds, i) => {
+    ds.fill = true;
+    ds.backgroundColor = colors[i % colors.length];
+    ds.borderColor = colors[i % colors.length].replace("0.6", "1");
+    ds.tension = 0.3;
+});
+
+new Chart(document.getElementById("kontrasepsikecamatanChart"), {
+    type: 'bar', // bisa diganti 'bar' kalau mau grouped bar
+    data: {
+        labels: labels,
+        datasets: datasets
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: {
+                display: true,
+                text: 'Jumlah Peserta KB Aktif per Kecamatan (Berdasarkan Tahun)'
+            }
+        },
+        scales: {
+            x: { stacked: false },
+            y: { beginAtZero: true }
+        }
+    }
+});
+
         </script>
     </body>
 </x-layouts.app>
