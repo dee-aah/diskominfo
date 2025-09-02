@@ -13,7 +13,7 @@
   </style>
 </head>
 <!-- <body class="bg-gray-100"> -->
-<body onload="animatePage()" class="opacity-0 translate-y-4 transition-all duration-700 ease-out bg-gray-100">
+<body onload="animatePage()" class="opacity-0 translate-y-4 transition-all duration-700 ease-out bg-white">
   <!-- Navbar -->
   <!-- <nav class="bg-transparent w-full fixed top-0 z-50 bg-white/70 backdrop-blur-md"> -->
   <nav class="bg-white shadow-md w-full fixed top-0 z-50">
@@ -156,7 +156,7 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+  <section class="relative h-screen overflow-hidden pt-16 ">
     <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
       <source src="video/WhatsApp Video 2025-07-23 at 09.22.07_9fe25626.mp4" type="video/mp4" />
       Your browser does not support the video tag.
@@ -225,7 +225,7 @@
     <p class="text-gray-600 mt-2 text-sm">Dapatkan pelayanan kami melalui menu di bawah yang tersedia di DPPKBP3A</p>
   </div>
 
- <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10"
+ <div id="carousel" class="relative bg-transition h-screen flex items-center justify-start px-10 ml-4 mr-4"
      style="background-image: url('gambar/bg.jpg');">
 
   <!-- Slide Area -->
@@ -297,40 +297,35 @@
 </div>
 </section>
 
-<section class="max-w-7xl mx-auto px-6 py-10">
+<section class="max-w-7xl mx-auto px-6 py-10 bg-white">
     <h2 class="text-2xl font-semibold mb-6">Ringkasan Data Kependudukan</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
       <!-- Card Template -->
       <!-- Repeat untuk setiap data dengan gaya seragam -->
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Total Penduduk</p>
-        <p class="text-2xl font-bold">2.847 <span class="text-lg">Juta</span></p>
-        <p class="text-green-600 text-sm">Jiwa terdaftar</p>
+      <div class="bg-[#2563EB] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Total Penduduk</p>
+        <p class="text-2xl font-bold text-white">2.847 <span class="text-lg">Juta</span></p>
+        <p class="text-white text-sm">Jiwa terdaftar</p>
       </div>
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Angka Kelahiran</p>
-        <p class="text-2xl font-bold">2.28<span class="text-lg">%</span></p>
-        <p class="text-gray-500 text-sm">Per 1000 penduduk</p>
+      <div class="bg-[#10B981] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Angka Kelahiran</p>
+        <p class="text-2xl font-bold text-white">2.28<span class="text-lg">%</span></p>
+        <p class="text-white text-sm">Per 1000 penduduk</p>
       </div>
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Rasio Jenis Kelamin</p>
-        <p class="text-2xl font-bold">101,20</p>
-        <p class="text-gray-500 text-sm">Laki-laki per 100 perempuan</p>
+      <div class="bg-[#8B5CF6] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Partisipasi Perempuan</p>
+        <p class="text-2xl font-bold text-white">34.5<span class="text-lg">%</span></p>
+        <p class="text-white text-sm">Dalam angkatan kerja</p>
       </div>
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Partisipasi Perempuan</p>
-        <p class="text-2xl font-bold">34.5<span class="text-lg">%</span></p>
-        <p class="text-green-600 text-sm">Dalam angkatan kerja</p>
+      <div class="bg-[#EF4444] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Kasus Kekerasan Anak</p>
+        <p class="text-2xl font-bold text-white">234</p>
+        <p class="text-white text-sm">Kasus per tahun</p>
       </div>
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Kasus Kekerasan Anak</p>
-        <p class="text-2xl font-bold">234</p>
-        <p class="text-red-600 text-sm">Kasus per tahun</p>
-      </div>
-      <div class="bg-white rounded-lg shadow p-5 text-center">
-        <p class="text-gray-500 text-sm mb-2">Peserta KB</p>
-        <p class="text-2xl font-bold">187.252 <span class="text-lg">Ribu</span></p>
-        <p class="text-green-600 text-sm">Akseptor aktif</p>
+      <div class="bg-[#F97316] shadow-xl/30 rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Peserta KB</p>
+        <p class="text-2xl font-bold text-white">187.252 <span class="text-lg">Ribu</span></p>
+        <p class="text-white text-sm">Akseptor aktif</p>
       </div>
     </div>
      <div class="p-5 ">
@@ -339,7 +334,7 @@
 
     <!-- Kanan -->
     <div class="flex-shrink-0 l p-2">
-      <a href="data.html" class="inline-flex items-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-full hover:bg-[#476A9A] hover:text-white transition">
+      <a href="sektoral.html" class="inline-flex items-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-full hover:bg-[#476A9A] hover:text-white transition">
         Selengkapnya
         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
              viewBox="0 0 24 24">
@@ -348,11 +343,6 @@
       </a>
     </div>
      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0 md:space-x-6">
-    
-    
-
-    <!-- Tengah -->
-   
 
   </div>
   </section>
@@ -361,7 +351,7 @@
     <div class="h-1 w-16 bg-blue-500 mx-auto mt-2 rounded"></div>
     <div class="px-24"><p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sit possimus adipisci vel, expedita a, veniam rem amet et quisquam sapiente, nisi reprehenderit! Quidem quod aliquid aspernatur perspiciatis perferendis repellat.</p></div>
   </div>
-<section class="relative bg-cover bg-center min-h-screen flex items-center" style="background-image: url('gambar/gambar.jpg');">
+<section class="relative bg-cover bg-center min-h-screen flex items-center ml-4 mr-4" style="background-image: url('gambar/bg3.jpg');">
     <!-- Overlay gelap -->
     <div class="absolute inset-0 bg-black/50"></div>
 
@@ -382,7 +372,7 @@
             </svg>
           </a>
           <a href="profil.html" class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
-            Direksi dan Komisaris
+            Profil Pimpinan
             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
@@ -392,7 +382,7 @@
     </div>
   </section>
 
-<div class="max-w-7xl mx-auto p-6">
+<div class=" mx-auto p-6">
     <h1 class="text-3xl font-bold text-center text-gray-800 mb-2">Berita & Informasi Terkini</h1>
     <p class="text-center text-gray-600 mb-10">
       Dapatkan informasi terbaru mengenai program, kegiatan, dan perkembangan terkini dari DPPKBP3A
@@ -400,7 +390,7 @@
 
     <div class="grid md:grid-cols-3 gap-6">
       <!-- Berita Utama -->
-      <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
+      <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
         <div class="relative">
           <img src="gambar/berita.jpg" alt="Gambar Berita" class="w-full h-64 object-cover">
           <div class="absolute bottom-4 left-4">
@@ -440,7 +430,7 @@
       <!-- Konten Samping -->
       <div class="space-y-4">
         <!-- Kartu 1 -->
-        <div class="bg-white rounded-lg shadow p-4">
+        <div class="bg-gray-200 rounded-lg shadow p-4">
           <div class="flex justify-between text-xs text-gray-500 mb-1">
             <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Program</span>
             <span>12 Januari 2024</span>
@@ -459,7 +449,7 @@
         </div>
 
         <!-- Kartu 2 -->
-        <div class="bg-white rounded-lg shadow p-4">
+        <div class="bg-gray-200 rounded-lg shadow p-4">
           <div class="flex justify-between text-xs text-gray-500 mb-1">
             <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">Laporan</span>
             <span>10 Januari 2024</span>
@@ -478,7 +468,7 @@
         </div>
 
         <!-- CTA Update -->
-        <div class="bg-white rounded-lg shadow p-4 text-center">
+        <div class="bg-gray-200 rounded-lg shadow p-4 text-center">
           <p class="text-sm text-gray-700 mb-3">Ikuti terus informasi dan program terbaru dari DPPKBP3A</p>
           <a href="berita.html" class="inline-flex items-center justify-center px-6 py-2 bg-[#476A9A] text-white rounded hover:bg-blue-800 transition">
             Lihat Semua Berita
@@ -491,20 +481,20 @@
     </div>
   </div>
 
-<section class="max-w-7xl mx-auto px-6 py-10">
+<section class="max-w-7xl mx-auto px-6 py-10 bg-white">
   <!-- Header -->
   <div class="flex items-center justify-between mb-6">
     <div>
       <h2 class="text-xl md:text-2xl font-semibold">Artikel</h2>
       <p class="text-gray-500 text-sm md:text-base">Informasi dan Update terkini terkait DPPKBP3A</p>
     </div>
-    <a href="artikel.html" class="border border-gray-300 text-gray-700 px-4 py-2 text-sm rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat Semua</a>
+    <a href="artikel.html" class="bg-gray-200 border border-gray-300 text-gray-700 px-4 py-2 text-sm rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat Semua</a>
   </div>
 
   <!-- Cards -->
   <div class="grid md:grid-cols-2 gap-6">
     <!-- Card 1 -->
-    <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
+    <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
       <div class="relative">
         <img src="gambar/artikel1.jpg" alt="Gambar Artikel" class="w-full h-48 object-cover rounded-t-xl">
         <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">Pemberdayaan Perempuan</span>
@@ -519,7 +509,7 @@
         <a href="#" class="block w-full mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 rounded">Baca Selengkapnya ></a>
       </div>
     </div>
-    <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
+    <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
       <div class="relative">
         <img src="gambar/artikel2.jpg" alt="Gambar Artikel" class="w-full h-48 object-cover rounded-t-xl">
         <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">Pemberdayaan Perempuan</span>
@@ -534,7 +524,7 @@
         <a href="#" class="block w-full mt-2 text-center bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold py-2 rounded">Baca Selengkapnya ></a>
       </div>
     </div>
-    <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
+    <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
       <div class="relative">
         <img src="gambar/artikel3.jpg" alt="Gambar Artikel" class="w-full h-48 object-cover rounded-t-xl">
         <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">Pemberdayaan Perempuan</span>
@@ -551,7 +541,7 @@
     </div>
 
     <!-- Card 2 -->
-    <div class="bg-white rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
+    <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
       <div class="relative">
         <img src="gambar/artikel4.jpg" alt="Gambar Artikel" class="w-full h-48 object-cover rounded-t-xl">
         <span class="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">Pemberdayaan Perempuan</span>
@@ -697,7 +687,7 @@
 
   typeEffect();
 
-    const backgrounds = ["gambar/gambar1.jpg", "gambar/local2.jpg", "gambar/bg1.jpg", "gambar/bg.jpg", "gambar/bg3.jpg"];
+    const backgrounds = ["gambar/bg.jpg", "gambar/local2.jpg", "gambar/bg1.jpg", "gambar/bg.jpg", "gambar/bg3.jpg"];
   const cards = document.querySelectorAll('#slideWrapper > div');
   const carousel = document.getElementById('carousel');
   const slideWrapper = document.getElementById('slideWrapper');
