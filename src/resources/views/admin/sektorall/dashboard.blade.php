@@ -2,11 +2,11 @@
     <div class="p-6">
         <div class="flex justify-between grid grid-cols-3 items-center mb-4">
             <div class="justify-start col-1">
-                <h2 class="text-2xl  font-bold">Daftar Profil Pimpinan</h2>
+                <h2 class="text-2xl  font-bold">Daftar Konten Sektoral</h2>
             </div>
             <div class="col-span-2 flex justify-end">
-                <form action="{{ route('profill.dashboard') }}" method="GET" class="flex justify-end  mr-2">
-                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Profil..."
+                <form action="{{ route('sektorall.dashboard') }}" method="GET" class="flex justify-end  mr-2">
+                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Tupoksi..."
                         class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
                     <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
                         <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i>Cari
@@ -16,7 +16,7 @@
                     class="bg-green-600 space-x-2 flex   mr-2   hover:bg-green-500 text-white mt-2 px-3 mr-2 py-2  rounded">
                     <i class="fa-solid fa-check mr-2 mt-1"></i> Pilih
                 </button>
-                <a href="{{ route('profill.create') }}" type="button"
+                <a href="{{ route('sektorall.create') }}" type="button"
                     class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
                     <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
                 </a>
@@ -33,33 +33,31 @@
             <thead>
                 <tr class="bg-slate-300 text-center">
                     <th class="px-2 border border-gray-400 border-2 py-2">No</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Nama Pimpinan</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Jabatan</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Foto Pimpinan</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
+                    <th class="px-4 border border-gray-400 border-2 py-2">Gambar Konten</th>
                     <th class="px-4 border aksi hidden border-gray-400 border-2 py-2">Aksi</th>
                 </tr>
             </thead>
             <tbody class="bg-gray-100">
-                @forelse ($profils as $profil)
+                @forelse ($sektorals as $sektoral)
                     <tr class="text-center items-center ">
                         <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $profil->nama }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $profil->jabatan }}</td>
+                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $sektoral->deskripsi }}</td>
                         <td class="px-4 border border-gray-400 border-2 py-2">
-                            @if ($profil->gambar)
-                                <img src="{{ asset('storage/profil/' . $profil->gambar) }}"
+                            @if ($sektoral->gambar)
+                                <img src="{{ asset('storage/sektorall/' . $sektoral->gambar) }}"
                                     class="w-16 h-16 object-cover justify-content-center rounded">
                             @else
                                 -
                             @endif
                         </td>
                         <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
-                            <a href="{{ route('profill.edit', $profil->id) }}"
+                            <a href="{{ route('sektorall.edit', $sektoral->id) }}"
                                 class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
                                 <i class="fa-solid fa-pen mr-2"></i>Edit
                             </a>
-                            <form action="{{ route('profill.destroy', $profil->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin Ingin Menghapus Profil ini?')">
+                            <form action="{{ route('sektorall.destroy', $sektoral->id) }}" method="POST"
+                                onsubmit="return confirm(' Anda Yakin Ingin Menghapus Tupoksi ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
@@ -71,7 +69,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center border border-gray-400 border-2 py-4">Belum ada Profil Pimpinan</td>
+                        <td colspan="5" class="text-center border border-gray-400 border-2 py-4">Belum ada Konten</td>
                     </tr>
                 @endforelse
             </tbody>

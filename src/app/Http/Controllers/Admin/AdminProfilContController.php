@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Profil;
+use App\Models\Profil_conts;
 use Illuminate\Support\Facades\Storage;
 
-class AdminProfilController extends Controller
+class AdminProfilContController extends Controller
 {
     public function dashboard(Request $request)
     {
-    $query = Profil::query();
+    $query = Profil_conts::query();
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
@@ -19,7 +19,7 @@ class AdminProfilController extends Controller
                     ->orWhere('des_singkat', 'like', "%{$search}%");
             });}
         $profils = $query->latest()->get();
-        return view('admin.profill.dashboard', compact('profils'));
+        return view('admin.profil_cont.dashboard', compact('profils'));
     }
 
     /**
@@ -27,8 +27,8 @@ class AdminProfilController extends Controller
      */
     public function create()
     {
-        $profils = Profil::all();
-        return view('admin.profill.create', compact('profils'));
+        $profils = Profil_conts::all();
+        return view('admin.profil_cont.create', compact('profils'));
     }
 
     /**
@@ -37,32 +37,32 @@ class AdminProfilController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'nama' => 'required',
-        'jabatan' => 'required',
+        'deskripsi' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
+
         $filename = null;
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $filename = $file->getClientOriginalName();
-            $file->storeAs('profil', $filename);
+            $file->storeAs('profil_cont', $filename);
         }
-   Profil::create([
-        'nama' => $request->nama,
-        'jabatan' => $request->jabatan,
+    Profil_conts::create([
+
+        'deskripsi' => $request->deskripsi,
         'gambar' => $filename
 
     ]);
 
-    return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Ditambahkan');
+    return redirect()->route('profil_cont.dashboard')->with('success', 'Profil Pimpinan Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $profil = Profil::findOrFail($id);
-        return view('admin.profill.edit', compact('profil'));
+        $profil = Profil_conts::findOrFail($id);
+        return view('admin.profil_cont.edit', compact('profil'));
     }
 
     /**
@@ -70,23 +70,22 @@ class AdminProfilController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $profil = Profil::findOrFail($id);
+        $profil = Profil_conts::findOrFail($id);
 
         $filename = $profil->gambar;
         if ($request->hasFile('gambar')) {
             if ($profil->gambar) {
-                Storage::delete('public/profil/' . $profil->gambar);
+                Storage::delete('public/profil_cont/' . $profil->gambar);
             }
             $file = $request->file('gambar');
             $filename =  $file->getClientOriginalName();
-            $file->storeAs('profil', $filename);
+            $file->storeAs('profil_cont', $filename);
         }
         $profil->update([
-        'nama' => $request->nama,
-        'jabatan' => $request->jabatan,
+        'deskripsi' => $request->deskripsi,
         'gambar' => $filename
         ]);
-        return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Diperbarui');
+        return redirect()->route('profil_cont.dashboard')->with('success', 'Profil Pimpinan Berhasil Diperbarui');
     }
 
     /**
@@ -94,7 +93,7 @@ class AdminProfilController extends Controller
      */
     public function destroy(string $id)
     {
-        $profil = Profil::findOrFail($id);
+        $profil = Profil_conts::findOrFail($id);
         $profil->delete();
         return redirect()->back()->with('success', 'Profil Pimpinan Berhasil Dihapus');
     }

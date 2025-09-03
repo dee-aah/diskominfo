@@ -46,38 +46,66 @@
     <section class="max-w-5xl mx-auto  py-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Card Kiri -->
+            @if (isset($sektoral_card[0]))
             <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-lg font-semibold mb-4">Keluarga Berencana</h2>
-                <img src="gambar/layanan.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
+                <h2 class="text-[20px] font-semibold my-4">Pengendalian Penduduk</h2>
+                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[0]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
                 <div class="space-y-3">
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            <a href="{{route('sektoral.KbKontrasepsi')}}">Jumlah Peserta KB Metode Alat Kontrasepsi</a>
+                        <a href="{{route('sektoral.PasanganSubur')}}">Jumlah Pasangan Usia Subur Kota Tasikmalayaya</a>
                     </div>
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.KbKontrasepsiKecamatan')}}">Jumlah Peserta KB Metode Alat Kontrasepsi Per Kecamatan</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            <a href="{{route('sektoral.PasanganSubur')}}"> Pasangan Usia Subur Kota Tasikmalaya</a>
+                            <a href="{{route('sektoral.PasanganSuburKecamatan')}}">Jumlah Pasangan Usia Subur Berdasarkan Kecamatan</a>
                     </div>
                 </div>
             </div>
+            @endif
+            @if (isset($sektoral_card[1]))
+            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
+                <h2 class="text-[20px] font-semibold my-4">Keluarga Berencana</h2>
+                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[1]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
+                <div class="space-y-3">
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                            <a href="{{route('sektoral.KbKecamatan')}}"> Jumlah Peserta KB Aktip Berdasarkan Kecamatan</a>
+                    </div>
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                            <a href="{{route('sektoral.KbKontrasepsi')}}">Jumlah Peserta KB Aktip Metode Alat Kontrasepsi</a>
+                    </div>
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                        <a href="{{route('sektoral.KbKontrasepsiKecamatan')}}">Jumlah Pemakai Alat Kontrasepsi Berdasarkan Kecamatan</a>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @if (isset($sektoral_card[2]))
             <!-- Card Kanan -->
             <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-lg font-semibold mb-4">Keluarga Sejahtera</h2>
-                <img src="gambar/layanan1.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
+                <h2 class="text-lg font-semibold my-4">Pemberdayaan Perempuan dan Perlindungan Anak</h2>
+                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[2]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
                 <div class="space-y-3">
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Pra Sejahtera
+                        <a href="{{route('sektoral.kasus')}}">Jumlah Kasus Kekerasan Perempuan dan Anak di Kota Tasikmalaya</a>
                     </div>
                     <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Sejahtera Tahap I
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        Jumlah Keluarga Sejahtera Tahap II
+                        <a href="{{route('sektoral.jenisKekerasan')}}">Jumlah Kasus Kekerasan Perempuan dan Anak berdasarkan Jenis Kekerasan</a>
                     </div>
                 </div>
             </div>
-
+            @endif
+            @if (isset($sektoral_card[3]))
+            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
+                <h2 class="text-[20px] font-semibold my-4">Indikator Makro</h2>
+                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[3]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
+                <div class="space-y-3">
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                        <a href="{{route('sektoral.PemberdayaanGender')}}">Indek Pemberdayaan Gender di Kota Tasikmalaya</a>
+                    </div>
+                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
+                        <a href="{{route('sektoral.PembangunanGender')}}">Indek Pembangunan Gender di Kota Tasikmalaya</a>
+                    </div>
+                </div>
+            </div>
+            @endif
         </div>
     </section>
 </x-layouts.app>

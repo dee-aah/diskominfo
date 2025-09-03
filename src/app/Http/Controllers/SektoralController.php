@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sektoral;
+use App\Models\Sektoral_cont;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-class KasusController extends Controller
+class SektoralController extends Controller
 {
     public function index()
     {
         $sektoral = Sektoral::first();
+        $sektoral_card = Sektoral_cont::all();
         //subur
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jumlah_pasangan_usia_subur_di_kota_tasikmalaya");
         $json = $response->json();
@@ -36,6 +38,7 @@ class KasusController extends Controller
 
         return view('sektoral.index',compact(
             'sektoral',
+            'sektoral_card',
   'datasubur',
             'recordsuburterbaru',
             'tahunsuburterbaru',
@@ -65,6 +68,39 @@ class KasusController extends Controller
 
     return view('sektoral.kasus', compact('data','groupedByYear', 'tahunList', 'totalKasusPerTahun'));
     }
+    public function jenisKekerasan()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_kss_kkrsn_trhdp_prmpn_nk_brdsrkn_jns_kkrsn_d_kt_tskmly");
+        $datakasus = collect($response->json()['data'] ?? []);
+        $perPage = 20; // jumlah per halaman
+        $page = request()->get('page', 1);
+        $items = $datakasus->slice(($page - 1) * $perPage, $perPage)->values();
+        $datakasus = new LengthAwarePaginator(
+            $items,
+            $datakasus->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+        $years = $datakasus->pluck('tahun')->unique()->sort()->values();
+
+        $KecamatanList = $datakasus->pluck('jenis_kekerasan')->unique()->values();
+
+        $datasets = $years->map(function ($year) use ($datakasus, $KecamatanList) {
+        return [
+            'label' => $year,
+            'data' => $KecamatanList->map(function ($kec) use ($datakasus, $year) {
+            return $datakasus
+                ->where('jenis_kekerasan', $kec)
+                ->where('tahun', $year)
+                ->sum('jumlah_kasus');
+            }),
+        ];
+        });
+    return view('sektoral.jenisKekerasan', compact('items',
+            'perPage','page','datakasus','datasets','KecamatanList','years'));
+        }
     public function PasanganSubur()
     {
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jumlah_pasangan_usia_subur_di_kota_tasikmalaya");
@@ -77,6 +113,39 @@ class KasusController extends Controller
             })->values();
 
     return view('sektoral.PasanganSubur', compact('datasubur','groupedByYear', 'tahunList', 'totalSuburPerTahun'));
+    }
+    public function PasanganSuburKecamatan()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_psngn_s_sbr_brdsrkn_kcmtn_d_kt_tskmly");
+        $datasubur = collect($response->json()['data'] ?? []);
+        $perPage = 10; // jumlah per halaman
+        $page = request()->get('page', 1);
+        $items = $datasubur->slice(($page - 1) * $perPage, $perPage)->values();
+        $datasubur = new LengthAwarePaginator(
+            $items,
+            $datasubur->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+        $years = $datasubur->pluck('tahun')->unique()->sort()->values();
+
+        $KecamatanList = $datasubur->pluck('nama_kecamatan')->unique()->values();
+
+        $datasets = $years->map(function ($year) use ($datasubur, $KecamatanList) {
+        return [
+            'label' => $year,
+            'data' => $KecamatanList->map(function ($kec) use ($datasubur, $year) {
+            return $datasubur
+                ->where('nama_kecamatan', $kec)
+                ->where('tahun', $year)
+                ->sum('jumlah_pasangan_usia_subur');
+            }),
+        ];
+        });
+    return view('sektoral.PasanganSuburKecamatan', compact('items',
+            'perPage','page','datasubur','datasets','KecamatanList','years'));
     }
     public function KeluargaBerencana()
     {
@@ -111,7 +180,7 @@ class KasusController extends Controller
 
     public function KbKontrasepsiKecamatan()
     {
-        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlhpsrtklrgbncnkbktfbrdsrknkcmtndkttskmly");
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_pmkn_lt_kntrsps_brdsrkn_kcmtn_d_kt_tskmly");
         $datakontrasepsi = collect($response->json()['data'] ?? []);
         $perPage = 10; // jumlah per halaman
         $page = request()->get('page', 1);
@@ -125,9 +194,7 @@ class KasusController extends Controller
         );
 
         $years = $datakontrasepsi->pluck('tahun')->unique()->sort()->values();
-
         $KecamatanList = $datakontrasepsi->pluck('nama_kecamatan')->unique()->values();
-
         $datasets = $years->map(function ($year) use ($datakontrasepsi, $KecamatanList) {
         return [
             'label' => $year,
@@ -135,11 +202,74 @@ class KasusController extends Controller
             return $datakontrasepsi
                 ->where('nama_kecamatan', $kec)
                 ->where('tahun', $year)
-                ->sum('jumlah_peserta_keluarga_berencana_aktif');
+                ->sum('jumlah_alat_kontrasepsi');
             }),
         ];
         });
     return view('sektoral.KbKontrasepsiKecamatan', compact('items',
             'perPage','page','datakontrasepsi','datasets','KecamatanList','years'));
+    }
+    public function KbKecamatan()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlhpsrtklrgbncnkbktfbrdsrknkcmtndkttskmly");
+        $datakb = collect($response->json()['data'] ?? []);
+        $perPage = 10; // jumlah per halaman
+        $page = request()->get('page', 1);
+        $items = $datakb->slice(($page - 1) * $perPage, $perPage)->values();
+        $datakb = new LengthAwarePaginator(
+            $items,
+            $datakb->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+        $years = $datakb->pluck('tahun')->unique()->sort()->values();
+
+        $KecamatanList = $datakb->pluck('nama_kecamatan')->unique()->values();
+
+        $datasets = $years->map(function ($year) use ($datakb, $KecamatanList) {
+        return [
+            'label' => $year,
+            'data' => $KecamatanList->map(function ($kec) use ($datakb, $year) {
+            return $datakb
+                ->where('nama_kecamatan', $kec)
+                ->where('tahun', $year)
+                ->sum('jumlah_peserta_keluarga_berencana_aktif');
+            }),
+        ];
+        });
+    return view('sektoral.KbKecamatan', compact('items',
+            'perPage','page','datakb','datasets','KecamatanList','years'));
+    }
+    public function PemberdayaanGender()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pemberdayaan_gender_di_kota_tasikmalaya");
+        $datapemberdayaan = collect($response->json()['data'] ?? []);
+
+        $groupedByYear = $datapemberdayaan->groupBy('tahun');
+
+    // Untuk grafik: ambil list tahun & total kasus per tahun
+    $tahunList = $groupedByYear->keys();
+    $indexpemberdayaan = $groupedByYear->map(function ($items) {
+        return $items->sum('indeks_pemberdayaan_gender');
+    })->values();
+
+    return view('sektoral.PemberdayaanGender', compact('datapemberdayaan','groupedByYear', 'tahunList', 'indexpemberdayaan'));
+    }
+
+    public function PembangunanGender()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pembangunan_gender_di_kota_tasikmalaya");
+        $datapembangunan = collect($response->json()['data'] ?? []);
+
+        $groupedByYear = $datapembangunan->groupBy('tahun');
+
+    $tahunList = $groupedByYear->keys();
+    $indexpembangunan = $groupedByYear->map(function ($items) {
+        return $items->sum('indeks_pembangunan_gender');
+    })->values();
+
+    return view('sektoral.PembangunanGender', compact('datapembangunan','groupedByYear', 'tahunList', 'indexpembangunan'));
     }
 }

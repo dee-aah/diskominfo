@@ -186,9 +186,7 @@
             <h2 class="text-2xl font-bold">Tentang kami</h2>
             <div class="h-1 w-16 bg-blue-500 mx-auto mt-2 rounded"></div>
             <div class="px-24">
-                <p class="text-gray-600 mt-2 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia sit
-                    possimus adipisci vel, expedita a, veniam rem amet et quisquam sapiente, nisi reprehenderit! Quidem
-                    quod aliquid aspernatur perspiciatis perferendis repellat.</p>
+                <p class="text-gray-600 mt-2 text-sm">{{$tentang_kami->des_singkat}}</p>
             </div>
         </div>
         <section class="relative max-w-6xl mx-auto bg-cover bg-center min-h-screen flex items-center"
@@ -197,13 +195,17 @@
             <div class="absolute inset-0 bg-black/50"></div>
             <!-- Konten -->
             <div class="relative z-10 w-full px-6 md:px-16 lg:px-24">
-                <div class="max-w-xl text-left text-white space-y-4">
+                <div class="max-w-5xl text-left text-justify text-white space-y-4">
                     <p class="text-sm font-semibold uppercase tracking-wider text-gray-200">Sekilas DPPKBP3A</p>
-                    <p class="text-lg text-gray-200">
-                        {{$tentang_kami->deskripsi}}
+                    <p class="text-lg prose text-gray-200">
+                        {!!$tentang_kami->deskripsi!!}
                     </p>
+                    <style>
+                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                </style>
                     <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="tentang.html"
+                        <a href="{{url('/tentang')}}"
                             class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Selengkapnya
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
@@ -211,7 +213,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                             </svg>
                         </a>
-                        <a href="profil.html"
+                        <a href="{{url("/tupoksi")}}"
                             class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Direksi dan Komisaris
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"

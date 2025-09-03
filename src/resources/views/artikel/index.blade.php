@@ -1,7 +1,7 @@
 <x-layouts.app>
     <main class="mx-auto max-w-6xl">
         {{-- Judul Section --}}
-        <div class="max-w-6xl mx-auto mt-30">
+        <div class="max-w-5xl mx-auto mt-30">
             <h1 class="text-[30px] font-semibold  py-3 ">Artikel</h1>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
             <div class="grid grid-cols-3 grid-rows-2 py-8 h-[600px] gap-2">
@@ -63,7 +63,7 @@
                 @endif
             </div>
         </div>
-        <div id="articleGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 my-6 gap-3">
+        <div id="articleGrid" class="grid grid-cols-1 sm:grid-cols-2 max-w-5xl mx-auto lg:grid-cols-3 my-6 gap-3">
 
     @foreach ($artikellain as $artikel )
       <div class="article-item bg-white rounded-lg shadow overflow-hidden">

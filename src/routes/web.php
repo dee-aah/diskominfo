@@ -23,10 +23,12 @@ use App\Http\Controllers\Admin\AdminTentangController;
 use App\Http\Controllers\Admin\AdminStrukturController;
 use App\Http\Controllers\Admin\AdminMaklumatController;
 use App\Http\Controllers\Admin\AdminProfilController;
+use App\Http\Controllers\Admin\AdminProfilContController;
 use App\Http\Controllers\Admin\AdminProdukHukumController;
 use App\Http\Controllers\Admin\AdminPHContController;
 use App\Http\Controllers\Admin\AdminPimpinanController;
 use App\Http\Controllers\Admin\AdminSektoralController;
+use App\Http\Controllers\Admin\AdminSektoralContController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -45,7 +47,8 @@ use App\Http\Controllers\LayananController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PdfController;
-use App\Http\Controllers\KasusController;
+use App\Http\Controllers\PerencanaanController;
+use App\Http\Controllers\SektoralController;
 
 //======================================================================
 // 1. RUTE PUBLIK (Dapat diakses oleh semua pengunjung)
@@ -55,12 +58,17 @@ use App\Http\Controllers\KasusController;
 // ... route Anda yang lain
 
 //Route::get('/sektoral', [KasusController::class, 'index']);
-Route::resource('/sektoral', KasusController::class)->only(['index']);
-Route::get('/sektoral/kasus', [KasusController::class, 'kasus'])->name('sektoral.kasus');
-Route::get('/sektoral/PasanganSubur', [KasusController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
-Route::get('/sektoral/KeluargaBerencana', [KasusController::class, 'KeluargaBerencana'])->name('sektoral.KeluargaBerencana');
-Route::get('/sektoral/KbKontrasepsi', [KasusController::class, 'KbKontrasepsi'])->name('sektoral.KbKontrasepsi');
-Route::get('/sektoral/KbKontrasepsiKecamatan', [KasusController::class, 'KbKontrasepsiKecamatan'])->name('sektoral.KbKontrasepsiKecamatan');
+Route::resource('/sektoral', SektoralController::class)->only(['index']);
+Route::get('/sektoral/kasus', [SektoralController::class, 'kasus'])->name('sektoral.kasus');
+Route::get('/sektoral/jenisKekerasan', [SektoralController::class, 'jenisKekerasan'])->name('sektoral.jenisKekerasan');
+Route::get('/sektoral/PasanganSubur', [SektoralController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
+Route::get('/sektoral/PasanganSuburKecamatan', [SektoralController::class, 'PasanganSuburKecamatan'])->name('sektoral.PasanganSuburKecamatan');
+Route::get('/sektoral/KeluargaBerencana', [SektoralController::class, 'KeluargaBerencana'])->name('sektoral.KeluargaBerencana');
+Route::get('/sektoral/KbKontrasepsi', [SektoralController::class, 'KbKontrasepsi'])->name('sektoral.KbKontrasepsi');
+Route::get('/sektoral/KbKontrasepsiKecamatan', [SektoralController::class, 'KbKontrasepsiKecamatan'])->name('sektoral.KbKontrasepsiKecamatan');
+Route::get('/sektoral/KbKecamatan', [SektoralController::class, 'KbKecamatan'])->name('sektoral.KbKecamatan');
+Route::get('/sektoral/PemberdayaanGender', [SektoralController::class, 'PemberdayaanGender'])->name('sektoral.PemberdayaanGender');
+Route::get('/sektoral/PembangunanGender', [SektoralController::class, 'PembangunanGender'])->name('sektoral.PembangunanGender');
 // Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {
     return view('welcome');
@@ -89,7 +97,7 @@ Route::get('/produkhukum/{id}/download', [App\Http\Controllers\ProdukhukumContro
         ->name('produkhukum.download');
 Route::get('/produkhukum/{id}', [ProdukHukumController::class, 'show'])->name('produkhukum.show');
 Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::class, 'preview'])->name('produkhukum.preview');
-
+Route::resource('/dokumenperencanaan', PerencanaanController::class)->only(['index', 'show']);
 // Rute untuk Berita (Publik)
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
 Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
@@ -207,7 +215,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index', 'show']);
         Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])->name('pimpinan.dashboard');
 
-        Route::resource('/sektoral_cont', AdminSektoralController::class)->except(['index', 'show']);
-        Route::get('/sektoral_cont/dashboard', [AdminSektoralController::class, 'dashboard'])->name('sektoral_cont.dashboard');
+        Route::resource('/sektorall', AdminSektoralController::class)->except(['index', 'show']);
+        Route::get('/sektoral/dashboard', [AdminSektoralController::class, 'dashboard'])->name('sektorall.dashboard');
+
+        Route::resource('/sektoral_cont', AdminSektoralContController::class)->except(['index', 'show']);
+        Route::get('/sektoral_cont/dashboard', [AdminSektoralContController::class, 'dashboard'])->name('sektoral_cont.dashboard');
+
+        Route::resource('/profil_cont', AdminProfilContController::class)->except(['index', 'show']);
+        Route::get('/profil_cont/dashboard', [AdminProfilContController::class, 'dashboard'])->name('profil_cont.dashboard');
     });
 });

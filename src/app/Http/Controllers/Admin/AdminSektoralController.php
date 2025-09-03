@@ -19,7 +19,7 @@ class AdminSektoralController extends Controller
                     ->orWhere('uraian', 'like', "%{$search}%");
             });}
         $sektorals = $query->latest()->get();
-        return view('admin.sektoral_cont.dashboard', compact('sektorals'));
+        return view('admin.sektorall.dashboard', compact('sektorals'));
     }
 
     /**
@@ -28,7 +28,7 @@ class AdminSektoralController extends Controller
     public function create()
     {
         $sektorals = Sektoral::all();
-        return view('admin.sektoral_cont.create', compact('sektorals'));
+        return view('admin.sektorall.create', compact('sektorals'));
     }
 
     /**
@@ -53,7 +53,7 @@ class AdminSektoralController extends Controller
 
     ]);
 
-    return redirect()->route('sektoral_cont.dashboard')->with('success', 'Sektoral Berhasil Ditambahkan');
+    return redirect()->route('sektorall.dashboard')->with('success', 'Sektoral Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
@@ -61,7 +61,7 @@ class AdminSektoralController extends Controller
     public function edit(string $id)
     {
         $sektoral = Sektoral::findOrFail($id);
-        return view('admin.sektoral_cont.edit', compact('sektoral'));
+        return view('admin.sektorall.edit', compact('sektoral'));
     }
 
     /**
@@ -84,7 +84,7 @@ class AdminSektoralController extends Controller
         'deskripsi' => $request->deskripsi,
         'gambar' => $filename
         ]);
-        return redirect()->route('sektoral_cont.dashboard')->with('success', 'Sektoral Berhasil Diperbarui');
+        return redirect()->route('sektorall.dashboard')->with('success', 'Sektoral Berhasil Diperbarui');
     }
 
     /**

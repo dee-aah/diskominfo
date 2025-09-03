@@ -67,12 +67,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datakontrasepsi as $row)
+                                @foreach ($datakb as $row)
                                     <tr>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_alat_kontrasepsi'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
@@ -80,14 +80,14 @@
                             </tbody>
                         </table>
                         <div class="mt-4">
-                            {{ $datakontrasepsi->links('pagination::tailwind') }}
+                            {{ $datakb->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kontrasepsikecamatanChart" height="120"></canvas>
+                    <canvas id="kbChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -138,8 +138,8 @@ datasets.forEach((ds, i) => {
     ds.tension = 0.3;
 });
 
-new Chart(document.getElementById("kontrasepsikecamatanChart"), {
-    type: 'bar', // bisa diganti 'bar' kalau mau grouped bar
+new Chart(document.getElementById("kbChart"), {
+    type: 'line', // bisa diganti 'bar' kalau mau grouped bar
     data: {
         labels: labels,
         datasets: datasets
@@ -150,7 +150,7 @@ new Chart(document.getElementById("kontrasepsikecamatanChart"), {
             legend: { position: 'top' },
             title: {
                 display: true,
-                text: 'Jumlah Pemakai Alat Kontrasepsi Berdasarkan Kecamatan'
+                text: 'Jumlah Peserta KB Aktif Per Kecamatan (Berdasarkan Tahun)'
             }
         },
         scales: {

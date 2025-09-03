@@ -60,19 +60,19 @@
                                 <tr>
                                     <th class="border px-3 py-2">Nama Provinsi</th>
                                     <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Nama Kecamatan</th>
-                                    <th class="border px-3 py-2">Jumlah Peserta Kb Aktip</th>
+                                    <th class="border px-3 py-2">Jenis Kekerasan</th>
+                                    <th class="border px-3 py-2">Jumlah Kasus</th>
                                     <th class="border px-3 py-2">Satuan</th>
                                     <th class="border px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datakontrasepsi as $row)
+                                @foreach ($datakasus as $row)
                                     <tr>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_alat_kontrasepsi'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['jenis_kekerasan'] ?? '-' }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_kasus'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
@@ -80,14 +80,14 @@
                             </tbody>
                         </table>
                         <div class="mt-4">
-                            {{ $datakontrasepsi->links('pagination::tailwind') }}
+                            {{ $datakasus->links('pagination::tailwind') }}
                         </div>
                     </div>
                 </div>
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kontrasepsikecamatanChart" height="120"></canvas>
+                    <canvas id="kasusChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -138,7 +138,7 @@ datasets.forEach((ds, i) => {
     ds.tension = 0.3;
 });
 
-new Chart(document.getElementById("kontrasepsikecamatanChart"), {
+new Chart(document.getElementById("kasusChart"), {
     type: 'bar', // bisa diganti 'bar' kalau mau grouped bar
     data: {
         labels: labels,
@@ -150,7 +150,7 @@ new Chart(document.getElementById("kontrasepsikecamatanChart"), {
             legend: { position: 'top' },
             title: {
                 display: true,
-                text: 'Jumlah Pemakai Alat Kontrasepsi Berdasarkan Kecamatan'
+                text: 'Jumlah kekerasan Pada Perempuan dan Anak Berdasarkan Jenis kekerasan'
             }
         },
         scales: {

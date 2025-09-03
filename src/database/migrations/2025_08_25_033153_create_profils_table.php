@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('profils', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
-            $table->text('des_singkat');
-            $table->text('deskripsi');
-            $table->string('img_team');
+            $table->string('jabatan');
             $table->string('gambar');
             $table->timestamps();
         });

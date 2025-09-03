@@ -4,22 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Profil;
+use App\Models\Sektoral_cont;
 use Illuminate\Support\Facades\Storage;
-
-class AdminProfilController extends Controller
+class AdminSektoralContController extends Controller
 {
     public function dashboard(Request $request)
     {
-    $query = Profil::query();
+    $query = Sektoral_cont::query();
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%")
-                    ->orWhere('des_singkat', 'like', "%{$search}%");
+                $q->where('bidang', 'like', "%{$search}%")
+                    ->orWhere('uraian', 'like', "%{$search}%");
             });}
-        $profils = $query->latest()->get();
-        return view('admin.profill.dashboard', compact('profils'));
+        $sektorals = $query->latest()->get();
+        return view('admin.sektoral_cont.dashboard', compact('sektorals'));
     }
 
     /**
@@ -27,8 +26,8 @@ class AdminProfilController extends Controller
      */
     public function create()
     {
-        $profils = Profil::all();
-        return view('admin.profill.create', compact('profils'));
+        $sektorals = Sektoral_cont::all();
+        return view('admin.sektoral_cont.create', compact('sektorals'));
     }
 
     /**
@@ -38,31 +37,30 @@ class AdminProfilController extends Controller
     {
         $request->validate([
         'nama' => 'required',
-        'jabatan' => 'required',
         'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
+
         $filename = null;
         if ($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $filename = $file->getClientOriginalName();
-            $file->storeAs('profil', $filename);
+            $file->storeAs('sektoral_cont', $filename);
         }
-   Profil::create([
+    Sektoral_cont::create([
         'nama' => $request->nama,
-        'jabatan' => $request->jabatan,
         'gambar' => $filename
 
     ]);
 
-    return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Ditambahkan');
+    return redirect()->route('sektoral_cont.dashboard')->with('success', 'Sektoral Konten Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $profil = Profil::findOrFail($id);
-        return view('admin.profill.edit', compact('profil'));
+        $sektoral = Sektoral_cont::findOrFail($id);
+        return view('admin.sektoral_cont.edit', compact('sektoral'));
     }
 
     /**
@@ -70,23 +68,22 @@ class AdminProfilController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $profil = Profil::findOrFail($id);
+        $sektoral = Sektoral_cont::findOrFail($id);
 
-        $filename = $profil->gambar;
+        $filename = $sektoral->gambar;
         if ($request->hasFile('gambar')) {
-            if ($profil->gambar) {
-                Storage::delete('public/profil/' . $profil->gambar);
+            if ($sektoral->gambar) {
+                Storage::delete('public/sektoral_cont/' . $sektoral->gambar);
             }
             $file = $request->file('gambar');
             $filename =  $file->getClientOriginalName();
-            $file->storeAs('profil', $filename);
+            $file->storeAs('sektoral_cont', $filename);
         }
-        $profil->update([
+        $sektoral->update([
         'nama' => $request->nama,
-        'jabatan' => $request->jabatan,
         'gambar' => $filename
         ]);
-        return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Diperbarui');
+        return redirect()->route('sektoral_cont.dashboard')->with('success', 'Sektoral Berhasil Diperbarui');
     }
 
     /**
@@ -94,8 +91,8 @@ class AdminProfilController extends Controller
      */
     public function destroy(string $id)
     {
-        $profil = Profil::findOrFail($id);
-        $profil->delete();
-        return redirect()->back()->with('success', 'Profil Pimpinan Berhasil Dihapus');
+        $sektoral = Sektoral_cont::findOrFail($id);
+        $sektoral->delete();
+        return redirect()->back()->with('success', 'Konten SektoralBerhasil Dihapus');
     }
 }

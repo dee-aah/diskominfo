@@ -42,10 +42,18 @@
                     </li>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'admin')
-                        <a href="{{ route('profill.dashboard') }}"
-                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
-                             <span>Profil Pimpinan</span>
-                        </a>
+                        <button class="flex items-center p-2 text-gray-700 rounded w-51 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu4')">
+                            <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>Profil Pimpinan
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu4" class="hidden ml-6 pl-6">
+                            <li><a href="{{route('profill.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Pimpinan</a></li>
+                            <li><a href="{{route('profil_cont.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Profil Konten</a>
+                            </li>
+                        </ul>
                         @endif
                     </li>
                     <li class="mb-2">
@@ -124,10 +132,18 @@
                     </li>
                     <li class="mb-2">
                         @if(auth()->check() && auth()->user()->role === 'admin')
-                        <a href="{{ route('sektoral_cont.dashboard') }}"
-                            class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">
-                             <span>Sektoral</span>
-                        </a>
+                        <button class="flex items-center p-2 text-gray-700 rounded w-51 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu3')">
+                            <svg class="w-4 h-4 mr-2 transition-transform" id="icon-Menu3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>Data Sektoral
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu3" class="hidden ml-6 pl-6">
+                            <li><a href="{{route('sektorall.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Konten Sektoral</a></li>
+                            <li><a href="{{route('sektoral_cont.dashboard')}}" class="flex items-center p-2 text-gray-700 rounded hover:bg-blue-100">Konten Sektoral Card</a>
+                            </li>
+                        </ul>
                         @endif
                     </li>
                     <li class="mb-2">

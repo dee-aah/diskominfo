@@ -60,34 +60,29 @@
                                 <tr>
                                     <th class="border px-3 py-2">Nama Provinsi</th>
                                     <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Nama Kecamatan</th>
-                                    <th class="border px-3 py-2">Jumlah Peserta Kb Aktip</th>
+                                    <th class="border px-3 py-2">Index</th>
                                     <th class="border px-3 py-2">Satuan</th>
                                     <th class="border px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datakontrasepsi as $row)
+                                @foreach ($datapembangunan as $row)
                                     <tr>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ number_format($row['jumlah_alat_kontrasepsi'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border text-justify px-2 py-1">{{ $row['indeks_pembangunan_gender'] ?? '-'}}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="mt-4">
-                            {{ $datakontrasepsi->links('pagination::tailwind') }}
-                        </div>
                     </div>
                 </div>
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kontrasepsikecamatanChart" height="120"></canvas>
+                    <canvas id="indexChart" height="120"></canvas>
                 </div>
             </div>
         </div>
@@ -118,48 +113,40 @@
             });
 
             // Data untuk grafik
-            const labels = @json($KecamatanList);
-const datasets = @json($datasets);
-
-// Tambahkan warna dinamis biar beda per tahun
-const colors = [
-    "rgba(54, 162, 235, 0.6)",
-    "rgba(255, 99, 132, 0.6)",
-    "rgba(255, 206, 86, 0.6)",
-    "rgba(75, 192, 192, 0.6)",
-    "rgba(153, 102, 255, 0.6)",
-    "rgba(255, 159, 64, 0.6)"
-];
-
-datasets.forEach((ds, i) => {
-    ds.fill = true;
-    ds.backgroundColor = colors[i % colors.length];
-    ds.borderColor = colors[i % colors.length].replace("0.6", "1");
-    ds.tension = 0.3;
-});
-
-new Chart(document.getElementById("kontrasepsikecamatanChart"), {
-    type: 'bar', // bisa diganti 'bar' kalau mau grouped bar
-    data: {
-        labels: labels,
-        datasets: datasets
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: { position: 'top' },
-            title: {
-                display: true,
-                text: 'Jumlah Pemakai Alat Kontrasepsi Berdasarkan Kecamatan'
-            }
-        },
-        scales: {
-            x: { stacked: false },
-            y: { beginAtZero: true }
-        }
-    }
-});
-
+            const labels = @json($tahunList);
+            const dataKasus = @json($indexpembangunan);
+            // Buat grafik Chart.js
+            new Chart(document.getElementById("indexChart"), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Index Pembangunan Gender",
+                        data: dataKasus,
+                        fill: true,
+                        backgroundColor: "rgba(54, 162, 235, 0.2)",
+                        borderColor: "rgba(54, 162, 235, 1)",
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Index Pembangunan Gender Kota Tasikmalaya Setiap Tahun'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
         </script>
     </body>
 </x-layouts.app>

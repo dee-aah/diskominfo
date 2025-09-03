@@ -51,7 +51,7 @@
                                     Hukum</a>
                                 <a href="{{ url('/dokevaluasi') }}" class="block px-4 py-2 hover:bg-blue-100">Dokumen
                                     Evaluasi</a>
-                                <a href="{{ url('/dokperencanaan') }}"
+                                <a href="{{ url('/dokumenperencanaan') }}"
                                     class="block px-4 py-2 hover:bg-blue-100">Dokumen Perencanaan</a>
                             </div>
                         </div>

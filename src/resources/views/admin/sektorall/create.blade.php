@@ -3,14 +3,14 @@
         <div class="@container">
             <div class="max-w-3xl mx-auto ">
                 <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-3xl text-center font-bold">Tambah Konten Card Sektoral</h3>
+                    <h3 class="text-3xl text-center font-bold">Tambah Struktur Organisasi</h3>
                 </div>
-                <form action="{{ route('sektoral_cont.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('sektorall.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label class="block text-lg font-medium">Nama Konten </label>
-                        <input type="text" name="nama"  placeholder=" Masukkan Nama Konten card"
-                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></input>
+                        <label class="block text-lg font-medium">Deskripsi</label>
+                        <textarea name="deskripsi" rows="5" placeholder=" Masukkan Deskripsi"
+                            class="w-full border bg-gray-100 border-gray-400 rounded p-2" required></textarea>
                     </div>
                     <div class="flex ">
                     <div class="mb-3 mt-2">
@@ -21,7 +21,7 @@
                     </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
-                        <a href="{{ route('sektoral_cont.dashboard') }}" type="button"
+                        <a href="{{ route('sektorall.dashboard') }}" type="button"
                             class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
                         <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan
                         </button>

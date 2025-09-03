@@ -1,6 +1,6 @@
 <x-layouts.app>
     <main class="mx-auto max-w-6xl">
-        <div class="max-w-6xl mx-auto mt-30">
+        <div class="max-w-5xl mx-auto mt-30">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita DPPKBP3A Kota Tasikmalaya </h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
             <div class="grid grid-cols-3 grid-rows-2 h-[600px] gap-2">
@@ -62,7 +62,7 @@
                 @endif
             </div>
         </div>
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
             <!-- KONTEN UTAMA: 2 Card Berita -->
             <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($beritalain as $berita)
@@ -125,7 +125,7 @@
                 <a class="text-[14px] text-white bg-blue-600 h-10 m-10 p-2 px-6 w-50 hover:bg-blue-400 rounded" href="{{ route('kategori.berita', $berita->kategori->slug) }}"> Berita Lainnya..</a>
             </div>
         @endforeach
-        <div class=" mt-8 mx-auto">
+        <div class=" mt-8 mx-auto max-w-5xl ">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita Kota Tasikmalaya</h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
             <div class="grid grid-cols-3 grid-rows-2 h-[600px] gap-2">
@@ -189,7 +189,7 @@
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 my-6">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 my-6">
             <!-- KONTEN UTAMA: 2 Card Berita -->
             <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($beritalaintasik as $berita)
