@@ -35,7 +35,7 @@ class ProdukhukumController extends Controller
     public function download($id)
 {
     $produk = ProdukHukum::findOrFail($id);
-    $filePath = storage_path('app/public/produk/'.$produk->lampiran);
+    $filePath = storage_path('app/public/produk/'. $produk->lampiran);
 
     return response()->download($filePath, $produk->judul.'.pdf');
 }

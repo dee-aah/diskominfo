@@ -33,7 +33,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Gambar Kiri -->
                 <div class="flex justify-center">
-                    <img src="{{asset('storage/pimpinan/'. $pimpinan->gambar)}}" loading="lazy" alt="pimpinan" class="w-72 md:w-96">
+                    <img src="{{asset('storage/pimpinan/'. $pimpinan->gambar)}}" loading="lazy" alt="pimpinan" class="w-40 h-70 ">
                 </div>
                 <!-- Konten Teks Kanan -->
                 <div>
@@ -131,27 +131,27 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
                 <!-- Card Template -->
                 <!-- Repeat untuk setiap data dengan gaya seragam -->
-                <div class="bg-white rounded-lg shadow p-5 text-center">
+                <div class="bg-blue-300 rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Total Penduduk</p>
                     <p class="text-2xl font-bold">{{number_format($totalpenduduk, 0, ',', '.')}} </p>
                     <p class="text-green-600 text-sm">Jiwa Terdaftar Pada Tahun {{$tahunpenduduk}}</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-5 text-center">
+                <div class="bg-[#10B981] rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Index Pemberdayaan Gender</p>
                     <p class="text-2xl font-bold">{{number_format($datapemberdayaan, 2, ',', '.')}}</p>
                     <p class="text-green-600 text-sm">Poin Pada Tahun {{$tahunpemberdayaan}} </p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-5 text-center">
+                <div class="bg-[#8B5CF6] rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Rasio Jenis Kelamin</p>
                     <p class="text-2xl font-bold">{{number_format($rasiojeniskelamin, 2, ',', '.')}}</p>
                     <p class="text-green-600 text-sm">Laki-laki per 100 Perempuan Tahun {{$tahunpenduduk}}</p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-5 text-center">
+                <div class="bg-[#EF4444] rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Pasangan Usia Subur</p>
                     <p class="text-2xl font-bold">{{number_format($datasuburterbaru, 0, ',', '.')}}</p>
                     <p class="text-green-600 text-sm">Total Data Per Tahun {{$tahunsuburterbaru}} </p>
                 </div>
-                <div class="bg-white rounded-lg shadow p-5 text-center">
+                <div class="bg-[#F97316] rounded-lg shadow p-5 text-center">
                     <p class="text-gray-500 text-sm mb-2">Kekerasan Pada Perempuan dan Anak</p>
                     <p class="text-2xl font-bold">{{$datakasusterbaru}}</p>
                     <p class="text-red-600 text-sm">Kasus Tahun {{$tahunkasusterbaru}}</p>
