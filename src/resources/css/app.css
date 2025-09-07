@@ -10,6 +10,17 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
-.sidebar {
-    position: relative; 
+#sidebar {
+  /* Atur tinggi maksimal agar scroll muncul */
+  max-height: 100vh; /* Sesuaikan sesuai kebutuhan, vh berarti viewport height */
+  overflow-y: auto;
+  overflow-x: auto; /* Mengaktifkan scroll vertikal saat konten melebihi max-height */
 }
+#main-content {
+  overflow-x: 100vh;
+  max-height: 100vh;
+
+  max-width: 64rem;/* Mengaktifkan scroll horizontal saat konten melebihi lebar */ /* Mencegah konten di dalamnya wrap ke baris baru */
+}
+#wrapper{
+white-space: nowrap;}

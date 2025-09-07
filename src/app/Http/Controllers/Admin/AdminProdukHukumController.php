@@ -16,9 +16,9 @@ class AdminProdukHukumController extends Controller
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
-                $q->where('nama', 'like', "%{$search}%")
-                    ->orWhere('urutan', 'like', "%{$search}%")
-                    ->orWhere('slug', 'like', "%{$search}%");
+                $q->where('jenis_peraturan', 'like', "%{$search}%")
+                    ->orWhere('judul_peraturan', 'like', "%{$search}%")
+                    ->orWhere('singkatan_jenis', 'like', "%{$search}%");
             });}
         $produks = $query->latest()->get();
         return view('admin.produk_hukum.dashboard', compact('produks'));
