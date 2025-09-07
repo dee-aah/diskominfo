@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Visi Misi DPPKBP3A</title>
-   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <!-- <body class="bg-gray-100"> -->
@@ -169,81 +169,144 @@
   <!-- Highlight Section -->
   <section class="max-w-6xl mx-auto px-6 py-10">
     <h2 class="text-xl font-semibold mb-6">Sorotan Data Utama</h2>
-    <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
       <!-- Card 1 -->
-      <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
-        <h3 class="text-lg font-medium">Pasangan Usia Subur</h3>
-        <p class="text-3xl font-bold mt-2">35.200</p>
-        <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya.</p>
+     <div class="bg-[#2563EB] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Total Penduduk</p>
+        <p class="text-2xl font-bold text-white">2.847 <span class="text-lg">Juta</span></p>
+        <p class="text-white text-sm">Jiwa terdaftar</p>
       </div>
-      <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
-        <h3 class="text-lg font-medium">Pasangan Usia Subur</h3>
-        <p class="text-3xl font-bold mt-2">35.200</p>
-        <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya.</p>
+      <div class="bg-[#8B5CF6] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Partisipasi Perempuan</p>
+        <p class="text-2xl font-bold text-white">34.5<span class="text-lg">%</span></p>
+        <p class="text-white text-sm">Dalam angkatan kerja</p>
       </div>
-      <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
-        <h3 class="text-lg font-medium">Pasangan Usia Subur</h3>
-        <p class="text-3xl font-bold mt-2">35.200</p>
-        <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya.</p>
+      <div class="bg-[#EF4444] rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Kasus Kekerasan Anak</p>
+        <p class="text-2xl font-bold text-white">234</p>
+        <p class="text-white text-sm">Kasus per tahun</p>
       </div>
-
-      <!-- Card 2 -->
-      <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
-        <h3 class="text-lg font-medium">Peserta KB</h3>
-        <p class="text-3xl font-bold mt-2">28.500</p>
-        <p class="text-sm mt-2">Jumlah akseptor Keluarga Berencana aktif.</p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
-        <h3 class="text-lg font-medium">Kasus Kekerasan</h3>
-        <p class="text-3xl font-bold mt-2">73</p>
-        <p class="text-sm mt-2">Kasus perempuan & anak ditangani tahun 2021.</p>
+      <div class="bg-[#F97316] shadow-xl/30 rounded-lg shadow-2xl p-5 text-center">
+        <p class="text-white text-sm mb-2">Peserta KB</p>
+        <p class="text-2xl font-bold text-white">187.252 <span class="text-lg">Ribu</span></p>
+        <p class="text-white text-sm">Akseptor aktif</p>
       </div>
     </div>
   </section>
- <section class="max-w-6xl mx-auto px-6 py-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-      <!-- Card Kiri -->
-      <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-        <h2 class="text-lg font-semibold mb-4">Keluarga Berencana</h2>
-        <img src="gambar/layanan.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-        
-        <div class="space-y-3">
-         <a href="isi-sektoral.html"> <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Jumlah Peserta KB (2020-2024) - Metode Kontrasepsi
-          </div></a>
-         <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Pasangan Usia Subur Kota Tasikmalaya (2019-2024)
-          </div>
-          <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Pemakaian Alat Kontrasepsi Kota Tasikmalaya (2024)
-          </div>
+     <div class="max-w-6xl mx-auto p-6">
+    <div class="grid grid-cols-4 gap-6">
+      
+      <!-- Sidebar -->
+      <aside class="col-span-1 space-y-6">
+        <div class="bg-white shadow rounded-lg p-4">
+          <h2 class="font-semibold text-gray-700 mb-4">Perlindungan Anak</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+          </ul>
         </div>
-      </div>
 
-      <!-- Card Kanan -->
-      <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-        <h2 class="text-lg font-semibold mb-4">Keluarga Sejahtera</h2>
-        <img src="gambar/layanan1.jpg" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-        
-        <div class="space-y-3">
-          <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Jumlah Keluarga Pra Sejahtera (2020-2024)
-          </div>
-          <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Jumlah Keluarga Sejahtera Tahap I (2019-2024)
-          </div>
-          <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-            Jumlah Keluarga Sejahtera Tahap II (2024)
-          </div>
+        <div class="bg-white shadow rounded-lg p-4">
+          <h2 class="font-semibold text-gray-700 mb-4">Perlindungan Anak</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+          </ul>
         </div>
-      </div>
+        <div class="bg-white shadow rounded-lg p-4">
+          <h2 class="font-semibold text-gray-700 mb-4">Perlindungan Anak</h2>
+          <ul class="space-y-2">
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+            <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Peserta KB</a></li>
+          </ul>
+        </div>
+      </aside>
 
+      <!-- Konten -->
+      <main class="col-span-3 bg-white shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">
+          Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
+        </h1>
+        <p class="text-gray-600 mb-4">
+          Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari tahun 2019 s.d. 2024.
+        </p>
+        <p class="text-gray-600 mb-4">
+          Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun sekali.
+        </p>
+        <h2 class="font-semibold text-gray-800 mb-2">Penjelasan mengenai variabel di dalam dataset ini:</h2>
+        <ul class="list-disc list-inside text-gray-600 space-y-2">
+          <li>
+            <b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.
+          </li>
+          <li>
+            <b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.
+          </li>
+          <li>
+            <b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.
+          </li>
+          <li>
+            <b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.
+          </li>
+          <li>
+            <b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.
+          </li>
+         
+          <li>
+            <b>nama_provinsi:</b> menyatakan lingkup data berasal dari wilayah Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data teks.
+          </li>
+        </ul>
+      </main>
     </div>
-  </section>
+  </div>
+
+
+     <div class="max-w-6xl mx-auto bg-white shadow rounded-lg overflow-hidden ml-[120px] mr-[120px] mb-10">
+    <!-- Header Tab -->
+    <div class="grid grid-cols-2 text-center font-semibold text-gray-700">
+      <button id="tabTabel" class="bg-blue-100 border border-gray-300 py-3 focus:outline-none">Tabel</button>
+      <button id="tabGrafik" class="bg-gray-100 border border-gray-300 py-3 focus:outline-none">Grafik</button>
+    </div>
+
+    <!-- Isi Tabel -->
+    <div id="tabelContainer" class="overflow-x-auto">
+      <table class="min-w-full border border-gray-300 text-sm">
+        <thead class="bg-gray-200">
+          <tr>
+            <th class="border border-gray-300 px-3 py-2">NO</th>
+            <th class="border border-gray-300 px-3 py-2">Kecamatan</th>
+            <th class="border border-gray-300 px-3 py-2">Jumlah PUS</th>
+            <th class="border border-gray-300 px-3 py-2">Target KB (%)</th>
+            <th class="border border-gray-300 px-3 py-2">Realisasi (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="border px-3 py-2">1</td><td class="border px-3 py-2">Mangkubumi</td><td class="border px-3 py-2">4659</td><td class="border px-3 py-2">85%</td><td class="border px-3 py-2">78%</td></tr>
+          <tr><td class="border px-3 py-2">2</td><td class="border px-3 py-2">Tamansari</td><td class="border px-3 py-2">7234</td><td class="border px-3 py-2">90%</td><td class="border px-3 py-2">82%</td></tr>
+          <tr><td class="border px-3 py-2">3</td><td class="border px-3 py-2">Kawalu</td><td class="border px-3 py-2">6892</td><td class="border px-3 py-2">85%</td><td class="border px-3 py-2">78%</td></tr>
+          <tr><td class="border px-3 py-2">4</td><td class="border px-3 py-2">Cihideung</td><td class="border px-3 py-2">5012</td><td class="border px-3 py-2">75%</td><td class="border px-3 py-2">70%</td></tr>
+          <tr><td class="border px-3 py-2">5</td><td class="border px-3 py-2">Indihiang</td><td class="border px-3 py-2">6234</td><td class="border px-3 py-2">90%</td><td class="border px-3 py-2">81%</td></tr>
+          <tr><td class="border px-3 py-2">6</td><td class="border px-3 py-2">Tawang</td><td class="border px-3 py-2">4587</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">77%</td></tr>
+          <tr><td class="border px-3 py-2">7</td><td class="border px-3 py-2">Purbaratu</td><td class="border px-3 py-2">4123</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">73%</td></tr>
+          <tr><td class="border px-3 py-2">8</td><td class="border px-3 py-2">Cibeureum</td><td class="border px-3 py-2">3918</td><td class="border px-3 py-2">75%</td><td class="border px-3 py-2">77%</td></tr>
+          <tr><td class="border px-3 py-2">9</td><td class="border px-3 py-2">Cipedes</td><td class="border px-3 py-2">3659</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">74%</td></tr>
+          <tr><td class="border px-3 py-2">10</td><td class="border px-3 py-2">Bungursari</td><td class="border px-3 py-2">3601</td><td class="border px-3 py-2">65%</td><td class="border px-3 py-2">66%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Isi Grafik -->
+    <div id="grafikContainer" class="p-6 hidden">
+      <canvas id="lineChart" height="120"></canvas>
+    </div>
+  </div>
+    </div>
+  </div>
+  <a href="contoh.html">mm</a>
  <footer class="bg-[#476A9A] text-white py-10 px-6">
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
     <div>
@@ -313,6 +376,57 @@
   function animatePage() {
     document.body.classList.remove('opacity-0', 'translate-y-4');
   }
+ const tabTabel = document.getElementById("tabTabel");
+    const tabGrafik = document.getElementById("tabGrafik");
+    const tabelContainer = document.getElementById("tabelContainer");
+    const grafikContainer = document.getElementById("grafikContainer");
+
+    // Chart data
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ["Mangkubumi","Tamansari","Kawalu","Cihideung","Indihiang","Tawang","Purbaratu","Cibeureum","Cipedes","Bungursari"],
+        datasets: [{
+          label: 'Target KB (%)',
+          data: [85,90,85,75,90,70,70,75,70,65],
+          borderColor: 'blue',
+          fill: false,
+          tension: 0.3
+        },
+        {
+          label: 'Realisasi (%)',
+          data: [78,82,78,70,81,77,73,77,74,66],
+          borderColor: 'green',
+          fill: false,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' }
+        },
+        scales: {
+          y: { beginAtZero: true, max: 100 }
+        }
+      }
+    });
+
+    // Event klik Tab
+    tabTabel.addEventListener("click", () => {
+      tabelContainer.classList.remove("hidden");
+      grafikContainer.classList.add("hidden");
+      tabTabel.classList.add("bg-blue-100");
+      tabGrafik.classList.remove("bg-blue-100");
+    });
+
+    tabGrafik.addEventListener("click", () => {
+      tabelContainer.classList.add("hidden");
+      grafikContainer.classList.remove("hidden");
+      tabGrafik.classList.add("bg-blue-100");
+      tabTabel.classList.remove("bg-blue-100");
+    });
 </script>
 
 
