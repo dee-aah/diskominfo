@@ -23,9 +23,7 @@ class UserArtikelController extends Controller
             });
         }
 
-        $artikels = $query->latest()->get();
-
-        // $artikels = Artikel::latest()->get();
+        $artikels = $query->latest()->paginate(5);
         return view('user.artikell.dashboard', compact('artikels'));
     }
     public function create()

@@ -1,58 +1,78 @@
 <x-layouts.sidebar>
-    <main>
-            <div class="max-w-3xl mx-auto">
-                <div class="flex justify-center items-center mb-4">
-                    <h3 class="text-3xl text-center font-bold">Edit Detail Layanan</h3>
+    <div class="max-w-5xl mx-auto  min-h-screen ml-2">
+        <div class="rounded-2xl border  border-gray-200 bg-white ">
+            <div class="flex  p-4 justify-center items-center ">
+                <div class="flex  items-center ">
+                    <h3 class="text-2xl text-center font-medium">Edit Detail Layanan</h3>
                 </div>
-                <form action="{{ route('layanan_detail.update', $layanan_detail->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Layanan</label>
-                        <select name="layanan_id" class="w-full bg-gray-100 border-gray-400 border rounded p-2"
-                            required>
-                            <option value="">-- Pilih Layanan --</option>
-                            @foreach ($layanans as $layanan)
-                                <option value="{{ $layanan->id }}" {{ old('layanan_id', $layanan_detail->layanan_id ?? '') == $layanan->id ? 'selected' : '' }}>
-                                    {{ $layanan->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Jenis Layanan</label>
-                        <select name="jenis" class="w-full border bg-gray-100 border-gray-400 rounded p-2" required>
-                            <option value="">-- Pilih Jenis Layanan --</option>
-                            @foreach ($jenisOptions as $option)
-                            <option value="{{ $option }}">{{ $option }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="block text-lg font-medium">Deskripsi Layanan</label>
-                        <textarea name="deskripsi" rows="3"
-                            placeholder="Masukkan Deskripsi Layanan "
-                            class="w-full border bg-gray-100 border-sky-500 rounded p-2" required>{{ old('deskripsi', $layanan_detail->deskripsi) }}</textarea>
-                            <small class="text-gray-500">Pisahkan Tag Dengan Titik ('.').</small>
-                    </div>
-                    <div class="mb-3">
-                        <input type="file" name="gambar"
-                            class="w-full p-2 justify-end file:mr-4 file:rounded-3xl file:border-0 file:bg-violet-50
-                            file:px-4 file:py-2 file:text-sm  file:font-semibold file:text-blue-600 hover:file:bg-violet-100 dark:file:bg-blue-600 dark:file:text-violet-100 dark:hover:file:bg-violet-400 ..." />
-                        @if ($layanan_detail->gambar)
-                            <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                            <img src="{{ asset('storage/layanan_detail/' . $layanan_detail->gambar) }}" class="w-32 mt-1 rounded">
-                        @endif
-                    </div>
-                    <div class="flex justify-end gap-2 mt-4">
-                        <a href="{{ route('layanan_detail.dashboard') }}"
-                            class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
-                        <button type="submit"
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
-                    </div>
-                </form>
             </div>
-
-    </main>
+            <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
+                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8   ">
+                    <form action="{{ route('layanan_detail.update', $layanan_detail->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="mb-3">
+                                <label class="block py-2 text-[15px] text-black font-medium">Layanan</label>
+                                <select name="layanan_id"
+                                    class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+                                    required>
+                                    <option value="">-- Pilih Layanan --</option>
+                                    @foreach ($layanans as $layanan)
+                                        <option value="{{ $layanan->id }}"
+                                            {{ old('layanan_id', $layanan_detail->layanan_id ?? '') == $layanan->id ? 'selected' : '' }}>
+                                            {{ $layanan->nama }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="block py-2 text-[15px] text-black font-medium">Jenis Layanan</label>
+                                <select name="jenis"
+                                    class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+                                    required>
+                                    <option value="">-- Pilih Jenis Layanan --</option>
+                                    @foreach ($jenisOptions as $option)
+                                        <option value="{{ $option }}">{{ $option }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="block py-2 text-[15px] text-black font-medium">Deskripsi Layanan</label>
+                            <textarea name="deskripsi" rows="3" placeholder="Masukkan Deskripsi Layanan "
+                                class="w-full border editor  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('deskripsi', $layanan_detail->deskripsi) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="block py-2 text-[15px] text-black font-medium">Gambar</label>
+                            <input type="file" name="gambar"
+                                class="focus:border-ring-brand-300 placeholder:text-sm shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden" />
+                            @if ($layanan_detail->gambar)
+                                <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
+                                <img src="{{ asset('storage/layanan_detail/' . $layanan_detail->gambar) }}"
+                                    class="w-32 mt-1 rounded">
+                            @endif
+                        </div>
+                        <div class="flex justify-end gap-2 mt-4">
+                            <a href="{{ route('layanan_detail.dashboard') }}"
+                                class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
+                            <button type="submit"
+                                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        document.querySelectorAll('.editor').forEach((el) => {
+            ClassicEditor
+                .create(el)
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
 </x-layouts.sidebar>

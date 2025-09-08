@@ -6,11 +6,11 @@
                     <h3 class="text-2xl text-center font-medium">Tambah Produk Hukum</h3>
                 </div>
             </div>
-            <div id="sidebar" class="p-5 border-t border-gray-300 sm:p-6 ">
-                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8 mb-40  ">
+            <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
+                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
                     <form action="{{ route('produk_hukum.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="py-3">
+                        <div class="my-3">
                             <label class="block py-2 text-[15px] text-black font-medium">No Registrasi</label>
                             <input type="text" name="reg" placeholder=" Masukkan Registrasi"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"

@@ -24,8 +24,7 @@ class UserBeritaController extends Controller
         }
 
         // PERBAIKAN: Menggunakan paginate() untuk performa yang lebih baik
-        $beritas = $query->latest()->paginate(15);
-
+        $beritas = Berita::paginate(5);
         return view('user.beritaa.dashboard', compact('beritas'));
     }
 

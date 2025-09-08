@@ -6,8 +6,8 @@
                     <h3 class="text-2xl text-center font-medium">Edit Sambutan Pimpinan</h3>
                 </div>
             </div>
-            <div id="sidebar" class="p-5 border-t border-gray-300 sm:p-6 ">
-                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8 mb-40  ">
+            <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
+                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8   ">
                 <form action="{{ route('pimpinan.update', $pimpinan->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')

@@ -18,8 +18,8 @@
 }
 #main-content {
   overflow-x: 100vh;
-  max-height: 100vh;
-
+  max-height: 70vh;
+  overflow-y: auto;
   max-width: 64rem;/* Mengaktifkan scroll horizontal saat konten melebihi lebar */ /* Mencegah konten di dalamnya wrap ke baris baru */
 }
 #wrapper{

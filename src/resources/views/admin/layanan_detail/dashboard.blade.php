@@ -1,84 +1,88 @@
 <x-layouts.sidebar>
-    <div class="p-6">
-        <div class="flex justify-between grid grid-cols-3 items-center mb-4">
-            <div class="justify-start col-1">
-                <h2 class="text-2xl  font-bold">Daftar Detail Layanan</h2>
-            </div>
-            <div class="col-span-2 flex justify-end">
-                <form action="{{ route('layanan_detail.dashboard') }}" method="GET" class="flex justify-end  mr-2">
-                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Detail Layanan..."
-                        class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
-                    <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
-                        <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i>Cari
-                    </button>
-                </form>
-                <button id="toggleAksi"
-                    class="bg-green-600 space-x-2 flex   mr-2   hover:bg-green-500 text-white mt-2 px-3 mr-2 py-2  rounded">
-                    <i class="fa-solid fa-check mr-2 mt-1"></i> Pilih
-                </button>
-                <a href="{{ route('layanan_detail.create') }}" type="button"
-                    class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
-                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
-                </a>
-            </div>
-        </div>
-
+    <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2  ">
         @if (session('success'))
             <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
-
-        <table class="w-full table-auto border border-gray-400 border-2 text-sm">
-            <thead>
-                <tr class="bg-slate-300 text-center">
-                    <th class="px-2 border border-gray-400 border-2 py-2">No</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Layanan</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Jenis </th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi </th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Gambar</th>
-                    <th class="px-4 border aksi hidden border-gray-400 border-2 py-2">Aksi</th>
-                </tr>
-            </thead>
-            <tbody class="bg-gray-100">
-                @forelse ($layanan_details as $layanan)
-                    <tr class="text-center items-center ">
-                        <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->layanan_id }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->jenis }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $layanan->deskripsi }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">
-                            @if ($layanan->gambar)
-                                <img src="{{ asset('storage/layanan_detail/' . $layanan->gambar) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
-                            <a href="{{ route('layanan_detail.edit', $layanan->id) }}"
-                                class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
-                                <i class="fa-solid fa-pen mr-2"></i>Edit
-                            </a>
-                            <form action="{{ route('layanan_detail.destroy', $layanan->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="bg-red-500 hover:bg-red-600 col-span-2 mt-2 py-3 px-3 text-white  rounded">
-                                    <i class="fa-solid fa-trash"></i> Hapus
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="text-center border border-blue-400 py-4">Belum ada artikel</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-
+        <div class="rounded-2xl border  border-gray-200 bg-white ">
+            <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
+                <div class="justify-start ml-4 col-1">
+                    <h2 class="text-xl  font-medium"> Detail Layanan </h2>
+                </div>
+                <div class="col-span-2 flex py-5 justify-end">
+                    <form action="{{ route('layanan_detail.dashboard') }}" method="GET" class="flex justify-end  mr-2">
+                        <div class="relative w-full max-w-xs">
+                            <span class="absolute inset-y-0 left-0 flex pt-1 items-center pl-3">
+                                <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i></span>
+                            <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari..."
+                                class="border-1 border-gray-300 rounded-xl mt-2 pr-4 mr-2 pl-10 py-2 placeholder:text-sm
+                            placeholder:italic   w-full    text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <a href="{{ route('layanan_detail.create') }}" type="button"
+                            class="bg-blue-500 space-x-2 flex justify-end  ml-2 hover:bg-blue-600 text-white text-sm mt-2 px-3 mr-2 py-2 rounded-lg">
+                            <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
+                        </a>
+                </div>
+            </div>
+            <div id="main-content" class="p-5 border-t border-gray-200   sm:p-6">
+                <div class="overflow-hidden rounded border  border-gray-200 bg-white pb-3  ">
+                    <div  class="w-full   overflow-x-auto">
+                        <table class="table-auto  wrapper min-w-full text-sm">
+                            <thead class="border-b border-gray-200">
+                                <th class="font-medium border-r  border-gray-200 p-3">Layanan</th>
+                                <th class="font-medium border-r  border-gray-200 p-3">Jenis </th>
+                                <th class="font-medium border-r  border-gray-200 p-3">Deskripsi </th>
+                                <th class="font-medium border-r  border-gray-200 p-3">Gambar</th>
+                                <th class="font-medium p-3">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                @forelse ($layanan_details as $layanan)
+                                    <tr class="text-center mx-3 items-center hover:bg-gray-100  ">
+                                        <td class="border-r  border-gray-200 p-3">{{ $layanan->layanan_id }}</td>
+                                        <td class="border-r  border-gray-200 p-3">{{ $layanan->jenis }}</td>
+                                        <td class="border-r  border-gray-200 p-3">{{ $layanan->deskripsi }}</td>
+                                        <td class="border-r  border-gray-200 p-3 text-center">
+                                            @if ($layanan->gambar)
+                                                <img src="{{ asset('storage/layanan_detail/' . $layanan->gambar) }}"
+                                                    class="w-16 h-16 object-cover mx-auto justify-content-center rounded">
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td class="p-3  align-middle ">
+                                          <div class="flex justify-center items-center gap-1">
+                                            <a href="{{ route('layanan_detail.edit', $layanan->id) }}"
+                                                class=" col-span-2  p-3  ">
+                                                <i
+                                                    class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
+                                            </a>
+                                            <form action="{{ route('layanan_detail.destroy', $layanan->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class=" col-span-2 p-3  ">
+                                                    <i
+                                                        class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer">
+                                                    </i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="p-3">Belum ada artikel</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {

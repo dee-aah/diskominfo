@@ -6,8 +6,8 @@
                     <h3 class="text-2xl text-center font-medium">Tambah Sambutan Pimpinan</h3>
                 </div>
             </div>
-            <div id="sidebar" class="p-5 border-t border-gray-300 sm:p-6 ">
-                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8 mb-40  ">
+            <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
+                <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8 ">
                 <form action="{{ route('pimpinan.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="my-3">
@@ -45,10 +45,12 @@
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
+        document.querySelectorAll('#editor').forEach((el) => {
         ClassicEditor
-            .create(document.querySelector('#editor'))
+            .create(el)
             .catch(error => {
                 console.error(error);
             });
+    });
     </script>
 </x-layouts.sidebar>

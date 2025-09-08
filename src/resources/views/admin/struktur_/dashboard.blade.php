@@ -1,89 +1,92 @@
 <x-layouts.sidebar>
-    <div class="p-6">
-        <div class="flex justify-between grid grid-cols-3 items-center mb-4">
-            <div class="justify-start col-1">
-                <h2 class="text-2xl  font-bold">Daftar Struktur Organisasi</h2>
-            </div>
-            <div class="col-span-2 flex justify-end">
-                <form action="{{ route('struktur_.dashboard') }}" method="GET" class="flex justify-end  mr-2">
-                    <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari Tupoksi..."
-                        class="border rounded mt-2 px-3 mr-2 py-2 focus:outline-none">
-                    <button type="submit" class="bg-blue-500  hover:bg-blue-600 text-white mt-2 px-3 mr-2 py-2  rounded">
-                        <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i>Cari
-                    </button>
-                </form>
-                <button id="toggleAksi"
-                    class="bg-green-600 space-x-2 flex   mr-2   hover:bg-green-500 text-white mt-2 px-3 mr-2 py-2  rounded">
-                    <i class="fa-solid fa-check mr-2 mt-1"></i> Pilih
-                </button>
-                <a href="{{ route('struktur_.create') }}" type="button"
-                    class="bg-blue-600 space-x-2 flex justify-end  ml-2 hover:bg-blue-500 text-white mt-2 px-3 mr-2 py-2 rounded">
-                    <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
-                </a>
-            </div>
-        </div>
-
+    <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
         @if (session('success'))
             <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
+        <div class="rounded-2xl border  border-gray-200 bg-white ">
+            <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
+                <div class="justify-start ml-4 col-1">
+                    <h2 class="text-xl  font-medium">Tentang Kami</h2>
+                </div>
+                <div class="col-span-2 flex py-5 justify-end">
+                    <form action="{{ route('struktur_.dashboard') }}" method="GET" class="flex justify-end  mr-2">
+                        <div class="relative w-full max-w-xs">
+                        <span class="absolute inset-y-0 left-0 flex pt-1 items-center pl-3">
+                            <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i></span>
+                        <input type="text" name="d" value="{{ request('d') }}" placeholder="Cari..."
+                            class="border-1 border-gray-300 rounded-xl mt-2 pr-4 mr-2 pl-10 py-2 placeholder:text-sm
+                            placeholder:italic   w-full    text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    <a href="{{ route('struktur_.create') }}" type="button"
+                        class="bg-blue-500 space-x-2 flex justify-end  ml-2 hover:bg-blue-600 text-white text-sm mt-2 px-3 mr-2 py-2 rounded-lg">
+                        <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah
+                    </a>
+                </div>
+            </div>
+            <div id="main-content" class="p-5 border-t border-gray-200 sm:p-6">
+            <div class="overflow-hidden rounded border  border-gray-200 bg-white pb-3  ">
+                <div  class="w-full overflow-x-auto">
 
-        <table class="w-full table-auto border-gray-400 border-2 border text-sm">
+                    <table  class="table-auto wrapper min-w-full text-sm">
             <thead>
-                <tr class="bg-slate-300 text-center">
-                    <th class="px-2 border border-gray-400 border-2 py-2">No</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Deskripsi</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Gambar Konten</th>
-                    <th class="px-4 border border-gray-400 border-2 py-2">Gambar latar</th>
-                    <th class="px-4 border aksi hidden border-gray-400 border-2 py-2">Aksi</th>
+                <tr class="border-gray-200 border-b">
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Deskripsi</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar Konten</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar latar</th>
+                    <th class="font-medium px-3 py-3">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="bg-gray-100">
+            <tbody class="divide-y divide-gray-200">
                 @forelse ($strukturs as $struktur)
-                    <tr class="text-center items-center ">
-                        <td class="px-2 border border-gray-400 border-2 py-2">{{ $loop->iteration }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">{{ $struktur->deskripsi }}</td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">
+                    <tr class="text-center mx-3 items-center hover:bg-gray-100">
+                        <td class="p-3 border-r  border-gray-200">{{ $struktur->deskripsi }}</td>
+                        <td class="p-3 border-r  border-gray-200 text-center">
                             @if ($struktur->gambar_cont)
                                 <img src="{{ asset('storage/struktur/' . $struktur->gambar_cont) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
+                                    class="w-16 h-16 object-cover mx-auto justify-content-center rounded">
                             @else
                                 -
                             @endif
                         </td>
-                        <td class="px-4 border border-gray-400 border-2 py-2">
+                        <td class="p-3 border-r  border-gray-200 text-center">
                             @if ($struktur->gambar)
                                 <img src="{{ asset('storage/struktur/' . $struktur->gambar) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
+                                    class="w-16 h-16 object-cover mx-auto justify-content-center rounded">
                             @else
                                 -
                             @endif
                         </td>
-                        <td class="px-3 py-3 flex grid grip-rows border border-gray-400 border-2 justify-center aksi hidden">
+                        <td class="p-3  align-middle ">
+                                    <div class="flex justify-center items-center gap-1">
                             <a href="{{ route('struktur_.edit', $struktur->id) }}"
-                                class="bg-yellow-500 hover:bg-yellow-600 text-white col-span-2 px-2 py-3 mb-2 rounded">
-                                <i class="fa-solid fa-pen mr-2"></i>Edit
+                                class=" col-span-2  p-3  ">
+                                    <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
                             </a>
                             <form action="{{ route('struktur_.destroy', $struktur->id) }}" method="POST"
                                 onsubmit="return confirm(' Anda Yakin Ingin Menghapus Tupoksi ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                    class="bg-red-500 hover:bg-red-600 col-span-2 mt-2 py-3 px-3 text-white  rounded">
-                                    <i class="fa-solid fa-trash"></i> Hapus
+                                    class=" col-span-2 p-3  ">
+                                    <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
                                 </button>
                             </form>
+                                    </div>
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center border border-gray-400 border-2 py-4">Belum ada Struktur Organisasi</td>
+                        <td colspan="5" class="px-3 py-3">Belum ada Struktur Organisasi</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
-
+        </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {

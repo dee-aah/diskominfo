@@ -1,8 +1,7 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
-
         @if (session('success'))
-            <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
+            <div id="flash-message" class="bg-green-500 text-center text-green-800 p-3 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif
@@ -26,17 +25,18 @@
                     </a>
                 </div>
             </div>
-            <div class="p-5 border-t border-gray-200 sm:p-6">
+            <div id="main-content" class="p-5 border-t border-gray-200 sm:p-6">
             <div class="overflow-hidden rounded border  border-gray-200 bg-white pb-3  ">
-                <div id="main-content" class="w-full overflow-x-auto">
+                <div  class="w-full overflow-x-auto">
+
                     <table  class="table-auto wrapper min-w-full text-sm">
             <thead>
                 <tr class="border-gray-200 border-b">
 
-                    <th class="font-medium px-3 py-3">Deskripsi Singkat</th>
-                    <th class="font-medium px-3 py-3">Deskripsi</th>
-                    <th class="font-medium px-3 py-3">Gambar Konten</th>
-                    <th class="font-medium px-3 py-3">Gambar latar</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Deskripsi Singkat</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Deskripsi</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar Konten</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar latar</th>
                     <th class="font-medium px-3 py-3">Aksi</th>
                 </tr>
             </thead>
@@ -44,28 +44,29 @@
                 @forelse ($tentangs as $tentang)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100">
 
-                        <td class=" px-3 py-3">{{ Str::limit(strip_tags($tentang->des_singkat), 100) }}</td>
-                        <td class=" px-3 py-3">{{ Str::limit(strip_tags($tentang->deskripsi), 100) }}</td>
-                        <td class=" px-3 py-3">
+                        <td class=" px-3 border-r  border-gray-200 py-3">{{ Str::limit(strip_tags($tentang->des_singkat), 100) }}</td>
+                        <td class=" px-3 border-r  border-gray-200 py-3">{{ Str::limit(strip_tags($tentang->deskripsi), 100) }}</td>
+                        <td class=" px-3 border-r  border-gray-200 py-3 text-center">
                             @if ($tentang->gambar_cont)
                                 <img src="{{ asset('storage/tentang/' . $tentang->gambar_cont) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
+                                    class="w-16 h-16 object-cover mx-auto justify-content-center rounded">
                             @else
                                 -
                             @endif
                         </td>
-                        <td class=" px-3 py-3">
+                        <td class=" px-3 border-r  border-gray-200 py-3 text-center">
                             @if ($tentang->gambar)
                                 <img src="{{ asset('storage/tentang/' . $tentang->gambar) }}"
-                                    class="w-16 h-16 object-cover justify-content-center rounded">
+                                    class="w-16 h-16 object-cover mx-auto justify-content-center rounded">
                             @else
                                 -
                             @endif
                         </td>
-                        <td class=" px-3 py-3">
+                        <td class="p-3  align-middle ">
+                                    <div class="flex justify-center items-center gap-1">
                             <a href="{{ route('tentang_kami.edit', $tentang->id) }}"
                                 class=" col-span-2  p-3  ">
-                                            <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
+                                    <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
                             </a>
                             <form action="{{ route('tentang_kami.destroy', $tentang->id) }}" method="POST"
                                 onsubmit="return confirm(' Anda Yakin Ingin Menghapus Tupoksi ini?')">
@@ -73,9 +74,10 @@
                                 @method('DELETE')
                                 <button type="submit"
                                     class=" col-span-2 p-3  ">
-                                                <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
+                                    <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
                                 </button>
                             </form>
+                                    </div>
                         </td>
                     </tr>
                 @empty
@@ -85,7 +87,10 @@
                 @endforelse
             </tbody>
         </table>
-
+</div>
+                </div>
+            </div>
+        </div>
     </div>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
@@ -102,8 +107,8 @@
                     flash.style.opacity = '0';
                     setTimeout(() => {
                         flash.remove();
-                    }, 500); // tunggu animasi selesai sebelum dihapus
-                }, 3000); // tunggu 3 detik
+                    }, 500);
+                }, 3000);
             }
         });
     </script>
