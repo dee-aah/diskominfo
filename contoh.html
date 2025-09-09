@@ -3,70 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kotak Layanan Custom</title>
+  <title>Data Statistik Sektoral</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-100 font-sans">
 
-  <section class="max-w-7xl mx-auto px-6 py-10">
-    <div class="grid grid-cols-3 gap-6 auto-rows-[200px]">
+<div class="max-w-7xl mx-auto p-6">
+  <div class="grid grid-cols-4 gap-6">
+    
+    <!-- Sidebar -->
+    <aside class="col-span-1 space-y-6">
+      <div class="bg-white shadow rounded-lg p-4">
+        <h2 class="font-semibold text-gray-700 mb-4">Perlindungan Anak</h2>
+        <ul class="space-y-2">
+          <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700 sidebar-link" data-target="kb">Jumlah Peserta KB</a></li>
+          <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700 sidebar-link" data-target="perlindungan">Kasus Perlindungan Anak</a></li>
+          <li><a href="#" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700 sidebar-link" data-target="gender">Data Kesetaraan Gender</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Konten Dinamis -->
+    <main class="col-span-3 space-y-6">
       
-      <!-- Card 1: Layanan DPPKBP3A -->
-      <div class="bg-blue-100 p-6 rounded-lg shadow hover:shadow-lg transition relative row-span-2">
-        <h3 class="text-lg font-semibold mb-2">Layanan DPPKBP3A</h3>
-        <p class="text-sm text-gray-700">
-          Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak (DPPKBP3A) Kota Tasikmalaya menyediakan berbagai layanan...
+      <!-- ==================== KONTEN KB ==================== -->
+      <div id="content-kb" class="content-section bg-white shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Jumlah Peserta KB (2020–2024)</h1>
+        <p class="text-gray-600 mb-4">
+          Dataset ini berisi data jumlah pasangan usia subur (PUS) di tiap kecamatan, 
+          target dan realisasi program KB. Data ini penting untuk mengevaluasi efektivitas program keluarga berencana.
         </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
 
-      <!-- Card 2: Standar Pelayanan -->
-      <div class="bg-rose-100 p-6 rounded-lg shadow hover:shadow-lg transition relative col-span-2">
-        <h3 class="text-lg font-semibold mb-2">Standar Pelayanan (SISPEK)</h3>
-        <p class="text-sm text-gray-700">
-          DPPKBP3A Kota Tasikmalaya menyediakan layanan terkait pengendalian penduduk, keluarga berencana, pemberdayaan perempuan...
-        </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
 
-      <!-- Card 3: IKM -->
-      <div class="bg-yellow-100 p-6 rounded-lg shadow hover:shadow-lg transition relative">
-        <h3 class="text-lg font-semibold mb-2">IKM</h3>
-        <p class="text-sm text-gray-700">
-          Indeks Kepuasan Masyarakat (IKM) Kota Tasikmalaya mengukur tingkat kepuasan publik...
-        </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
-
-      <!-- Card 4: PPID -->
-      <div class="bg-green-100 p-6 rounded-lg shadow hover:shadow-lg transition relative">
-        <h3 class="text-lg font-semibold mb-2">PPID</h3>
-        <p class="text-sm text-gray-700">
-          PPID mengelola dan memberikan informasi publik bagi masyarakat...
-        </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
-
-      <!-- Card 5: SP4NLAPOR -->
-      <div class="bg-orange-100 p-6 rounded-lg shadow hover:shadow-lg transition relative col-span-2">
-        <h3 class="text-lg font-semibold mb-2">SP4NLAPOR</h3>
-        <p class="text-sm text-gray-700">
-          Layanan aspirasi dan pengaduan online masyarakat untuk meningkatkan kualitas pelayanan publik.
-        </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
-
-      <!-- Card 6: Data Statistik -->
-      <div class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-lg transition relative">
-        <h3 class="text-lg font-semibold mb-2">Data Statistik Sektoral</h3>
-        <p class="text-sm text-gray-700">
-          Menyajikan data kependudukan, keluarga berencana, pemberdayaan perempuan, dan perlindungan anak...
-        </p>
-        <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-      </div>
-
+         <div class="grid grid-cols-2 text-center font-semibold text-gray-700">
+     <button class="tab-btn px-4 py-2 border-r active" data-tab="kb-table">Tabel</button>
+     <button class="tab-btn px-4 py-2" data-tab="kb-chart">Grafik</button>
     </div>
-  </section>
+        <!-- Tabs -->
+        
+
+        <!-- Tabel -->
+        <div id="kb-table" class="tab-content">
+          <div class="overflow-x-auto">
+            <table class="min-w-full border border-gray-200">
+              <thead>
+                <tr class="bg-blue-100">
+                  <th class="border px-3 py-2">NO</th>
+                  <th class="border px-3 py-2">Kecamatan</th>
+                  <th class="border px-3 py-2">Jumlah PUS</th>
+                  <th class="border px-3 py-2">Target KB (%)</th>
+                  <th class="border px-3 py-2">Realisasi (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="border px-3 py-2">1</td><td class="border px-3 py-2">Mangkubumi</td><td class="border px-3 py-2">4659</td><td class="border px-3 py-2">85%</td><td class="border px-3 py-2">78%</td></tr>
+                <tr><td class="border px-3 py-2">2</td><td class="border px-3 py-2">Tamansari</td><td class="border px-3 py-2">7234</td><td class="border px-3 py-2">90%</td><td class="border px-3 py-2">82%</td></tr>
+                <tr><td class="border px-3 py-2">3</td><td class="border px-3 py-2">Kawalu</td><td class="border px-3 py-2">6892</td><td class="border px-3 py-2">85%</td><td class="border px-3 py-2">78%</td></tr>
+                <tr><td class="border px-3 py-2">4</td><td class="border px-3 py-2">Cihideung</td><td class="border px-3 py-2">5012</td><td class="border px-3 py-2">75%</td><td class="border px-3 py-2">70%</td></tr>
+                <tr><td class="border px-3 py-2">5</td><td class="border px-3 py-2">Indihiang</td><td class="border px-3 py-2">6234</td><td class="border px-3 py-2">90%</td><td class="border px-3 py-2">81%</td></tr>
+                <tr><td class="border px-3 py-2">6</td><td class="border px-3 py-2">Tawang</td><td class="border px-3 py-2">4587</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">77%</td></tr>
+                <tr><td class="border px-3 py-2">7</td><td class="border px-3 py-2">Purbaratu</td><td class="border px-3 py-2">4123</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">73%</td></tr>
+                <tr><td class="border px-3 py-2">8</td><td class="border px-3 py-2">Cibeureum</td><td class="border px-3 py-2">3918</td><td class="border px-3 py-2">75%</td><td class="border px-3 py-2">77%</td></tr>
+                <tr><td class="border px-3 py-2">9</td><td class="border px-3 py-2">Cipedes</td><td class="border px-3 py-2">3659</td><td class="border px-3 py-2">70%</td><td class="border px-3 py-2">74%</td></tr>
+                <tr><td class="border px-3 py-2">10</td><td class="border px-3 py-2">Bungursari</td><td class="border px-3 py-2">3601</td><td class="border px-3 py-2">65%</td><td class="border px-3 py-2">66%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Grafik -->
+        <div id="kb-chart" class="tab-content hidden">
+          <canvas id="chartKB"></canvas>
+        </div>
+      </div>
+
+      <!-- ==================== KONTEN PERLINDUNGAN ==================== -->
+      <div id="content-perlindungan" class="content-section bg-white shadow rounded-lg p-6 hidden">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Kasus Perlindungan Anak (2019–2024)</h1>
+        <p class="text-gray-600 mb-4">
+          Dataset ini memuat jumlah kasus perlindungan anak di Kota Tasikmalaya, termasuk bentuk kekerasan 
+          yang dialami anak serta upaya penyelesaiannya.
+        </p>
+
+        <div class="flex border-b mb-4">
+          <button class="tab-btn px-4 py-2 border-r active" data-tab="perlindungan-table">Tabel</button>
+          <button class="tab-btn px-4 py-2" data-tab="perlindungan-chart">Grafik</button>
+        </div>
+
+        <!-- Tabel -->
+        <div id="perlindungan-table" class="tab-content">
+          <table class="min-w-full border border-gray-200">
+            <thead class="bg-blue-100">
+              <tr><th class="border px-3 py-2">Tahun</th><th class="border px-3 py-2">Kasus</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="border px-3 py-2">2019</td><td class="border px-3 py-2">120</td></tr>
+              <tr><td class="border px-3 py-2">2020</td><td class="border px-3 py-2">150</td></tr>
+              <tr><td class="border px-3 py-2">2021</td><td class="border px-3 py-2">175</td></tr>
+              <tr><td class="border px-3 py-2">2022</td><td class="border px-3 py-2">160</td></tr>
+              <tr><td class="border px-3 py-2">2023</td><td class="border px-3 py-2">140</td></tr>
+              <tr><td class="border px-3 py-2">2024</td><td class="border px-3 py-2">130</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Grafik -->
+        <div id="perlindungan-chart" class="tab-content hidden">
+          <canvas id="chartPerlindungan"></canvas>
+        </div>
+      </div>
+
+      <!-- ==================== KONTEN GENDER ==================== -->
+      <div id="content-gender" class="content-section bg-white shadow rounded-lg p-6 hidden">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Data Kesetaraan Gender (2019–2024)</h1>
+        <p class="text-gray-600 mb-4">
+          Dataset ini menampilkan indeks kesetaraan gender (IKG) di Kota Tasikmalaya.
+          Data ini digunakan untuk mengukur perbedaan akses antara laki-laki dan perempuan.
+        </p>
+
+        <div class="flex border-b mb-4">
+          <button class="tab-btn px-4 py-2 border-r active" data-tab="gender-table">Tabel</button>
+          <button class="tab-btn px-4 py-2" data-tab="gender-chart">Grafik</button>
+        </div>
+
+        <!-- Tabel -->
+        <div id="gender-table" class="tab-content">
+          <table class="min-w-full border border-gray-200">
+            <thead class="bg-blue-100">
+              <tr><th class="border px-3 py-2">Tahun</th><th class="border px-3 py-2">IKG (%)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="border px-3 py-2">2019</td><td class="border px-3 py-2">72%</td></tr>
+              <tr><td class="border px-3 py-2">2020</td><td class="border px-3 py-2">74%</td></tr>
+              <tr><td class="border px-3 py-2">2021</td><td class="border px-3 py-2">76%</td></tr>
+              <tr><td class="border px-3 py-2">2022</td><td class="border px-3 py-2">77%</td></tr>
+              <tr><td class="border px-3 py-2">2023</td><td class="border px-3 py-2">79%</td></tr>
+              <tr><td class="border px-3 py-2">2024</td><td class="border px-3 py-2">80%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Grafik -->
+        <div id="gender-chart" class="tab-content hidden">
+          <canvas id="chartGender"></canvas>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Sidebar click
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = this.dataset.target;
+      document.querySelectorAll('.content-section').forEach(sec => sec.classList.add('hidden'));
+      document.getElementById("content-" + target).classList.remove('hidden');
+    });
+  });
+
+  // Tab click
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const parent = this.closest('.content-section');
+      const tabId = this.dataset.tab;
+      parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      this.classList.add('active');
+      parent.querySelector('#' + tabId).classList.remove('hidden');
+    });
+  });
+
+  // Chart KB
+  new Chart(document.getElementById('chartKB'), {
+    type: 'bar',
+    data: {
+      labels: ['Mangkubumi','Tamansari','Kawalu','Cihideung','Indihiang','Tawang','Purbaratu','Cibeureum','Cipedes','Bungursari'],
+      datasets: [
+        { label: 'Target KB (%)', data: [85,90,85,75,90,70,70,75,70,65], backgroundColor: 'rgba(54, 162, 235, 0.6)' },
+        { label: 'Realisasi (%)', data: [78,82,78,70,81,77,73,77,74,66], backgroundColor: 'rgba(255, 99, 132, 0.6)' }
+      ]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: true, max: 100 } } }
+  });
+
+  // Chart Perlindungan Anak
+  new Chart(document.getElementById('chartPerlindungan'), {
+    type: 'line',
+    data: {
+      labels: ['2019','2020','2021','2022','2023','2024'],
+      datasets: [
+        { label: 'Kasus Perlindungan Anak', data: [120,150,175,160,140,130], borderColor: 'rgba(255, 99, 132, 1)', fill: false }
+      ]
+    }
+  });
+
+  // Chart Gender
+  new Chart(document.getElementById('chartGender'), {
+    type: 'line',
+    data: {
+      labels: ['2019','2020','2021','2022','2023','2024'],
+      datasets: [
+        { label: 'Indeks Kesetaraan Gender (%)', data: [72,74,76,77,79,80], borderColor: 'rgba(54, 162, 235, 1)', fill: false }
+      ]
+    }
+  });
+</script>
+
+<style>
+  .tab-btn.active {
+    background-color: #e5e7eb;
+    font-weight: bold;
+  }
+</style>
+
 
 </body>
 </html>
