@@ -32,7 +32,7 @@
                 </svg>
             </div>
         </section>
-        <div class="bg-white justify-center max-w-5xl mt-10 mx-auto  ">
+        <div class="bg-white justify-center max-w-6xl mt-10 mx-auto   ">
             <h1 class="text-center text-2xl font-bold text-black mb-2">
                 Tugas Pokok dan Fungsi Organisasi
             </h1>
@@ -40,7 +40,7 @@
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 my-6 gap-6 ">
                 <!-- Tugas -->
-                <div class="bg-white rounded-lg py-6 shadow-md shadow-blue-500/50 text-center rounded-md">
+                <div class="bg-white rounded-lg p-6 text-center rounded-xl border-2 border-indigo-500 text-center ">
                     <div class="flex justify-center mb-4">
                         <div class="bg-indigo-300 p-3 rounded-full">
                             <!-- Ikon tugas -->
@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- Fungsi Utama -->
-                <div class="bg-white rounded-sm py-6 shadow-md shadow-blue-500/50  text-center ">
+                <div class="bg-white rounded-lg p-6 text-center rounded-xl border-2 border-indigo-500 text-center ">
                     <div class="flex justify-center mb-4">
                         <div class="bg-gray-400 p-3 rounded-full">
                             <!-- Ikon fungsi -->
@@ -74,8 +74,8 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white max-w-5xl mx-auto pb-8">
-            <div class="bg-white rounded-md p-6 w-full shadow-md shadow-blue-500/50 max-w-screen-xl mx-auto ">
+        <div class="bg-white max-w-6xl mx-auto pb-8">
+            <div class="bg-white rounded-md p-6 w-full shadow-md  max-w-screen-xl mx-auto ">
                 <div class="flex flex-col items-center mb-6">
                     <!-- Ikon Folder -->
                     <img width="50" height="50" src="https://img.icons8.com/cute-clipart/50/paste.png"

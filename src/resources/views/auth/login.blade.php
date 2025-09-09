@@ -26,19 +26,19 @@
 
             {{-- Email --}}
             <div class="mb-4">
-                <h2 class="text-lg font-semibold mt-2">Alamat Email</h2>
+                <h2 class="text-[14px] font-medium mt-2">Alamat Email</h2>
                 <input type="email" name="email" value="{{ old('email') }}" placeholder="Masukkan Email"
-                    class="w-full px-4 py-2 mb-3 border rounded focus:outline-none focus:ring focus:border-blue-300">
+                    class="w-full px-4 py-2 mb-3 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300">
                 @error('email')
-                    <p class="text-red-500 text-sm mb-3">{{ $message }}</p>
+                    <p class="text-red-500  text-sm mb-3">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Password --}}
-            <h2 class="text-lg font-semibold">Password</h2>
+            <h2 class="text-[14px] font-medium">Password</h2>
             <div x-data="{ show: false }" class="relative mb-4">
                 <input :type="show ? 'text' : 'password'" name="password" id="password"
-                    class="w-full border rounded px-4 py-2 pr-10 focus:outline-none focus:ring"
+                    class="w-full px-4 py-2 mb-3 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300"
                     placeholder="Masukkan Password">
                 <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show" tabindex="-1">
                     {{-- Icon Hide --}}
@@ -64,7 +64,7 @@
 
             {{-- Tombol Login --}}
             <button type="submit"
-                class="w-full my-6 bg-[#476A9A] text-white font-bold py-2 rounded hover:bg-[#36527a] transition">
+                class="w-full my-6 bg-[#476A9A] text-white font-bold py-2 font-medium text-sm rounded hover:bg-[#36527a] transition">
                 Login
             </button>
         </form>
@@ -77,9 +77,9 @@
         </div>
         <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
         <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>
-        <p class="mb-6 text-center">Masukkan Data Diri Anda</p>
+        <p class=" text-center">Masukkan Data Diri Anda</p>
         <a href="{{ route('register') }}"
-            class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">
+            class=" py-2 px-6 text-sm font-medium rounded  hover:text-blue-200 transition">
             SIGN UP
         </a>
     </div>

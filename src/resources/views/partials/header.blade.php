@@ -15,15 +15,15 @@
                         <div class="relative group">
                             <button class="hover:text-blue-600">Profil</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-                                <a href="{{ url('/tentang') }}" class="block px-4 py-2 hover:bg-blue-100">Tentang
+                                <a href="{{ url('/tentang') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Tentang
                                     Kami</a>
-                                <a href="{{ url('/visimisi') }}" class="block px-4 py-2 hover:bg-blue-100">Visi Misi</a>
-                                <a href="{{ url('/profil') }}" class="block px-4 py-2 hover:bg-blue-100">Profil
+                                <a href="{{ url('/visimisi') }}" class="block px-4 text-center py-2 hover:bg-blue-100">Visi Misi</a>
+                                <a href="{{ url('/profil') }}" class="block px-4 text-center py-2 hover:bg-blue-100">Profil
                                     Pimpinan</a>
-                                <a href="{{ url('/struktur') }}" class="block px-4 py-2 hover:bg-blue-100">Struktur
+                                <a href="{{ url('/struktur') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Struktur
                                     Organisasi</a>
-                                <a href="{{ url('/tupoksi') }}" class="block px-4 py-2 hover:bg-blue-100">Tupoksi</a>
-                                <a href="{{ url('/maklumatt') }}" class="block px-4 py-2 hover:bg-blue-100">Maklumat
+                                <a href="{{ url('/tupoksi') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Tupoksi</a>
+                                <a href="{{ url('/maklumatt') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Maklumat
                                     Pelayanan</a>
 
                             </div>
@@ -31,35 +31,35 @@
                         <div class="relative group">
                             <button class="hover:text-blue-600">Layanan</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-                                <a href="{{ url('/layanans') }}"class="block px-4 py-2 hover:bg-blue-100">Informasi
+                                <a href="{{ url('/layanans') }}"class="block px-4 text-center py-2 hover:bg-blue-100">Informasi
                                     Layanan</a>
                                 <a href="{{ url('/standarpelayanan') }}"
-                                    class="block px-4 py-2 hover:bg-blue-100">Standar Pelayanan</a>
+                                    class="block px-4 py-2 text-center hover:bg-blue-100">Standar Pelayanan</a>
                                 <a
-                                    href="{{ url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/') }}"class="block px-4 py-2 hover:bg-blue-100">IKM</a>
+                                    href="{{ url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/') }}"class="block text-center px-4 py-2 hover:bg-blue-100">IKM</a>
                                 <a href="{{ url('https://ppid.tasikmalayakota.go.id/') }}"
-                                    class="block px-4 py-2 hover:bg-blue-100">PPID</a>
+                                    class="block px-4 py-2 text-center hover:bg-blue-100">PPID</a>
                                 <a href="{{ url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/') }}"
-                                    class="block px-4 py-2 hover:bg-blue-100">SP4N Lapor</a>
+                                    class="block px-4 text-center py-2 hover:bg-blue-100">SP4N Lapor</a>
 
                             </div>
                         </div>
                         <div class="relative group">
                             <button class="hover:text-blue-600">Dokumen</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-                                <a href="{{ url('/produkhukum') }}" class="block px-4 py-2 hover:bg-blue-100">Produk
+                                <a href="{{ url('/produkhukum') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Produk
                                     Hukum</a>
-                                <a href="{{ url('/dokevaluasi') }}" class="block px-4 py-2 hover:bg-blue-100">Dokumen
+                                <a href="{{ url('/dokevaluasi') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Dokumen
                                     Evaluasi</a>
                                 <a href="{{ url('/dokumenperencanaan') }}"
-                                    class="block px-4 py-2 hover:bg-blue-100">Dokumen Perencanaan</a>
+                                    class="block px-4 py-2 text-center hover:bg-blue-100">Dokumen Perencanaan</a>
                             </div>
                         </div>
                         <div class="relative group">
                             <button class="hover:text-blue-600">Berita</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
-                                <a href="{{ url('/beritakita') }}" class="block px-4 py-2 hover:bg-blue-100">Berita</a>
-                                <a href="{{ url('/artikel') }}" class="block px-4 py-2 hover:bg-blue-100">Artikel</a>
+                                <a href="{{ url('/beritakita') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Berita</a>
+                                <a href="{{ url('/artikel') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Artikel</a>
                             </div>
                         </div>
                         <a href="{{url('/sektoral')}}" class="hover:text-blue-600">Data Statistik Sektoral</a>

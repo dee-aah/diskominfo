@@ -14,10 +14,8 @@
                         Kami</h1>
                     <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                         Perlindungan Anak.</p>
-
                 </div>
             </div>
-
             <!-- Wave SVG -->
             <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
                 <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
@@ -31,13 +29,13 @@
         <div class="bg-white mx-auto max-w-6xl py-12 px-4 md:px-12">
             <!-- Header dengan logo dan judul sejajar -->
             <div class="flex items-center justify-center gap-3 mb-2">
-                <h2 class="text-xl md:text-2xl font-bold text-black border-b-2 border-black pb-1">
+                <h2 class="text-xl md:text-2xl font-bold text-black pb-3">
                     Tentang Kami
                 </h2>
             </div>
 
             <!-- Subjudul -->
-            <p class="text-center  text-[12px] md:text-lg font-medium text-black mb-10">
+            <p class="text-center  text-sm md:text-lg font-medium text-black mb-10">
                 {{$tentang->des_singkat}}
             </p>
             <!-- Konten Utama -->
@@ -58,21 +56,55 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white py-12 px-4">
-            <h2 class="text-center text-2xl font-bold mb-10">Kegiatan</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 max-w-5xl mx-auto">
-                <!-- Card 1 -->
+        <div class="max-w-6xl mx-auto ">
+            <div class="flex items-center justify-center gap-3 mb-6">
+                <h2 class="text-xl md:text-2xl font-bold text-black  pb-1">
+                    Galeri Kegiatan
+                </h2>
+            </div>
+                <!-- Carousel Wrapper -->
+                <div class="relative overflow-hidden rounded-lg shadow-lg max-w-3xl mx-auto mb-6 h-full ">
+                <!-- Gambar container -->
+                    <div id="carousel" class="flex transition-transform duration-500">
                 @foreach ($beritaterbaru as $berita)
-                <div class="relative group w-[300px] transition-all duration-500 hover:w-[50%] rounded-xl overflow-hidden shadow-md">
-                    <img src="{{asset('storage/berita/'.$berita->gambar)}}" alt="Kegiatan 1"
-                        class="w-full h-auto object-cover transition-all duration-500 rounded-xl" />
-                    <div
-                        class="absolute inset-0 bg-gray-50  bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <p class="text-gray-500 font-bold text-xl text-justify px-4">{{$berita->deskripsi}}</p>
+                <div class="relative w-full  flex-shrink-0">
+                    <img src="{{ asset('storage/berita/' . $berita->gambar) }}" class="w-full h-full object-cover w-1/3 rounded-lg shadow">
+                    <div class="absolute bottom-0 w-full  bg-gradient-to-t from-black/70 text-center to-transparent p-6">
+                    <h3 class="text-white font-bold text-xl">{{ $berita->judul }}</h3>
+                    <p class="text-gray-200 text-sm">
+                    {{ Str::limit($berita->deskripsi, 100) }}
+                    </p>
                     </div>
                 </div>
                 @endforeach
-            </div>
-        </div>
+                    </div>
+      <!-- Tombol Navigasi -->
+      <button id="prev" class="absolute top-1/2 left-2 -translate-y-1/2 bg-white p-2  rounded-xl px-3 shadow">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+      <button id="next" class="absolute top-1/2 right-2 -translate-y-1/2 bg-white p-2 rounded-xl px-3 shadow">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
     </main>
+    <script>
+  function animatePage() {
+    document.body.classList.remove('opacity-0', 'translate-y-4');
+  }
+
+  const carousel = document.getElementById("carousel");
+    const slides = carousel.children.length;
+    let index = 0;
+
+    document.getElementById("next").addEventListener("click", () => {
+      index = (index + 1) % slides;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    document.getElementById("prev").addEventListener("click", () => {
+      index = (index - 1 + slides) % slides;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+    });
+</script>
 </x-layouts.app>

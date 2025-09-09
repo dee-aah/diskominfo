@@ -13,10 +13,9 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        $profils = Profil::orderBy('id', 'asc')->first();
-        $profil = Profil::where('id', '>', $profils->id)->get();
+        $profil = Profil::all();
         $profil_cont = Profil_conts::first();
-        return view('profil.index', compact('profil','profils','profil_cont'));
+        return view('profil.index', compact('profil','profil_cont'));
     }
 
     /**

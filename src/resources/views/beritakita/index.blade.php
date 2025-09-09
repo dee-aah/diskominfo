@@ -3,7 +3,7 @@
         <div class="max-w-5xl mx-auto mt-30">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita DPPKBP3A Kota Tasikmalaya </h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
-            <div class="grid grid-cols-3 grid-rows-2 h-[600px] gap-2">
+            <div class="grid grid-cols-3 grid-rows-2 h-[600px] ">
                 <!-- Gambar 1 -->
                 @if (isset($beritapopuler[0]))
                     <div class="relative col-span-1 row-span-1">
@@ -11,7 +11,7 @@
                             <img src="{{ asset('storage/berita/' . $beritapopuler[0]->gambar) }}"
                                 class="w-full h-full object-cover">
                         </a>
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3">
                             <h3 class="text-sm font-semibold">
                                 {{ $beritapopuler[0]->kategori->nama ?? 'Tanpa Kategori' }}</h3>
                             <p class="text-xs">{{ $beritapopuler[0]->created_at->format('d F Y') }}</p>
@@ -26,7 +26,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[1]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[1]->created_at->format('d F Y') }}</p>
                         </div>
@@ -40,7 +40,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[2]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[2]->created_at->format('d F Y') }}</p>
                         </div>
@@ -54,7 +54,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[3]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[3]->created_at->format('d F Y') }}</p>
                         </div>
@@ -120,15 +120,19 @@
                 @endforeach
             </aside>
         </div>
-         @foreach ($beritaselengkapnya as $berita )
-            <div class=" ml-80 my-10">
-                <a class="text-[14px] text-white bg-blue-600 h-10 m-10 p-2 px-6 w-50 hover:bg-blue-400 rounded" href="{{ route('kategori.berita', $berita->kategori->slug) }}"> Berita Lainnya..</a>
+
+            @foreach ($beritaselengkapnyatasik as $berita )
+            <div class=" ml-67 my-5 mb-10">
+                <a class="text-[14px] text-white bg-blue-600 h-10 m-10 p-2 px-6 w-50 hover:bg-blue-400 rounded" href="{{ route('kategori.berita', $berita->kategori->slug) }}"> Lihat Seluruh Berita DPPKBP3A<i class="fa-solid ml-4 fa-arrow-right"></i>
+
+                </a>
             </div>
         @endforeach
+
         <div class=" mt-8 mx-auto max-w-5xl ">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita Kota Tasikmalaya</h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
-            <div class="grid grid-cols-3 grid-rows-2 h-[600px] gap-2">
+            <div class="grid grid-cols-3 grid-rows-2 h-[600px] ">
                 <!-- Gambar 1 -->
                 @if (isset($beritapopulertasik[0]))
                     <div class="relative col-span-1 row-span-1">
@@ -137,7 +141,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">
                                 {{ $beritapopulertasik[0]->kategori->nama ?? 'Tanpa Kategori' }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[0]->created_at->format('d F Y') }}</p>
@@ -152,7 +156,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[1]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[1]->created_at->format('d F Y') }}</p>
                         </div>
@@ -166,7 +170,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[2]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[2]->created_at->format('d F Y') }}</p>
                         </div>
@@ -180,7 +184,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 rounded-b-lg">
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[3]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[3]->created_at->format('d F Y') }}</p>
                         </div>
@@ -247,8 +251,10 @@
             </aside>
         </div>
         @foreach ($beritaselengkapnyatasik as $berita )
-            <div class=" ml-80 mb-10">
-                <a class="text-[14px] text-white bg-blue-600 h-10 m-10 p-2 px-6 w-50 hover:bg-blue-400 rounded" href="{{ route('kategori.berita', $berita->kategori->slug) }}"> Berita Lainnya..</a>
+            <div class=" ml-60 mb-10">
+                <a class="text-[14px] text-white bg-blue-600 h-10 m-10 p-2 px-6 w-50 hover:bg-blue-400 rounded" href="{{ route('kategori.berita', $berita->kategori->slug) }}"> Lihat Seluruh Berita Kota Tasikmalaya<i class="fa-solid ml-4 fa-arrow-right"></i>
+
+                </a>
             </div>
         @endforeach
     </main>

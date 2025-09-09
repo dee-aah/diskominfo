@@ -5,26 +5,26 @@
             <h2 class="text-2xl font-bold text-center mb-4">Register</h2>
 
             {{-- Name --}}
-            <div class="mb-4">
-                <label class="text-lg font-semibold">Nama</label>
-                <input type="text" name="name" value="{{ old('name') }}"
-                    class="w-full border rounded px-4 py-2">
+            <div class="mb-2">
+                <label class="text-[14px] font-medium ">Nama</label>
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama"
+                    class="w-full px-4 py-2 mb-2 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300">
                 @error('name') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 
             {{-- Email --}}
-            <div class="mb-4">
-                <label class="text-lg font-semibold">Email</label>
-                <input type="email" name="email" value="{{ old('email') }}"
-                    class="w-full border rounded px-4 py-2">
+            <div class="mb-2">
+                <label class="text-[14px] font-medium ">Email</label>
+                <input type="email" name="email" value="{{ old('email') }}" placeholder="Masukkan Alamat Email"
+                    class="w-full px-4 py-2 mb-2 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300">
                 @error('email') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 
             {{-- Password --}}
-            <h2 class="text-lg font-semibold">Password</h2>
-            <div x-data="{ show: false }" class="relative mb-4">
+            <label class="text-[14px] font-medium ">Password</label>
+            <div x-data="{ show: false }" class="relative mb-2">
                 <input :type="show ? 'text' : 'password'" name="password" id="password"
-                    class="w-full border rounded px-4 py-2 pr-10 focus:outline-none focus:ring"
+                    class="w-full px-4 py-2 mb-3 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300"
                     placeholder="Masukkan Password">
                 <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show" tabindex="-1">
                     {{-- Icon Hide --}}
@@ -47,10 +47,10 @@
                     <p class="text-red-500 text-sm mb-3">{{ $message }}</p>
                 @enderror
             </div>
-            <h2 class="text-lg font-semibold">Konfirmasi Password</h2>
-            <div x-data="{ show: false }" class="relative mb-4">
+            <label class="text-[14px] font-medium ">Konfirmasi Password</label>
+            <div x-data="{ show: false }" class="relative mb-2">
                 <input :type="show ? 'text' : 'password'"  name="password_confirmation" id="password"
-                    class="w-full border rounded px-4 py-2 pr-10 focus:outline-none focus:ring"
+                    class="w-full px-4 py-2 mb-3 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300"
                     placeholder="Masukkan Password">
                 <button type="button" class="absolute right-3 top-2.5 text-gray-600" @click="show = !show" tabindex="-1">
                     {{-- Icon Hide --}}
@@ -76,16 +76,16 @@
 
 
             {{-- Role --}}
-            <div class="mb-4">
-                <label class="text-lg font-semibold">Role</label>
-                <select name="role" class="w-full border rounded px-4 py-2">
+            <div class="mb-2">
+                <label class="text-[14px] font-medium ">Role</label>
+                <select name="role" class="w-full px-4 py-2 mb-2 placeholder:text-sm text-sm rounded-lg border-gray-300 border-1  focus:outline-none  focus:border-blue-300">
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
                 @error('role') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
             </div>
 
-            <button type="submit" class="w-full bg-[#476A9A] hover:bg-blue-600 text-white py-2 rounded">
+            <button type="submit" class="w-full bg-[#476A9A] hover:bg-blue-600 text-sm text-medium mt-4 text-white py-2 rounded">
                 Register
             </button>
         </form>
@@ -96,9 +96,9 @@
         </div>
         <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
         <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>
-        <p class="mb-6 text-center">Daftarkan Data Diri Anda</p>
+        <p class=" text-center">Daftarkan Data Diri Anda</p>
         <a href="{{ route('login') }}"
-            class="border border-white py-2 px-6 rounded hover:bg-white hover:text-green-500 transition">
+            class="  py-2 px-6 text-sm font-medium hover:text-blue-300 transition">
             SIGN IN
         </a>
     </div>

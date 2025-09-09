@@ -29,38 +29,29 @@
                 </svg>
             </div>
         </section>
-        <div class="bg-white mx-auto max-w-5xl justify-center">
-            <h2 class="text-center text-lg font-semibold text-gray-800 mb-2">
+        <section class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
+            <h2 class="text-xl md:text-2xl font-bold text-black pb-3">
                 Profil Pimpinan
             </h2>
-            <div class="border-b-2 border-blue-500 w-24 mx-auto mt-3 mb-4"></div>
-            <p class="text-center text-sm text-gray-600 mb-8">
+            <p class="text-center text-sm max-w-5xl text-black mb-8">
                 {{$profil_cont->deskripsi}}
             </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+      <!-- Card -->
+        @foreach ($profil as $item )
+        <div class="bg-white shadow rounded-lg p-4 flex items-center gap-4">
+            <div class="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 relative">
+                <div class="absolute inset-0 bg-red-600 rounded-full"></div>
+                    <img src="{{asset('storage/profil/'. $item->gambar)}}" alt="Foto" class="relative w-full h-full object-cover">
+            </div>
             <div>
-                <div class="bg-white p-8 flex flex-col items-center ">
-                    <!-- Kepala Dinas -->
-                    @if ($profils)
-                    <div class="w-72 mb-10 ">
-                        <div class="frame rounded">
-                            <img src="{{ asset('storage/profil/' . $profils->gambar) }}" alt="Kepala Dinas">
-                        </div>
-                        <p class="text-center font-bold mt-2">{{$profils->nama}}</p>
-                        <p class="text-center text-sm">{{$profils->jabatan}}</p>
-                    </div>
-                    @endif
-                    <!-- Sekretaris -->
-                    <div class="grid grid-cols-3 gap-8 ">
-                        @foreach ($profil as $item )
-                        <div class="w-60 ">
-                            <div class="frame rounded">
-                                <img src="{{asset('storage/profil/'. $item->gambar)}}" alt="Sekretaris" class="h-60 w-40">
-                            </div>
-                            <p class="text-center font-bold mt-2">{{$item->nama}}</p>
-                            <p class="text-center text-sm">{{$item->jabatan}}</p>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
+            <p class="text-sm text-gray-500">{{$item->jabatan}}</p>
+            <h3 class="font-semibold">{{$item->nama}}</h3>
+            </div>
+        </div>
+        @endforeach
+    </div>
+  </section>
     </main>
 </x-layouts.app>
