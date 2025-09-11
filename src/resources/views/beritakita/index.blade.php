@@ -1,6 +1,6 @@
 <x-layouts.app>
     <main class="mx-auto max-w-6xl">
-        <div class="max-w-5xl mx-auto mt-30">
+        <div class="max-w-6xl mx-auto mt-30">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita DPPKBP3A Kota Tasikmalaya </h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
             <div class="grid grid-cols-3 grid-rows-2 h-[600px] ">
@@ -9,9 +9,9 @@
                     <div class="relative col-span-1 row-span-1">
                         <a href="{{ route('beritakita.show', $beritapopuler[0]->slug) }}">
                             <img src="{{ asset('storage/berita/' . $beritapopuler[0]->gambar) }}"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full  object-cover">
                         </a>
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3">
+                        <div class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3">
                             <h3 class="text-sm font-semibold">
                                 {{ $beritapopuler[0]->kategori->nama ?? 'Tanpa Kategori' }}</h3>
                             <p class="text-xs">{{ $beritapopuler[0]->created_at->format('d F Y') }}</p>
@@ -23,10 +23,10 @@
                     <div class="relative col-span-1 row-span-1">
                         <a href="{{ route('beritakita.show', $beritapopuler[1]->slug) }}">
                             <img src="{{ asset('storage/berita/' . $beritapopuler[1]->gambar) }}"
-                                class="w-full h-full object-cover">
+                                class="w-full h-full  object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[1]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[1]->created_at->format('d F Y') }}</p>
                         </div>
@@ -40,7 +40,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[2]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[2]->created_at->format('d F Y') }}</p>
                         </div>
@@ -54,7 +54,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopuler[3]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopuler[3]->created_at->format('d F Y') }}</p>
                         </div>
@@ -62,7 +62,7 @@
                 @endif
             </div>
         </div>
-        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 mt-6">
             <!-- KONTEN UTAMA: 2 Card Berita -->
             <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($beritalain as $berita)
@@ -129,7 +129,7 @@
             </div>
         @endforeach
 
-        <div class=" mt-8 mx-auto max-w-5xl ">
+        <div class=" mt-8 mx-auto max-w-6xl ">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita Kota Tasikmalaya</h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
             <div class="grid grid-cols-3 grid-rows-2 h-[600px] ">
@@ -141,7 +141,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">
                                 {{ $beritapopulertasik[0]->kategori->nama ?? 'Tanpa Kategori' }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[0]->created_at->format('d F Y') }}</p>
@@ -156,7 +156,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[1]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[1]->created_at->format('d F Y') }}</p>
                         </div>
@@ -170,7 +170,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[2]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[2]->created_at->format('d F Y') }}</p>
                         </div>
@@ -184,7 +184,7 @@
                                 class="w-full h-full object-cover">
                         </a>
                         <div
-                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-40 text-white p-3 ">
+                            class="absolute flex-col inset-x-0 bottom-0 h-20 justify-center  bg-black/50 text-white p-3 ">
                             <h3 class="text-sm font-semibold">{{ $beritapopulertasik[3]->judul }}</h3>
                             <p class="text-xs">{{ $beritapopulertasik[3]->created_at->format('d F Y') }}</p>
                         </div>
@@ -193,7 +193,7 @@
             </div>
         </div>
 
-        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 my-6">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 my-6">
             <!-- KONTEN UTAMA: 2 Card Berita -->
             <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($beritalaintasik as $berita)

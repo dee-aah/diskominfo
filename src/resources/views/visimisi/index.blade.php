@@ -28,8 +28,8 @@
         </div>
     </section>
     <section class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
-        <h2 class="text-xl md:text-2xl font-bold text-black pb-3">Visi dan Misi DPPKBP3A</h2>
-        <p class="text-black max-w-5xl text-sm mx-auto px-4">
+        <h2 class="text-2xl  font-bold text-black pb-3">Visi dan Misi DPPKBP3A</h2>
+        <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
             {{$visi->des_singkat}}
         </p>
     </section>

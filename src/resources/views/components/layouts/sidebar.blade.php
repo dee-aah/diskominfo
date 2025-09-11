@@ -216,6 +216,16 @@
                         </ul>
                     @endif
                 </li>
+                <li x-data="{ open: {{ Request::is('perencanaan*') ? 'true' : 'false' }} }"
+                    class="mb-2 w-55 rounded hover:bg-blue-100">
+                    @if (auth()->check() && auth()->user()->role === 'admin')
+                        <a x-show="open" href="{{ route('perencanaan.dashboard') }}"
+                            class="flex font-medium items-center p-2
+                        {{ Request::is('perencanaan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">
+                        <span>Dokumen Perencanaan</span>
+                        </a>
+                    @endif
+                </li>
                 <li class="mb-2">
                     @if (auth()->check() && auth()->user()->role === 'admin')
                         <button

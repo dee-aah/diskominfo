@@ -29,10 +29,14 @@
             </div>
         </section>
         <div class="bg-white justify-center mt-10 max-w-5xl mx-auto">
-            <h2 class="text-center text-[25px] font-semibold text-gray-800 mb-2">
-                Tugas Pokok dan Fungsi Organisasi
-            </h2>
-            <p class="text-center text-sm text-gray-600 mb-8">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
+                    Maklumat Pelayanan
+                </h2>
+            </div>
+
+            <!-- Subjudul -->
+            <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
                 {{$maklumat->deskripsi}}Tugas Pokok dan Fungsi merupakan pedoman peran strategis dalam mendukung tercapainya visi organisasi.
                 Setiap elemen dalam Tupoksi mencerminkan kontribusi nyata terhadap efisiensi, pelayanan, dan
                 pengembangan berkelanjutan.

@@ -36,7 +36,7 @@
                     <!-- Gambar Kiri -->
                     <div class="flex justify-center">
                         <img src="{{ asset('storage/produkimg/' . $ProdukHukumCont->img_cont) }}"
-                            class="w-70 md:w-100 rounded shadow-lg">
+                            class="w-70 md:w-100 rounded ">
                     </div>
                     <!-- Konten Teks Kanan -->
                     <div>
@@ -54,9 +54,10 @@
                 <!-- FILTER DROPDOWN -->
                 <div class="mb-4">
 
-                    <form method="GET" action="{{ route('produkhukum.index') }}" class="flex gap-2 mb-6">
+                <form method="GET" action="{{ route('produkhukum.index') }}" class="flex gap-2 mb-6">
     <!-- Dropdown Filter -->
-    <select name="jenis_peraturan" class="border rounded px-2 py-1">
+    <select name="jenis_peraturan" class="border-1 border-gray-300 placeholder:text-sm
+                        text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500   placeholder:italic rounded-xl px-2 py-1">
         <option value="">Filter</option>
         <option value="Peraturan Daerah" {{ request('jenis_peraturan') == 'Peraturan Daerah' ? 'selected' : '' }}>Peraturan Daerah</option>
         <option value="Peraturan Walikota" {{ request('jenis_peraturan') == 'Peraturan Walikota' ? 'selected' : '' }}>Peraturan Walikota</option>
@@ -65,40 +66,41 @@
     <!-- Input Search -->
     <input type="text" name="search" value="{{ request('search') }}"
         placeholder="Masukkan Kata Kunci Pencarian"
-        class="border px-4 py-2 rounded-md w-full md:w-[400px]" />
+        class=" px-4 py-2 border-1 border-gray-300 rounded-xl max-w-2xl  placeholder:text-sm
+                            placeholder:italic   w-100  text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
 
     <!-- Tombol Cari -->
     <button type="submit"
-        class="bg-blue-700 text-white px-6 py-2 rounded hover:bg-blue-800 font-semibold">Cari</button>
+        class="bg-blue-700 text-white px-6 py-2 rounded-xl hover:bg-blue-800 font-semibold">Cari</button>
 </form>
+
 
 <!-- LIST ITEM -->
 <div class="space-y-6">
     @forelse ($produkhukum as $item)
         <div class="{{ $loop->odd ? 'bg-blue-50' : 'bg-gray-100' }} rounded-md shadow p-4 flex items-start gap-10">
-            <div class="w-24 text-center">
+            <a href="{{ route('produkhukum.show', $item->id) }}" class="w-24 text-center">
                 <img src="{{ asset('storage/produkimg/' . $ProdukHukumCont->img_pdf) }}"
                      class="mx-auto w-24 h-auto" alt="PDF Thumbnail" />
-            </div>
+            </a>
             <div class="flex-1 space-y-2">
-                <a href="{{ asset('storage/produk/' . $item->lampiran) }}"
-                   class="text-sm font-semibold text-blue-900 underline" target="_blank">
-                   {{ $item->judul }}
+                <a href="{{ route('produkhukum.show', $item->id) }}"
+                   class="font-bold text-[20px]" target="_blank">
+                   {{ $item->judul_peraturan }}
                 </a>
-                <p class="font-bold text-[20px]">{{ $item->judul_peraturan }}</p>
                 <p class="text-[14px] text-gray-800 leading-snug">
                     Registrasi : {{ $item->reg }}<br />
                     Nomor : {{ $item->nomor }}<br />
                     Tahun : {{ $item->tahun_terbit }}<br />
                 </p>
                 <div class="flex gap-2 mt-2">
-                    <span class="bg-green-700 hover:bg-green-800 text-white text-xs px-4 py-1 rounded">
+                    <span class="bg-gray-200  text-gray-800 text-xs px-4 py-1 rounded-xl">
                         {{ strtoupper($item->status) }}
                     </span>
                     <a href="{{ route('produkhukum.download', $item->id) }}"
                        class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">UNDUH</a>
-                    <a href="{{ route('produkhukum.show', $item->id) }}"
-                       class="bg-blue-700 hover:bg-blue-800 text-white text-xs px-4 py-1 rounded">Lihat Detail</a>
+                    {{-- <a href="{{ route('produkhukum.show', $item->id) }}"
+                       class="bg-green-700 hover:bg-green-800 text-white text-xs px-4 py-1 rounded">Lihat Detail</a> --}}
                 </div>
             </div>
         </div>
@@ -111,6 +113,10 @@
             </a>
         </div>
     @endforelse
+    <div class="mt-6">
+    {{ $produkhukum->withQueryString()->links() }}
+</div>
+
 </div>
 
             <script>

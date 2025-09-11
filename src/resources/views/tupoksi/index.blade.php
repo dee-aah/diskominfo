@@ -36,8 +36,9 @@
             <h1 class="text-center text-2xl font-bold text-black mb-2">
                 Tugas Pokok dan Fungsi Organisasi
             </h1>
-            <p class="text-center text-sm text-gray-600 mb-8"> {{ $tupoksi->des_singkat }}
-            </p>
+            <div class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
+                {!! $tupoksi->des_singkat !!}
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 my-6 gap-6 ">
                 <!-- Tugas -->
                 <div class="bg-white rounded-lg p-6 text-center rounded-xl border-2 border-indigo-500 text-center ">
@@ -49,9 +50,9 @@
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Tugas Pokok</h3>
-                    <p class="text-sm text-gray-700 p-6"> {{ $tupoksi->tugas_utama }}
+                    <div class="text-lg text-gray-700 text-justify prose p-6"> {!! $tupoksi->tugas_utama !!}
 
-                    </p>
+                    </div>
                 </div>
 
                 <!-- Fungsi Utama -->
@@ -64,13 +65,13 @@
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Fungsi Utama</h3>
-                    <ol class="text-sm text-gray-700 text-left list-decimal p-6 list-inside space-y-1">
-                        @foreach (explode('.', $tupoksi->fungsi_utama) as $point)
-        @if (trim($point) != '')
-            <li>{{ trim($point) }}</li>
-        @endif
-    @endforeach
-                    </ol>
+                    <div class="text-lg text-gray-700 prose text-left list-decimal p-6 list-inside space-y-1">
+                        {!!$tupoksi->fungsi_utama!!}
+                        <style>
+                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                </style>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,13 +95,13 @@
                                         src="https://img.icons8.com/stickers/100/manager.png" alt="manager" />
                                     <h3 class="text-white text-lg font-bold">{{ $uraians[0]->bidang }}</h3>
                                 </div>
-                                <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                    @foreach (explode(',', $uraians[0]->uraian) as $index => $point)
-                                        @if (trim($point) != '')
-                                            <li>{{ trim($point) }}</li>
-                                        @endif
-                                    @endforeach
-                                </ol>
+                                <p class="list-decimal pl-5 text-base prose text-gray-800 space-y-1">
+                                    {!!$uraians[0]->uraian !!}
+                                </p>
+                                <style>
+                                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                </style>
                             @endif
                         </div>
                         <div
@@ -112,13 +113,13 @@
                                         alt="clerk" />
                                     <h3 class="text-white text-lg font-bold">{{$uraians[1]->bidang}}</h3>
                                 </div>
-                                <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                    @foreach (explode(',', $uraians[1]->uraian) as $index => $point)
-                                        @if (trim($point) != '')
-                                            <li>{{ trim($point) }}</li>
-                                        @endif
-                                    @endforeach
-                                </ol>
+                                <p class="list-decimal pl-5 text-base prose text-gray-800 space-y-1">
+                                    {!!$uraians[1]->uraian !!}
+                                </p>
+                                <style>
+                                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                </style>
                             @endif
                         </div>
                         <div
@@ -131,13 +132,13 @@
                                     alt="external-population-world-population-day-smashingstocks-circular-smashing-stocks-15" />
                                 <h3 class="text-white text-lg font-bold">{{$uraians[2]->bidang}}</h3>
                             </div>
-                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                @foreach (explode(',', $uraians[2]->uraian) as $index => $point)
-                                    @if (trim($point) != '')
-                                        <li>{{ trim($point) }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
+                               <p class="list-decimal pl-5 text-base prose text-gray-800 space-y-1">
+                                    {!!$uraians[2]->uraian !!}
+                                </p>
+                                <style>
+                                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                </style>
                             @endif
                         </div>
 
@@ -149,13 +150,13 @@
                                     alt="family" />
                                 <h3 class="text-white text-lg font-bold">{{$uraians[3]->bidang}}</h3>
                             </div>
-                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                @foreach (explode(',', $uraians[3]->uraian) as $index => $point)
-                                    @if (trim($point) != '')
-                                        <li>{{ trim($point) }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
+                            <p class="list-decimal pl-5 text-base prose text-gray-800 space-y-1">
+                                    {!!$uraians[3]->uraian !!}
+                                </p>
+                                <style>
+                                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                </style>
                             @endif
                         </div>
                         <div class="bg-white col-span-2  p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300 ">
@@ -166,13 +167,13 @@
                                 <h3 class="text-white text-lg font-bold"> {{$uraians[4]->bidang}}
                                 </h3>
                             </div>
-                            <ol class="list-decimal pl-5 text-base text-gray-800 space-y-1">
-                                @foreach (explode(',', $uraians[4]->uraian) as $index => $point)
-                                    @if (trim($point) != '')
-                                        <li>{{ trim($point) }}</li>
-                                    @endif
-                                @endforeach
-                            </ol>
+                            <p class="list-decimal pl-5 text-base prose text-gray-800 space-y-1">
+                                    {!!$uraians[4]->uraian !!}
+                                </p>
+                                <style>
+                                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                                </style>
                             @endif
                         </div>
                     </div>

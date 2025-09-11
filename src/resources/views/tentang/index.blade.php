@@ -29,13 +29,13 @@
         <div class="bg-white mx-auto max-w-6xl py-12 px-4 md:px-12">
             <!-- Header dengan logo dan judul sejajar -->
             <div class="flex items-center justify-center gap-3 mb-2">
-                <h2 class="text-xl md:text-2xl font-bold text-black pb-3">
+                <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
                     Tentang Kami
                 </h2>
             </div>
 
             <!-- Subjudul -->
-            <p class="text-center  text-sm md:text-lg font-medium text-black mb-10">
+            <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
                 {{$tentang->des_singkat}}
             </p>
             <!-- Konten Utama -->

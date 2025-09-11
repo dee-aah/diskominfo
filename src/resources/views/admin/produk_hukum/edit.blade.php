@@ -110,7 +110,7 @@
                             </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
-                        <a href="{{ route('oroduk_hukum.dashboard') }}"
+                        <a href="{{ route('produk_hukum.dashboard') }}"
                             class="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded">Batal</a>
                         <button type="submit"
                             class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>

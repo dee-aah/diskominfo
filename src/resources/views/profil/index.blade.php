@@ -29,11 +29,11 @@
                 </svg>
             </div>
         </section>
-        <section class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
-            <h2 class="text-xl md:text-2xl font-bold text-black pb-3">
+        <section class="bg-white text-center max-w-6xl mx-auto py-8 mt-1">
+            <h2 class="text-2xl text-center font-bold text-black pb-3">
                 Profil Pimpinan
             </h2>
-            <p class="text-center text-sm max-w-5xl text-black mb-8">
+            <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
                 {{$profil_cont->deskripsi}}
             </p>
 

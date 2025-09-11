@@ -44,7 +44,7 @@
                         {{$pimpinan->nama}}
                     </h1>
                     <p class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
-                       {{$pimpinan->deskripsi}}
+                       {!!$pimpinan->deskripsi!!}
                        <style>
                     ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
                     ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
@@ -58,7 +58,7 @@
   <div class="grid grid-cols-3 gap-6 auto-rows-[200px] ">
 
     <!-- Card 1: Layanan DPPKBP3A -->
-    <a href="layanan.html" class="bg-blue-100 p-6 rounded-lg shadow hover:shadow-lg transition relative row-span-2 cursor-pointer block">
+    <a href="{{url('/layanans')}}" class="bg-blue-100 p-6 rounded-lg shadow hover:shadow-lg transition relative row-span-2 cursor-pointer block">
       <h3 class="text-lg font-semibold mb-2">Layanan DPPKBP3A</h3>
       <p class="text-sm text-gray-700">
         Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak (DPPKBP3A) Kota Tasikmalaya menyediakan berbagai layanan mulai dari program pengendalian penduduk, peningkatan partisipasi keluarga dalam program KB, pemberdayaan dan perlindungan hak perempuan, hingga perlindungan serta pemenuhan hak anak. Seluruh layanan ini dirancang untuk meningkatkan kualitas hidup masyarakat serta mewujudkan keluarga yang sejahtera, sehat, dan berdaya
@@ -85,7 +85,7 @@
     </a>
 
     <!-- Card 4: PPID -->
-    <a href="ppid.html" class="bg-green-100 p-6 rounded-lg shadow hover:shadow-lg transition relative cursor-pointer block">
+    <a href="{{ url('https://ppid.tasikmalayakota.go.id/') }}" class="bg-green-100 p-6 rounded-lg shadow hover:shadow-lg transition relative cursor-pointer block">
       <h3 class="text-lg font-semibold mb-2">PPID</h3>
       <p class="text-sm text-gray-700">
         PPID mengelola dan menyediakan informasi publik bagi masyarakat...
@@ -94,7 +94,7 @@
     </a>
 
     <!-- Card 5: SP4NLAPOR -->
-    <a href="sp4n.html" class="bg-orange-100 p-6 rounded-lg shadow hover:shadow-lg transition relative col-span-2 cursor-pointer block">
+    <a href="{{ url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/') }}" class="bg-orange-100 p-6 rounded-lg shadow hover:shadow-lg transition relative col-span-2 cursor-pointer block">
       <h3 class="text-lg font-semibold mb-2">SP4NLAPOR</h3>
       <p class="text-sm text-gray-700">
         Layanan aspirasi dan pengaduan online masyarakat untuk meningkatkan kualitas pelayanan publik.

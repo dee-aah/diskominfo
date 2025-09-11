@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\AdminPHContController;
 use App\Http\Controllers\Admin\AdminPimpinanController;
 use App\Http\Controllers\Admin\AdminSektoralController;
 use App\Http\Controllers\Admin\AdminSektoralContController;
+use App\Http\Controllers\Admin\AdminPerencanaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -223,5 +224,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/profil_cont', AdminProfilContController::class)->except(['index', 'show']);
         Route::get('/profil_cont/dashboard', [AdminProfilContController::class, 'dashboard'])->name('profil_cont.dashboard');
+
+        Route::resource('/perencanaan', AdminPerencanaanController::class)->except(['index', 'show']);
+        Route::get('/perencanaan/dashboard', [AdminPerencanaanController::class, 'dashboard'])->name('perencanaan.dashboard');
     });
 });

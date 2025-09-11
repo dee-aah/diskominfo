@@ -15,20 +15,24 @@ class ProdukhukumController extends Controller
     {
         $query = ProdukHukum::query();
 
-    // Filter berdasarkan jenis_peraturan
+    // Filter berdasarkan jenis peraturan
     if ($request->filled('jenis_peraturan')) {
         $query->where('jenis_peraturan', $request->jenis_peraturan);
     }
 
-    // Pencarian berdasarkan judul atau nomor
+    // Pencarian judul atau nomor
     if ($request->filled('search')) {
         $search = $request->search;
         $query->where(function ($q) use ($search) {
-            $q->where('judul_peraturan', 'like', "%$search%")
-                ->orWhere('nomor', 'like', "%$search%");
+            $q->where('jenis_peraturan', 'like', "%$search%")
+              ->orWhere('judul_peraturan', 'like', "%$search%")
+              ->orWhere('nomor', 'like', "%$search%")
+              ->orWhere('tahun_terbit', 'like', "%$search%");
         });
     }
-        $produkhukum = ProdukHukum::all();
+
+    // Urutkan terbaru
+        $produkhukum = $query->latest()->paginate(10);
         $ProdukHukumCont = ProdukHukumCont::first();
         return view ('produkhukum.index',compact('ProdukHukumCont','produkhukum'));
     }

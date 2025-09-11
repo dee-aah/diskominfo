@@ -29,15 +29,19 @@
             </svg>
         </div>
     </section>
-        <div class="bg-white justify-center max-w-3xl mx-auto">
-            <h2 class="text-center text-lg font-semibold text-gray-800 mb-2">
-                Struktur Organisasi
-            </h2>
-            <p class="text-center text-sm text-gray-600 mb-8">
+        <div class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
+            <div class="flex items-center justify-center gap-3 mb-2">
+                <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
+                    Struktur Organisasi
+                </h2>
+            </div>
+
+            <!-- Subjudul -->
+            <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
                 {{$struktur->deskripsi}}
             </p>
             <div class="flex justify-center my-6">
-                <img src="{{ asset('storage/struktur/'. $struktur->gambar_cont) }}" alt="Gambar" class="w-[70%] mx-auto" />
+                <img src="{{ asset('storage/struktur/'. $struktur->gambar_cont) }}" alt="Gambar" class="w-1/2 mx-auto" />
             </div>
 
         </div>

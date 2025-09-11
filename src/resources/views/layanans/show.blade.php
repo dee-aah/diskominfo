@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div class="max-w-5xl mx-auto mt-20 p-4">
+    <div class="max-w-6xl mx-auto mt-20 p-4">
         {{-- Breadcrumb --}}
         <nav class="text-[13px] mb-4 text-gray-500">
             <a href="{{ url('/beranda') }}" class="hover:underline">Beranda</a> >
