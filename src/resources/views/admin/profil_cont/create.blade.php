@@ -12,8 +12,8 @@
                     @csrf
                     <div class="my-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi</label>
-                        <textarea name="deskripsi" id="editor" rows="5" placeholder=" Masukkan Deskripsi"
-                            class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required></textarea>
+                        <textarea name="deskripsi" rows="5" placeholder=" Masukkan Deskripsi"
+                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required></textarea>
                     </div>
                     <div class="mb-3 mt-2">
                         <label class="block py-2 text-[15px] text-black font-medium">Gambar Latar</label>
@@ -31,12 +31,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
 </x-layouts.sidebar>

@@ -15,13 +15,13 @@
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi Singkat </label>
                         <textarea name="des_singkat" rows="3"
                             placeholder="Masukkan Deskripsi Singkat"
-                            class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('des_singkat', $tentang->des_singkat) }}</textarea>
+                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('des_singkat', $tentang->des_singkat) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi </label>
-                        <textarea name="deskripsi" rows="5" id="editor"
+                        <textarea name="deskripsi" rows="5"
                             placeholder="Masukkan Deskripsi"
-                            class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('deskripsi', $tentang->deskripsi) }}</textarea>
+                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('deskripsi', $tentang->deskripsi) }}</textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="mb-3">
@@ -55,12 +55,5 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+
 </x-layouts.sidebar>

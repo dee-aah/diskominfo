@@ -34,7 +34,7 @@
                 Profil Pimpinan
             </h2>
             <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
-                {{$profil_cont->deskripsi}}
+                {!!$profil_cont->deskripsi!!}
             </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">

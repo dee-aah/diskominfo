@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Perencanaan extends Model
 {
-    protected $fillable =['des_singkat',
-            'img_konten',
-            'nama',
+    protected $fillable =[
+            'nama','link',
             'img_pdf'];
 }

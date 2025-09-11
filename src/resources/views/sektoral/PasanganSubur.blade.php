@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.sideb>
 
     <body class="bg-gray-50 font-sans p-6">
 
@@ -154,4 +154,4 @@
             });
         </script>
     </body>
-</x-layouts.app>
+</x-layouts.>

@@ -49,7 +49,7 @@
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/produkhukum') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Produk
                                     Hukum</a>
-                                <a href="{{ url('/dokevaluasi') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Dokumen
+                                <a href="{{ url('/dokumenevaluasi') }}" class="block text-center px-4 py-2 hover:bg-blue-100">Dokumen
                                     Evaluasi</a>
                                 <a href="{{ url('/dokumenperencanaan') }}"
                                     class="block px-4 py-2 text-center hover:bg-blue-100">Dokumen Perencanaan</a>

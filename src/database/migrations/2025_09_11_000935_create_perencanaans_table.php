@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('perencanaans', function (Blueprint $table) {
             $table->id();
-            $table->text('des_singkat');
-            $table->string('img_konten');
             $table->text('nama');
+            $table->text('link');
             $table->string('img_pdf');
             $table->timestamps();
         });

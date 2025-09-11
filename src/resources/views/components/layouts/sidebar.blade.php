@@ -216,21 +216,11 @@
                         </ul>
                     @endif
                 </li>
-                <li x-data="{ open: {{ Request::is('perencanaan*') ? 'true' : 'false' }} }"
-                    class="mb-2 w-55 rounded hover:bg-blue-100">
-                    @if (auth()->check() && auth()->user()->role === 'admin')
-                        <a x-show="open" href="{{ route('perencanaan.dashboard') }}"
-                            class="flex font-medium items-center p-2
-                        {{ Request::is('perencanaan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">
-                        <span>Dokumen Perencanaan</span>
-                        </a>
-                    @endif
-                </li>
                 <li class="mb-2">
                     @if (auth()->check() && auth()->user()->role === 'admin')
                         <button
                             class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
-                            onclick="toggleMenu('Menu4')">Data Sektoral
+                            onclick="toggleMenu('Menu4')">Dokumen Evaluasi
                             <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu4"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -239,7 +229,59 @@
                             </svg>
                         </button>
                         <!-- Sub Menu -->
-                        <ul id="Menu4" class="{{ Request::is('sektorall*') || Request::is('sektoral_cont*') ? '' : 'hidden' }} ml-6 ">
+                        <ul id="Menu4" class="{{ Request::is('evaluasi*') || Request::is('evaluasi_cont*') ? '' : 'hidden' }} ml-6 ">
+                            <li class="rounded hover:bg-blue-100"><a href="{{ route('evaluasi.dashboard') }}"
+                                    class="flex font-medium items-center p-2
+                                    {{ Request::is('evaluasi*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Doc Evaluasi</a></li>
+                            <li class="rounded hover:bg-blue-100"><a
+                                    href="{{ route('evaluasi_cont.dashboard') }}"
+                                    class="flex font-medium items-center p-2
+                                    {{ Request::is('evaluasi_cont*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">Isi
+                                    Konten</a>
+                            </li>
+                        </ul>
+                    @endif
+                </li>
+                <li class="mb-2">
+                    @if (auth()->check() && auth()->user()->role === 'admin')
+                        <button
+                            class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu5')">Dokumen Perencanaan
+                            <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu5"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu5" class="{{ Request::is('perencanaan*') || Request::is('perencanaan_cont*') ? '' : 'hidden' }} ml-6 ">
+                            <li class="rounded hover:bg-blue-100"><a href="{{ route('perencanaan.dashboard') }}"
+                                    class="flex font-medium items-center p-2
+                                    {{ Request::is('perencanaan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Doc Perencanaan</a></li>
+                            <li class="rounded hover:bg-blue-100"><a
+                                    href="{{ route('perencanaan_cont.dashboard') }}"
+                                    class="flex font-medium items-center p-2
+                                    {{ Request::is('perencanaan_cont*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">Isi
+                                    Konten</a>
+                            </li>
+                        </ul>
+                    @endif
+                </li>
+                <li class="mb-2">
+                    @if (auth()->check() && auth()->user()->role === 'admin')
+                        <button
+                            class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu6')">Data Sektoral
+                            <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu6"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu6" class="{{ Request::is('sektorall*') || Request::is('sektoral_cont*') ? '' : 'hidden' }} ml-6 ">
                             <li class="rounded hover:bg-blue-100"><a href="{{ route('sektorall.dashboard') }}"
                                     class="flex items-center font-medium p-2
                                     {{ Request::is('sektorall*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Konten

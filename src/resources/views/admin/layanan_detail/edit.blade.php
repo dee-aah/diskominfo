@@ -65,14 +65,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
-        document.querySelectorAll('.editor').forEach((el) => {
-            ClassicEditor
-                .create(el)
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
 </x-layouts.sidebar>

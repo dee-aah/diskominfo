@@ -1,6 +1,6 @@
-<x-layouts.app>
+<x-layouts.sideb>
     <body class="bg-gray-50 font-sans p-6">
-        <div class="bg-white shadow-md rounded-lg mt-20 max-w-5xl mx-auto">
+        <div class="bg-white shadow-md rounded-lg  max-w-5xl mx-auto">
             <!-- Judul -->
             <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
                 Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
@@ -91,7 +91,8 @@
                 </div>
             </div>
         </div>
-
+</body>
+</x-layouts.sideb>
         <!-- Script Tab & Grafik -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
@@ -161,5 +162,3 @@ new Chart(document.getElementById("kasusChart"), {
 });
 
         </script>
-    </body>
-</x-layouts.app>

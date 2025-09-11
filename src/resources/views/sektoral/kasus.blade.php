@@ -1,8 +1,8 @@
-<x-layouts.app>
+<x-layouts.sideb>
 
     <body class="bg-gray-50 font-sans p-6">
 
-        <div class="bg-white shadow-md rounded-lg mt-20 max-w-5xl mx-auto">
+        <div class="bg-white  max-w-5xl mx-auto">
             <!-- Judul -->
             <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
                 Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
@@ -154,4 +154,4 @@
             });
         </script>
     </body>
-</x-layouts.app>
+</x-layouts.sideb>

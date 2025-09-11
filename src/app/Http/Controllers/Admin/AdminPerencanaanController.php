@@ -40,28 +40,19 @@ class AdminPerencanaanController extends Controller
     {
         $request->validate([
         'nama' => 'required',
-        'des_singkat' => 'required',
-        'img_konten' => 'nullable|image|mimes:jpg,jpeg,png',
+        'link' => 'required',
         'img_pdf' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
-        if ($request->hasFile('img_konten')) {
-            $file = $request->file('img_konten');
+        if ($request->hasFile('img_pdf')) {
+            $file = $request->file('img_pdf');
             $filename = $file->getClientOriginalName();
             $file->storeAs('perencanaan', $filename);
         }
-        $filenames = null;
-        if ($request->hasFile('img_pdf')) {
-            $file = $request->file('img_pdf');
-            $filenames = $file->getClientOriginalName();
-            $file->storeAs('perencanaan', $filenames);
-        }
-
     Perencanaan::create([
         'nama' => $request->nama,
-        'des_singkat' => $request->des_singkat,
-        'img_pdf' => $filenames,
-        'img_konten' => $filename
+        'link' => $request->link,
+        'img_pdf' => $filename
     ]);
 
     return redirect()->route('perencanaan.dashboard')->with('success', ' Dokumen Perencanaan Berhasil Ditambahkan');
@@ -81,30 +72,19 @@ class AdminPerencanaanController extends Controller
     public function update(Request $request, string $id)
     {
         $perencanaan = Perencanaan::findOrFail($id);
-
-        $filenames = $perencanaan->img_pdf;
+        $filename = $perencanaan->img_pdf;
         if ($request->hasFile('img_pdf')) {
             if ($perencanaan->img_pdf) {
                 Storage::delete('public/perencanaan/' . $perencanaan->img_pdf);
             }
             $file = $request->file('img_pdf');
-            $filenames =  $file->getClientOriginalName();
-            $file->storeAs('perencanaan', $filenames);
-        }
-        $filename = $perencanaan->img_konten;
-        if ($request->hasFile('img_konten')) {
-            if ($perencanaan->img_konten) {
-                Storage::delete('public/perencanaan/' . $perencanaan->img_konten);
-            }
-            $file = $request->file('img_konten');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('perencanaan', $filename);
         }
         $perencanaan->update([
             'nama' => $request->nama,
-        'des_singkat' => $request->des_singkat,
-        'img_pdf' => $filenames,
-        'img_konten' => $filename
+            'link' => $request->link,
+            'img_pdf' => $filename
         ]);
         return redirect()->route('perencanaan.dashboard')->with('success', 'Dokumen Perencanaan Berhasil Diperbarui');
     }

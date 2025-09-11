@@ -13,9 +13,9 @@
                     @method('PUT')
                     <div class="my-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi </label>
-                        <textarea name="deskripsi" rows="5" id="editor"
+                        <textarea name="deskripsi" rows="5" 
                             placeholder="Masukkan Deskripsi"
-                            class="w-full border bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('deskripsi', $maklumat->deskripsi) }}</textarea>
+                            class="w-full border editor bg-gray-100 border-gray-400 border-2 rounded p-2" required>{{ old('deskripsi', $maklumat->deskripsi) }}</textarea>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 ">
                         <div class="mb-3">
@@ -49,14 +49,4 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
-        document.querySelectorAll('#editor').forEach((el) => {
-        ClassicEditor
-            .create(el)
-            .catch(error => {
-                console.error(error);
-            });
-    });
-    </script>
 </x-layouts.sidebar>

@@ -30,9 +30,8 @@
                 <div  class="w-full   overflow-x-auto">
                     <table  class="table-auto  wrapper min-w-full text-sm">
             <thead class="border-b border-gray-200">
-                    <th class="font-medium border-r  border-gray-200 p-3">Deskripsi Singkat</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Foto Konten</th>
                     <th class="font-medium border-r  border-gray-200 p-3">Nama Dokumen</th>
+                    <th class="font-medium border-r  border-gray-200 p-3">Link Dokumen</th>
                     <th class="font-medium border-r  border-gray-200 p-3">Foto Pdf</th>
                     <th class="font-medium p-3">Aksi</th>
                 </tr>
@@ -40,16 +39,8 @@
             <tbody class="divide-y divide-gray-200">
                 @forelse ($perencanaans as $perencanaan)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
-                        <td class="p-3 border-r  border-gray-200">{{ $perencanaan->des_singkat }}</td>
-                        <td class="p-3 border-r  border-gray-200 text-center">
-                            @if ($perencanaan->img_konten)
-                                <img src="{{ asset('storage/perencanaan/' . $perencanaan->img_konten) }}"
-                                    class="w-16 h-16 object-cover mx-auto rounded">
-                            @else
-                                -
-                            @endif
-                        </td>
                         <td class="p-3 border-r  border-gray-200">{{ $perencanaan->nama }}</td>
+                        <td class="p-3 border-r  border-gray-200">{{ $perencanaan->link }}</td>
                         <td class="p-3 border-r  border-gray-200 text-center">
                             @if ($perencanaan->img_pdf)
                                 <img src="{{ asset('storage/perencanaan/' . $perencanaan->img_pdf) }}"

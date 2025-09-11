@@ -30,6 +30,10 @@ use App\Http\Controllers\Admin\AdminPimpinanController;
 use App\Http\Controllers\Admin\AdminSektoralController;
 use App\Http\Controllers\Admin\AdminSektoralContController;
 use App\Http\Controllers\Admin\AdminPerencanaanController;
+use App\Http\Controllers\Admin\AdminPerencanaanContController;
+use App\Http\Controllers\Admin\AdminEvaluasiController;
+use App\Http\Controllers\Admin\AdminEvaluasiContController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes Publik
@@ -50,6 +54,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\PerencanaanController;
 use App\Http\Controllers\SektoralController;
+use App\Http\Controllers\EvaluasiController;
 
 //======================================================================
 // 1. RUTE PUBLIK (Dapat diakses oleh semua pengunjung)
@@ -99,6 +104,7 @@ Route::get('/produkhukum/{id}/download', [App\Http\Controllers\ProdukhukumContro
 Route::get('/produkhukum/{id}', [ProdukHukumController::class, 'show'])->name('produkhukum.show');
 Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::class, 'preview'])->name('produkhukum.preview');
 Route::resource('/dokumenperencanaan', PerencanaanController::class)->only(['index', 'show']);
+Route::resource('/dokumenevaluasi', EvaluasiController::class)->only(['index', 'show']);
 // Rute untuk Berita (Publik)
 Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
 Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
@@ -227,5 +233,14 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/perencanaan', AdminPerencanaanController::class)->except(['index', 'show']);
         Route::get('/perencanaan/dashboard', [AdminPerencanaanController::class, 'dashboard'])->name('perencanaan.dashboard');
+
+        Route::resource('/perencanaan_cont', AdminPerencanaanContController::class)->except(['index', 'show']);
+        Route::get('/perencanaan_cont/dashboard', [AdminPerencanaanContController::class, 'dashboard'])->name('perencanaan_cont.dashboard');
+
+        Route::resource('/evaluasi_cont', AdminEvaluasiContController::class)->except(['index', 'show']);
+        Route::get('/evaluasi_cont/dashboard', [AdminEvaluasiContController::class, 'dashboard'])->name('evaluasi_cont.dashboard');
+
+        Route::resource('/evaluasi', AdminEvaluasiController::class)->except(['index', 'show']);
+        Route::get('/evaluasi/dashboard', [AdminEvaluasiController::class, 'dashboard'])->name('evaluasi.dashboard');
     });
 });

@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-layouts.sideb>
     <body class="bg-gray-50 font-sans p-6">
         <div class="bg-white shadow-md rounded-lg mt-20 max-w-5xl mx-auto">
             <!-- Judul -->
@@ -151,4 +151,4 @@
             });
         </script>
     </body>
-</x-layouts.app>
+</x-layouts.s>

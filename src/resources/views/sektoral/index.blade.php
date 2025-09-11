@@ -1,49 +1,138 @@
 <x-layouts.app>
-    <section class="relative bg-gray-800 text-white rounded-2xl overflow-hidden max-w-5xl mx-auto mt-24">
+    <section class="relative bg-gray-800 text-white rounded-2xl overflow-hidden max-w-6xl mx-auto mt-24">
         <!-- Background Image -->
-        <img src="{{asset('storage/sektorall/'.$sektoral->gambar)}}" alt="Family" class="w-full h-full object-cover opacity-80">
+        <img src="{{ asset('storage/sektorall/' . $sektoral->gambar) }}" alt="Family"
+            class="w-full h-full object-cover opacity-80">
 
         <!-- Overlay -->
         <div class="absolute inset-1 bg-gradient-to-r from-gray-900/70 to-transparent flex items-end">
             <div class="px-8 mb-6 py-10 max-w-2xl">
                 <h1 class="text-5xl font-bold mb-3">Data Statistik Sektoral</h1>
                 <p class="text-[20px] text-justify leading-relaxed">
-                    {{$sektoral->deskripsi}}
+                    {{ $sektoral->deskripsi }}
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Highlight Section -->
-    <section class="max-w-5xl mx-auto  py-10">
+    <section class="max-w-6xl mx-auto  py-10">
         <h2 class="text-xl font-semibold mb-6">Sorotan Data Utama</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
             <!-- Card 1 -->
-            <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
+            <div class="bg-[#2563EB] text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Pasangan Usia Subur</h3>
-                <a href="{{route('sektoral.PasanganSubur')}}" class="text-3xl font-bold mt-2">{{number_format($datasuburterbaru, 0, ',', '.')}}</a>
-                <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya Tahun {{$tahunsuburterbaru}}.</p>
+                <a href="{{ route('sektoral.PasanganSubur') }}"
+                    class="text-3xl font-bold mt-2">{{ number_format($datasuburterbaru, 0, ',', '.') }}</a>
+                <p class="text-sm mt-2">Total Pasangan Usia Subur se-Kota Tasikmalaya Tahun {{ $tahunsuburterbaru }}.
+                </p>
             </div>
 
             <!-- Card 2 -->
-            <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
+            <div class="bg-[#8B5CF6] text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Peserta Keluarga Berencana</h3>
-                <a href="{{route('sektoral.KeluargaBerencana')}}" class="text-3xl font-bold mt-2">{{number_format($datakbterbaru, 0, ',', '.')}}</a>
-                <p class="text-sm mt-2">Jumlah Akseptor Keluarga Berencana Aktif Tahun  {{ $tahunkbterbaru }}.</p>
+                <a href="{{ route('sektoral.KeluargaBerencana') }}"
+                    class="text-3xl font-bold mt-2">{{ number_format($datakbterbaru, 0, ',', '.') }}</a>
+                <p class="text-sm mt-2">Jumlah Akseptor Keluarga Berencana Aktif Tahun {{ $tahunkbterbaru }}.</p>
             </div>
 
             <!-- Card 3 -->
-            <div class="bg-blue-600 text-white p-6 rounded-xl shadow-md text-center">
+            <div class="bg-[#EF4444] text-white p-6 rounded-xl shadow-md text-center">
                 <h3 class="text-lg font-medium">Kasus Kekerasan</h3>
-                    <a href="{{route('sektoral.kasus')}}"
-                        class="text-3xl font-bold mt-2">{{ $datakasusterbaru }}
-                    </a>
-                <p class="text-sm mt-2">Kasus Kekerasan Terhadap Perempuan & Anak Ditangani Tahun {{ $tahunkasusterbaru }}</p>
+                <a href="{{ route('sektoral.kasus') }}" class="text-3xl font-bold mt-2">{{ $datakasusterbaru }}
+                </a>
+                <p class="text-sm mt-2">Kasus Kekerasan Terhadap Perempuan & Anak Ditangani Tahun
+                    {{ $tahunkasusterbaru }}</p>
             </div>
         </div>
     </section>
-    <section class="max-w-5xl mx-auto  py-10">
+    <section class="flex max-w-6xl grid grid-cols-12 gap-5 my-5 mx-auto ">
+        <aside class="col-span-3 text-center space-y-6">
+            <div class="bg-white shadow rounded-lg p-4">
+                <h2 class="font-semibold text-gray-700 mb-4">Pengendalian Penduduk</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/PasanganSubur')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Jumlah Pasangan Subur
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/PasanganSuburKecamatan')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Jumlah Pasangan Subur Berdasarkan Kecamatan
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4">
+                <h2 class="font-semibold text-gray-700 mb-4">Keluarga Berencana</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/KeluargaBerencana')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Jumlah Keluarga Berencana Aktip
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/KBKecamatan')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Jumlah Keluarga Berencana Aktip Berdasarkan Kecamatan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/KBKontrasepsi')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Pengunaan Alat Kontrasepsi
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/KBKontrasepsiKecamatan')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                            Pengunaan Alat Kontrasepsi Berdasarkan Kecamatan
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white shadow rounded-lg p-4">
+                <h2 class="font-semibold text-center px-2 text-gray-700 mb-4">Pemberdayaan Perempuan dan Perlindungan
+                    Anak
+                </h2>
+                <ul class="space-y-2">
+                    <li><a href="#" onclick="loadContent('/sektoral/kasus')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Kasus Kekerasan
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/jenisKekerasan') "
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jenis Kasus Kekerasan
+                        </a>
+                    </li>
+                </ul
+            </div></div>
+            <div class="bg-white shadow rounded-lg p-4">
+                <h2 class="font-semibold text-center px-2 text-gray-700 mb-4">
+                    Index Macro
+                </h2>
+                <ul class="space-y-2">
+                    <li><a href="#" onclick="loadContent('/sektoral/PembangunanGender')"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Pembangunan Gender
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="loadContent('/sektoral/PemberdayaanGender') "
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Pemberdayaan Gender
+                        </a>
+                    </li>
+                </ul
+            </div>
+        </aside>
+        <main id="content-area" class="col-span-9 bg-white rounded-xl shadow p-6">
+            {{-- Slot konten dari halaman lain --}}
+
+        </main>
+    </section>
+    {{-- <section class="max-w-5xl mx-auto  py-10">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Card Kiri -->
             @if (isset($sektoral_card[0]))
@@ -107,5 +196,19 @@
             </div>
             @endif
         </div>
-    </section>
+    </section> --}}
+    <script>
+        function loadContent(url) {
+            fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById("content-area").innerHTML = html;
+                })
+                .catch(err => console.error(err));
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+    // otomatis klik menu pertama saat halaman pertama kali load
+    loadContent('/sektoral/kasus');
+});
+    </script>
 </x-layouts.app>
