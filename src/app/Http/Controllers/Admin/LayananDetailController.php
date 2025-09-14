@@ -25,7 +25,8 @@ class LayananDetailController extends Controller
                     ->orWhere('isi', 'like', "%{$search}%");
             });}
         $layanan_details = Layanan_detail::all();
-        return view('admin.layanan_detail.dashboard', compact('layanan_details'));
+        $layanan_detail = Layanan_detail::paginate(6);
+        return view('admin.layanan_detail.dashboard', compact('layanan_details','layanan_detail'));
     }
     /**
      * Display a listing of the resource.

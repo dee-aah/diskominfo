@@ -79,8 +79,11 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div></div>
+                    <div class="mt-4">
+                    {{ $layanan_detail->links('pagination::tailwind') }}
                     </div>
-                </div>
+
             </div>
         </div>
     </div>

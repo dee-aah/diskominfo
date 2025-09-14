@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\LayananBeranda;
 use App\Models\Pimpinan;
 use App\Models\Tentang;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class BerandaController extends Controller
 {
     public function index()
     {
+        $layananBeranda = LayananBeranda::all();
 
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dinas_kependudukan_dan_pencatatan_sipil/jumlah_penduduk_berdasarkan_jenis_kelamin_di_kota_tasikmalaya");
         $json = $response->json();
@@ -86,6 +88,7 @@ class BerandaController extends Controller
     return view('beranda.index', compact('pimpinan','artikel','berita','beritatasik', 'beritalain','beritalaintasik','datasubur',
             'recordsuburterbaru','tentang_kami',
             'rasiojeniskelamin',
+            'layananBeranda',
             'tahunsuburterbaru',
             'datasuburterbaru',
             'datakb',

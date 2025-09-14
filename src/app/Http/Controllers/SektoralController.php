@@ -69,38 +69,40 @@ class SektoralController extends Controller
     return view('sektoral.kasus', compact('data','groupedByYear', 'tahunList', 'totalKasusPerTahun'));
     }
     public function jenisKekerasan()
-    {
-        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_kss_kkrsn_trhdp_prmpn_nk_brdsrkn_jns_kkrsn_d_kt_tskmly");
-        $datakasus = collect($response->json()['data'] ?? []);
-        $perPage = 20; // jumlah per halaman
-        $page = request()->get('page', 1);
-        $items = $datakasus->slice(($page - 1) * $perPage, $perPage)->values();
-        $datakasus = new LengthAwarePaginator(
-            $items,
-            $datakasus->count(),
-            $perPage,
-            $page,
-            ['path' => request()->url(), 'query' => request()->query()]
-        );
+{
+    $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_kss_kkrsn_trhdp_prmpn_nk_brdsrkn_jns_kkrsn_d_kt_tskmly");
 
-        $years = $datakasus->pluck('tahun')->unique()->sort()->values();
+    // Ambil semua data (tanpa pagination)
+    $datakasus = collect($response->json()['data'] ?? []);
 
-        $KecamatanList = $datakasus->pluck('jenis_kekerasan')->unique()->values();
+    // Ambil daftar tahun unik
+    $years = $datakasus->pluck('tahun')->unique()->sort()->values();
 
-        $datasets = $years->map(function ($year) use ($datakasus, $KecamatanList) {
+    // Ambil daftar jenis kekerasan unik
+    $KecamatanList = $datakasus->pluck('jenis_kekerasan')->unique()->values();
+
+    // Buat dataset per tahun
+    $datasets = $years->map(function ($year) use ($datakasus, $KecamatanList) {
         return [
             'label' => $year,
             'data' => $KecamatanList->map(function ($kec) use ($datakasus, $year) {
-            return $datakasus
-                ->where('jenis_kekerasan', $kec)
-                ->where('tahun', $year)
-                ->sum('jumlah_kasus');
+                return $datakasus
+                    ->where('jenis_kekerasan', $kec)
+                    ->where('tahun', $year)
+                    ->sum('jumlah_kasus');
             }),
         ];
-        });
-    return view('sektoral.jenisKekerasan', compact('items',
-            'perPage','page','datakasus','datasets','KecamatanList','years'));
-        }
+    });
+
+    // Langsung return tanpa paginator
+    return view('sektoral.jenisKekerasan', compact(
+        'datakasus',
+        'datasets',
+        'KecamatanList',
+        'years'
+    ));
+}
+
     public function PasanganSubur()
     {
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jumlah_pasangan_usia_subur_di_kota_tasikmalaya");

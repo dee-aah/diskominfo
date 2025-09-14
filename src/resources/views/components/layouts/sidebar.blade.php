@@ -61,15 +61,32 @@
                     transition duration-200 ease-in-out z-40 md:z-auto">
             <!-- Navigation (Konten Sidebar Anda) -->
             <ul class="mx-3">
-                <li  x-data="{ open: {{ Request::is('pimpinan*') ? 'true' : 'false' }} }"
-                    class="mb-2 w-55 rounded hover:bg-blue-100">
+                <li class="mb-2">
                     @if (auth()->check() && auth()->user()->role === 'admin')
-                        <a x-show="open" href="{{ route('pimpinan.dashboard') }} "
-                            class="flex items-center font-medium p-2
-                            {{ Request::is('pimpinan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">
-                            <span>Sambutan Pimpinan</span>
-                        </a>
+                        <button
+                            class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
+                            onclick="toggleMenu('Menu7')">Beranda
+                            <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu7"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <!-- Sub Menu -->
+                        <ul id="Menu7" class="{{ Request::is('pimpinan*') || Request::is('layanan_beranda*') ? '' : 'hidden' }} ml-6 ">
+                            <li class="rounded hover:bg-blue-100"><a href="{{ route('pimpinan.dashboard') }}"
+                                    class="flex items-center font-medium p-2
+                                    {{ Request::is('pimpinan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Sambutan Pimpinan</a>
+                            </li>
+                            <li class="rounded hover:bg-blue-100"><a href="{{ route('layanan_beranda.dashboard') }}"
+                                    class="flex items-center font-medium p-2
+                                    {{ Request::is('layanan_beranda*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Layanan Beranda
+                                </a>
+                            </li>
+                        </ul>
                     @endif
+                </li>
                 </li>
                 <li x-data="{ open: {{ Request::is('tentang_kami*') ? 'true' : 'false' }} }"
                     class="mb-2 w-55 rounded hover:bg-blue-100">

@@ -75,19 +75,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KBKecamatan')"
+                        <a href="#" onclick="loadContent('/sektoral/KbKecamatan')"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Keluarga Berencana Aktip Berdasarkan Kecamatan
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KBKontrasepsi')"
+                        <a href="#" onclick="loadContent('/sektoral/KbKontrasepsi')"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Pengunaan Alat Kontrasepsi
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KBKontrasepsiKecamatan')"
+                        <a href="#" onclick="loadContent('/sektoral/KbKontrasepsiKecamatan')"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Pengunaan Alat Kontrasepsi Berdasarkan Kecamatan
                         </a>
@@ -212,3 +212,4 @@
 });
     </script>
 </x-layouts.app>
+`

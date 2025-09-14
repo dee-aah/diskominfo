@@ -101,6 +101,20 @@
             const contentTabel = document.getElementById("contentTabel");
             const contentGrafik = document.getElementById("contentGrafik");
 
+            document.querySelectorAll(".row-tabel").forEach(row => {
+    row.addEventListener("click", () => {
+        // Sembunyikan tabel
+        contentTabel.classList.add("hidden");
+        tabTabel.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
+        tabTabel.classList.add("text-gray-600");
+
+        // Tampilkan grafik
+        contentGrafik.classList.remove("hidden");
+        tabGrafik.classList.add("text-blue-600", "border-b-2", "border-blue-600");
+        tabGrafik.classList.remove("text-gray-600");
+    });
+});
+
             // Tab handler
             tabTabel.addEventListener("click", () => {
                 contentTabel.classList.remove("hidden");

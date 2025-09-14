@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\AdminPerencanaanController;
 use App\Http\Controllers\Admin\AdminPerencanaanContController;
 use App\Http\Controllers\Admin\AdminEvaluasiController;
 use App\Http\Controllers\Admin\AdminEvaluasiContController;
+use App\Http\Controllers\Admin\AdminLayananBerandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -242,5 +243,8 @@ Route::middleware(['auth'])->group(function () {
 
         Route::resource('/evaluasi', AdminEvaluasiController::class)->except(['index', 'show']);
         Route::get('/evaluasi/dashboard', [AdminEvaluasiController::class, 'dashboard'])->name('evaluasi.dashboard');
+
+        Route::resource('/layanan_beranda', AdminLayananBerandaController::class)->except(['index', 'show']);
+        Route::get('/layanan_beranda/dashboard', [AdminLayananBerandaController::class, 'dashboard'])->name('layanan_beranda.dashboard');
     });
 });

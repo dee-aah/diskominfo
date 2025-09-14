@@ -30,19 +30,19 @@
                     <img src="{{ asset('storage/layanan_detail/' . $detail->gambar) }}"
                         class="size-80 w-full object-cover">
                     {{-- Teks tujuan --}}
-                    <div class="ml-4 py-6 ">
+                    <div class="mx-6 py-6 text-[14px] font-normal">
                         <h3 class="font-semibold text-[18px] text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
-                        <ol class="list-decimal text-[14px] pl-4">
-                            @foreach (explode('.', $layanan_detail->deskripsi) as $index => $point)
-                                @if (trim($point) != '')
-                                    <li>{{ trim($point) }}</li>
-                                @endif
-                            @endforeach
-                        </ol>
+                        <p class="list-decimal  prose text-[12px] ml-6">
+                            {!!$detail->deskripsi!!}
+                        </p>
+                        <style>
+                            ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                            ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                        </style>
                     </div>
                 </div>
             @endforeach
-            <div class="bg-gray-200 rounded shadow">
+            {{-- <div class="bg-gray-200 rounded shadow">
                 <img src="{{ asset('storage/layanan_detail/layanan5.jpg') }}" alt="Syarat & Alur Layanan"
                     class="w-full h-80 object-cover rounded-t">
                 <div class="ml-4 py-6">
@@ -55,6 +55,6 @@
                             dppkbp3atasikmalayakota.go.id</li>
                     </ol>
                 </div>
-            </div>
+            </div> --}}
         </div>
 </x-layouts.app>

@@ -26,29 +26,9 @@
                     Penjelasan mengenai variabel di dalam dataset ini:
                 </p>
 
-                <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
-                    <li><b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada
-                        aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
-                    <li><b>nama_provinsi:</b>menyatakan lingkup data berasal dari wilayah Provinsi Jawa Barat sesuai
-                        ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe
-                        data teks.</li>
-                    <li><b>kode_kabupaten_kota:</b>menyatakan kode Kota Tasikmalaya sesuai ketentuan BPS merujuk pada
-                        Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
-                    <li><b>nama_kabupaten_kota:</b> menyatakan lingkup data berasal dari wilayah Kota Tasikmalaya sesuai
-                        penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data
-                        teks.</li>
-                    <li><b>kode_kecamatan:</b> menyatakan kode dari setiap kecamatan di Kota Tasikmalaya sesuai
-                        ketentuan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data
-                        numerik.</li>
-                    <li><b>nama_kecamatan:</b> menyatakan lingkup data berasal dari setiap kecamatan di Kota Tasikmalaya
-                        sesuai penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor Nomor 3 Tahun 2019 dengan
-                        tipe data teks.</li>
-                    <li><b>jumlah_pasangan_usia_subur:</b> menyatakan jumlah pasangan usia subur dengan tipe data
-                        numerik.</li>
-                    <li><b>satuan:</b> menyatakan satuan dari pengukuran jumlah pasangan usia subur dalam orang dengan
-                        tipe data teks.</li>
-                    <li><b>tahun: </b> menyatakan tahun produksi data dengan tipe data numerik.</li>
-                </ul>
+                <div  class="p-4 ">
+                    <canvas id="kasusChart" height="120"></canvas>
+                </div>
             </div>
             <!-- Tabs -->
             <div class="border mb-6 rounded-lg">
@@ -91,7 +71,8 @@
                 </div>
             </div>
         </div>
-
+</body>
+</x-layouts.sideb>
         <!-- Script Tab & Grafik -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
@@ -153,5 +134,4 @@
                 }
             });
         </script>
-    </body>
-</x-layouts.sideb>
+

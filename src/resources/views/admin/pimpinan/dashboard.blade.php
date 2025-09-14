@@ -32,6 +32,7 @@
                         <table  class="table-auto wrapper min-w-full text-sm">
                             <thead class="border-b border-gray-200">
                                 <tr class="border-gray-200 border-b ">
+                                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Nama Pimpinan</th>
                                     <th class="font-medium border-r  border-gray-200 px-3 py-3">Deskripsi</th>
                                     <th class="font-medium border-r  border-gray-200 px-3 py-3">Video Konten</th>
                                     <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar latar</th>
@@ -41,6 +42,8 @@
                             <tbody class="divide-y divide-gray-200 ">
                                 @forelse ($pimpinans as $pimpinan)
                                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
+                                        <td class="px-3 border-r  border-gray-200 py-3">{{ $pimpinan->nama }}
+                                        </td>
                                         <td class="px-3 border-r  border-gray-200 py-3">{{ Str::limit(strip_tags($pimpinan->deskripsi), 100) }}
                                         </td>
                                         <td class="px-3 border-r  border-gray-200 py-3 text-center">
