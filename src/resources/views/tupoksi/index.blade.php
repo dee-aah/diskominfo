@@ -50,8 +50,11 @@
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Tugas Pokok</h3>
-                    <div class="text-lg text-gray-700 text-justify prose p-6"> {!! $tupoksi->tugas_utama !!}
-
+                    <div class="text-[15px] text-gray-700 text-justify prose p-6"> {!! $tupoksi->tugas_utama !!}
+                     <style>
+                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
+                </style>
                     </div>
                 </div>
 
@@ -65,7 +68,7 @@
                         </div>
                     </div>
                     <h3 class="font-bold text-gray-800 text-xl underline mb-2">Fungsi Utama</h3>
-                    <div class="text-lg text-gray-700 prose text-left list-decimal p-6 list-inside space-y-1">
+                    <div class="text-[15px] text-gray-700 prose text-left list-decimal p-6 list-inside space-y-1">
                         {!!$tupoksi->fungsi_utama!!}
                         <style>
                     ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }

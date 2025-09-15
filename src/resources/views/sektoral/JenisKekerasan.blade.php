@@ -92,10 +92,12 @@
             </div>
         </div>
 </body>
-</x-layouts.sideb>
+
+@push('scripts')
         <!-- Script Tab & Grafik -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
+            function initKasusChart() {
             const tabTabel = document.getElementById("tabTabel");
             const tabGrafik = document.getElementById("tabGrafik");
             const contentTabel = document.getElementById("contentTabel");
@@ -173,6 +175,8 @@ new Chart(document.getElementById("kasusChart"), {
             y: { beginAtZero: true }
         }
     }
-});
+});}
 
         </script>
+@endpush
+</x-layouts.sideb>

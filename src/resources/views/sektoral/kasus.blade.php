@@ -2,7 +2,7 @@
 
     <body class="bg-gray-50 font-sans p-6">
 
-        <div class="bg-white  max-w-5xl mx-auto">
+        {{-- <div class="bg-white  max-w-5xl mx-auto">
             <!-- Judul -->
             <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
                 Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
@@ -26,9 +26,7 @@
                     Penjelasan mengenai variabel di dalam dataset ini:
                 </p>
 
-                <div  class="p-4 ">
-                    <canvas id="kasusChart" height="120"></canvas>
-                </div>
+
             </div>
             <!-- Tabs -->
             <div class="border mb-6 rounded-lg">
@@ -67,71 +65,95 @@
 
                 <!-- Konten Grafik -->
                 <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="kasusChart" height="120"></canvas>
+                    <canvas id="kasusChartMain" height="120"></canvas>
                 </div>
             </div>
+        </div> --}}
+        <div class="border mb-6 rounded-lg">
+    <div class="flex border-b">
+        <button id="tabTabel"
+            class="flex-1 text-center py-2 font-semibold text-blue-600 border-b-2 border-blue-600">
+            Tabel
+        </button>
+        <button id="tabGrafik"
+            class="flex-1 text-center py-2 font-semibold text-gray-600">
+            Grafik
+        </button>
+    </div>
+
+    <!-- Konten Tabel (default tampil) -->
+    <div id="contentTabel" class="p-4">
+        <div class="overflow-x-auto">
+            <table class="w-full border text-sm text-gray-700">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="border px-3 py-2">Nama Provinsi</th>
+                        <th class="border px-3 py-2">Nama Kota</th>
+                        <th class="border px-3 py-2">Jumlah Kasus</th>
+                        <th class="border px-3 py-2">Satuan</th>
+                        <th class="border px-3 py-2">Tahun</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $row)
+                        <tr>
+                            <td class="border px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                            <td class="border px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                            <td class="border px-2 py-1">{{ number_format($row['jumlah_kasus'] ?? '-', 0, ',', '.') }}</td>
+                            <td class="border px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                            <td class="border px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+    </div>
+
+    <!-- Konten Grafik (default disembunyikan) -->
+    <div id="contentGrafik" class="p-4 hidden">
+        <canvas id="kasusChartMain" height="120"></canvas>
+    </div>
+</div>
+
+@push('scripts')
+        <!-- Script Tab & Grafik -->
+        <script>
+    const tabTabel = document.getElementById("tabTabel");
+    const tabGrafik = document.getElementById("tabGrafik");
+    const contentTabel = document.getElementById("contentTabel");
+    const contentGrafik = document.getElementById("contentGrafik");
+    let chartRendered = false;
+
+    tabTabel.addEventListener("click", () => {
+        contentTabel.classList.remove("hidden");
+        contentGrafik.classList.add("hidden");
+
+        // styling aktif
+        tabTabel.classList.add("text-blue-600", "border-b-2", "border-blue-600");
+        tabTabel.classList.remove("text-gray-600");
+
+        tabGrafik.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
+        tabGrafik.classList.add("text-gray-600");
+    });
+
+    tabGrafik.addEventListener("click", () => {
+        contentGrafik.classList.remove("hidden");
+        contentTabel.classList.add("hidden");
+
+        // styling aktif
+        tabGrafik.classList.add("text-blue-600", "border-b-2", "border-blue-600");
+        tabGrafik.classList.remove("text-gray-600");
+
+        tabTabel.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
+        tabTabel.classList.add("text-gray-600");
+
+        // render chart hanya sekali
+        if (!chartRendered) {
+            renderKasusChart(@json($tahunList), @json($totalKasusPerTahun));
+            chartRendered = true;
+        }
+    });
+</script>@endpush
+
 </body>
 </x-layouts.sideb>
-        <!-- Script Tab & Grafik -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            const tabTabel = document.getElementById("tabTabel");
-            const tabGrafik = document.getElementById("tabGrafik");
-            const contentTabel = document.getElementById("contentTabel");
-            const contentGrafik = document.getElementById("contentGrafik");
-
-            // Tab handler
-            tabTabel.addEventListener("click", () => {
-                contentTabel.classList.remove("hidden");
-                contentGrafik.classList.add("hidden");
-                tabTabel.classList.add("text-blue-600", "border-b-2", "border-blue-600");
-                tabGrafik.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
-                tabGrafik.classList.add("text-gray-600");
-            });
-
-            tabGrafik.addEventListener("click", () => {
-                contentGrafik.classList.remove("hidden");
-                contentTabel.classList.add("hidden");
-                tabGrafik.classList.add("text-blue-600", "border-b-2", "border-blue-600");
-                tabTabel.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
-                tabTabel.classList.add("text-gray-600");
-            });
-
-            // Data untuk grafik
-            const labels = @json($tahunList);
-            const dataKasus = @json($totalKasusPerTahun);
-            // Buat grafik Chart.js
-            new Chart(document.getElementById("kasusChart"), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Total Kasus Kekerasan",
-                        data: dataKasus,
-                        fill: true,
-                        backgroundColor: "rgba(255, 20, 0, 1)",
-                        borderColor: "rgba(255, 20, 0, 1)",
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Kasus Kekerasan Perempuan dan Anak Kota Tasikmalaya'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
-

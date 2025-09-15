@@ -9,7 +9,7 @@
 <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
                 <div class="justify-start ml-4 col-1">
-                    <h2 class="text-xl  font-medium">Tentang Kami</h2>
+                    <h2 class="text-xl  font-medium">Tupoksi</h2>
                 </div>
                 <div class="col-span-2 flex py-5 justify-end">
                     <form action="{{ route('tupoksii.dashboard') }}" method="GET" class="flex justify-end  mr-2">

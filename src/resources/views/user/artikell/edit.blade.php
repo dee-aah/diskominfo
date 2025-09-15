@@ -33,17 +33,20 @@
                             class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>
                     </div>
                     <div class="mb-3">
-                        <label class="block py-2 text-[15px] text-black font-medium">Kategori</label>
-                        <select name="kategori_id" class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
-                            required>
-                            <option value="">-- Pilih Kategori --</option>
-                            @foreach ($kategoris as $kategori)
-                                <option value="{{ $kategori->id }}" {{ old('kategori_id', $berita->kategori_id ?? '') == $kategori->id ? 'selected' : '' }}>
-                                    {{ $kategori->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+    <label class="block py-2 text-[15px] text-black font-medium">Kategori</label>
+    <select name="kategori_id"
+        class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+        required>
+        <option value="">-- Pilih Kategori --</option>
+        @foreach ($kategoris as $kategori)
+            <option value="{{ $kategori->id }}"
+                {{ old('kategori_id', $artikel->kategori_id ?? '') == $kategori->id ? 'selected' : '' }}>
+                {{ $kategori->nama }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
                     </div>
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Tag</label>

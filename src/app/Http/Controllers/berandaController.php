@@ -72,7 +72,7 @@ class BerandaController extends Controller
                 $q->where('nama', 'Berita Kota Tasikmalaya');})
                     ->latest()
                     ->skip(1)
-                    ->take(2)
+                    ->take(3)
                     ->get();
     //berita dppkbp3a
     $berita = Berita::whereHas('kategori', function($q) {
@@ -83,7 +83,7 @@ class BerandaController extends Controller
                 $q->where('nama', 'Berita DPPKBP3A');})
                     ->latest()
                     ->skip(1)
-                    ->take(2)
+                    ->take(3)
                     ->get();
     return view('beranda.index', compact('pimpinan','artikel','berita','beritatasik', 'beritalain','beritalaintasik','datasubur',
             'recordsuburterbaru','tentang_kami',

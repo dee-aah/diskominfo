@@ -3,7 +3,7 @@
         <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex  p-4 justify-center items-center ">
                 <div class="flex  items-center ">
-                    <h3 class="text-2xl text-center font-medium">Tambah Detail Layanan</h3>
+                    <h3 class="text-2xl text-center font-medium">Tambah Konten</h3>
                 </div>
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
@@ -38,5 +38,5 @@
             </div>
         </div>
     </div>
-    
+
 </x-layouts.sidebar>

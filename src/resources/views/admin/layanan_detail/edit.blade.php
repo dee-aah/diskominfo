@@ -30,14 +30,18 @@
                             <div class="mb-3">
                                 <label class="block py-2 text-[15px] text-black font-medium">Jenis Layanan</label>
                                 <select name="jenis"
-                                    class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+                                    class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                     required>
                                     <option value="">-- Pilih Jenis Layanan --</option>
                                     @foreach ($jenisOptions as $option)
-                                        <option value="{{ $option }}">{{ $option }}</option>
+                                        <option value="{{ $option }}"
+                                            {{ old('jenis', $layanan_detail->jenis ?? '') == $option ? 'selected' : '' }}>
+                                            {{ $option }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
+
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Deskripsi Layanan</label>

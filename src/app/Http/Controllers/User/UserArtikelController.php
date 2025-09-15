@@ -76,7 +76,7 @@ class UserArtikelController extends Controller
     public function update(Request $request,$id)
     {
         $artikel = Artikel::findOrFail($id);
-
+    $filename = $artikel->gambar;
     if ($request->hasFile('gambar')) {
             if ($artikel->gambar) {
                 Storage::delete('public/artikel/' . $artikel->gambar);

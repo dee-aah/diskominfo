@@ -46,7 +46,7 @@
                     <h1 class="text-2xl md:text-4xl font-bold mb-4">
                         {{ $pimpinan->nama }}
                     </h1>
-                    <p class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
+                    <div class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
                         {!! $pimpinan->deskripsi !!}
                         <style>
                             ul {
@@ -61,7 +61,7 @@
                                 margin-bottom: 0.5rem;
                             }
                         </style>
-                    </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,62 +72,71 @@
                 <!-- Card 1: Layanan DPPKBP3A -->
                 @if (isset($layananBeranda[0]))
                 <a href="{{ url('/layanans') }}"
-                    class="bg-blue-100 p-6 rounded-lg shadow hover:shadow-xl transition relative row-span-2 cursor-pointer block">
-                    <h3 class="text-lg font-semibold py-4">{{$layananBeranda[0]->nama}}</h3>
-                    <p class="text-sm text-justify text-gray-700">
-                        {{$layananBeranda[0]->deskripsi}}
+                    class="bg-blue-100 p-6 rounded-lg text-sm text-justify shadow hover:shadow-xl transition relative row-span-2 cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[0]->nama}}</h3>
+                    <p class=" text-gray-700">
+                        {!!$layananBeranda[0]->deskripsi!!}
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-
+                @endif
                 <!-- Card 2: Standar Pelayanan -->
-                <a href="sipek.html"
-                    class="bg-rose-100 p-6 rounded-lg shadow hover:shadow-xl transition relative col-span-2 cursor-pointer block">
-                    <h3 class="text-lg font-semibold py-4">Standar Pelayanan (SISPEK)</h3>
-                    <p class="text-sm text-justify text-gray-700">
-                        DPPKBP3A Kota Tasikmalaya menyediakan layanan terkait pengendalian penduduk, keluarga berencana,
-                        pemberdayaan perempuan, serta perlindungan anak untuk mendukung kesejahteraan masyarakat.
+                @if (isset($layananBeranda[1]))
+                <a href="{{$layananBeranda[1]->link}}"
+                    class="bg-rose-100 text-justify p-6 text-sm rounded-lg shadow hover:shadow-xl transition relative col-span-2 cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[1]->nama}}</h3>
+                    <p class=" prose  text-gray-700">
+                        {!!$layananBeranda[1]->deskripsi!!}
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-
+                @endif
+                @if (isset($layananBeranda[2]))
                 <!-- Card 3: IKM -->
-                <a href="ikm.html"
-                    class="bg-yellow-100 p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg font-semibold py-4">IKM</h3>
-                    <p class="text-sm text-justify text-gray-700">
-                        Indeks Kepuasan Masyarakat (IKM) Kota Tasikmalaya mengukur tingkat kepuasan publik...
+                <a href="{{$layananBeranda[2]->link}}"
+                    class="bg-yellow-100 text-sm text-justify p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[2]->nama}}</h3>
+                    <p class=" text-gray-700">
+                        {!!$layananBeranda[2]->deskripsi!!}
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
+                @endif
 
+                @if (isset($layananBeranda[3]))
                 <!-- Card 4: PPID -->
-                <a href="{{ url('https://ppid.tasikmalayakota.go.id/') }}"
-                    class="bg-green-100 p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg font-semibold py-4">PPID</h3>
-                    <p class="text-sm text-justify text-gray-700">
-                        PPID mengelola dan menyediakan informasi publik bagi masyarakat...
+                <a href="{{$layananBeranda[3]->link}}"
+                    class="bg-green-100 p-6 text-sm text-justify rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[3]->nama}}</h3>
+                    <p class=" text-gray-700">
+                        {!!$layananBeranda[3]->deskripsi!!}
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
+                @endif
 
+                @if (isset($layananBeranda[4]))
                 <!-- Card 5: SP4NLAPOR -->
-                <a href="{{ url('https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/') }}"
-                    class="bg-orange-100 p-6 rounded-xl shadow hover:shadow-lg transition relative col-span-2 cursor-pointer block">
-                    <h3 class="text-lg font-semibold py-4">SP4NLAPOR</h3>
-                    <p class="text-sm text-gray-700">
-                        Layanan aspirasi dan pengaduan online masyarakat untuk meningkatkan kualitas pelayanan publik.
+                <a href="{{$layananBeranda[4]->link}}"
+                    class="bg-orange-100 p-6 text-sm text-justify rounded-xl shadow hover:shadow-lg transition relative col-span-2 cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[4]->nama}}</h3>
+                    <p class=" text-gray-700">
+                        {!!$layananBeranda[4]->deskripsi!!}
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-
+                @endif
+                @if (isset($layananBeranda[5]))
                 <!-- Card 6: Data Statistik -->
-                <a href="statistik.html"
-                    class="bg-gray-100 p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg font-semibold mb-2">Data Statistik Sektoral</h3>
+                <a href="{{url('/sektoral')}}"
+                    class="bg-gray-100 p-6 text-justify text-sm rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold mb-2">{{$layananBeranda[5]->nama}}</h3>
+                    <p class=" text-gray-700">
+                        {!!$layananBeranda[5]->deskripsi!!}
+                    </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-
+                @endif
             </div>
         </section>
         <section class="max-w-6xl mx-auto px-6 py-10 bg-white ">
@@ -156,7 +165,7 @@
                 <div class="bg-orange-100 rounded-lg shadow-xl p-5 text-center">
                     <p class="text-black text-sm mb-2">Kasus Kekerasan Anak</p>
                     <p class="text-2xl font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }}</p>
-                    <p class="text-black text-sm">>Kasus Tahun {{ $tahunkasusterbaru }}</p>
+                    <p class="text-black text-sm">Kasus Tahun {{ $tahunkasusterbaru }}</p>
                 </div>
 
             </div>
@@ -215,24 +224,24 @@
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-10">Berita Kota Tasikmalaya</h1>
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Berita Utama -->
-                <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
+                <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
                     @if ($beritatasik)
-                        <div class="relative">
+                        <div class="relative bg-gray-200">
                             <img src="{{ asset('storage/berita/' . $beritatasik->gambar) }}" alt="Gambar Berita"
-                                class="w-full h-64 object-cover">
+                                class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
-                                    class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded">{{ $beritatasik->kategori->nama }}</span>
+                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $beritatasik->kategori->nama }}</span>
                             </div>
                         </div>
-                        <div class="p-4 bg-gray-200">
+                        <div class="p-4 bg-gray-200 text-sm text-justify">
                             <h2 class="text-lg font-semibold text-gray-800 mb-2">
                                 {{ $beritatasik->judul }}
                             </h2>
-                            <p class="text-sm text-justify text-gray-600 mb-4">
-                                {{ Str::limit($beritatasik->deskripsi, 200) }}
+                            <p class=" text-gray-600 mb-4">
+                                {!! Str::limit($beritatasik->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <div class="flex justify-between items-center pt-5 text-sm text-gray-500 mb-4">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-upload"></i>
                                     <span>{{ $beritatasik->created_at->translatedFormat('l, d F Y') }}</span>
@@ -257,7 +266,7 @@
                 @endif
                 <!-- Konten Samping -->
                 <div class="space-y-4">
-                    <div class="flex justify-between pb-10">
+                    <div class="flex justify-between pb-2">
                         <h2 class="font-bold">Berita Lainnya</h2>
                         <a href="{{ url('/beritakita') }}"
                             class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
@@ -269,21 +278,21 @@
                         </a>
                     </div>
                     @foreach ($beritalaintasik as $item)
-                        <div class="bg-gray-200 rounded-lg shadow p-4">
+                        <div class="bg-gray-200 text-sm rounded-lg shadow p-4">
                             <div class="flex justify-between text-xs text-gray-500 mb-1">
-                                <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">
+                                <span class="bg-blue-800 text-white px-2 py-0.5 rounded">
                                     {{ $item->kategori->nama }}
                                 </span>
                                 <span>{{ $item->created_at->translatedFormat('d F Y') }}</span>
                             </div>
                             <h3 class="font-semibold py-2 text-[16px] text-gray-800 mb-1">
-                                {{ $item->judul }}
+                                    {{ $item->judul }}
                             </h3>
-                            <p class="text-sm text-gray-600 mb-2 line-clamp-2">
-                                {{ Str::limit(strip_tags($item->deskripsi), 120) }}
+                            <p class=" text-gray-600 mb-2 line-clamp-2">
+                                {!! Str::limit(strip_tags($item->deskripsi), 120) !!}
                             </p>
                             <a href="{{ route('beritakita.show', $item->slug) }}"
-                                class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+                                class="text-blue-700 text-[11px] inline-flex items-center gap-1 hover:underline">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">
@@ -299,22 +308,22 @@
             <h1 class="text-2xl font-bold text-center text-gray-800 my-10">Berita DPPKBP3A</h1>
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Berita Utama -->
-                <div class="md:col-span-2 bg-white rounded-lg shadow overflow-hidden">
+                <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
                     @if ($berita)
                         <div class="relative">
                             <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="Gambar Berita"
-                                class="w-full h-64 object-cover">
+                                class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
-                                    class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded">{{ $berita->kategori->nama }}</span>
+                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $berita->kategori->nama }}</span>
                             </div>
                         </div>
-                        <div class="p-4 bg-gray-200">
+                        <div class="p-4 text-sm text-justify bg-gray-200">
                             <h2 class="text-lg font-semibold text-gray-800 mb-2">
                                 {{ $berita->judul }}
                             </h2>
-                            <p class="text-sm text-justify text-gray-600 mb-4">
-                                {{ Str::limit($berita->deskripsi, 200) }}
+                            <p class=" text-gray-600 mb-4">
+                                {!! Str::limit($berita->deskripsi, 200) !!}
                             </p>
                             <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
                                 <div class="flex items-center gap-1">
@@ -353,9 +362,9 @@
                         </a>
                     </div>
                     @foreach ($beritalain as $item)
-                        <div class="bg-gray-200 rounded-lg shadow p-4">
+                        <div class="bg-gray-200 text-sm text-gray-600 rounded-lg shadow p-4">
                             <div class="flex justify-between  text-xs text-gray-500 mb-1">
-                                <span class="bg-gray-200 text-gray-700 px-2 py-0.5 rounded">
+                                <span class="bg-blue-800 text-white px-2 py-0.5 rounded">
                                     {{ $item->kategori->nama }}
                                 </span>
                                 <span>{{ $item->created_at->translatedFormat('d F Y') }}</span>
@@ -363,11 +372,11 @@
                             <h3 class="font-semibold py-2 text-[16px] text-gray-800 mb-1">
                                 {{ $item->judul }}
                             </h3>
-                            <p class="text-sm text-gray-600 mb-2 line-clamp-2">
-                                {{ Str::limit(strip_tags($item->deskripsi), 120) }}
+                            <p class=" mb-2 line-clamp-2">
+                                {!! Str::limit(strip_tags($item->deskripsi), 120) !!}
                             </p>
                             <a href="{{ route('beritakita.show', $item->slug) }}"
-                                class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+                                class="text-blue-700 text-[11px] inline-flex items-center gap-1 hover:underline">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">
@@ -398,18 +407,18 @@
                     <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
                         <div class="relative">
                             <img src="{{ asset('storage/artikel/' . $item->gambar) }}" alt="Gambar Artikel"
-                                class="w-full h-48 object-cover rounded-t-xl">
+                                class="w-full h-100 object-cover p-3 rounded-2xl">
                             <span
-                                class="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori->nama }}
+                                class="absolute bottom-5 left-5 bg-blue-800 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori->nama }}
                             </span>
                         </div>
                         <div class="p-5 bg-gray-200 space-y-2">
                             <h3 class="text-lg font-semibold">{{ $item->judul }}</h3>
-                            <p class="text-sm text-justify text-gray-600">{{ Str::limit($item->deskripsi, 150) }}</p>
+                            <p class="text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</p>
                             <div class="flex justify-between items-center text-sm pt-3 text-gray-500 mb-4">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-upload"></i>
-                                    <span>{{ $item->created_at->translatedFormat('l, d F Y') }}</span>
+                                    <span>{{ $item->created_at->locale('id')->diffForHumans() }}</span>
                                 </div>
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-pen-to-square"></i>

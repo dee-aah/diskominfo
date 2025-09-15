@@ -2,19 +2,18 @@
     <section class="relative bg-gray-800 text-white rounded-2xl overflow-hidden max-w-6xl mx-auto mt-24">
         <!-- Background Image -->
         <img src="{{ asset('storage/sektorall/' . $sektoral->gambar) }}" alt="Family"
-            class="w-full h-full object-cover opacity-80">
+            class="w-full h-full object-cover bg-white rounded-3xl opacity-80">
 
         <!-- Overlay -->
         <div class="absolute inset-1 bg-gradient-to-r from-gray-900/70 to-transparent flex items-end">
             <div class="px-8 mb-6 py-10 max-w-2xl">
                 <h1 class="text-5xl font-bold mb-3">Data Statistik Sektoral</h1>
-                <p class="text-[20px] text-justify leading-relaxed">
-                    {{ $sektoral->deskripsi }}
+                <p class="text-[20px] text-justify prose leading-relaxed">
+                    {!! $sektoral->deskripsi !!}
                 </p>
             </div>
         </div>
     </section>
-
     <!-- Highlight Section -->
     <section class="max-w-6xl mx-auto  py-10">
         <h2 class="text-xl font-semibold mb-6">Sorotan Data Utama</h2>
