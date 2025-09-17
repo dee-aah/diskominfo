@@ -132,6 +132,58 @@
         <div class=" mt-8 mx-auto max-w-6xl ">
             <h2 class="text-xl font-semibold  bg-gray-300 pl-5 h-10 pt-1 w-90">Berita Kota Tasikmalaya</h2>
             <hr class="w-full border-t-2 border-gray-400 mb-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+  <!-- Gambar besar kiri -->
+  <div class="md:col-span-1">
+    <div class="relative h-full">
+      <img src="gambar/local3.jpg" alt="Berita Besar" class="w-full h-full object-cover rounded-lg shadow">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+        <h3 class="text-sm md:text-base font-semibold">Masjid Al Hidayah, Oase di SPBU Cikurubuk</h3>
+        <p class="text-xs md:text-sm">18 Januari 2025</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 Gambar kecil kanan -->
+  <div class="md:col-span-2 grid grid-cols-2 gap-4">
+    <!-- Gambar 1 -->
+    <div class="relative">
+      <img src="gambar/local2.jpg" alt="Berita" class="w-full h-48 md:h-64 object-cover rounded-lg shadow">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-xs">
+        <h3 class="font-semibold">Masjid Agung Tasikmalaya Bersinar</h3>
+        <p>18 Januari 2025</p>
+      </div>
+    </div>
+
+    <!-- Gambar 2 -->
+    <div class="relative">
+      <img src="gambar/local1.jpg" alt="Berita" class="w-full h-48 md:h-64 object-cover rounded-lg shadow">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-xs">
+        <h3 class="font-semibold">Monumen Tugu Titik 0 Kilometer</h3>
+        <p>18 Januari 2025</p>
+      </div>
+    </div>
+
+    <!-- Gambar 3 -->
+    <div class="relative">
+      <img src="gambar/local4.jpg" alt="Berita" class="w-full h-48 md:h-64 object-cover rounded-lg shadow">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-xs">
+        <h3 class="font-semibold">Jalan HZ. Mustofa Pusat Belanja Ikonik Tasikmalaya</h3>
+        <p>18 Januari 2025</p>
+      </div>
+    </div>
+
+    <!-- Gambar 4 -->
+    <div class="relative">
+      <img src="gambar/local5.jpg" alt="Berita" class="w-full h-48 md:h-64 object-cover rounded-lg shadow">
+      <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2 text-xs">
+        <h3 class="font-semibold">Grand Metro Hotel Malam Hari</h3>
+        <p>18 Januari 2025</p>
+      </div>
+    </div>
+  </div>
+</div>
+
             <div class="grid grid-cols-3 grid-rows-2 h-[600px] ">
                 <!-- Gambar 1 -->
                 @if (isset($beritapopulertasik[0]))

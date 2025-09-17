@@ -2,15 +2,12 @@
     <body class="bg-gray-50 font-sans p-6">
         <div class="bg-white  max-w-5xl mx-auto">
             <!-- Judul -->
-            <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
-                Jumlah Peserta KB (2020–2024) - Metode Kontrasepsi
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Index Pembangunan Gender Kota Tasikmalaya
             </h1>
             <!-- Box Deskripsi -->
-            <div class="border rounded-lg p-4 mb-6">
-                <h2 class="text-center font-semibold text-gray-700 border-b pb-2 mb-4">
-                    Deskripsi
-                </h2>
-                <p class="text-gray-700 text-sm leading-relaxed mb-3">
+            <div class="p-4 ">
+                <p class="text-gray-700 text-sm text-center leading-relaxed ">
                     Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
                     tahun 2019 s.d. 2024.
                     Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
@@ -18,135 +15,36 @@
                     Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
                     sekali.
                 </p>
-                <p class="text-gray-700 text-sm leading-relaxed mb-3">
-                    Penjelasan mengenai variabel di dalam dataset ini:
-                </p>
-                <ul class="list-disc pl-6 text-sm text-gray-700 space-y-2">
-                    <li><b>kode_provinsi:</b> menyatakan kode Provinsi Jawa Barat sesuai ketentuan BPS merujuk pada
-                        aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
-                    <li><b>nama_provinsi:</b>menyatakan lingkup data berasal dari wilayah Provinsi Jawa Barat sesuai
-                        ketentuan BPS merujuk pada aturan Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe
-                        data teks.</li>
-                    <li><b>kode_kabupaten_kota:</b>menyatakan kode Kota Tasikmalaya sesuai ketentuan BPS merujuk pada
-                        Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data numerik.</li>
-                    <li><b>nama_kabupaten_kota:</b> menyatakan lingkup data berasal dari wilayah Kota Tasikmalaya sesuai
-                        penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data
-                        teks.</li>
-                    <li><b>kode_kecamatan:</b> menyatakan kode dari setiap kecamatan di Kota Tasikmalaya sesuai
-                        ketentuan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor 3 Tahun 2019 dengan tipe data
-                        numerik.</li>
-                    <li><b>nama_kecamatan:</b> menyatakan lingkup data berasal dari setiap kecamatan di Kota Tasikmalaya
-                        sesuai penamaan BPS merujuk pada Peraturan Badan Pusat Statistik Nomor Nomor 3 Tahun 2019 dengan
-                        tipe data teks.</li>
-                    <li><b>jumlah_pasangan_usia_subur:</b> menyatakan jumlah pasangan usia subur dengan tipe data
-                        numerik.</li>
-                    <li><b>satuan:</b> menyatakan satuan dari pengukuran jumlah pasangan usia subur dalam orang dengan
-                        tipe data teks.</li>
-                    <li><b>tahun: </b> menyatakan tahun produksi data dengan tipe data numerik.</li>
-                </ul>
             </div>
-            <!-- Tabs -->
-            <div class="border mb-6 rounded-lg">
-                <div class="flex border-b">
-                    <button id="tabTabel"
-                        class="flex-1 text-center py-2 font-semibold text-blue-600 border-b-2 border-blue-600">Tabel</button>
-                    <button id="tabGrafik" class="flex-1 text-center py-2 font-semibold text-gray-600">Grafik</button>
-                </div>
-                <!-- Konten Tabel -->
-                <div id="contentTabel" class="p-4">
+                <div  class="p-4">
                     <div class="overflow-x-auto">
-                        <table class="w-full border text-sm text-gray-700">
-                            <thead class="bg-gray-100">
+                        <table class="w-full  text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
                                 <tr>
-                                    <th class="border px-3 py-2">Nama Provinsi</th>
-                                    <th class="border px-3 py-2">Nama Kota</th>
-                                    <th class="border px-3 py-2">Index</th>
-                                    <th class="border px-3 py-2">Satuan</th>
-                                    <th class="border px-3 py-2">Tahun</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Index</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($datapembangunan as $row)
-                                    <tr>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['indeks_pembangunan_gender'] ?? '-'}}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
-                                        <td class="border text-justify px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['indeks_pembangunan_gender'] ?? '-'}}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
                 </div>
-
-                <!-- Konten Grafik -->
-                <div id="contentGrafik" class="p-4  hidden">
-                    <canvas id="indexChart" height="120"></canvas>
-                </div>
             </div>
         </div>
-
-        <!-- Script Tab & Grafik -->
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script>
-            const tabTabel = document.getElementById("tabTabel");
-            const tabGrafik = document.getElementById("tabGrafik");
-            const contentTabel = document.getElementById("contentTabel");
-            const contentGrafik = document.getElementById("contentGrafik");
-
-            // Tab handler
-            tabTabel.addEventListener("click", () => {
-                contentTabel.classList.remove("hidden");
-                contentGrafik.classList.add("hidden");
-                tabTabel.classList.add("text-blue-600", "border-b-2", "border-blue-600");
-                tabGrafik.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
-                tabGrafik.classList.add("text-gray-600");
-            });
-
-            tabGrafik.addEventListener("click", () => {
-                contentGrafik.classList.remove("hidden");
-                contentTabel.classList.add("hidden");
-                tabGrafik.classList.add("text-blue-600", "border-b-2", "border-blue-600");
-                tabTabel.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
-                tabTabel.classList.add("text-gray-600");
-            });
-
-            // Data untuk grafik
-            const labels = @json($tahunList);
-            const dataKasus = @json($indexpembangunan);
-            // Buat grafik Chart.js
-            new Chart(document.getElementById("indexChart"), {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: "Index Pembangunan Gender",
-                        data: dataKasus,
-                        fill: true,
-                        backgroundColor: "rgba(54, 162, 235, 0.2)",
-                        borderColor: "rgba(54, 162, 235, 1)",
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Index Pembangunan Gender Kota Tasikmalaya Setiap Tahun'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
     </body>
 </x-layouts.sideb>

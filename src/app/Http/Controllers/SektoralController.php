@@ -35,11 +35,18 @@ class SektoralController extends Controller
         $recordkasusterbaru = $datakasus->last();
         $tahunkasusterbaru = $recordkasusterbaru['tahun'] ?? null;
         $datakasusterbaru = $recordkasusterbaru['jumlah_kasus'] ?? 0;
+        //index
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pemberdayaan_gender_di_kota_tasikmalaya");
+        $json = $response->json();
+        $datapemberdayaan = collect($json['data'] ?? []);
+        $recordpemberdayaanterbaru = $datapemberdayaan->last();
+        $tahunpemberdayaanterbaru   = $recordpemberdayaanterbaru['tahun'] ?? null;
+        $datapemberdayaanterbaru  = $recordpemberdayaanterbaru['indeks_pemberdayaan_gender'] ?? 0;
 
         return view('sektoral.index',compact(
             'sektoral',
             'sektoral_card',
-  'datasubur',
+            'datasubur',
             'recordsuburterbaru',
             'tahunsuburterbaru',
             'datasuburterbaru',
@@ -50,7 +57,11 @@ class SektoralController extends Controller
             'datakasus',
             'tahunkasusterbaru',
             'datakasusterbaru',
-            'recordkasusterbaru'
+            'recordkasusterbaru',
+            'datapemberdayaan',
+            'tahunpemberdayaanterbaru',
+            'datapemberdayaanterbaru',
+            'recordpemberdayaanterbaru'
             ));
     }
     public function kasus()
@@ -74,33 +85,34 @@ class SektoralController extends Controller
 
     // Ambil semua data (tanpa pagination)
     $datakasus = collect($response->json()['data'] ?? []);
+    // Cari tahun terbaru
+    $latestYear = $datakasus->max('tahun');
 
-    // Ambil daftar tahun unik
-    $years = $datakasus->pluck('tahun')->unique()->sort()->values();
+    // Filter hanya tahun terbaru
+    $datakasus = $datakasus->where('tahun', $latestYear)->values();
 
     // Ambil daftar jenis kekerasan unik
     $KecamatanList = $datakasus->pluck('jenis_kekerasan')->unique()->values();
 
-    // Buat dataset per tahun
-    $datasets = $years->map(function ($year) use ($datakasus, $KecamatanList) {
-        return [
-            'label' => $year,
-            'data' => $KecamatanList->map(function ($kec) use ($datakasus, $year) {
-                return $datakasus
-                    ->where('jenis_kekerasan', $kec)
-                    ->where('tahun', $year)
-                    ->sum('jumlah_kasus');
-            }),
-        ];
-    });
+    // Dataset hanya untuk tahun terbaru
+    $datasets = collect([[
+        'label' => $latestYear,
+        'data' => $KecamatanList->map(function ($kec) use ($datakasus, $latestYear) {
+            return $datakasus
+                ->where('jenis_kekerasan', $kec)
+                ->where('tahun', $latestYear)
+                ->sum('jumlah_kasus');
+        }),
+    ]]);
 
-    // Langsung return tanpa paginator
     return view('sektoral.jenisKekerasan', compact(
         'datakasus',
         'datasets',
         'KecamatanList',
-        'years'
+        'latestYear'
     ));
+
+
 }
 
     public function PasanganSubur()
@@ -120,34 +132,31 @@ class SektoralController extends Controller
     {
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_psngn_s_sbr_brdsrkn_kcmtn_d_kt_tskmly");
         $datasubur = collect($response->json()['data'] ?? []);
-        $perPage = 10; // jumlah per halaman
-        $page = request()->get('page', 1);
-        $items = $datasubur->slice(($page - 1) * $perPage, $perPage)->values();
-        $datasubur = new LengthAwarePaginator(
-            $items,
-            $datasubur->count(),
-            $perPage,
-            $page,
-            ['path' => request()->url(), 'query' => request()->query()]
-        );
+         $latestYear = $datasubur->max('tahun');
 
-        $years = $datasubur->pluck('tahun')->unique()->sort()->values();
+    // Filter hanya data tahun terbaru
+    $datasubur = $datasubur->where('tahun', $latestYear)->values();
 
-        $KecamatanList = $datasubur->pluck('nama_kecamatan')->unique()->values();
+    // Ambil daftar kecamatan unik
+    $KecamatanList = $datasubur->pluck('nama_kecamatan')->unique()->values();
 
-        $datasets = $years->map(function ($year) use ($datasubur, $KecamatanList) {
-        return [
-            'label' => $year,
-            'data' => $KecamatanList->map(function ($kec) use ($datasubur, $year) {
+    // Dataset hanya untuk tahun terbaru
+    $datasets = collect([[
+        'label' => $latestYear,
+        'data' => $KecamatanList->map(function ($kec) use ($datasubur, $latestYear) {
             return $datasubur
                 ->where('nama_kecamatan', $kec)
-                ->where('tahun', $year)
+                ->where('tahun', $latestYear)
                 ->sum('jumlah_pasangan_usia_subur');
-            }),
-        ];
-        });
-    return view('sektoral.PasanganSuburKecamatan', compact('items',
-            'perPage','page','datasubur','datasets','KecamatanList','years'));
+        }),
+    ]]);
+
+    return view('sektoral.PasanganSuburKecamatan', compact(
+        'datasubur',
+        'datasets',
+        'KecamatanList',
+        'latestYear'
+    ));
     }
     public function KeluargaBerencana()
     {
@@ -167,97 +176,98 @@ class SektoralController extends Controller
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_psrt_klrg_brncn_kb_ktf_brdsrkn_mtd_lt_kntrsps_d_kt_tskmly");
         $datakontrasepsi = collect($response->json()['data'] ?? []);
 
-        $groupedByYear = $datakontrasepsi->groupBy('tahun');
-        $groupedByMethod = $datakontrasepsi->groupBy('metode_alat_kontrasepsi');
+    // Ambil tahun terbaru
+    $latestYear = $datakontrasepsi->max('tahun');
 
-        $metodeList = $groupedByMethod->keys();
-        $totalPesertaPerMetode = $groupedByMethod->map(function ($items) {
-            return $items->sum(function ($item) {
+    // Filter hanya tahun terbaru
+    $datakontrasepsi = $datakontrasepsi->where('tahun', $latestYear)->values();
+
+    // Group by tahun (hanya 1 tahun: terbaru)
+    $groupedByYear = $datakontrasepsi->groupBy('tahun');
+
+    // Group by metode kontrasepsi
+    $groupedByMethod = $datakontrasepsi->groupBy('metode_alat_kontrasepsi');
+
+    // Daftar metode kontrasepsi
+    $metodeList = $groupedByMethod->keys();
+
+    // Total peserta per metode
+    $totalPesertaPerMetode = $groupedByMethod->map(function ($items) {
+        return $items->sum(function ($item) {
             return (int) $item['jumlah_peserta_keluarga_berencana_aktif'];
         });
     })->values();
 
-    return view('sektoral.KbKontrasepsi', compact('datakontrasepsi','groupedByMethod','metodeList','groupedByYear', 'totalPesertaPerMetode'));
-    }
+    return view('sektoral.KbKontrasepsi', compact(
+        'datakontrasepsi',
+        'groupedByMethod',
+        'metodeList',
+        'groupedByYear',
+        'totalPesertaPerMetode',
+        'latestYear'
+    ));
+}
 
     public function KbKontrasepsiKecamatan()
     {
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlh_pmkn_lt_kntrsps_brdsrkn_kcmtn_d_kt_tskmly");
         $datakontrasepsi = collect($response->json()['data'] ?? []);
-        $perPage = 10; // jumlah per halaman
-        $page = request()->get('page', 1);
-        $items = $datakontrasepsi->slice(($page - 1) * $perPage, $perPage)->values();
-        $datakontrasepsi = new LengthAwarePaginator(
-            $items,
-            $datakontrasepsi->count(),
-            $perPage,
-            $page,
-            ['path' => request()->url(), 'query' => request()->query()]
-        );
+        $latestYear = $datakontrasepsi->max('tahun');
 
-        $years = $datakontrasepsi->pluck('tahun')->unique()->sort()->values();
-        $KecamatanList = $datakontrasepsi->pluck('nama_kecamatan')->unique()->values();
-        $datasets = $years->map(function ($year) use ($datakontrasepsi, $KecamatanList) {
-        return [
-            'label' => $year,
-            'data' => $KecamatanList->map(function ($kec) use ($datakontrasepsi, $year) {
+    // Filter hanya data tahun terbaru
+    $datakontrasepsi = $datakontrasepsi->where('tahun', $latestYear)->values();
+
+    // Ambil daftar kecamatan unik
+    $KecamatanList = $datakontrasepsi->pluck('nama_kecamatan')->unique()->values();
+
+    // Dataset hanya untuk tahun terbaru
+    $datasets = collect([[
+        'label' => $latestYear,
+        'data' => $KecamatanList->map(function ($kec) use ($datakontrasepsi, $latestYear) {
             return $datakontrasepsi
                 ->where('nama_kecamatan', $kec)
-                ->where('tahun', $year)
+                ->where('tahun', $latestYear)
                 ->sum('jumlah_alat_kontrasepsi');
-            }),
-        ];
-        });
-    return view('sektoral.KbKontrasepsiKecamatan', compact('items',
-            'perPage','page','datakontrasepsi','datasets','KecamatanList','years'));
+        }),
+    ]]);
+
+    return view('sektoral.KbKontrasepsiKecamatan', compact(
+        'datakontrasepsi',
+        'datasets',
+        'KecamatanList',
+        'latestYear'
+    ));
     }
     public function KbKecamatan()
     {
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dppkbpppa/jmlhpsrtklrgbncnkbktfbrdsrknkcmtndkttskmly");
         $datakb = collect($response->json()['data'] ?? []);
-        $perPage = 10; // jumlah per halaman
-        $page = request()->get('page', 1);
-        $items = $datakb->slice(($page - 1) * $perPage, $perPage)->values();
-        $datakb = new LengthAwarePaginator(
-            $items,
-            $datakb->count(),
-            $perPage,
-            $page,
-            ['path' => request()->url(), 'query' => request()->query()]
-        );
+    // Ambil tahun terbaru
+    $latestYear = $datakb->max('tahun');
 
-        $years = $datakb->pluck('tahun')->unique()->sort()->values();
+    // Filter hanya data tahun terbaru
+    $datakb = $datakb->where('tahun', $latestYear)->values();
 
-        $KecamatanList = $datakb->pluck('nama_kecamatan')->unique()->values();
+    // Ambil daftar kecamatan unik
+    $KecamatanList = $datakb->pluck('nama_kecamatan')->unique()->values();
 
-        $datasets = $years->map(function ($year) use ($datakb, $KecamatanList) {
-        return [
-            'label' => $year,
-            'data' => $KecamatanList->map(function ($kec) use ($datakb, $year) {
+    // Dataset hanya untuk tahun terbaru
+    $datasets = collect([[
+        'label' => $latestYear,
+        'data' => $KecamatanList->map(function ($kec) use ($datakb, $latestYear) {
             return $datakb
                 ->where('nama_kecamatan', $kec)
-                ->where('tahun', $year)
+                ->where('tahun', $latestYear)
                 ->sum('jumlah_peserta_keluarga_berencana_aktif');
-            }),
-        ];
-        });
-    return view('sektoral.KbKecamatan', compact('items',
-            'perPage','page','datakb','datasets','KecamatanList','years'));
-    }
-    public function PemberdayaanGender()
-    {
-        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pemberdayaan_gender_di_kota_tasikmalaya");
-        $datapemberdayaan = collect($response->json()['data'] ?? []);
+        }),
+    ]]);
 
-        $groupedByYear = $datapemberdayaan->groupBy('tahun');
-
-    // Untuk grafik: ambil list tahun & total kasus per tahun
-    $tahunList = $groupedByYear->keys();
-    $indexpemberdayaan = $groupedByYear->map(function ($items) {
-        return $items->sum('indeks_pemberdayaan_gender');
-    })->values();
-
-    return view('sektoral.PemberdayaanGender', compact('datapemberdayaan','groupedByYear', 'tahunList', 'indexpemberdayaan'));
+    return view('sektoral.KbKecamatan', compact(
+        'datakb',
+        'datasets',
+        'KecamatanList',
+        'latestYear'
+    ));
     }
 
     public function PembangunanGender()
@@ -273,5 +283,19 @@ class SektoralController extends Controller
     })->values();
 
     return view('sektoral.PembangunanGender', compact('datapembangunan','groupedByYear', 'tahunList', 'indexpembangunan'));
+    }
+    public function PemberdayaanGender()
+    {
+        $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pemberdayaan_gender_di_kota_tasikmalaya");
+        $datapemberdayaan = collect($response->json()['data'] ?? []);
+
+        $groupedByYear = $datapemberdayaan->groupBy('tahun');
+
+    $tahunList = $groupedByYear->keys();
+    $indexpemberdayaan = $groupedByYear->map(function ($items) {
+        return $items->sum('indeks_pemberdayaan_gender');
+    })->values();
+
+    return view('sektoral.PemberdayaanGender', compact('datapemberdayaan','groupedByYear', 'tahunList', 'indexpemberdayaan'));
     }
 }
