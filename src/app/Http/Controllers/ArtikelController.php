@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 
@@ -14,30 +15,19 @@ class ArtikelController extends Controller
 
     public function index(Request $request)
     {
-      $search = $request->input('search');
-
-    // Query utama
     $query = Artikel::with('kategori');
-
-    if ($search) {
-        $query->where(function($q) use ($search) {
-            $q->where('judul', 'like', "%{$search}%")
-              ->orWhere('penulis', 'like', "%{$search}%")
-              ->orWhere('tag', 'like', "%{$search}%");
-        });
-    }
-
+    $artikellain = Artikel::when(request('d'), function ($query) {
+        $query->where('judul', 'like', '%' . request('d') . '%');
+    })
+    ->latest()
+    ->paginate(4);
     // Artikel terbaru untuk 1 di highlight
     $artikelpopuler = Artikel::whereHas('kategori')
     ->orderBy('view_count', 'desc')
     ->take(4)
     ->get();
-    $artikellain = Artikel::with('kategori')
-    ->orderBy('created_at', 'desc')
-    ->take(4)
-    ->get();
 
-    return view('artikel.index', compact('artikelpopuler', 'artikellain', 'search'));
+    return view('artikel.index', compact('artikelpopuler', 'artikellain'));
     }
     /**
      * Display the specified resource.

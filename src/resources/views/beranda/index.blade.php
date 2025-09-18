@@ -16,7 +16,7 @@
                     </h1>
                     <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                         Perlindungan Anak.</p>
-                    <a href="{{ route('layanans.index') }}"
+                    <a href="#layanan"
                         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition">Lihat Layanan
                         Kami</a>
                 </div>
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        <section class="max-w-6xl mx-auto px-6 py-10 ">
+        <section id="layanan" class="max-w-6xl mx-auto px-6 py-10 ">
             <div class="grid grid-cols-3 gap-6 auto-rows-[200px] ">
 
                 <!-- Card 1: Layanan DPPKBP3A -->
@@ -177,7 +177,7 @@
         <section class="relative max-w-6xl mx-auto rounded-2xl bg-cover my-10 bg-center min-h-screen flex items-center"
             style="background-image: url('{{ asset('storage/tentang/' . $tentang_kami->gambar) }}');">
             <!-- Overlay gelap -->
-            <div class="absolute max-w-6xl max-auto inset-0 bg-black/50"></div>
+            <div class="absolute rounded-3xl max-w-6xl max-auto inset-0 bg-black/50"></div>
             <!-- Konten -->
             <div class="relative z-10 w-full px-6 md:px-16 lg:px-24">
                 <div class="max-w-5xl text-center  text-white space-y-4">

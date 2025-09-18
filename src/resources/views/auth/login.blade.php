@@ -73,7 +73,7 @@
     <!-- Right Panel (Register Prompt) -->
     <div class="bg-[#476A9A] text-white flex flex-col justify-center items-center p-8">
         <div class="flex items-center">
-            <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-45">
+            <img src="{{ asset('storage/default/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-45">
         </div>
         <h2 class="text-2xl font-bold mt-4">Selamat Datang Di DPPKBP3A</h2>
         <h2 class="text-2xl font-bold mb-4">Kota Tasikmalaya</h2>

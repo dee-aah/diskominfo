@@ -66,7 +66,8 @@
                                                 -
                                             @endif
                                         </td>
-                                        <td class="p-3 flex my-auto ">
+                                        <td class="p-3  align-middle ">
+                                            <div class="flex justify-center items-center gap-1">
                                             <a href="{{ route('artikell.edit', $artikel->id) }}"
                                                 class=" col-span-2  p-3  ">
                                                 <i
@@ -82,6 +83,7 @@
                                                     </i>
                                                 </button>
                                             </form>
+                                        </div>
                                         </td>
                                     </tr>
                                 @empty

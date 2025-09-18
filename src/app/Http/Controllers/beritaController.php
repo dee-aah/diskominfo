@@ -27,8 +27,8 @@ class BeritaController extends Controller
         // Mengambil semua data yang dibutuhkan dengan satu set query yang efisien
         $beritapopuler = $this->getBeritaByKategori($kategoriDinas, 'view_count', 4);
         $beritapopulertasik = $this->getBeritaByKategori($kategoriTasik, 'view_count', 4);
-        $beritaterbaru = $this->getBeritaByKategori($kategoriDinas, 'created_at', 8);
-        $beritaterbarutasik = $this->getBeritaByKategori($kategoriTasik, 'created_at', 8);
+        $beritaterbaru = $this->getBeritaByKategori($kategoriDinas, 'created_at', 6);
+        $beritaterbarutasik = $this->getBeritaByKategori($kategoriTasik, 'created_at', 6);
 
         // Untuk "Berita Lain" dan "Selengkapnya", kita bisa ambil dari koleksi "terbaru"
         $beritalain = $beritaterbaru->take(4);
@@ -92,6 +92,7 @@ class BeritaController extends Controller
         $beritas = Berita::where('kategori_id', $kategori->id)
             ->latest()
             ->paginate(6);
+
 
         return view('beritakita.kategori_berita', compact('kategori', 'beritas'));
     }

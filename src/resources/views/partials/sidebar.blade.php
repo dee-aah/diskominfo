@@ -2,7 +2,7 @@
     <div class="flex justify-between  h-20 items-center">
         <header class="bg-white  p-4 flex items-center justify-between md:justify-end">
             <div class="flex items-center">
-                    <img src="{{ asset('img/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
+                    <img src="{{ asset('storage/default/Logo_Kota_Tasikmalaya.png') }}" alt="Logo" class="h-10 mr-3">
                     <span class="text-xl font-bold font-sans text-[#476A9A]">DPPKBP3A</span>
             </div>
                 <button id="toggleSidebar" class="md:hidden text-2xl focus:outline-none">

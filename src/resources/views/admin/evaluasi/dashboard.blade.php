@@ -19,6 +19,7 @@
                             class="border-1 border-gray-300 rounded-xl mt-2 pr-4 mr-2 pl-10 py-2 placeholder:text-sm
                             placeholder:italic   w-full    text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
+                    </form>
                     <a href="{{ route('evaluasi.create') }}" type="button"
                         class="bg-blue-500 space-x-2 flex justify-end  ml-2 hover:bg-blue-600 text-white text-sm mt-2 px-3 mr-2 py-2 rounded-lg">
                         <i class="fa-solid fa-plus mr-2 mt-1 "></i> Tambah

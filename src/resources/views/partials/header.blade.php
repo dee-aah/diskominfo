@@ -13,9 +13,10 @@
 
                     <!-- Desktop Menu -->
                     <div class="hidden md:flex space-x-6 font-medium items-center">
-                        <a href="{{ url('/beranda') }}" class="hover:text-blue-600">Beranda</a>
+                        <a href="{{ url('/beranda') }}" class="{{ request()->is('beranda') ? 'text-blue-600' : 'hover:text-blue-600' }}">Beranda</a>
                         <div class="relative group">
-                            <button class="hover:text-blue-600">Profil</button>
+                            <button class="{{ request()->is('tentang','visimisi','profil','struktur','tupoksi','maklumatt')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Profil</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/tentang') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Tentang
@@ -37,7 +38,8 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="hover:text-blue-600">Layanan</button>
+                            <button class="{{ request()->is('layanans')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Layanan</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/layanans') }}"class="block px-4 text-center py-2 hover:bg-blue-100">Informasi
                                     Layanan</a>
@@ -53,7 +55,8 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="hover:text-blue-600">Dokumen</button>
+                            <button class="{{ request()->is('produkhukum','dokumenevaluasi','dokumenperencanaan')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Dokumen</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/produkhukum') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Produk
@@ -66,7 +69,8 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="hover:text-blue-600">Berita</button>
+                            <button class="{{ request()->is('beritakita','artikel')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Berita</button>
                             <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/beritakita') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Berita</a>
@@ -74,7 +78,7 @@
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Artikel</a>
                             </div>
                         </div>
-                        <a href="{{ url('/sektoral') }}" class="hover:text-blue-600">Data Statistik Sektoral</a>
+                        <a href="{{ url('/sektoral') }}" class="{{ request()->is('sektoral') ? 'text-blue-600' : 'hover:text-blue-600' }}">Data Statistik Sektoral</a>
 
                     </div>
 

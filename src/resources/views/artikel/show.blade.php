@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div class=" container max-w-5xl mx-auto mt-20 px-4 py-8">
+    <div class=" container max-w-6xl mx-auto mt-20 px-4 py-8">
         {{-- Tombol kembali --}}
         <div class="flex text-[13px] text-gray-500justify-start">
             <a href="{{ url('/beranda') }}" class="inline-block mb-6  hover:underline">
@@ -34,8 +34,10 @@
 
         {{-- Isi artikel --}}
         <div class="prose max-w-none flex text-justify">
-            <p><span style="font-weight:600"> Kota Tasikmalaya - </span>
-                {!! nl2br(e($artikel->deskripsi)) !!}</p>
+            <p class="text-justify leading-relaxed">
+    <span class="font-semibold">Kota Tasikmalaya - </span>
+    {!! preg_replace('/^<p>(.*?)<\/p>$/', '$1', $artikel->deskripsi) !!}
+</p>
         </div>
         <div class="mt-6 font-semibold text-black text-[18px]">#Tagline
             @php

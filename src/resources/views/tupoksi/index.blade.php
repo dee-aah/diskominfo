@@ -79,18 +79,19 @@
             </div>
         </div>
         <div class="bg-white max-w-6xl mx-auto pb-8">
-            <div class="bg-white rounded-md p-6 w-full shadow-md  max-w-screen-xl mx-auto ">
+            <div class="bg-white  p-6 w-full   max-w-screen-xl mx-auto ">
                 <div class="flex flex-col items-center mb-6">
                     <!-- Ikon Folder -->
                     <img width="50" height="50" src="https://img.icons8.com/cute-clipart/50/paste.png"
                         alt="paste" />
                     <h2 class="text-xl font-bold text-gray-800 border-b border-gray-300 pb-1">Uraian Tugas</h2>
                 </div>
+            </div>
                 <!-- Grid Card Layout -->
-                <div class="w-full flex justify-center">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full px-2 py-10">
+                <div class="w-full border-2 rounded-lg max-w-6xl border-indigo-500 flex justify-center">
+                    <div class="grid grid-cols-1  md:grid-cols-2 gap-6 max-w-5xl w-full  py-15">
                         <div
-                            class="bg-white p-6 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
+                            class="bg-white p-6 rounded-lg  border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
                             @if (isset($uraians[0]))
                                 <div
                                     class="flex items-center gap-3 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner justify-center">
@@ -107,8 +108,9 @@
                                 </style>
                             @endif
                         </div>
+
                         <div
-                            class="bg-white p-5 rounded-lg shadow border-2 border-indigo-500 hover:scale-[1.02] transition duration-300">
+                            class="bg-white p-5 rounded-lg shadow border-2 rounded-xl border-indigo-500 hover:scale-[1.02] transition duration-300">
                             @if (isset($uraians[1]))
                                 <div
                                     class="flex items-center justify-center gap-2 mb-3 bg-[#476A9A] px-4 py-2 rounded-lg shadow-inner">

@@ -15,7 +15,7 @@
         <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
                 <div class="justify-start ml-4 col-1">
-                    <h2 class="text-xl  font-medium">Daftar Artikel</h2>
+                    <h2 class="text-xl  font-medium">Daftar Berita</h2>
                 </div>
                 <div class="col-span-2 flex py-5 justify-end">
                     <form action="{{ route('beritaa.dashboard') }}" method="GET" class="flex justify-end  mr-2">
@@ -23,7 +23,7 @@
                             <span class="absolute inset-y-0 left-0 flex pt-1 items-center pl-3">
                                 <i class="fa-solid fa-magnifying-glass mr-2 mt-1"></i></span>
                             <input type="text" name="d" value="{{ request('d') }}"
-                                placeholder="Cari Artikel..."
+                                placeholder="Cari Berita..."
                                 class="border-1 border-gray-300 rounded-xl mt-2 pr-4 mr-2 pl-10 py-2 placeholder:text-sm
                             placeholder:italic   w-full    text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
@@ -66,7 +66,8 @@
                                 -
                             @endif
                         </td>
-                        <td class="p-3 items-center flex ">
+                        <td class="p-3  align-middle ">
+                            <div class="flex justify-center items-center gap-1">
                             <a href="{{ route('beritaa.edit', $berita->id) }}"
                                 class=" col-span-2  p-3  ">
                                                 <i
@@ -83,6 +84,7 @@
                                                     </i>
                                 </button>
                             </form>
+                            </div>
                         </td>
                     </tr>
                 @empty
