@@ -241,7 +241,7 @@
                             <p class=" text-gray-600 mb-4">
                                 {!! Str::limit($beritatasik->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-between items-center pt-5 text-sm text-gray-500 mb-4">
+                            <div class="flex justify-between items-center  text-sm text-gray-500 my-5">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-upload"></i>
                                     <span>{{ $beritatasik->created_at->translatedFormat('l, d F Y') }}</span>
@@ -325,7 +325,7 @@
                             <p class=" text-gray-600 mb-4">
                                 {!! Str::limit($berita->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-between items-center text-sm text-gray-500 mb-4">
+                            <div class="flex justify-between items-center text-sm text-gray-500 my-5">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-upload"></i>
                                     <span>{{ $berita->created_at->translatedFormat('l, d F Y') }}</span>

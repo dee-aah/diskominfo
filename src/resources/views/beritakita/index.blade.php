@@ -67,7 +67,7 @@
             <!-- KONTEN UTAMA: 2 Card Berita -->
             <div class="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-6">
                 @foreach ($beritalain as $berita)
-                    <div class="bg-white shadow-md rounded p-4 border border-black flex flex-col justify-between">
+                    <div class="bg-white shadow-md rounded p-4 flex flex-col justify-between">
                         <!-- Baris Gambar dan Judul -->
                         <div class="flex gap-4">
                             <!-- Gambar kecil -->
@@ -76,8 +76,8 @@
                                     class="rounded w-full h-auto object-cover">
                             </div>
                             <!-- Judul dan kategori -->
-                            <div class="flex flex-col ">
-                                <span class="bg-blue-600 text-white text-[12px] px-2 mb-5 py-1 rounded w-fit mb-1">
+                            <div class="flex flex-col text-xs ">
+                                <span class="bg-blue-600 text-white text-xs  rounded-full px-2 mb-5 py-1 w-fit mb-1">
                                     {{ $berita->kategori->nama }}
                                 </span>
                                 <h2 class="text-[18px] font-bold leading-snug">
@@ -106,8 +106,8 @@
             </div>
 
             <!-- SIDEBAR -->
-            <aside class="bg-gray-200 shadow rounded p-4 space-y-4 h-fit border">
-                <h3 class="font-bold text-lg border-b pb-2 mb-2 bg-gray-300 px-2 py-1">Berita Terbaru</h3>
+            <aside class=" shadow-md rounded p-4 space-y-4 h-fit bg-slate-300 ">
+                <h3 class="font-bold text-lg border-b pb-2 mb-2  px-2 py-1">Berita Terbaru</h3>
                 @foreach ($beritaterbaru as $story)
                     <div class="flex gap-2 items-start">
                         <img src="{{ asset('storage/berita/' . $story->gambar) }}" alt="{{ $story->judul }}"

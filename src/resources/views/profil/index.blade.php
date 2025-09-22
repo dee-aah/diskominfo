@@ -1,7 +1,7 @@
 <x-layouts.app>
     <main>
         <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
-            <div><img class="absolute brightness-25 top-0 left-0 w-full h-full object-cover object-top z-0 transform -translate-y-5"
+            <div><img class="absolute brightness-50 top-0 left-0 w-full h-100 object-cover object-top z-0 transform -translate-y-5"
                     src="{{asset('storage/profil_cont/'. $profil_cont->gambar)}}" alt="">
             </div>
             <!-- Overlay -->

@@ -45,7 +45,7 @@
                     <tr class="text-center mx-3 items-center hover:bg-gray-100">
                         <td class="p-3 border-r  border-gray-200">{{ $tupoksi->des_singkat }}</td>
                         <td class="p-3 border-r  border-gray-200">{{ $tupoksi->tugas_utama }}</td>
-                        <td class="p-3 border-r  border-gray-200">{{ $tupoksi->fungsi_utama }}</td>
+                        <td class="p-3 border-r  border-gray-200">{!! $tupoksi->fungsi_utama !!}</td>
                         <td class="p-3 border-r  border-gray-200 text-center">
                             @if ($tupoksi->gambar)
                                 <img src="{{ asset('storage/tupoksi/' . $tupoksi->gambar) }}"

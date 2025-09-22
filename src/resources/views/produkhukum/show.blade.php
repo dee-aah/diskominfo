@@ -1,5 +1,5 @@
 <x-layouts.app>
-    <div class="max-w-4xl mx-auto mt-8 bg-white  pt-20">
+    <div class="max-w-6xl mx-auto mt-8 bg-white  pt-20">
     <h1 class="text-xl font-bold text-red-700  mb-4">
         {{ strtoupper($produk->jenis_peraturan) }} NOMOR {{ $produk->nomor }} TAHUN {{ $produk->tahun_terbit }}
     </h1>

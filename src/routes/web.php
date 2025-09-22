@@ -66,16 +66,16 @@ use App\Http\Controllers\EvaluasiController;
 
 //Route::get('/sektoral', [KasusController::class, 'index']);
 Route::resource('/sektoral', SektoralController::class)->only(['index']);
-Route::get('/sektoral/kasus', [SektoralController::class, 'kasus'])->name('sektoral.kasus');
-Route::get('/sektoral/jenisKekerasan', [SektoralController::class, 'jenisKekerasan'])->name('sektoral.jenisKekerasan');
-Route::get('/sektoral/PasanganSubur', [SektoralController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
-Route::get('/sektoral/PasanganSuburKecamatan', [SektoralController::class, 'PasanganSuburKecamatan'])->name('sektoral.PasanganSuburKecamatan');
-Route::get('/sektoral/KeluargaBerencana', [SektoralController::class, 'KeluargaBerencana'])->name('sektoral.KeluargaBerencana');
-Route::get('/sektoral/KbKontrasepsi', [SektoralController::class, 'KbKontrasepsi'])->name('sektoral.KbKontrasepsi');
-Route::get('/sektoral/KbKontrasepsiKecamatan', [SektoralController::class, 'KbKontrasepsiKecamatan'])->name('sektoral.KbKontrasepsiKecamatan');
-Route::get('/sektoral/KbKecamatan', [SektoralController::class, 'KbKecamatan'])->name('sektoral.KbKecamatan');
-Route::get('/sektoral/PemberdayaanGender', [SektoralController::class, 'PemberdayaanGender'])->name('sektoral.PemberdayaanGender');
-Route::get('/sektoral/PembangunanGender', [SektoralController::class, 'PembangunanGender'])->name('sektoral.PembangunanGender');
+// Route::get('/sektoral/kasus', [SektoralController::class, 'kasus'])->name('sektoral.kasus');
+// Route::get('/sektoral/jenisKekerasan', [SektoralController::class, 'jenisKekerasan'])->name('sektoral.jenisKekerasan');
+// Route::get('/sektoral/PasanganSubur', [SektoralController::class, 'PasanganSubur'])->name('sektoral.PasanganSubur');
+// Route::get('/sektoral/PasanganSuburKecamatan', [SektoralController::class, 'PasanganSuburKecamatan'])->name('sektoral.PasanganSuburKecamatan');
+// Route::get('/sektoral/KeluargaBerencana', [SektoralController::class, 'KeluargaBerencana'])->name('sektoral.KeluargaBerencana');
+// Route::get('/sektoral/KbKontrasepsi', [SektoralController::class, 'KbKontrasepsi'])->name('sektoral.KbKontrasepsi');
+// Route::get('/sektoral/KbKontrasepsiKecamatan', [SektoralController::class, 'KbKontrasepsiKecamatan'])->name('sektoral.KbKontrasepsiKecamatan');
+// Route::get('/sektoral/KbKecamatan', [SektoralController::class, 'KbKecamatan'])->name('sektoral.KbKecamatan');
+// Route::get('/sektoral/PemberdayaanGender', [SektoralController::class, 'PemberdayaanGender'])->name('sektoral.PemberdayaanGender');
+// Route::get('/sektoral/PembangunanGender', [SektoralController::class, 'PembangunanGender'])->name('sektoral.PembangunanGender');
 // Contoh grup middleware auth, JANGAN letakkan route 'pdf.stream' di sini
 Route::get('/', function () {
     return view('welcome');

@@ -55,15 +55,15 @@
         <aside class="col-span-3 text-center space-y-6">
             <div class="bg-white shadow border border-gray-200 rounded-lg p-4">
                 <h2 class="font-semibold text-gray-700 mb-4">Pengendalian Penduduk</h2>
-                <ul class="space-y-2">
+                <ul class="space-y-2 " role="tablist">
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/PasanganSubur')"
-                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
+                        <a href="#" data-tab-target="subur" role="tab" aria-selected="true" aria-controls="subur"
+                            class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700" >
                             Jumlah Pasangan Subur
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/PasanganSuburKecamatan')"
+                        <a href="#" data-tab-target="suburkecamatan"role="tab" aria-selected="false" aria-controls="suburkecamatan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Pasangan Subur Berdasarkan Kecamatan
                         </a>
@@ -72,27 +72,27 @@
             </div>
             <div class="bg-white shadow border border-gray-200 rounded-lg p-4">
                 <h2 class="font-semibold text-gray-700 mb-4">Keluarga Berencana</h2>
-                <ul class="space-y-2">
+                <ul class="space-y-2" role="tablist">
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KeluargaBerencana')"
+                        <a href="#" data-tab-target="keluargaberencana"role="tab" aria-selected="false" aria-controls="keluargaberencana"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Keluarga Berencana Aktip
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KbKecamatan')"
+                        <a href="#" data-tab-target="keluargaberencanakecamatan"role="tab" aria-selected="false" aria-controls="keluargaberencanakecamatan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Keluarga Berencana Aktip Berdasarkan Kecamatan
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KbKontrasepsi')"
+                        <a href="#" data-tab-target="kbkontrasepsi" role="tab" aria-selected="false" aria-controls="kbkontrasepsi"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Keluarga Berencana Aktip Berdasarkan Metode Alat Kontrasepsi
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/KbKontrasepsiKecamatan')"
+                        <a href="#" data-tab-target="kbkontrasepsikecamatan"role="tab" aria-selected="false" aria-controls="kbkontrasepsikecamatan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Pengunaan Alat Kontrasepsi Berdasarkan Kecamatan
                         </a>
@@ -103,13 +103,13 @@
                 <h2 class="font-semibold text-center px-2 text-gray-700 mb-4">Pemberdayaan Perempuan dan Perlindungan
                     Anak
                 </h2>
-                <ul class="space-y-2">
-                    <li><a href="#" onclick="loadContent('/sektoral/kasus')"
+                <ul class="space-y-2 " role="tablist">
+                    <li><a href="#" data-tab-target="kekerasan"role="tab" aria-selected="false" aria-controls="kekerasan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Kasus Kekerasan
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/jenisKekerasan') "
+                        <a href="#" data-tab-target="jeniskekerasan"role="tab" aria-selected="false" aria-controls="jeniskekerasan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jenis Kasus Kekerasan
                         </a>
                     </li>
@@ -119,90 +119,515 @@
                 <h2 class="font-semibold text-center px-2 text-gray-700 mb-4">
                     Index Macro
                 </h2>
-                <ul class="space-y-2">
-                    <li><a href="#" onclick="loadContent('/sektoral/PembangunanGender')"
+                <ul class="space-y-2" role="tablist">
+                    <li><a href="#" data-tab-target="pembangunangender"role="tab" aria-selected="false" aria-controls="pembangunangender"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Pembangunan Gender
                         </a>
                     </li>
                     <li>
-                        <a href="#" onclick="loadContent('/sektoral/PemberdayaanGender') "
+                        <a href="#" data-tab-target="pemberdayaangender"role="tab" aria-selected="false" aria-controls="peberdayaanangender"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">Jumlah Pemberdayaan Gender
                         </a>
                     </li>
                 </ul
             </div>
         </aside>
-        <main id="content-area" class="col-span-9 bg-white rounded-xl border border-gray-200 shadow p-6">
+        <main  class="col-span-9 bg-white rounded-xl border border-gray-200 shadow p-6">
             {{-- Slot konten dari halaman lain --}}
+        <div id="subur" data-tab-content role="tabpanel" class="bg-white  max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Jumlah Pasangan Usia Subur Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+                <p class="text-gray-700 text-sm leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+            <!-- Tabs -->
+            <div class=" mb-5 ">
+                    <div class="overflow-x-auto">
+                        <table class="w-full  text-sm  text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Pasangan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datasubur as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }} </td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{number_format( $row['jumlah_pasangan_usia_subur'] ?? '-' , 0, ',', '.')}}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div  id="suburkecamatan" data-tab-content role="tabpanel" class="hidden bg-white max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Jumlah Pasangan Usia Subur Berdasarkan Kecamatan di Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+                <p class="text-gray-700 text-sm text-justify leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+            <!-- Tabs -->
+            <div class="mb-5">
+                <div class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kecamatan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Peserta Kb Aktip</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datasuburkec as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ number_format($row['jumlah_pasangan_usia_subur'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300  px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="keluargaberencana" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Jumlah Peserta Keluarga Berencana Aktip Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4">
+                <p class="text-gray-700 text-sm text-justify leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+                <div class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Peserta KB</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datakb as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="keluargaberencanakecamatan" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Jumlah Peserta Keluarga Berencana Aktip Berdasarkan Kecamatan di Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+                <p class="text-gray-700 text-sm  text-justify leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+                </div>
+                <!-- Konten Tabel -->
+                <div  class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full  text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kecamatan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Peserta Kb Aktip</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datakbKec as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="kbkontrasepsi" data-tab-content role="tabpanel" class="bg-white hidden  max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-6">
+                Jumlah Peserta Keluarga Berencana Berdasarkan Metode Alat Kontrasepsi
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 mb-6">
+                <p class="text-gray-700 text-sm leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+                <div  class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-center text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Metode Kontrasepsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Peserta Kb Aktip</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datakontrasepsiMetode as $row)
+                                    <tr>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration}}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['metode_alat_kontrasepsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="kbkontrasepsikecamatan" data-tab-content role="tabpanel" class="bg-white  hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Jumlah Pemakaian Alat Kontrasepsi Berdasarkan Kecamatan
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+                <p class="text-gray-700 text-sm text-justify leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+                <div  class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full  text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kecamatan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Alat Kontrasepsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datakontrasepsi as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ number_format($row['jumlah_alat_kontrasepsi'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="kekerasan" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 my-5">
+                Jumlah Kasus Kekerasan Pada Perempuan dan Anak Di Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+                <p class="text-gray-700 text-sm text-justify leading-relaxed">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+                <div class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full  text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Jumlah Kasus</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datakasus as $row)
+                                    <tr>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ number_format($row['jumlah_kasus'] ?? '-', 0, ',', '.') }}</td>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
+        </div>
+</div>
+        <div id="jeniskekerasan" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+        <!-- Judul -->
+        <h1 class="text-center max-w-4xl mx-auto text-xl font-bold text-gray-800 my-5">
+            Jumlah Kasus Kekerasan Pada Perempuan dan Anak Berdasarkan Kecamatan di Kota Tasikmalaya
+        </h1>
+        <!-- Box Deskripsi -->
+        <div class="p-4 ">
+            <p class="text-gray-700  text-sm text-justify text-sm">
+                Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                tahun 2019 s.d. 2024.
+                Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                Keluarga Berencana,
+                Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun sekali.
+            </p>
+        </div>
+        <div class="p-4">
+            <div  class="overflow-x-auto">
+                <table class="w-full border text-sm text-gray-700">
+                    <thead class="bg-blue-100 text-center font-bold">
+                        <tr>
+                            <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Jenis Kekerasan</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Jumlah Kasus</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                            <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($datakasusJenis as $row)
+                            <tr>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $loop->iteration }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['jenis_kekerasan'] ?? '-' }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ number_format($row['jumlah_kasus'] ?? 0, 0, ',', '.') }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                <td class="border-2 border-gray-300 text-center px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="pembangunangender" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Index Pembangunan Gender Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class="p-4 ">
+                <p class="text-gray-700 text-sm text-center leading-relaxed ">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+            </div>
+                <div  class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full  text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Index</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datapembangunan as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['indeks_pembangunan_gender'] ?? '-'}}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="pemberdayaangender" data-tab-content role="tabpanel" class="bg-white hidden max-w-5xl mx-auto">
+            <!-- Judul -->
+            <h1 class="text-center text-xl font-bold text-gray-800 mb-5">
+                Index Pemberdayaan Gender Kota Tasikmalaya
+            </h1>
+            <!-- Box Deskripsi -->
+            <div class=" p-4 ">
+
+                <p class="text-gray-700 text-sm leading-relaxed mb-3">
+                    Dataset ini berisi data jumlah pasangan usia subur berdasarkan kecamatan di Kota Tasikmalaya dari
+                    tahun 2019 s.d. 2024.
+                    Dataset terkait topik Pengendalian Penduduk ini dihasilkan oleh Dinas Pengendalian Penduduk,
+                    Keluarga Berencana,
+                    Pemberdayaan Perempuan dan Perlindungan Anak Kota Tasikmalaya yang dikeluarkan dalam periode 1 tahun
+                    sekali.
+                </p>
+                <div  class="p-4">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border text-sm text-gray-700">
+                            <thead class="bg-blue-100 text-center font-bold">
+                                <tr>
+                                    <th class="border-2 border-gray-300 px-3 py-2">No</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Provinsi</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Nama Kota</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Index</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Satuan</th>
+                                    <th class="border-2 border-gray-300 px-3 py-2">Tahun</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($datapemberdayaan as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['indeks_pemberdayaan_gender'] ?? '-'}}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         </main>
     </section>
-    {{-- <section class="max-w-5xl mx-auto  py-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Card Kiri -->
-            @if (isset($sektoral_card[0]))
-            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-[20px] font-semibold my-4">Pengendalian Penduduk</h2>
-                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[0]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-                <div class="space-y-3">
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.PasanganSubur')}}">Jumlah Pasangan Usia Subur Kota Tasikmalayaya</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            <a href="{{route('sektoral.PasanganSuburKecamatan')}}">Jumlah Pasangan Usia Subur Berdasarkan Kecamatan</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (isset($sektoral_card[1]))
-            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-[20px] font-semibold my-4">Keluarga Berencana</h2>
-                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[1]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-                <div class="space-y-3">
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            <a href="{{route('sektoral.KbKecamatan')}}"> Jumlah Peserta KB Aktip Berdasarkan Kecamatan</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                            <a href="{{route('sektoral.KbKontrasepsi')}}">Jumlah Peserta KB Aktip Metode Alat Kontrasepsi</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.KbKontrasepsiKecamatan')}}">Jumlah Pemakai Alat Kontrasepsi Berdasarkan Kecamatan</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (isset($sektoral_card[2]))
-            <!-- Card Kanan -->
-            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-lg font-semibold my-4">Pemberdayaan Perempuan dan Perlindungan Anak</h2>
-                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[2]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-                <div class="space-y-3">
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.kasus')}}">Jumlah Kasus Kekerasan Perempuan dan Anak di Kota Tasikmalaya</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.jenisKekerasan')}}">Jumlah Kasus Kekerasan Perempuan dan Anak berdasarkan Jenis Kekerasan</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-            @if (isset($sektoral_card[3]))
-            <div class="bg-white rounded-2xl shadow-md p-6 text-center border border-gray-400">
-                <h2 class="text-[20px] font-semibold my-4">Indikator Makro</h2>
-                <img src="{{ asset('storage/sektoral_cont/' . $sektoral_card[3]->gambar) }}" alt="Keluarga" class="mx-auto rounded-lg mb-6">
-                <div class="space-y-3">
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.PemberdayaanGender')}}">Indek Pemberdayaan Gender di Kota Tasikmalaya</a>
-                    </div>
-                    <div class="bg-gray-200 py-3 px-4 rounded-xl text-sm font-medium">
-                        <a href="{{route('sektoral.PembangunanGender')}}">Indek Pembangunan Gender di Kota Tasikmalaya</a>
-                    </div>
-                </div>
-            </div>
-            @endif
-        </div>
-    </section> --}}
-    <script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabs = document.querySelectorAll("[data-tab-target]");
+    const contents = document.querySelectorAll("[data-tab-content]");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", e => {
+        e.preventDefault();
+
+        // reset semua tab & konten
+        tabs.forEach(t => t.setAttribute("aria-selected", "false"));
+        contents.forEach(c => c.classList.add("hidden"));
+
+        // aktifkan tab yang diklik
+        tab.setAttribute("aria-selected", "true");
+        const targetId = tab.getAttribute("data-tab-target");
+        document.getElementById(targetId).classList.remove("hidden");
+      });
+    });
+  });
         function loadContent(url) {
         const scrollY = window.scrollY; // simpan posisi scroll sebelum konten diganti
 
@@ -218,4 +643,8 @@
         loadContent('/sektoral/kasus'); });
 
     </script>
+    <script src="node_modules/@material-tailwind/html/scripts/tabs.js"></script>
+
+<!-- from cdn -->
+<script src="https://unpkg.com/@material-tailwind/html@latest/scripts/tabs.js"></script>
 </x-layouts.app>

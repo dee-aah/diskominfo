@@ -2,7 +2,7 @@
     <body>
     <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
-            <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+            <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
                 src="{{asset('storage/visi/' . $visi->gambar) }}" alt="">
         </div>
         <!-- Overlay -->
