@@ -13,10 +13,10 @@ class Artikel extends Model
     protected $casts = [
         'waktu' => 'datetime',
     ];
-    protected $fillable = ['judul', 'deskripsi', 'penulis', 'tag', 'slug', 'waktu', 'gambar', 'kategori_id'];
-    public function Kategori()
+    protected $fillable = ['judul', 'deskripsi', 'penulis', 'tag', 'slug', 'waktu', 'img', 'user_id'];
+    public function user()
     {
-        return $this->belongsTo(Kategori::class);
+        return $this->belongsTo(User::class);
     }
     protected static function boot()
     {

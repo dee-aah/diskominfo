@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Profil extends Model
 {
     protected $fillable = [
-        'gambar','nama','jabatan'
+        'img','nama','jabatan','user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

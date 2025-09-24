@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('maklumats', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->text('deskripsi');
-            $table->string('gambar_cont');
-            $table->string('gambar');
+            $table->string('img');
             $table->timestamps();
         });
     }

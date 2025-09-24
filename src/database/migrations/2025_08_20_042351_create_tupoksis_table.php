@@ -13,18 +13,24 @@ return new class extends Migration
     {
         Schema::create('tupoksis', function (Blueprint $table) {
             $table->id();
-            $table->text('des_singkat');
-            $table->text('tugas_utama');
-            $table->text('fungsi_utama');
-            $table->string('gambar');
+            $table->foreignId('user_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
+            $table->text('deskripsi_singkat');
+            $table->text('tugas');
+            $table->text('fungsi');
+            $table->string('img');
             $table->timestamps();
         });
 
 
     Schema::create('uraian_tugas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
             $table->string('bidang', 100);
-            $table->text('uraian');   
+            $table->text('uraian');
             $table->timestamps();
         });
     }

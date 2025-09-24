@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Visimisi extends Model
 {
     protected $fillable = [
-        'des_singkat','visi', 'misi', 'gambar'
+        'user_id','visi', 'misi', 'img'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

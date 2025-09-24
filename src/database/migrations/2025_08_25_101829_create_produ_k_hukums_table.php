@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produk_hukum_conts', function (Blueprint $table) {
-            $table->id();
-            $table->text('deskripsi');
-            $table->string('img_cont');
-            $table->string('img_pdf');
-            $table->timestamps();
-        });
         Schema::create('produk_hukums', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->string('reg')->nullable();
             $table->string('jenis_peraturan')->nullable();
             $table->string('judul_peraturan')->nullable();
@@ -47,7 +43,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produk_hukum_conts');
         Schema::dropIfExists('produk_hukums');
     }
 };

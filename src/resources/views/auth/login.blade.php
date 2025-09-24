@@ -3,7 +3,7 @@
     <div class="p-4 flex flex-col justify-center">
         {{-- Flash message sukses --}}
         @if (session('success'))
-            <div id="flash-message" class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+            <div id="flash-message" class="bg-green-100 border text-center border-green-400 text-green-700 px-4 py-2 rounded mb-4">
                 {{ session('success') }}
             </div>
         @endif

@@ -10,13 +10,18 @@ class Layanan_detail extends Model
     'layanan_id',
     'jenis',
     'deskripsi',
-    'gambar'
+    'img',
+    'user_id'
     ];
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     // Relasi ke Service
     public function layanans()
     {

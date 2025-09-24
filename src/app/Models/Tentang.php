@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Tentang extends Model
 {
     protected $fillable = [
-        'des_singkat', 'deskripsi','gambar','gambar_cont'
+        'deskripsi','img','user_id'
     ];
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

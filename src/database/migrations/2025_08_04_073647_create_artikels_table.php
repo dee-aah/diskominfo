@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('artikels', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->string('judul');
             $table->string('penulis');
             $table->text('deskripsi');
             $table->string('slug')->unique();
-            $table->foreignId('kategori_id')->nullable()->constrained('kategoris')->nullOnDelete();
+            $table->enum('kategori', ['Pengendalian Penduduk', 'Keluarga Berencana','Pemberdayaan Perempuan', 'Perlindungan Anak']);
             $table->string('tag')->nullable();
-            $table->string('gambar')->nullable();
+            $table->string('img')->nullable();
             $table->unsignedBigInteger('view_count')->default(0);
             $table->timestamps();
         });

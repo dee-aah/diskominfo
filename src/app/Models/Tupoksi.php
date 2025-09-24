@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Tupoksi extends Model
 {
     protected $fillable = [
-        'des_singkat', 'tugas_utama', 'fungsi_utama', 'gambar'
+        'deskripsi_singkat', 'tugas', 'fungsi', 'img','user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -7,6 +7,8 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserArtikelController extends Controller
 {
@@ -28,8 +30,16 @@ class UserArtikelController extends Controller
     }
     public function create()
     {
-        $kategoris = Kategori::where('type', 'artikel')->get();
-        return view('user.artikell.create', compact('kategoris'));
+        $artikel = Artikel::all();
+        $enumValues = DB::select("SHOW COLUMNS FROM artikels WHERE Field = 'kategori'");
+
+        $kategoriOptions = [];
+        if (!empty($enumValues)) {
+                preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $kategoriOptions = explode("','", $matches[1]);
+        }
+
+        return view('user.artikell.create', compact('artikel','kategoriOptions'));
     }
 
     /**
@@ -42,13 +52,13 @@ class UserArtikelController extends Controller
             'deskripsi' => 'required',
             'penulis' => 'required',
             'tag' => 'required',
-            'kategori_id' => 'required',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+            'kategori' => 'required',
+            'img' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('artikel', $filename);
         }
@@ -58,16 +68,16 @@ class UserArtikelController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'tag' => $request->tag,
-            'kategori_id' => $request->kategori_id,
-            'gambar' => $filename
+            'kategori' => $request->kategori,
+            'img' => $filename,
+            'user_id' => Auth::id(),
         ]);
         return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil ditambahkan');
     }
     public function edit($id)
     {
-        $kategoris = Kategori::where('type', 'artikel')->get();
         $artikel = Artikel::findOrFail($id);
-        return view('user.artikell.edit', compact('artikel','kategoris'));
+        return view('user.artikell.edit', compact('artikel'));
     }
 
     /**
@@ -76,12 +86,12 @@ class UserArtikelController extends Controller
     public function update(Request $request,$id)
     {
         $artikel = Artikel::findOrFail($id);
-    $filename = $artikel->gambar;
-    if ($request->hasFile('gambar')) {
-            if ($artikel->gambar) {
-                Storage::delete('public/artikel/' . $artikel->gambar);
+    $filename = $artikel->isIgnoringTimestamps;
+    if ($request->hasFile('img')) {
+            if ($artikel->img) {
+                Storage::delete('public/artikel/' . $artikel->img);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('artikel', $filename);
         }
@@ -91,8 +101,8 @@ class UserArtikelController extends Controller
         'deskripsi' => $request->deskripsi,
         'penulis' => $request->penulis,
         'tag' => $request->tag,
-        'kategori_id' => $request->kategori_id,
-        'gambar' => $filename
+        'kategori' => $request->kategori,
+        'img' => $filename
     ]);
         return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil diperbarui');
     }
@@ -103,8 +113,8 @@ class UserArtikelController extends Controller
     public function destroy(string $id)
     {
         $artikel = Artikel::findOrFail($id);
-        if ($artikel->gambar) {
-            Storage::delete('public/artikel/' . $artikel->gambar);
+        if ($artikel->img) {
+            Storage::delete('public/artikel/' . $artikel->img);
         }
         $artikel->delete();
 

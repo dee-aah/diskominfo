@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sektoral extends Model
 {
-    protected $fillable =['deskripsi','gambar'];
+    protected $fillable =['deskripsi','img'];
 }

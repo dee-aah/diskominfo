@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Struktur extends Model
 {
     protected $fillable = [
-        'deskripsi','gambar','gambar_cont'
+        'deskripsi','img','user_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

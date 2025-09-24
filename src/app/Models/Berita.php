@@ -19,14 +19,15 @@ class Berita extends Model
 }
 
     // app/Models/Berita.php
-    protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'gambar','waktu','view_count', 'kategori_id'];
+    protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'img','waktu','view_count', 'user_id'];
 
 
     // Relasi ke kategori
-    public function kategori()
+    public function user()
     {
-        return $this->belongsTo(Kategori::class);
+        return $this->belongsTo(User::class);
     }
+    //slug otomatis
     protected static function boot()
     {
         parent::boot();

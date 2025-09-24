@@ -157,6 +157,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/artikell/{id}/edit', [UserArtikelController::class, 'edit'])->name('artikell.edit');
         Route::put('/artikell/{id}', [UserArtikelController::class, 'update'])->name('artikell.update');
         Route::delete('/artikell/{id}', [UserArtikelController::class, 'destroy'])->name('artikell.destroy');
+        
     });
 
     //------------------------------------------------------------------

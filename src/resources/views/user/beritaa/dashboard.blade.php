@@ -1,6 +1,6 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
-     @if (session('success'))
+    @if (session('success'))
             <div id="flash-message" class="bg-green-300 max-w-5xl text-center text-green-800 p-3 rounded mb-4">
                 {{ session('success') }}
             </div>

@@ -15,6 +15,9 @@ return new class extends Migration
         // Tabel Layanan
         Schema::create('layanans', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->enum('program', [
                 'Pengendalian Penduduk dan Keluarga Berencana',
                 'Pemberdayaan Perempuan',
@@ -22,16 +25,19 @@ return new class extends Migration
                 'Keluarga Sejahtera dan Pembangunan Keluarga'
             ])->nullable();
             $table->string('nama');
-            $table->text('des_singkat')->nullable();
+            $table->text('deskripsi_singkat')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('slug')->unique();
-            $table->string('gambar')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
 
         // 3. Tabel Detail Layanan
         Schema::create('layanan_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->foreignId('layanan_id')->constrained('layanans')->onDelete('cascade');
             $table->enum('jenis', [
                 'Tujuan Layanan',
@@ -42,7 +48,7 @@ return new class extends Migration
                 'Kontak Layanan'
             ])->nullable();
             $table->text('deskripsi')->nullable();
-            $table->string('gambar')->nullable();
+            $table->string('img')->nullable();
             $table->timestamps();
         });
     }

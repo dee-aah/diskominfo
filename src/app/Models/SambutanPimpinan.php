@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evaluasi extends Model
+class SambutanPimpinan extends Model
 {
-    protected $fillable =[
-            'nama','link','img_pdf','user_id'];
+    protected $fillable = [
+        'nama','deskripsi','img','user_id'
+    ];
 
     public function user()
     {

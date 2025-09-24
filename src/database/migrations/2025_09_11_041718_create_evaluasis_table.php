@@ -13,15 +13,12 @@ return new class extends Migration
     {
         Schema::create('evaluasis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
             $table->text('nama');
             $table->text('link');
             $table->string('img_pdf');
-            $table->timestamps();
-        });
-        Schema::create('evaluasi_conts', function (Blueprint $table) {
-            $table->id();
-            $table->text('des_singkat');
-            $table->string('img_konten');
             $table->timestamps();
         });
     }
@@ -32,6 +29,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('evaluasis');
-        Schema::dropIfExists('evaluasi_conts');
     }
 };

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProdukHukum extends Model
 {
     protected $fillable = [
+    'user_id',
     'reg',
     'jenis_peraturan',
     'judul_peraturan',
@@ -25,4 +26,8 @@ class ProdukHukum extends Model
     'status',
     'lampiran',
     'naskah_akademik'];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('beritas', function (Blueprint $table) {
         $table->id();
+        $table->foreignId('user_id')
+            ->constrained('users')
+            ->cascadeOnDelete();
         $table->string('judul');
-        $table->string('slug')->unique(); 
-        $table->foreignId('kategori_id')
-            ->nullable()
-            ->constrained('kategoris')
-            ->nullOnDelete();
+        $table->string('slug')->unique();
+        $table->enum('kategori', ['Berita Kota Tasikmalaya', 'Berita DPPKBP3A']);
         $table->text('deskripsi');
         $table->string('penulis')->nullable();
         $table->date('waktu');
         $table->text('tag')->nullable();
-        $table->string('gambar')->nullable();
+        $table->string('img')->nullable();
         $table->unsignedBigInteger('view_count')->default(0);
         $table->timestamps();
         });
