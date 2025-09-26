@@ -61,30 +61,14 @@
                     transition duration-200 ease-in-out z-40 md:z-auto">
             <!-- Navigation (Konten Sidebar Anda) -->
             <ul class="mx-3">
-                <li class="mb-2">
+                <li x-data="{ open: {{ Request::is('pimpinan*') ? 'true' : 'false' }} }"
+                    class="mb-2 w-55 rounded hover:bg-blue-100">
                     @if (auth()->check() && auth()->user()->role === 'admin')
-                        <button
-                            class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
-                            onclick="toggleMenu('Menu7')">Beranda
-                            <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu7"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <!-- Sub Menu -->
-                        <ul id="Menu7" class="{{ Request::is('pimpinan*') || Request::is('layanan_beranda*') ? '' : 'hidden' }} ml-6 ">
-                            <li class="rounded hover:bg-blue-100"><a href="{{ route('pimpinan.dashboard') }}"
-                                    class="flex items-center font-medium p-2
-                                    {{ Request::is('pimpinan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Sambutan Pimpinan</a>
-                            </li>
-                            <li class="rounded hover:bg-blue-100"><a href="{{ route('layanan_beranda.dashboard') }}"
-                                    class="flex items-center font-medium p-2
-                                    {{ Request::is('layanan_beranda*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Layanan Beranda
-                                </a>
-                            </li>
-                        </ul>
+                        <a x-show="open" href="{{ route('pimpinan.dashboard') }}"
+                            class="flex font-medium items-center p-2
+                            {{ Request::is('pimpinan*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">
+                            <span>Sambutan Pimpinan</span>
+                        </a>
                     @endif
                 </li>
                 </li>
@@ -98,49 +82,13 @@
                         </a>
                     @endif
                 </li>
-                <li class="mb-2">
-                    @if (auth()->check() && auth()->user()->role === 'admin')
-                        <button
-                            class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
-                            onclick="toggleMenu('Menu')">Profil Pimpinan
-                            <svg class="w-4 h-4 mr-2  transition-transform" id="icon-Menu"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                        <!-- Sub Menu -->
-                        <ul id="Menu" class="{{ Request::is('profill*') || Request::is('profil_cont*') ? '' : 'hidden' }} ml-6 ">
-                            <li class="rounded hover:bg-blue-100"><a href="{{ route('profill.dashboard') }}"
-                                    class="flex items-center font-medium p-2
-                                    {{ Request::is('profill*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Pimpinan</a>
-                            </li>
-                            <li class="rounded hover:bg-blue-100"><a href="{{ route('profil_cont.dashboard') }}"
-                                    class="flex items-center font-medium p-2
-                                    {{ Request::is('profil_cont*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">Profil
-                                    Konten</a>
-                            </li>
-                        </ul>
-                    @endif
-                </li>
-                <li x-data="{ open: {{ Request::is('visi*') ? 'true' : 'false' }} }"
+                <li x-data="{ open: {{ Request::is('profil*') ? 'true' : 'false' }} }"
                     class="mb-2 w-55 rounded hover:bg-blue-100">
                     @if (auth()->check() && auth()->user()->role === 'admin')
-                        <a x-show="open" href="{{ route('visi.dashboard') }}"
+                        <a x-show="open" href="{{ route('profil.dashboard') }}"
                             class="flex font-medium items-center p-2
-                            {{ Request::is('visi*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }}">
-                            <span>Visi Misi</span>
-                        </a>
-                    @endif
-                </li>
-                <li x-data="{ open: {{ Request::is('struktur_*') ? 'true' : 'false' }} }"
-                    class="mb-2 w-55 rounded hover:bg-blue-100">
-                    @if (auth()->check() && auth()->user()->role === 'admin')
-                        <a x-show="open" href="{{ route('struktur_.dashboard') }}"
-                            class="flex font-medium items-center p-2
-                            {{ Request::is('struktur_*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">
-                            <span>Struktur Organisasi</span>
+                            {{ Request::is('profil*') ? 'text-blue-600 font-semibold' : 'text-gray-700' }} ">
+                            <span>Profil Pimpinan</span>
                         </a>
                     @endif
                 </li>

@@ -8,7 +8,7 @@
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
-                <form action="{{ route('artikell.update', $artikel->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('artikell.update', $artikel) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="my-3">

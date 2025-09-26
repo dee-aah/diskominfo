@@ -16,10 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->constrained('users')
             ->cascadeOnDelete();
-            $table->text('deskripsi_singkat');
             $table->text('tugas');
             $table->text('fungsi');
-            $table->string('img');
             $table->timestamps();
         });
 

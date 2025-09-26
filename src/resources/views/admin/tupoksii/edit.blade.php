@@ -8,34 +8,20 @@
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
-                <form action="{{ route('tupoksii.update', $tupoksi->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('tupoksii.update', $tupoksii) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="my-3">
-                        <label class="block py-2 text-[15px] text-black font-medium">Deskripsi Singkat</label>
-                        <textarea name="des_singkat" rows="5"
-                            placeholder="Masukkan Deskripsi Program"
-                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('des_singkat', $tupoksi->des_singkat) }}</textarea>
-                    </div>
                     <div class="mb-3">
-                        <label class="block py-2 text-[15px] text-black font-medium">Tugas Utama</label>
-                        <textarea name="tugas_utama" rows="3"
-                            placeholder="Masukkan Tugas Utama"
-                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('tugas_utama', $tupoksi->tugas_utama) }}</textarea>
+                        <label class="block py-2 text-[15px] text-black font-medium">Tugas</label>
+                        <textarea name="tugas" rows="3"
+                            placeholder="Masukkan Tugas"
+                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('tugas', $tupoksii->tugas) }}</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Fungsi Utama</label>
-                        <textarea name="fungsi_utama" rows="3"
+                        <textarea name="fungsi" rows="3"
                             placeholder="Masukkan Fungsi Utama"
-                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('fungsi_utama', $tupoksi->fungsi_utama) }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <input  type="file" name="gambar"
-                            class="focus:border-ring-brand-300 placeholder:text-sm shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden " />
-                            @if ($tupoksi->gambar)
-                            <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                            <img src="{{ asset('storage/tupoksi/' . $tupoksi->gambar) }}" class="w-32 mt-1 rounded">
-                        @endif
+                            class="w-full border editor border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('fungsi', $tupoksii->fungsi) }}</textarea>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <a href="{{ route('tupoksii.dashboard') }}"

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Maklumat;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminMaklumatController extends Controller
 {
@@ -38,26 +39,19 @@ class AdminMaklumatController extends Controller
     {
         $request->validate([
         'deskripsi' => 'required',
-        'gambar_cont' => 'nullable|image|mimes:jpg,jpeg,png',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
-        $filenames = null;
-        if ($request->hasFile('gambar_cont')) {
-            $file = $request->file('gambar_cont');
-            $filenames = $file->getClientOriginalName();
-            $file->storeAs('maklumat1', $filenames);
-        }
 
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('maklumat1', $filename);
         }
     Maklumat::create([
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
+        'img' => $filename,
+        'user_id' => Auth::id(),
 
     ]);
 
@@ -66,41 +60,29 @@ class AdminMaklumatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Maklumat $maklumat)
     {
-        $maklumat = Maklumat::findOrFail($id);
         return view('admin.maklumat.edit', compact('maklumat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Maklumat $maklumat)
     {
-        $maklumat = Maklumat::findOrFail($id);
 
-        $filenames = $maklumat->gambar_cont;
-        if ($request->hasFile('gambar_cont')) {
-            if ($maklumat->gambar_cont) {
-                Storage::delete('public/maklumat1/' . $maklumat->gambar_cont);
+        $filename = $maklumat->img;
+        if ($request->hasFile('img')) {
+            if ($maklumat->img) {
+                Storage::delete('public/maklumat/' . $maklumat->img);
             }
-            $file = $request->file('gambar_cont');
-            $filenames =  $file->getClientOriginalName();
-            $file->storeAs('maklumat1', $filenames);
-        }
-        $filename = $maklumat->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($maklumat->gambar) {
-                Storage::delete('public/maklumat/' . $maklumat->gambar);
-            }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('maklumat1', $filename);
         }
         $maklumat->update([
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
+        'img' => $filename
         ]);
         return redirect()->route('maklumat.dashboard')->with('success', 'Maklumat Berhasil Diperbarui');
     }
@@ -108,10 +90,17 @@ class AdminMaklumatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Maklumat $maklumat)
     {
-        $maklumat = Maklumat::findOrFail($id);
-        $maklumat->delete();
-        return redirect()->back()->with('success', 'Maklumat Berhasil Dihapus');
+        if ($maklumat->img) {
+        Storage::delete('public/maklumat1/' . $maklumat->img);
+    }
+    $maklumat->delete();
+
+    return redirect()->route('maklumat.dashboard')->with('success', 'Maklumat berhasil dihapus');
+    }
+    public function show(Maklumat $maklumat)
+    {
+        return view('Admin.maklumat.show', compact('maklumat'));
     }
 }

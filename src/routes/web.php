@@ -81,13 +81,6 @@ Route::resource('/sektoral', SektoralController::class)->only(['index']);
 Route::get('/', function () {
     return view('welcome');
 });
-Route::prefix('pdf')->name('pdf.')->group(function () {
-    Route::get('/', [PdfController::class, 'index'])->name('index');
-    Route::post('/', [PdfController::class, 'store'])->name('store');
-    Route::get('/{id}', [PdfController::class, 'show'])->name('show');
-    Route::get('/{id}/download', [PdfController::class, 'download'])->name('download');
-    Route::delete('/{id}', [PdfController::class, 'destroy'])->name('destroy');
-});
 // Rute untuk halaman-halaman statis atau semi-statis
 Route::resource('/visimisi', VisiController::class)->only(['index', 'show']);
 Route::resource('/beranda', berandaController::class)->only(['index']);
@@ -99,7 +92,7 @@ Route::resource('/layanan_details', LayananDetailController::class)->only(['inde
 Route::resource('/struktur', strukturController::class)->only(['index', 'show']);
 Route::resource('/maklumatt', maklumatController::class)->only(['index']);
 Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
-Route::resource('/profil', ProfilController::class)->only(['index', 'show']);
+Route::resource('/profilPimpinan', ProfilController::class)->only(['index', 'show']);
 Route::resource('/produkhukum', ProdukhukumController::class)->only(['index', 'show']);
 Route::get('/produkhukum/{id}/download', [App\Http\Controllers\ProdukhukumController::class, 'download'])
     ->name('produkhukum.download');
@@ -206,30 +199,78 @@ Route::middleware(['auth'])->group(function () {
 
         // ... tupoksi
         Route::get('/tupoksii/dashboard', [AdminTupoksiController::class, 'dashboard'])->name('tupoksii.dashboard');
-        Route::get('/tupoksii/create', [AdminTupoksiController::class, 'create'])->name('tupoksii.create');
-        Route::post('/tupoksii', [AdminTupoksiController::class, 'store'])->name('tupoksii.store');
-        Route::get('/tupoksii/{id}/edit', [AdminTupoksiController::class, 'edit'])->name('tupoksii.edit');
-        Route::put('/tupoksii/{id}', [AdminTupoksiController::class, 'update'])->name('tupoksii.update');
-        Route::delete('/tupoksii/{id}', [AdminTupoksiController::class, 'destroy'])->name('tupoksii.destroy');
+        Route::resource('/tupoksii', AdminTupoksiController::class)->except(['index']);
+        Route::get('/tupoksii/{tupoksii}/edit', [AdminTupoksiController::class, 'edit'])
+            ->name('tupoksii.edit')
+            ->middleware('can:update,tupoksii');
+        Route::put('/tupoksii/{tupoksii}', [AdminTupoksiController::class, 'update'])
+            ->name('tupoksii.update')
+            ->middleware('can:update,tupoksii');
+        Route::delete('/tupoksii/{tupoksii}', [AdminTupoksiController::class, 'destroy'])
+            ->name('tupoksii.destroy')
+            ->middleware('can:delete,tupoksii');
+        Route::get('/tupoksii/{tentang_kami}', [AdminTupoksiController::class, 'show'])
+            ->name('tupoksii.show');
         // ... uraian
         Route::get('/uraian/dashboard', [UraianController::class, 'dashboard'])->name('uraian.dashboard');
-        Route::get('/uraian/create', [UraianController::class, 'create'])->name('uraian.create');
-        Route::post('/uraian', [UraianController::class, 'store'])->name('uraian.store');
-        Route::get('/uraian/{id}/edit', [uraianController::class, 'edit'])->name('uraian.edit');
-        Route::put('/uraian/{id}', [UraianController::class, 'update'])->name('uraian.update');
-        Route::delete('/uraian/{id}', [UraianController::class, 'destroy'])->name('uraian.destroy');
+        Route::resource('/uraian', UraianController::class)->except(['index']);
+        Route::get('/uraian/{uraian}/edit', [UraianController::class, 'edit'])
+            ->name('uraian.edit')
+            ->middleware('can:update,uraian');
+        Route::put('/uraian/{uraian}', [UraianController::class, 'update'])
+            ->name('uraian.update')
+            ->middleware('can:update,uraian');
+        Route::delete('/uraian/{uraian}', [UraianController::class, 'destroy'])
+            ->name('uraian.destroy')
+            ->middleware('can:delete,uraian');
+        Route::get('/uraian/{uraian}', [UraianController::class, 'show'])
+            ->name('uraian.show');
 
-        Route::resource('/tentang_kami', AdminTentangController::class)->except(['index', 'show']);
+
         Route::get('/tentang_kami/dashboard', [AdminTentangController::class, 'dashboard'])->name('tentang_kami.dashboard');
+        Route::resource('/tentang_kami', AdminTentangController::class)->except(['index']);
+        Route::get('/tentang_kami/{tentang_kami}/edit', [AdminTentangController::class, 'edit'])
+            ->name('tentang_kami.edit')
+            ->middleware('can:update,tentang_kami');
+        Route::put('/tentang_kami/{tentang_kami}', [AdminTentangController::class, 'update'])
+            ->name('tentang_kami.update')
+            ->middleware('can:update,tentang_kami');
+        Route::delete('/tentang_kami/{tentang_kami}', [AdminTentangController::class, 'destroy'])
+            ->name('tentang_kami.destroy')
+            ->middleware('can:delete,tentang_kami');
+        Route::get('/tentang_kami/{tentang_kami}', [AdminTentangController::class, 'show'])
+            ->name('tentang_kami.show');
 
         Route::resource('/struktur_', AdminStrukturController::class)->except(['index', 'show']);
         Route::get('/struktur_/dashboard', [AdminStrukturController::class, 'dashboard'])->name('struktur_.dashboard');
-
-        Route::resource('/maklumat', AdminMaklumatController::class)->except(['index', 'show']);
+        //maklumat
         Route::get('/maklumat/dashboard', [AdminMaklumatController::class, 'dashboard'])->name('maklumat.dashboard');
+        Route::resource('/maklumat', AdminMaklumatController::class)->except(['index']);
+        Route::get('/maklumat/{maklumat}/edit', [AdminMaklumatController::class, 'edit'])
+            ->name('maklumat.edit')
+            ->middleware('can:update,maklumat');
+        Route::put('/maklumat/{maklumat}', [AdminMaklumatController::class, 'update'])
+            ->name('maklumat.update')
+            ->middleware('can:update,maklumat');
+        Route::delete('/maklumat/{maklumat}', [AdminMaklumatController::class, 'destroy'])
+            ->name('maklumat.destroy')
+            ->middleware('can:delete,maklumat');
+        Route::get('/maklumat/{maklumat}', [AdminMaklumatController::class, 'show'])
+            ->name('maklumat.show');
 
-        Route::resource('/profill', AdminProfilController::class)->except(['index', 'show']);
-        Route::get('/profill/dashboard', [AdminProfilController::class, 'dashboard'])->name('profill.dashboard');
+        Route::get('/profil/dashboard', [AdminProfilController::class, 'dashboard'])->name('profil.dashboard');
+        Route::resource('/profil', AdminProfilController::class)->except(['index']);
+        Route::get('/profil/{profil}/edit', [AdminProfilController::class, 'edit'])
+            ->name('profil.edit')
+            ->middleware('can:update,profil');
+        Route::put('/profil/{profil}', [AdminProfilController::class, 'update'])
+            ->name('profil.update')
+            ->middleware('can:update,profil');
+        Route::delete('/profil/{profil}', [AdminProfilController::class, 'destroy'])
+            ->name('profil.destroy')
+            ->middleware('can:delete,profil');
+        Route::get('/profil/{profil}', [AdminProfilController::class, 'show'])
+            ->name('profil.show');
 
         Route::resource('/produk_hukum', AdminProdukHukumController::class)->except(['index', 'show']);
         Route::get('/produk_hukum/dashboard', [AdminProdukHukumController::class, 'dashboard'])->name('produk_hukum.dashboard');
@@ -237,8 +278,20 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/produk_hukum_cont', AdminPHContController::class)->except(['index', 'show']);
         Route::get('/produk_hukum_cont/dashboard', [AdminPHContController::class, 'dashboard'])->name('produk_hukum_cont.dashboard');
 
-        Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index', 'show']);
-        Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])->name('pimpinan.dashboard');
+        Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])
+        ->name('pimpinan.dashboard');
+        Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index']);
+        Route::get('/pimpinan/{pimpinan}/edit', [AdminPimpinanController::class, 'edit'])
+            ->name('pimpinan.edit')
+            ->middleware('can:update,pimpinan');
+        Route::put('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'update'])
+            ->name('pimpinan.update')
+            ->middleware('can:update,pimpinan');
+        Route::delete('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'destroy'])
+            ->name('pimpinan.destroy')
+            ->middleware('can:delete,pimpinan');
+        Route::get('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'show'])
+            ->name('pimpinan.show');
 
         Route::resource('/sektorall', AdminSektoralController::class)->except(['index', 'show']);
         Route::get('/sektoral/dashboard', [AdminSektoralController::class, 'dashboard'])->name('sektorall.dashboard');

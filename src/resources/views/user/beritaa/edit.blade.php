@@ -8,8 +8,7 @@
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
-                    <form action="{{ route('beritaa.update', $berita->id) }}" method="POST"
-                        enctype="multipart/form-data">
+                    <form action="{{ route('beritaa.update', $berita) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="my-3">
@@ -50,15 +49,13 @@
                             </div>
 
                             <div class="mb-3">
-    <label class="block py-2 text-[15px] text-black font-medium">Waktu Kegiatan</label>
-    <input type="date"
-        name="waktu"
-        value="{{ old('waktu', isset($berita->waktu) ? \Carbon\Carbon::parse($berita->waktu)->format('Y-m-d') : '') }}"
-        placeholder="Masukkan Waktu Kegiatan"
-        class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
-        required>
-</div>
-
+                                <label class="block py-2 text-[15px] text-black font-medium">Waktu Kegiatan</label>
+                                <input type="date" name="waktu"
+                                    value="{{ old('waktu', isset($berita->waktu) ? \Carbon\Carbon::parse($berita->waktu)->format('Y-m-d') : '') }}"
+                                    placeholder="Masukkan Waktu Kegiatan"
+                                    class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+                                    required>
+                            </div>
 
                         </div>
                         <div class="mb-3">

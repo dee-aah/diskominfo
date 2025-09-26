@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Berita;
+use App\Models\Uraian;
+use App\Models\UraianTugas;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class BeritaPolicy
+class UraianPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +20,7 @@ class BeritaPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Berita $berita): bool
+    public function view(User $user, UraianTugas $uraian): bool
     {
         return false;
     }
@@ -35,23 +36,23 @@ class BeritaPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Berita $berita): bool
+    public function update(User $user, UraianTugas $uraian): bool
     {
-        return $user->id === $berita->user_id;
+        return $user->id === $uraian->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Berita $berita): bool
+    public function delete(User $user, UraianTugas $uraian): bool
     {
-        return $user->id === $berita->user_id;
+        return $user->id === $uraian->user_id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Berita $berita): bool
+    public function restore(User $user, UraianTugas $uraian): bool
     {
         return false;
     }
@@ -59,7 +60,7 @@ class BeritaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Berita $berita): bool
+    public function forceDelete(User $user, UraianTugas $uraian): bool
     {
         return false;
     }

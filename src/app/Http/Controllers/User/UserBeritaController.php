@@ -85,7 +85,7 @@ class UserBeritaController extends Controller
      */
     public function edit(Berita $berita )
     {
-        $enumValues = DB::select("SHOW COLUMNS FROM artikels WHERE Field = 'kategori'");
+        $enumValues = DB::select("SHOW COLUMNS FROM beritas WHERE Field = 'kategori'");
 
         $kategoriOptions = [];
         if (!empty($enumValues)) {
@@ -100,7 +100,7 @@ class UserBeritaController extends Controller
      */
     public function update(Request $request, Berita $berita)
     {
-        $filename = $berita->img;
+        $filename = null;
         if ($request->hasFile('img')) {
             if ($berita->img) {
                 Storage::delete('public/berita/' . $berita->img);
@@ -110,7 +110,15 @@ class UserBeritaController extends Controller
             $file->storeAs('berita', $filename);
         }
 
-        $berita->update($request->except('img') + ['img' => $filename]);
+        $berita->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'penulis' => $request->penulis,
+            'waktu' =>$request->waktu,
+            'tag' => $request->tag,
+            'kategori' => $request->kategori,
+            'img' => $filename
+    ]);
 
         return redirect()->route('beritaa.dashboard')->with('success', 'Berita Berhasil Diperbarui');
     }

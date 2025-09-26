@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Profil;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminProfilController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminProfilController extends Controller
                     ->orWhere('des_singkat', 'like', "%{$search}%");
             });}
         $profils = $query->latest()->get();
-        return view('admin.profill.dashboard', compact('profils'));
+        return view('admin.profil.dashboard', compact('profils'));
     }
 
     /**
@@ -28,7 +29,7 @@ class AdminProfilController extends Controller
     public function create()
     {
         $profils = Profil::all();
-        return view('admin.profill.create', compact('profils'));
+        return view('admin.profil.create', compact('profils'));
     }
 
     /**
@@ -39,63 +40,69 @@ class AdminProfilController extends Controller
         $request->validate([
         'nama' => 'required',
         'jabatan' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('profil', $filename);
         }
    Profil::create([
         'nama' => $request->nama,
         'jabatan' => $request->jabatan,
-        'gambar' => $filename
+        'img' => $filename,
+        'user_id' => Auth::id(),
 
     ]);
 
-    return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Ditambahkan');
+    return redirect()->route('profil.dashboard')->with('success', 'Profil Pimpinan Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Profil $profil)
     {
-        $profil = Profil::findOrFail($id);
-        return view('admin.profill.edit', compact('profil'));
+        return view('admin.profil.edit', compact('profil'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Profil $profil)
     {
-        $profil = Profil::findOrFail($id);
 
-        $filename = $profil->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($profil->gambar) {
-                Storage::delete('public/profil/' . $profil->gambar);
+        $filename = $profil->img;
+        if ($request->hasFile('img')) {
+            if ($profil->img) {
+                Storage::delete('public/profil/' . $profil->img);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('profil', $filename);
         }
         $profil->update([
         'nama' => $request->nama,
         'jabatan' => $request->jabatan,
-        'gambar' => $filename
+        'img' => $filename
         ]);
-        return redirect()->route('profill.dashboard')->with('success', 'Profil Pimpinan Berhasil Diperbarui');
+        return redirect()->route('profil.dashboard')->with('success', 'Profil Pimpinan Berhasil Diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Profil $profil)
     {
-        $profil = Profil::findOrFail($id);
-        $profil->delete();
-        return redirect()->back()->with('success', 'Profil Pimpinan Berhasil Dihapus');
+        if ($profil->img) {
+        Storage::delete('public/profil/' . $profil->img);
+    }
+    $profil->delete();
+
+    return redirect()->route('profil.dashboard')->with('success', 'Profil Pimpinan berhasil dihapus');
+    }
+    public function show(Profil $profil)
+    {
+        return view('Admin.profil.show', compact('profil'));
     }
 }

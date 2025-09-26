@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tupoksi extends Model
 {
     protected $fillable = [
-        'deskripsi_singkat', 'tugas', 'fungsi', 'img','user_id'
+         'tugas', 'fungsi','user_id'
     ];
 
     public function user()

@@ -1,16 +1,24 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
     @if (session('success'))
-            <div id="flash-message" class="bg-green-300 max-w-5xl text-center text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
+            <div class="bg-green-300 text-black flex justify-between max-w-5xl text-center text-green-800 p-3 rounded mb-4">
+                <div>
+                </div>
+                <div id="flash-message">
+                    {{ session('success') }}
+                </div>
+                    <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         @endif
         @if (session('error'))
-            <div id="flash-message"
-                class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
-                <span>{{ session('error') }}</span>
-                <button onclick="this.parentElement.remove()"></button>
+        <div class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+            <div>
             </div>
+            <div id="flash-message">
+                <span>{{ session('error') }}</span>
+            </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         @endif
         <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
@@ -36,36 +44,35 @@
             <div id="main-content" class="p-5 border-t border-gray-200 sm:p-6 ">
                 <div class=" rounded border  border-gray-200 bg-white  ">
                     <div  class="w-full ">
-                        <table class="table-auto wrapper  text-sm">
+                        <table class="table-auto  w-full  text-sm">
                             <thead class="border-b  border-gray-200">
                                 <tr class="border-gray-200 border-b ">
-                    <th class="font-medium border-r  border-gray-200 p-3">Gambar</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Gambar</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Judul</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Penulis</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Kategori</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Waktu</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Waktu Dibuat</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">View</th>
-                                    <th class="font-medium p-3">Aksi</th>mbar</th>
-                    <th class="font-medium  p-3">Aksi</th>
+                                    <th class="font-medium p-3">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($beritas as $berita)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
                         <td class="border-r  border-gray-200 p-3">
-                            @if ($berita->gambar)
-                                <img src="{{ asset('storage/berita/' . $berita->gambar) }}"
+                            @if ($berita->img)
+                                <img src="{{ asset('storage/berita/' . $berita->img) }}"
                                     class="w-16 h-16 object-cover justify-content-center rounded">
                             @else
                                 -
                             @endif
                         <td class="border-r  border-gray-200 p-3">{{ $berita->judul }}</td>
                         <td class="border-r  border-gray-200 p-3">{{ $berita->penulis }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->kategori->nama }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->kategori }}</td>
                         <td class="border-r  border-gray-200 p-3">{{ $berita->waktu }}</td>
                         <td class="border-r  border-gray-200 p-3">{{ $berita->created_at->translatedFormat('l d F Y.') }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $artikel->view_count }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->view_count }}</td>
                         <td class="p-3  align-middle relative z-10">
                                             <el-dropdown class="inline-block">
                                                 <button
@@ -104,7 +111,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="p-3">Belum ada Berita</td>
+                        <td colspan="10" class="p-3 text-center">Belum ada Berita</td>
                     </tr>
                 @endforelse
             </tbody>

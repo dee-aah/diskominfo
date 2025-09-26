@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Tupoksi;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminTupoksiController extends Controller
 {
@@ -16,9 +17,8 @@ class AdminTupoksiController extends Controller
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
-                $q->where('des_singkat', 'like', "%{$search}%")
-                    ->orWhere('fungsi_utama', 'like', "%{$search}%")
-                    ->orWhere('tugas_utama', 'like', "%{$search}%");
+                $q->where('tugas', 'like', "%{$search}%")
+                    ->orWhere('fungsi', 'like', "%{$search}%");
             });}
         $tupoksis = $query->latest()->get();
         return view('admin.tupoksii.dashboard', compact('tupoksis'));
@@ -39,23 +39,13 @@ class AdminTupoksiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'tugas_utama' => 'required',
-        'des_singkat' => 'required',
-        'fungsi_utama' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'tugas' => 'required',
+        'fungsi' => 'required'
     ]);
-        $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('tupoksi', $filename);
-        }
-
     Tupoksi::create([
-        'tugas_utama' => $request->tugas_utama,
-        'des_singkat' => $request->des_singkat,
-        'fungsi_utama' => $request->fungsi_utama,
-        'gambar' => $filename
+        'tugas' => $request->tugas,
+        'fungsi' => $request->fungsi,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('tupoksii.dashboard')->with('success', 'Tupoksi Berhasil Ditambahkan');
@@ -63,33 +53,19 @@ class AdminTupoksiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tupoksi $tupoksii)
     {
-        $tupoksi = Tupoksi::findOrFail($id);
-        return view('admin.tupoksii.edit', compact('tupoksi'));
+        return view('admin.tupoksii.edit', compact('tupoksii'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tupoksi $tupoksii)
     {
-        $tupoksi = Tupoksi::findOrFail($id);
-
-        $filename = $tupoksi->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($tupoksi->gambar) {
-                Storage::delete('public/tupoksi/' . $tupoksi->gambar);
-            }
-            $file = $request->file('gambar');
-            $filename =  $file->getClientOriginalName();
-            $file->storeAs('tupoksi', $filename);
-        }
-        $tupoksi->update([
-        'tugas_utama' => $request->tugas_utama,
-        'des_singkat' => $request->des_singkat,
-        'fungsi_utama' => $request->fungsi_utama,
-        'gambar' => $filename
+        $tupoksii->update([
+        'tugas' => $request->tugas,
+        'fungsi' => $request->fungsi,
         ]);
         return redirect()->route('tupoksii.dashboard')->with('success', 'Tupoksi Berhasil Diperbarui');
     }
@@ -97,13 +73,14 @@ class AdminTupoksiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tupoksi $tupoksii)
     {
-        $tupoksi = Tupoksi::findOrFail($id);
-        if ($tupoksi->gambar) {
-            Storage::delete('public/tupoksi/' . $tupoksi->gambar);
-        }
-        $tupoksi->delete();
-        return redirect()->back()->with('success', 'Tupoksi Berhasil Dihapus');
+    $tupoksii->delete();
+
+    return redirect()->route('tupoksii.dashboard')->with('success', 'Tupoksi berhasil dihapus');
     }
+    public function show(Tupoksi $tupoksii)
+{
+    return view('admin.tupoksii.show', compact('tupoksii'));
+}
 }

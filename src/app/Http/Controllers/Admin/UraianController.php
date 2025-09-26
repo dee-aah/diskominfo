@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Uraian_tugas;
+use App\Models\UraianTugas;
+use Illuminate\Support\Facades\Auth;
 
 class UraianController extends Controller
 {
     public function dashboard(Request $request)
     {
 
-        $query = Uraian_tugas::query();
+        $query = UraianTugas::query();
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
@@ -27,7 +28,7 @@ class UraianController extends Controller
      */
     public function create()
     {
-        $uraians = Uraian_tugas::all();
+        $uraians = UraianTugas::all();
         return view('admin.uraian.create', compact('uraians'));
     }
 
@@ -41,9 +42,10 @@ class UraianController extends Controller
         'uraian' => 'required',
     ]);
 
-    Uraian_tugas::create([
+    UraianTugas::create([
         'bidang' => $request->bidang,
         'uraian' => $request->uraian,
+        'user_id' => Auth::id(),
 
     ]);
 
@@ -52,19 +54,16 @@ class UraianController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(UraianTugas $uraian)
     {
-        $uraian = Uraian_tugas::findOrFail($id);
         return view('admin.uraian.edit', compact('uraian'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, UraianTugas $uraian)
     {
-        $uraian = Uraian_tugas::findOrFail($id);
-
         $uraian->update([
         'bidang' => $request->bidang,
         'uraian' => $request->uraian,
@@ -75,10 +74,14 @@ class UraianController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(UraianTugas $uraian)
     {
-        $uraian = Uraian_tugas::findOrFail($id);
-        $uraian->delete();
-        return redirect()->back()->with('success', 'Tupoksi Berhasil Dihapus');
+    $uraian->delete();
+
+    return redirect()->route('uraian.dashboard')->with('success', 'Uraian berhasil dihapus');
+    }
+    public function show(UraianTugas $uraian)
+    {
+    return view('admin.uraian.show', compact('uraian'));
     }
 }

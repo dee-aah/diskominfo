@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tentang;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminTentangController extends Controller
 {
@@ -38,30 +39,20 @@ class AdminTentangController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'des_singkat' => 'required',
         'deskripsi' => 'required',
-        'gambar_cont' => 'nullable|image|mimes:jpg,jpeg,png',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
-        $filename = null;
-        if ($request->hasFile('gambar_cont')) {
-            $file = $request->file('gambar_cont');
-            $filenames = $file->getClientOriginalName();
-            $file->storeAs('tentang', $filenames);
-        }
 
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('tentang', $filename);
         }
     Tentang::create([
-        'des_singkat' => $request->des_singkat,
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
-
+        'img' => $filename,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('tentang_kami.dashboard')->with('success', 'Tentang Kami Berhasil Ditambahkan');
@@ -69,42 +60,30 @@ class AdminTentangController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Tentang $tentang_kami)
     {
-        $tentang = Tentang::findOrFail($id);
-        return view('admin.tentang_kami.edit', compact('tentang'));
+    return view('admin.tentang_kami.edit', compact('tentang_kami'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Tentang $tentang_kami)
     {
-        $tentang = Tentang::findOrFail($id);
 
-        $filenames = $tentang->gambar_cont;
-        if ($request->hasFile('gambar_cont')) {
-            if ($tentang->gambar_cont) {
-                Storage::delete('public/tentang/' . $tentang->gambar_cont);
+        $filename = $tentang_kami->img;
+        if ($request->hasFile('img')) {
+            if ($tentang_kami->img) {
+                Storage::delete('public/tentang/' . $tentang_kami->img);
             }
-            $file = $request->file('gambar_cont');
-            $filenames =  $file->getClientOriginalName();
-            $file->storeAs('tentang', $filenames);
-        }
-        $filename = $tentang->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($tentang->gambar) {
-                Storage::delete('public/tentang/' . $tentang->gambar);
-            }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('tentang', $filename);
         }
-        $tentang->update([
-        'des_singkat' => $request->des_singkat,
+        $tentang_kami->update([
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
+        'img' => $filename
         ]);
         return redirect()->route('tentang_kami.dashboard')->with('success', 'Tentang Kami Berhasil Diperbarui');
     }
@@ -112,10 +91,18 @@ class AdminTentangController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tentang $tentang_kami)
     {
-        $tentang = Tentang::findOrFail($id);
-        $tentang->delete();
-        return redirect()->back()->with('success', 'Tentang Kami Berhasil Dihapus');
+        if ($tentang_kami->img) {
+        Storage::delete('public/tentang/' . $tentang_kami->img);
     }
+    $tentang_kami->delete();
+
+    return redirect()->route('tentang.dashboard')->with('success', 'Sambutan Tentang berhasil dihapus');
+    }
+    public function show(Tentang $tentang_kami)
+{
+    return view('admin.tentang_kami.show', compact('tentang_kami'));
+}
+
 }

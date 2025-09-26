@@ -90,7 +90,7 @@ class UserArtikelController extends Controller
      */
     public function update(Request $request,Artikel $artikel)
     {
-    $filename = null;
+    $filename = $artikel->img;
     if ($request->hasFile('img')) {
             if ($artikel->img) {
                 Storage::delete('public/artikel/' . $artikel->img);
@@ -108,7 +108,9 @@ class UserArtikelController extends Controller
         'kategori' => $request->kategori,
         'img' => $filename
     ]);
-        return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil diperbarui');
+        return redirect()
+        ->route('artikell.dashboard')
+        ->with('success', 'Artikel berhasil diperbarui');
     }
 
     /**

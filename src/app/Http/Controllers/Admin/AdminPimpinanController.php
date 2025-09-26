@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pimpinan;
+use App\Models\SambutanPimpinan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPimpinanController extends Controller
 {
     public function dashboard(Request $request)
     {
-    $query = Pimpinan::query();
+    $query = SambutanPimpinan::query();
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
@@ -27,7 +28,7 @@ class AdminPimpinanController extends Controller
      */
     public function create()
     {
-        $pimpinans = Pimpinan::all();
+        $pimpinans = SambutanPimpinan::all();
         return view('admin.pimpinan.create', compact('pimpinans'));
     }
 
@@ -39,27 +40,20 @@ class AdminPimpinanController extends Controller
         $request->validate([
         'nama' => 'required',
         'deskripsi' => 'required',
-        'vidio' => 'nullable|mimes:mp4,avi,mov,wmv|max:20480',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('pimpinan', $filename);
         }
 
-        $videoname = null;
-        if ($request->hasFile('vidio')) {
-        $file = $request->file('vidio');
-        $videoname = $file->getClientOriginalName();
-        $file->storeAs('pimpinan', $videoname, 'public');
-        }
-    Pimpinan::create([
+    SambutanPimpinan::create([
         'nama' => $request->nama,
         'deskripsi' => $request->deskripsi,
-        'vidio' => $videoname,
-        'gambar' => $filename
+        'img' => $filename,
+        'user_id' => Auth::id(),
 
     ]);
 
@@ -68,41 +62,29 @@ class AdminPimpinanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(SambutanPimpinan $pimpinan)
     {
-        $pimpinan = Pimpinan::findOrFail($id);
         return view('admin.pimpinan.edit', compact('pimpinan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, SambutanPimpinan $pimpinan)
     {
-        $pimpinan = Pimpinan::findOrFail($id);
 
-        $filename = $pimpinan->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($pimpinan->gambar) {
-                Storage::delete('public/pimpinan/' . $pimpinan->gambar);
+        $filename = $pimpinan->img;
+        if ($request->hasFile('img')) {
+            if ($pimpinan->img) {
+                Storage::delete('public/pimpinan/' . $pimpinan->img);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('pimpinan', $filename);
-        }
-        $videoname = $pimpinan->vidio;
-        if ($request->hasFile('vidio')) {
-            if ($pimpinan->vidio) {
-                Storage::delete('public/pimpinan/' . $pimpinan->vidio);
-            }
-            $file = $request->file('vidio');
-            $videoname =  $file->getClientOriginalName();
-            $file->storeAs('pimpinan', $videoname);
         }
         $pimpinan->update([
         'nama' => $request->nama,
         'deskripsi' => $request->deskripsi,
-        'vidio' => $videoname,
         'gambar' => $filename
         ]);
         return redirect()->route('pimpinan.dashboard')->with('success', 'Pimpinan Berhasil Diperbarui');
@@ -111,10 +93,17 @@ class AdminPimpinanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(SambutanPimpinan $pimpinan)
     {
-        $pimpinan = Pimpinan::findOrFail($id);
-        $pimpinan->delete();
-        return redirect()->back()->with('success', 'Pimpinan Berhasil Dihapus');
+        if ($pimpinan->img) {
+        Storage::delete('public/pimpinan/' . $pimpinan->img);
+    }
+    $pimpinan->delete();
+
+    return redirect()->route('pimpinan.dashboard')->with('success', 'Sambutan Pimpinan berhasil dihapus');
+    }
+    public function show(SambutanPimpinan $pimpinan)
+    {
+        return view('Admin.pimpinan.show', compact('pimpinan'));
     }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->string('nama');
             $table->text('deskripsi');
-            $table->string('gambar');
+            $table->string('img');
             $table->timestamps();
         });
     }
