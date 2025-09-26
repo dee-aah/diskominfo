@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
@@ -101,7 +102,7 @@ Route::resource('/tentang', TentangController::class)->only(['index', 'show']);
 Route::resource('/profil', ProfilController::class)->only(['index', 'show']);
 Route::resource('/produkhukum', ProdukhukumController::class)->only(['index', 'show']);
 Route::get('/produkhukum/{id}/download', [App\Http\Controllers\ProdukhukumController::class, 'download'])
-        ->name('produkhukum.download');
+    ->name('produkhukum.download');
 Route::get('/produkhukum/{id}', [ProdukHukumController::class, 'show'])->name('produkhukum.show');
 Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::class, 'preview'])->name('produkhukum.preview');
 Route::resource('/dokumenperencanaan', PerencanaanController::class)->only(['index', 'show']);
@@ -146,18 +147,33 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/beritaa/dashboard', [UserBeritaController::class, 'dashboard'])->name('beritaa.dashboard');
         Route::get('/beritaa/create', [UserBeritaController::class, 'create'])->name('beritaa.create');
         Route::post('/beritaa', [UserBeritaController::class, 'store'])->name('beritaa.store');
-        Route::get('/beritaa/{id}/edit', [UserBeritaController::class, 'edit'])->name('beritaa.edit');
-        Route::put('/beritaa/{id}', [UserBeritaController::class, 'update'])->name('beritaa.update');
-        Route::delete('/beritaa/{id}', [UserBeritaController::class, 'destroy'])->name('beritaa.destroy');
+        Route::get('/beritaa/{berita}/edit', [UserBeritaController::class, 'edit'])
+            ->name('beritaa.edit')
+            ->middleware('can:update,berita');
+        Route::put('/beritaa/{berita}', [UserBeritaController::class, 'update'])
+            ->name('beritaa.update')
+            ->middleware('can:update,berita');
+        Route::delete('/beritaa/{berita}', [UserBeritaController::class, 'destroy'])
+            ->name('beritaa.destroy')
+            ->middleware('can:delete,berita');
+        Route::get('/beritaa/{berita}', [UserBeritaController::class, 'show'])
+            ->name('beritaa.show');
 
         // --- Manajemen artikel ---
         Route::get('/artikell/dashboard', [UserArtikelController::class, 'dashboard'])->name('artikell.dashboard');
         Route::get('/artikell/create', [UserArtikelController::class, 'create'])->name('artikell.create');
         Route::post('/artikell', [UserArtikelController::class, 'store'])->name('artikell.store');
-        Route::get('/artikell/{id}/edit', [UserArtikelController::class, 'edit'])->name('artikell.edit');
-        Route::put('/artikell/{id}', [UserArtikelController::class, 'update'])->name('artikell.update');
-        Route::delete('/artikell/{id}', [UserArtikelController::class, 'destroy'])->name('artikell.destroy');
-        
+        Route::get('/artikell/{artikel}/edit', [UserArtikelController::class, 'edit'])
+            ->name('artikell.edit')
+            ->middleware('can:update,artikel');
+        Route::put('/artikell/{artikel}', [UserArtikelController::class, 'update'])
+            ->name('artikell.update')
+            ->middleware('can:update,artikel');
+        Route::delete('/artikell/{artikel}', [UserArtikelController::class, 'destroy'])
+            ->name('artikell.destroy')
+            ->middleware('can:delete,artikel');
+        Route::get('/artikell/{artikel}', [UserArtikelController::class, 'show'])
+            ->name('artikell.show');
     });
 
     //------------------------------------------------------------------

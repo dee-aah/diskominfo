@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Artikel;
-use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
@@ -74,19 +73,24 @@ class UserArtikelController extends Controller
         ]);
         return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil ditambahkan');
     }
-    public function edit($id)
+    public function edit(Artikel $artikel)
     {
-        $artikel = Artikel::findOrFail($id);
-        return view('user.artikell.edit', compact('artikel'));
+        $enumValues = DB::select("SHOW COLUMNS FROM artikels WHERE Field = 'kategori'");
+
+        $kategoriOptions = [];
+        if (!empty($enumValues)) {
+                preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $kategoriOptions = explode("','", $matches[1]);
+        }
+        return view('user.artikell.edit', compact('artikel','kategoriOptions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request,Artikel $artikel)
     {
-        $artikel = Artikel::findOrFail($id);
-    $filename = $artikel->isIgnoringTimestamps;
+    $filename = null;
     if ($request->hasFile('img')) {
             if ($artikel->img) {
                 Storage::delete('public/artikel/' . $artikel->img);
@@ -110,15 +114,19 @@ class UserArtikelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Artikel $artikel)
     {
-        $artikel = Artikel::findOrFail($id);
         if ($artikel->img) {
-            Storage::delete('public/artikel/' . $artikel->img);
-        }
-        $artikel->delete();
-
-        return redirect()->back()->with('success', 'Artikel berhasil dihapus');
+        Storage::delete('public/artikel/' . $artikel->img);
     }
 
+    // Hapus data artikel
+    $artikel->delete();
+
+    return redirect()->route('artikell.dashboard')->with('success', 'Artikel berhasil dihapus');
+    }
+    public function show(Artikel $artikel)
+    {
+        return view('user.artikell.show', compact('artikel'));
+    }
 }

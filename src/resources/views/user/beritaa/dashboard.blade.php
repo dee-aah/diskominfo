@@ -39,25 +39,20 @@
                         <table class="table-auto wrapper  text-sm">
                             <thead class="border-b  border-gray-200">
                                 <tr class="border-gray-200 border-b ">
-                    <th class="font-medium border-r  border-gray-200 p-3">Judul</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Penulis</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Deskripsi</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Kategori</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Waktu</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Tag</th>
                     <th class="font-medium border-r  border-gray-200 p-3">Gambar</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Judul</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Penulis</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Kategori</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Waktu</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Waktu Dibuat</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">View</th>
+                                    <th class="font-medium p-3">Aksi</th>mbar</th>
                     <th class="font-medium  p-3">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($beritas as $berita)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->judul }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->penulis }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ Str::limit(strip_tags($berita->deskripsi), 100) }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->kategori->nama }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->waktu }}</td>
-                        <td class="border-r  border-gray-200 p-3">{{ $berita->tag ?? '-' }}</td>
                         <td class="border-r  border-gray-200 p-3">
                             @if ($berita->gambar)
                                 <img src="{{ asset('storage/berita/' . $berita->gambar) }}"
@@ -65,27 +60,47 @@
                             @else
                                 -
                             @endif
-                        </td>
-                        <td class="p-3  align-middle ">
-                            <div class="flex justify-center items-center gap-1">
-                            <a href="{{ route('beritaa.edit', $berita->id) }}"
-                                class=" col-span-2  p-3  ">
-                                                <i
-                                                    class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
-                            </a>
-                            <form action="{{ route('beritaa.destroy', $berita->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class=" col-span-2 p-3  ">
-                                                    <i
-                                                        class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer">
-                                                    </i>
-                                </button>
-                            </form>
-                            </div>
-                        </td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->judul }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->penulis }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->kategori->nama }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->waktu }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $berita->created_at->translatedFormat('l d F Y.') }}</td>
+                        <td class="border-r  border-gray-200 p-3">{{ $artikel->view_count }}</td>
+                        <td class="p-3  align-middle relative z-10">
+                                            <el-dropdown class="inline-block">
+                                                <button
+                                                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+
+                                                    <i class="fa-solid fa-ellipsis " style="color: black"
+                                                        data-slot="icon" aria-hidden="true"></i>
+                                                </button>
+
+                                                <el-menu anchor="bottom end" popover
+                                                    class="w-56 origin-top-right bg-gray-100 shadow rounded-md font-medium border border-gray-300 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                    <div class="py-1">
+                                                        <a href="{{ route('beritaa.show', $berita->slug) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-eye px-3"></i> Lihat Detail
+                                                        </a>
+                                                        <a href="{{ route('beritaa.edit', $berita) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('beritaa.destroy', $berita) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Yakin hapus berita ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="flex w-full items-center font-medium gap-2 px-4 py-2 text-sm text-red-600 border-t border-gray-300 hover:bg-red-200">
+                                                                <i class="fa-solid fa-trash text-gray-600 px-3" style="color: red">
+                                                                </i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </el-menu>
+                                            </el-dropdown>
+                                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -102,6 +117,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
             const aksiKoloms = document.querySelectorAll('.aksi');

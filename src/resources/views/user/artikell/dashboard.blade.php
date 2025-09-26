@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        <div class="rounded-2xl border  border-gray-200 bg-white ">
+        <div  class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">
                 <div class="justify-start ml-4 col-1">
                     <h2 class="text-xl  font-medium">Daftar Artikel</h2>
@@ -45,6 +45,7 @@
                                     <th class="font-medium border-r  border-gray-200 p-3">Judul</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Penulis</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">Kategori</th>
+                                    <th class="font-medium border-r  border-gray-200 p-3">Waktu Dibuat</th>
                                     <th class="font-medium border-r  border-gray-200 p-3">View</th>
                                     <th class="font-medium p-3">Aksi</th>
                                 </tr>
@@ -62,78 +63,62 @@
                                         <td class="border-r  border-gray-200 p-3">{{ $artikel->judul }}</td>
                                         <td class="border-r  border-gray-200 p-3">{{ $artikel->penulis }}</td>
                                         <td class="border-r  border-gray-200 p-3">{{ $artikel->kategori }}</td>
+                                        <td class="border-r  border-gray-200 p-3">{{ $artikel->created_at->translatedFormat('l d F Y.') }}</td>
                                         <td class="border-r  border-gray-200 p-3">{{ $artikel->view_count }}</td>
-                                        </td>
                                         <td class="p-3  align-middle relative z-10">
                                             <el-dropdown class="inline-block">
-  <button class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+                                                <button
+                                                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
 
-      <i class="fa-solid fa-ellipsis " style="color: black" data-slot="icon" aria-hidden="true"></i>
-  </button>
-
-  <el-menu anchor="bottom end" popover class="w-56 origin-top-right rounded-md bg-gray-800 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
-    <div class="py-1">
-      <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Account settings</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Support</a>
-      <a href="#" class="block px-4 py-2 text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">License</a>
-      <form action="#" method="POST">
-        <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-300 focus:bg-white/5 focus:text-white focus:outline-hidden">Sign out</button>
-      </form>
-    </div>
-  </el-menu>
-</el-dropdown>
-                                            {{-- <el-dropdown class="inline-block">
-                                                <!-- Tombol titik tiga -->
-                                                <button type="button" class="btn-aksi p-2 rounded hover:bg-gray-100"
-                                                    data-id="{{ $artikel->id }}">
-                                                    <i class="fa-solid fa-ellipsis"></i>
+                                                    <i class="fa-solid fa-ellipsis " style="color: black"
+                                                        data-slot="icon" aria-hidden="true"></i>
                                                 </button>
 
-                                                <!-- Dropdown -->
-                                                <div id="menu-{{ $artikel->id }}"
-                                                    class="menu-aksi hidden absolute right-0 mt-2 w-44 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-[99999]">
+                                                <el-menu anchor="bottom end" popover
+                                                    class="w-56 origin-top-right bg-gray-100 shadow rounded-md font-medium border border-gray-300 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                                                     <div class="py-1">
-                                                        <a href="{{ route('artikell.edit', $artikel->id) }}"
-                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                            👁️ Lihat Detail
+                                                        <a href="{{ route('artikell.show', $artikel->slug) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-eye px-3"></i> Lihat Detail
                                                         </a>
-                                                        <a href="{{ route('artikell.edit', $artikel->id) }}"
-                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                                            ✏️ Edit Artikel
+                                                        <a href="{{ route('artikell.edit', $artikel) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
                                                         </a>
-                                                        <form action="{{ route('artikell.destroy', $artikel->id) }}"
+                                                        <form action="{{ route('artikell.destroy', $artikel) }}"
                                                             method="POST"
                                                             onsubmit="return confirm('Yakin hapus artikel ini?')">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                class="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
-                                                                🗑️ Hapus Artikel
+                                                                class="flex w-full items-center font-medium gap-2 px-4 py-2 text-sm text-red-600 border-t border-gray-300 hover:bg-red-200">
+                                                                <i class="fa-solid fa-trash text-gray-600 px-3" style="color: red">
+                                                                </i> Hapus
                                                             </button>
                                                         </form>
                                                     </div>
-                                                </div>
-                    </div> --}}
-                    </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5" class="p-3 text-center">Belum ada artikel</td>
-                    </tr>
-                    @endforelse
-                    </tbody>
-                    </table>
+                                                </el-menu>
+                                            </el-dropdown>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="p-3 text-center">Belum ada artikel</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
 
+                    </div>
                 </div>
-            </div>
-            <div class="mt-4">
-                {{ $artikels->links('pagination::tailwind') }}
+                <div class="mt-4">
+                    {{ $artikels->links('pagination::tailwind') }}
+                </div>
             </div>
         </div>
     </div>
-    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
             const aksiKoloms = document.querySelectorAll('.aksi');
@@ -152,30 +137,6 @@
                     }, 500); // tunggu animasi selesai sebelum dihapus
                 }, 3000); // tunggu 3 detik
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // cari semua tombol titik 3
-            document.querySelectorAll('.btn-aksi').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation(); // penting biar nggak kena listener window
-
-                    // tutup semua menu dulu
-                    document.querySelectorAll('.menu-aksi').forEach(m => m.classList.add('hidden'));
-
-                    // buka menu sesuai id tombol
-                    const menu = document.getElementById('menu-' + this.dataset.id);
-                    if (menu) menu.classList.toggle('hidden');
-                });
-            });
-
-            // kalau klik di luar → tutup semua
-            window.addEventListener('click', function(e) {
-                if (!e.target.closest('.btn-aksi') && !e.target.closest('.menu-aksi')) {
-                    document.querySelectorAll('.menu-aksi').forEach(m => m.classList.add('hidden'));
-                }
-            });
         });
     </script>
 </x-layouts.sidebar>

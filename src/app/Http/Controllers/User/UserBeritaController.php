@@ -6,7 +6,8 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserBeritaController extends Controller
 {
@@ -29,27 +30,18 @@ class UserBeritaController extends Controller
     }
 
     /**
-     * Helper method untuk mengambil berita berdasarkan nama kategori.
-     * Ini untuk menghindari penulisan query yang berulang-ulang.
-     */
-    private function getBeritaByKategori(array $kategoriNames, string $orderByColumn, int $limit)
-    {
-        return Berita::with('kategori')
-            ->whereHas('kategori', function ($query) use ($kategoriNames) {
-                $query->whereIn('nama', $kategoriNames);
-            })
-            ->orderBy($orderByColumn, 'desc')
-            ->take($limit)
-            ->get();
-    }
-
-    /**
      * Menampilkan form untuk membuat berita baru.
      */
     public function create()
     {
-        $kategoris = Kategori::where('type', 'Berita')->get();
-        return view('user.beritaa.create', compact('kategoris'));
+        $enumValues = DB::select("SHOW COLUMNS FROM beritas WHERE Field = 'kategori'");
+
+        $kategoriOptions = [];
+        if (!empty($enumValues)) {
+                preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $kategoriOptions = explode("','", $matches[1]);
+        }
+        return view('user.beritaa.create', compact('kategoriOptions'));
     }
 
     /**
@@ -63,13 +55,13 @@ class UserBeritaController extends Controller
             'penulis' => 'required|string|max:100',
             'waktu' => 'required|date',
             'tag' => 'nullable|string',
-            'kategori_id' => 'required|exists:kategoris,id',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'kategori' => 'required',
+            'img' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('berita', $filename);
         }
@@ -79,8 +71,9 @@ class UserBeritaController extends Controller
             'penulis' => $request->penulis,
             'waktu' =>$request->waktu,
             'tag' => $request->tag,
-            'kategori_id' => $request->kategori_id,
-            'gambar' => $filename
+            'kategori' => $request->kategori,
+            'img' => $filename,
+            'user_id' => Auth::id(),
         ]);
         return redirect()->route('beritaa.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
@@ -90,31 +83,34 @@ class UserBeritaController extends Controller
     /**
      * Menampilkan form untuk mengedit berita.
      */
-    public function edit(string $id)
+    public function edit(Berita $berita )
     {
-        $kategoris = Kategori::where('type', 'Berita')->get();
-        $berita = Berita::findOrFail($id);
-        return view('user.beritaa.edit', compact('berita', 'kategoris'));
+        $enumValues = DB::select("SHOW COLUMNS FROM artikels WHERE Field = 'kategori'");
+
+        $kategoriOptions = [];
+        if (!empty($enumValues)) {
+                preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $kategoriOptions = explode("','", $matches[1]);
+        }
+        return view('user.beritaa.edit', compact('berita', 'kategoriOptions'));
     }
 
     /**
      * Memperbarui berita di database.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Berita $berita)
     {
-        $berita = Berita::findOrFail($id);
-
-        $filename = $berita->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($berita->gambar) {
-                Storage::delete('public/berita/' . $berita->gambar);
+        $filename = $berita->img;
+        if ($request->hasFile('img')) {
+            if ($berita->img) {
+                Storage::delete('public/berita/' . $berita->img);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('berita', $filename);
         }
 
-        $berita->update($request->except('gambar') + ['gambar' => $filename]);
+        $berita->update($request->except('img') + ['img' => $filename]);
 
         return redirect()->route('beritaa.dashboard')->with('success', 'Berita Berhasil Diperbarui');
     }
@@ -122,14 +118,17 @@ class UserBeritaController extends Controller
     /**
      * Menghapus berita dari database.
      */
-    public function destroy(string $id)
+    public function destroy(Berita $berita)
     {
-        $berita = Berita::findOrFail($id);
-        if ($berita->gambar) {
-            Storage::delete('public/berita/' . $berita->gambar);
-        }
-        $berita->delete();
+        if ($berita->img) {
+        Storage::delete('public/berita/' . $berita->img);
+    }
+    $berita->delete();
 
-        return redirect()->back()->with('success', 'Berita Berhasil Dihapus');
+    return redirect()->route('beritaa.dashboard')->with('success', 'Berita berhasil dihapus');
+    }
+    public function show(Berita $berita)
+    {
+        return view('user.beritaa.show', compact('berita'));
     }
 }

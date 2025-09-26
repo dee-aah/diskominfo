@@ -11,14 +11,12 @@
                 <form action="{{ route('artikell.update', $artikel->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
                     <div class="my-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Judul</label>
                         <input type="text" name="judul" value="{{ old('judul', $artikel->judul) }}"
                             placeholder="Masukkan Judul Artikel"
                             class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>
                     </div>
-
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi</label>
                         <textarea name="deskripsi" rows="12"
@@ -34,15 +32,15 @@
                     </div>
                     <div class="mb-3">
     <label class="block py-2 text-[15px] text-black font-medium">Kategori</label>
-    <select name="kategori_id"
+    <select name="kategori"
         class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
         required>
         <option value="">-- Pilih Kategori --</option>
-        @foreach ($kategoris as $kategori)
-            <option value="{{ $kategori->id }}"
-                {{ old('kategori_id', $artikel->kategori_id ?? '') == $kategori->id ? 'selected' : '' }}>
-                {{ $kategori->nama }}
-            </option>
+        @foreach ($kategoriOptions as $option)
+                                        <option value="{{ $option }}"
+                                            {{ old('kategori', $artikel->kategori ?? '') == $option ? 'selected' : '' }}>
+                                            {{ $option }}
+                                        </option>
         @endforeach
     </select>
 </div>
@@ -57,11 +55,11 @@
                     </div>
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Gambar</label>
-                        <input type="file" name="gambar"
+                        <input type="file" name="img"
                             class="focus:border-ring-brand-300 placeholder:text-sm shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden" />
-                    @if ($artikel->gambar)
+                    @if ($artikel->img)
                             <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                            <img src="{{ asset('storage/artikel/' . $artikel->gambar) }}" class="w-32 mt-1 rounded">
+                            <img src="{{ asset('storage/artikel/' . $artikel->img) }}" class="w-32 mt-1 rounded">
                         @endif
                     </div>
 
