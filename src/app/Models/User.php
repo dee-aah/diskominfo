@@ -40,7 +40,7 @@ class User extends Authenticatable
     }
     public function layanan_details()
     {
-        return $this->hasMany(Layanan_detail::class);
+        return $this->hasMany(LayananDetail::class);
     }
     public function layanans()
     {
@@ -93,6 +93,10 @@ class User extends Authenticatable
     public function visi_misis()
     {
         return $this->hasMany(Visimisi::class);
+    }
+    public function Kontens()
+    {
+        return $this->hasMany(Konten::class);
     }
     /**
      * The attributes that should be hidden for serialization.

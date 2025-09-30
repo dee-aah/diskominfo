@@ -1,8 +1,25 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
         @if (session('success'))
-            <div id="flash-message" class="bg-green-300 max-w-5xl text-center text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
+            <div id="flash-message"
+                class="bg-green-300 text-black flex justify-between max-w-5xl text-center text-green-800 p-3 rounded mb-4">
+                <div>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div id="flash-message"
+                class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+                <div>
+                </div>
+                <div>
+                    <span>{{ session('error') }}</span>
+                </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         @endif
         <div class="rounded-2xl border  border-gray-200 bg-white ">
@@ -31,65 +48,61 @@
                         <table id="wrapper" class="table-auto wrapper min-w-full text-sm">
                           <thead class="border-b border-gray-200">
                             <tr class="border-gray-200 border-b ">
-                                <th class="font-medium border-r  border-gray-200 p-3">Registrasi</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Jenis Peraturan</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Judul Peraturan</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Nomor</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Tahun Terbit</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Singkatan Jenis</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Tahun Penetapan</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Tanggal Pengundangan</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Pengarang</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Sumber</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Tempat Terbit</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Bidang Hukum</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Subjek</th>
-                                <th class="font-medium border-r  border-gray-200 px-3 py-3">Bahasa</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Lokasi</th>
                                 <th class="font-medium border-r  border-gray-200 px-3 py-3">Status</th>
                                 <th class="font-medium px-3 py-3">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 ">
-                            @forelse ($produks as $produk)
+                            @forelse ($produk_hukum as $produk)
                                 <tr class="text-center mx-3 items-center hover:bg-gray-100">
-                                    <td class=" px-3 border-r  border-gray-200 py-3">{{ $produk->reg }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-3">{{ $produk->jenis_peraturan }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-3">{{ $produk->judul_peraturan }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-3">{{ $produk->nomor }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->tahun_terbit }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->singkatan_jenis }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->tahun_penetapan }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->tanggal_pengundangan }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->pengarang }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->sumber }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->tempat_terbit }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->bidang_hukum }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->subjek }}</td>
-                                    <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->bahasa }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->lokasi }}</td>
                                     <td class=" px-3 border-r  border-gray-200 py-2">{{ $produk->status }}</td>
-                                    <td class="p-3  align-middle ">
-                                          <div class="flex justify-center items-center gap-1">
-                                        <a href="{{ route('produk_hukum.edit', $produk->id) }}"
-                                            class=" col-span-2  p-3  ">
-                                            <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
-                                        </a>
-                                        <form action="{{ route('produk_hukum.destroy', $produk->id) }}" method="POST"
-                                            onsubmit="return confirm(' Anda Yakin Ingin Menghapus Produk Hukum ini?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class=" col-span-2 p-3  ">
-                                                <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
-                                            </button>
-                                        </form>
-                                          </div>
-                                    </td>
+                                    <td class="p-3  align-middle relative z-10">
+                                            <el-dropdown class="inline-block">
+                                                <button
+                                                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+                                                    <i class="fa-solid fa-ellipsis " style="color: black"
+                                                        data-slot="icon" aria-hidden="true"></i>
+                                                </button>
+                                                <el-menu anchor="bottom end" popover
+                                                    class="w-56 origin-top-right bg-gray-100 shadow rounded-md font-medium border border-gray-300 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                    <div class="py-1">
+                                                        <a href="{{ route('produk_hukum.show', $produk) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-eye px-3"></i> Lihat Detail
+                                                        </a>
+                                                        <a href="{{ route('produk_hukum.edit', $produk) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('produk_hukum.destroy', $produk) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Yakin hapus Produk Hukum ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="flex w-full items-center font-medium gap-2 px-4 py-2 text-sm text-red-600 border-t border-gray-300 hover:bg-red-200">
+                                                                <i class="fa-solid fa-trash text-gray-600 px-3"
+                                                                    style="color: red"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </el-menu>
+                                            </e>
+                                        </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="24" class="text-center border border-gray-400 border-2 py-4">Belum
+                                    <td colspan="24" class="text-center  py-4">Belum
                                         ada Produk Hukum</td>
                                 </tr>
                             @endforelse
@@ -100,6 +113,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
             const aksiKoloms = document.querySelectorAll('.aksi');

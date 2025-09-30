@@ -8,7 +8,7 @@
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8   ">
-                    <form action="{{ route('layanan.update', $layanan->id) }}" method="POST"
+                    <form action="{{ route('layanan.update', $layanan) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -37,8 +37,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Deskripsi Singkat</label>
-                            <textarea name="des_singkat" rows="5" placeholder="Masukkan Deskripsi Program"
-                                class="w-full border editor  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('des_singkat', $layanan->des_singkat) }}</textarea>
+                            <textarea name="deskripsi_singkat" rows="5" placeholder="Masukkan Deskripsi Program"
+                                class="w-full border editor  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required>{{ old('deskripsi_singkat', $layanan->deskripsi_singkat) }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Deskripsi</label>
@@ -47,11 +47,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Gambar</label>
-                            <input type="file" name="gambar"
+                            <input type="file" name="img"
                                 class="focus:border-ring-brand-300 placeholder:text-sm shadow-theme-xs focus:file:ring-brand-300 h-11 w-full overflow-hidden rounded-lg border border-gray-300 bg-transparent text-sm text-gray-500 transition-colors file:mr-5 file:border-collapse file:cursor-pointer file:rounded-l-lg file:border-0 file:border-r file:border-solid file:border-gray-200 file:bg-gray-50 file:py-3 file:pr-3 file:pl-3.5 file:text-sm file:text-gray-700 placeholder:text-gray-400 hover:file:bg-gray-100 focus:outline-hidden" />
-                            @if ($layanan->gambar)
+                            @if ($layanan->img)
                                 <p class="mt-2 text-sm text-gray-500">Gambar saat ini:</p>
-                                <img src="{{ asset('storage/layanan/' . $layanan->gambar) }}" class="w-32 mt-1 rounded">
+                                <img src="{{ asset('storage/layanan/' . $layanan->img) }}" class="w-32 mt-1 rounded">
                             @endif
                         </div>
                         <div class="flex justify-end gap-2 mt-4">

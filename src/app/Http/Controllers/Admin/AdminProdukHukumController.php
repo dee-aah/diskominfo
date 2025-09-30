@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProdukHukum;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminProdukHukumController extends Controller
 {
@@ -20,8 +21,8 @@ class AdminProdukHukumController extends Controller
                     ->orWhere('judul_peraturan', 'like', "%{$search}%")
                     ->orWhere('singkatan_jenis', 'like', "%{$search}%");
             });}
-        $produks = $query->latest()->get();
-        return view('admin.produk_hukum.dashboard', compact('produks'));
+        $produk_hukum = $query->latest()->get();
+        return view('admin.produk_hukum.dashboard', compact('produk_hukum'));
     }
 
     /**
@@ -29,8 +30,8 @@ class AdminProdukHukumController extends Controller
      */
     public function create()
     {
-        $produks = ProdukHukum::all();
-        return view('admin.produk_hukum.create', compact('produks'));
+        $produk_hukum = ProdukHukum::all();
+        return view('admin.produk_hukum.create', compact('produk_hukum'));
     }
 
     /**
@@ -58,18 +59,6 @@ class AdminProdukHukumController extends Controller
         'lampiran'            => 'nullable|file|mimes:pdf',
         'naskah_akademik'     => 'nullable|file|mimes:pdf',
     ]);
-        // $filenames = null;
-        // if ($request->hasFile('lampiran')) {
-        //     $file = $request->file('lampiran');
-        //     $filenames = $file->getClientOriginalName();
-        //     $file->storeAs('produk', $filenames);
-        // }
-        // $filename = null;
-        // if ($request->hasFile('naskah_akademik')) {
-        //     $file = $request->file('naskah_akademik');
-        //     $filename = $file->getClientOriginalName();
-        //     $file->storeAs('produk', $filename);
-        // }
 
 $path = null;
 if ($request->hasFile('lampiran')) {
@@ -104,7 +93,8 @@ if ($request->hasFile('naskah_akademik')) {
             'lokasi'               => $request->lokasi,
             'status'               => $request->status,
             'lampiran'             => $path,
-            'naskah_akademik'      => $paths
+            'naskah_akademik'      => $paths,
+            'user_id' => Auth::id(),
     ]);
     return redirect()->route('produk_hukum.dashboard')->with('success', 'Produk Hukum  Berhasil Ditambahkan');
     }
@@ -112,38 +102,36 @@ if ($request->hasFile('naskah_akademik')) {
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ProdukHukum $produk_hukum)
     {
-        $produk = ProdukHukum::findOrFail($id);
-        return view('admin.produk_hukum.edit', compact('produk'));
+        return view('admin.produk_hukum.edit', compact('produk_hukum'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, ProdukHukum $produk_hukum)
     {
-        $produk = ProdukHukum::findOrFail($id);
 
-        $filenames = $produk->lampiran;
+        $filenames = $produk_hukum->lampiran;
         if ($request->hasFile('lampiran')) {
-            if ($produk->lampiran) {
-                Storage::delete('public/produk/' . $produk->lampiran);
+            if ($produk_hukum->lampiran) {
+                Storage::delete('public/produk/' . $produk_hukum->lampiran);
             }
             $file = $request->file('lampiran');
             $filenames =  $file->getClientOriginalName();
             $file->storeAs('produk', $filenames);
         }
-        $filename = $produk->naskah_akademik;
+        $filename = $produk_hukum->naskah_akademik;
         if ($request->hasFile('naskah_akademik')) {
-            if ($produk->naskah_akademik) {
-                Storage::delete('public/produk/' . $produk->naskah_akademik);
+            if ($produk_hukum->naskah_akademik) {
+                Storage::delete('public/produk/' . $produk_hukum->naskah_akademik);
             }
             $file = $request->file('naskah_akademik');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('produk', $filename);
         }
-        $produk->update([
+        $produk_hukum->update([
             'reg'                  => $request->reg,
             'jenis_peraturan'      => $request->jenis_peraturan,
             'judul_peraturan'      => $request->judul_peraturan,
@@ -169,14 +157,17 @@ if ($request->hasFile('naskah_akademik')) {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ProdukHukum $produk_hukum)
     {
-        $produk = ProdukHukum::findOrFail($id);
-        if ($produk->lampiran) {
-            Storage::delete('public/produk/' . $produk->lampiran);
+        if ($produk_hukum->lampiran) {
+            Storage::delete('public/produk/' . $produk_hukum->lampiran);
         }
-        $produk->delete();
+        $produk_hukum->delete();
 
-        return redirect()->back()->with('success', 'Produk Hukum Berhasil Dihapus');
+        return redirect()->route('produk_hukum.dashboard')->with('success', 'Produk Hukum Berhasil Dihapus');
+    }
+    public function show(ProdukHukum $produk_hukum)
+    {
+        return view('Admin.produk_hukum.show', compact('produk_hukum'));
     }
 }

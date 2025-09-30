@@ -7,6 +7,7 @@ use App\Models\Layanan;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 class AdminLayananController extends Controller
 {
     public function dashboard(Request $request)
@@ -43,14 +44,14 @@ class AdminLayananController extends Controller
     {
         $request->validate([
         'nama' => 'required',
-        'des_singkat' => 'required',
+        'deskripsi_singkat' => 'required',
         'deskripsi' => 'required',
         'program' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('layanan', $filename);
         }
@@ -58,9 +59,10 @@ class AdminLayananController extends Controller
     Layanan::create([
         'nama' => $request->nama,
         'program' => $request->program,
-        'des_singkat' => $request->des_singkat,
+        'deskripsi_singkat' => $request->deskripsi_singkat,
         'deskripsi' => $request->deskripsi,
-        'gambar' => $filename
+        'img' => $filename,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('layanan.dashboard')->with('success', 'Layanan  Berhasil Ditambahkan');
@@ -73,9 +75,8 @@ class AdminLayananController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Layanan $layanan)
     {
-        $layanan = Layanan::findOrFail($id);
         $enumValues = DB::select("SHOW COLUMNS FROM layanans WHERE Field = 'program'");
         preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
         $jenisOptions = explode("','", $matches[1]);
@@ -85,12 +86,11 @@ class AdminLayananController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Layanan $layanan)
     {
-        $layanan = Layanan::findOrFail($id);
 
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('layanan', $filename);
         } else {
@@ -98,10 +98,10 @@ class AdminLayananController extends Controller
         }
         $layanan->update([
             'nama' => $request->nama,
-            'des_singkat' => $request->des_singkat,
+            'deskripsi_singkat' => $request->deskripsi_singkat,
             'deskripsi' => $request->deskripsi,
             'program' => $request->program,
-            'gambar' => $filename
+            'imgr' => $filename
         ]);
         return redirect()->route('layanan.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }
@@ -109,14 +109,17 @@ class AdminLayananController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Layanan $layanan)
     {
-        $layanan = Layanan::findOrFail($id);
-        if ($layanan->gambar) {
-            Storage::delete('public/layanan/' . $layanan->gambar);
-        }
-        $layanan->delete();
-
-        return redirect()->back()->with('success', 'Layanan Berhasil Dihapus');
+        if ($layanan->img) {
+        Storage::delete('public/layanan/' . $layanan->img);
     }
+    $layanan->delete();
+
+    return redirect()->route('layanan.dashboard')->with('success', 'Layanan berhasil dihapus');
+    }
+    public function show(Layanan $layanan)
+{
+    return view('admin.layanan.show', compact('layanan'));
+}
 }

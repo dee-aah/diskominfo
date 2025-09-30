@@ -5,7 +5,7 @@
         <section class="relative h-screen overflow-hidden pt-16 ">
             <video autoplay muted loop playsinline
                 class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
-                <source src="{{ asset('storage/pimpinan/' . $pimpinan->vidio) }}" loading="lazy" type="video/mp4" />
+                <source src="{{ asset('storage/konten/' . $konten->video) }}" loading="lazy" type="video/mp4" />
             </video>
             <div class="absolute bg-black bg-opacity-50 z-10"></div>
             <!-- Konten Hero -->
@@ -35,7 +35,7 @@
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Gambar Kiri -->
                 <div class="flex justify-center">
-                    <img src="{{ asset('storage/pimpinan/' . $pimpinan->gambar) }}" loading="lazy" alt="pimpinan"
+                    <img src="{{ asset('storage/pimpinan/' . $sambutan->img) }}" loading="lazy" alt="pimpinan"
                         class="w-72 md:w-76 ">
                 </div>
                 <!-- Konten Teks Kanan -->
@@ -44,10 +44,10 @@
                         Kepala Dinas
                     </p>
                     <h1 class="text-2xl md:text-4xl font-bold mb-4">
-                        {{ $pimpinan->nama }}
+                        {{ $sambutan->nama }}
                     </h1>
                     <div class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
-                        {!! $pimpinan->deskripsi !!}
+                        {!! $sambutan->deskripsi !!}
                         <style>
                             ul {
                                 list-style-type: disc;
@@ -231,7 +231,7 @@
                                 class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
-                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $beritatasik->kategori->nama }}</span>
+                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $beritatasik->kategori}}</span>
                             </div>
                         </div>
                         <div class="p-4 bg-gray-200 text-sm text-justify">
@@ -281,7 +281,7 @@
                         <div class="bg-gray-200 text-sm rounded-lg shadow p-4">
                             <div class="flex justify-between text-xs text-gray-500 mb-1">
                                 <span class="bg-blue-800 text-white px-2 py-0.5 rounded">
-                                    {{ $item->kategori->nama }}
+                                    {{ $item->kategori }}
                                 </span>
                                 <span>{{ $item->created_at->translatedFormat('d F Y') }}</span>
                             </div>
@@ -315,7 +315,7 @@
                                 class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
-                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $berita->kategori->nama }}</span>
+                                    class="bg-blue-800 text-white text-xs px-4 py-1 rounded">{{ $berita->kategori }}</span>
                             </div>
                         </div>
                         <div class="p-4 text-sm text-justify bg-gray-200">
@@ -365,7 +365,7 @@
                         <div class="bg-gray-200 text-sm text-gray-600 rounded-lg shadow p-4">
                             <div class="flex justify-between  text-xs text-gray-500 mb-1">
                                 <span class="bg-blue-800 text-white px-2 py-0.5 rounded">
-                                    {{ $item->kategori->nama }}
+                                    {{ $item->kategori }}
                                 </span>
                                 <span>{{ $item->created_at->translatedFormat('d F Y') }}</span>
                             </div>
@@ -409,7 +409,7 @@
                             <img src="{{ asset('storage/artikel/' . $item->gambar) }}" alt="Gambar Artikel"
                                 class="w-full h-100 object-cover p-3 rounded-2xl">
                             <span
-                                class="absolute bottom-5 left-5 bg-blue-800 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori->nama }}
+                                class="absolute bottom-5 left-5 bg-blue-800 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori }}
                             </span>
                         </div>
                         <div class="p-5 bg-gray-200 space-y-2">

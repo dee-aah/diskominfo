@@ -1,8 +1,25 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2  ">
         @if (session('success'))
-            <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
+            <div id="flash-message"
+                class="bg-green-300 text-black flex justify-between max-w-5xl text-center text-green-800 p-3 rounded mb-4">
+                <div>
+                </div>
+                <div>
+                    {{ session('success') }}
+                </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        @endif
+        @if (session('error'))
+            <div id="flash-message"
+                class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+                <div>
+                </div>
+                <div>
+                    <span>{{ session('error') }}</span>
+                </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         @endif
 <div class="rounded-2xl border  border-gray-200 bg-white ">
@@ -31,17 +48,15 @@
                 <div  class="w-full   overflow-x-auto">
                     <table  class="table-auto  wrapper min-w-full text-sm">
             <thead class="border-b border-gray-200">
-                    <th class="font-medium border-r  border-gray-200 p-3">Nama Dokumen</th>
-                    <th class="font-medium border-r  border-gray-200 p-3">Link Dokumen</th>
                     <th class="font-medium border-r  border-gray-200 p-3">Foto Pdf</th>
+                    <th class="font-medium border-r  border-gray-200 p-3">Nama Dokumen</th>
+                    <th class="font-medium border-r  border-gray-200 p-3">Waktu Dibuat</th>
                     <th class="font-medium p-3">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($evaluasis as $evaluasi)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
-                        <td class="p-3 border-r  border-gray-200">{{ $evaluasi->nama }}</td>
-                        <td class="p-3 border-r  border-gray-200">{{ $evaluasi->link }}</td>
                         <td class="p-3 border-r  border-gray-200 text-center">
                             @if ($evaluasi->img_pdf)
                                 <img src="{{ asset('storage/evaluasi/' . $evaluasi->img_pdf) }}"
@@ -50,23 +65,41 @@
                                 -
                             @endif
                         </td>
-                        <td class="p-3  align-middle ">
-                            <div class="flex justify-center items-center gap-1">
-                            <a href="{{ route('evaluasi.edit', $evaluasi->id) }}"
-                                class="  p-3  ">
-                                    <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
-                            </a>
-                            <form action="{{ route('evaluasi.destroy', $evaluasi->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin Ingin Menghapus Dokumen Evaluasi ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="  p-3  ">
-                                    <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
-                                </button>
-                            </form>
-                            </div>
-                        </td>
+                        <td class="p-3 border-r  border-gray-200">{{ $evaluasi->nama }}</td>
+                        <td class="p-3 border-r  border-gray-200">{{ $evaluasi->created_at->translatedFormat('l d F Y.') }}</td>
+                        <td class="p-3  align-middle relative z-10">
+                                            <el-dropdown class="inline-block">
+                                                <button
+                                                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+                                                    <i class="fa-solid fa-ellipsis " style="color: black"
+                                                        data-slot="icon" aria-hidden="true"></i>
+                                                </button>
+                                                <el-menu anchor="bottom end" popover
+                                                    class="w-56 origin-top-right bg-gray-100 shadow rounded-md font-medium border border-gray-300 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                    <div class="py-1">
+                                                        <a href="{{ route('evaluasi.show', $evaluasi) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-eye px-3"></i> Lihat Detail
+                                                        </a>
+                                                        <a href="{{ route('evaluasi.edit', $evaluasi) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('evaluasi.destroy', $evaluasi) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Yakin hapus Dokumen Evaluasi ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="flex w-full items-center font-medium gap-2 px-4 py-2 text-sm text-red-600 border-t border-gray-300 hover:bg-red-200">
+                                                                <i class="fa-solid fa-trash text-gray-600 px-3"
+                                                                    style="color: red"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </el-menu>
+                                            </e>
+                                        </td>
                     </tr>
                 @empty
                     <tr>
@@ -80,6 +113,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
             const aksiKoloms = document.querySelectorAll('.aksi');

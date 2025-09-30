@@ -19,7 +19,7 @@ class Berita extends Model
 }
 
     // app/Models/Berita.php
-    protected $fillable = ['judul', 'deskripsi', 'penulis','slug', 'tag', 'img','waktu','view_count', 'user_id'];
+    protected $fillable = ['judul', 'deskripsi', 'penulis','slug','kategori', 'tag', 'img','waktu','view_count', 'user_id'];
 
 
     // Relasi ke kategori

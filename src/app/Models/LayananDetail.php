@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Layanan_detail extends Model
+class LayananDetail extends Model
 {
     protected $fillable = [
     'layanan_id',
@@ -13,10 +13,6 @@ class Layanan_detail extends Model
     'img',
     'user_id'
     ];
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
 
     public function user()
     {

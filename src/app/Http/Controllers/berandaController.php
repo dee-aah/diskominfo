@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Artikel;
 use App\Models\Berita;
+use App\Models\Konten;
 use App\Models\LayananBeranda;
 use App\Models\Pimpinan;
+use App\Models\SambutanPimpinan;
 use App\Models\Tentang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -56,7 +58,8 @@ class BerandaController extends Controller
         $recordkasusterbaru = $datakasus->last();
         $tahunkasusterbaru = $recordkasusterbaru['tahun'] ?? null;
         $datakasusterbaru = $recordkasusterbaru['jumlah_kasus'] ?? 0;
-        $pimpinan = Pimpinan::first();
+        $konten = Konten::first();
+        $sambutan = SambutanPimpinan::first();
         //tentang kami
         $tentang_kami = Tentang::first();
     //artikel
@@ -64,28 +67,24 @@ class BerandaController extends Controller
                 ->take(4)
                 ->get();
     //berita kota tasikmalaya
-    $beritatasik = Berita::whereHas('kategori', function($q) {
-                $q->where('nama', 'Berita Kota Tasikmalaya');})
+    $beritatasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
                 ->latest()
                 ->first();
-    $beritalaintasik = Berita::whereHas('kategori', function($q) {
-                $q->where('nama', 'Berita Kota Tasikmalaya');})
+    $beritalaintasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
                     ->latest()
                     ->skip(1)
                     ->take(3)
                     ->get();
     //berita dppkbp3a
-    $berita = Berita::whereHas('kategori', function($q) {
-                $q->where('nama', 'Berita DPPKBP3A');})
+    $berita = Berita::where('kategori', 'Berita DPPKBP3A')
                 ->latest()
                 ->first();
-    $beritalain = Berita::whereHas('kategori', function($q) {
-                $q->where('nama', 'Berita DPPKBP3A');})
+    $beritalain = Berita::where('kategori', 'Berita DPPKBP3A')
                     ->latest()
                     ->skip(1)
                     ->take(3)
                     ->get();
-    return view('beranda.index', compact('pimpinan','artikel','berita','beritatasik', 'beritalain','beritalaintasik','datasubur',
+    return view('beranda.index', compact('sambutan','konten','artikel','berita','beritatasik', 'beritalain','beritalaintasik','datasubur',
             'recordsuburterbaru','tentang_kami',
             'rasiojeniskelamin',
             'layananBeranda',

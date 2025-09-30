@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Layanan;
-use App\Models\Layanan_detail;
+use App\Models\LayananDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LayananDetailController extends Controller
 {
@@ -16,7 +17,7 @@ class LayananDetailController extends Controller
      */
      public function dashboard(Request $request)
     {
-        $query = Layanan_detail::query();
+        $query = LayananDetail::query();
         if ($request->filled('d')) {
             $search = $request->d;
             $query->where(function ($q) use ($search) {
@@ -24,9 +25,8 @@ class LayananDetailController extends Controller
                     ->orWhere('urutan', 'like', "%{$search}%")
                     ->orWhere('isi', 'like', "%{$search}%");
             });}
-        $layanan_details = Layanan_detail::all();
-        $layanan_detail = Layanan_detail::paginate(6);
-        return view('admin.layanan_detail.dashboard', compact('layanan_details','layanan_detail'));
+        $layanan_detail = LayananDetail::paginate(6);
+        return view('admin.layanan_detail.dashboard', compact('layanan_detail'));
     }
     /**
      * Display a listing of the resource.
@@ -57,61 +57,48 @@ class LayananDetailController extends Controller
         'jenis' => 'required',
         'deskripsi' => 'required',
         'layanan_id' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('layanan_detail', $filename);
         }
 
-    Layanan_detail::create([
+    LayananDetail::create([
         'jenis' => $request->jenis,
         'layanan_id' => $request->layanan_id,
         'deskripsi' => $request->deskripsi,
-        'gambar' => $filename
+        'img' => $filename,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Layanan_detail $layanan_detail)
-    {
-        // $layanan = Layanan::where('slug', $slug)->firstOrFail();
-        // $layanan_detail = Layanan_detail::first();
-        $layanan = $layanan_detail->layanan;
-        return view('layanan_details.show', compact('layanan'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(LayananDetail $layanan_detail)
     {
         $layanans = Layanan::all();
         $enumValues = DB::select("SHOW COLUMNS FROM layanan_details WHERE Field = 'jenis'");
         preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
-        $jenisOptions = explode("','", $matches[1]);
-        $layanan_detail = Layanan_detail::findOrFail($id);
+        $jenisOptions = explode("','", $matches[1],);
         return view('admin.layanan_detail.edit', compact('layanan_detail','layanans','jenisOptions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, LayananDetail $layanan_detail)
     {
-        $layanan_detail = Layanan_detail::findOrFail($id);
-        $filename = $layanan_detail->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($layanan_detail->gambar) {
-                Storage::delete('public/layanan/' . $layanan_detail->gambar);
+        $filename = $layanan_detail->img;
+        if ($request->hasFile('img')) {
+            if ($layanan_detail->img) {
+                Storage::delete('public/layanan_detail/' . $layanan_detail->img);
             }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('layanan_detail', $filename);
         }
@@ -119,7 +106,7 @@ class LayananDetailController extends Controller
             'jenis' => $request->jenis,
             'deskripsi' => $request->deskripsi,
             'layanan_id' => $request->layanan_id,
-            'gambar' => $filename
+            'img' => $filename
         ]);
         return redirect()->route('layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }
@@ -127,14 +114,17 @@ class LayananDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(LayananDetail $layanan_detail)
     {
-        $layanan_detail = Layanan_detail::findOrFail($id);
-        if ($layanan_detail->gambar) {
-            Storage::delete('public/layanan_detail/' . $layanan_detail->gambar);
-        }
-        $layanan_detail->delete();
-
-        return redirect()->back()->with('success', 'Layanan Berhasil Dihapus');
+        if ($layanan_detail->img) {
+        Storage::delete('public/layanan_detail/' . $layanan_detail->img);
     }
+    $layanan_detail->delete();
+
+    return redirect()->route('layanan_detail.dashboard')->with('success', 'Detail Layanan  berhasil dihapus');
+    }
+    public function show(LayananDetail $layanan_detail)
+{
+    return view('admin.layanan_detail.show', compact('layanan_detail'));
+}
 }

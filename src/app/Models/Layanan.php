@@ -14,13 +14,13 @@ class Layanan extends Model
     // Relasi ke ServiceDetail
     public function layanan_details()
     {
-        return $this->hasMany(Layanan_detail::class);
+        return $this->hasMany(LayananDetail::class);
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function getRouteKeyName()
     {
         return 'slug';

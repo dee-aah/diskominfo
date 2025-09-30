@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Perencanaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminPerencanaanController extends Controller
 {
-     public function dashboard(Request $request)
+    public function dashboard(Request $request)
     {
 
         $query = Perencanaan::query();
@@ -52,7 +53,8 @@ class AdminPerencanaanController extends Controller
     Perencanaan::create([
         'nama' => $request->nama,
         'link' => $request->link,
-        'img_pdf' => $filename
+        'img_pdf' => $filename,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('perencanaan.dashboard')->with('success', ' Dokumen Perencanaan Berhasil Ditambahkan');
@@ -60,18 +62,16 @@ class AdminPerencanaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Perencanaan $perencanaan)
     {
-        $perencanaan = Perencanaan::findOrFail($id);
         return view('admin.perencanaan.edit', compact('perencanaan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Perencanaan $perencanaan)
     {
-        $perencanaan = Perencanaan::findOrFail($id);
         $filename = $perencanaan->img_pdf;
         if ($request->hasFile('img_pdf')) {
             if ($perencanaan->img_pdf) {
@@ -92,13 +92,17 @@ class AdminPerencanaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Perencanaan $perencanaan)
     {
-        $perencanaan = Perencanaan::findOrFail($id);
-        if ($perencanaan->gambar) {
-            Storage::delete('public/perencanaan/' . $perencanaan->img_pdf);
-        }
-        $perencanaan->delete();
-        return redirect()->back()->with('success', 'Dokumen Perencanaan Berhasil Dihapus');
+        if ($perencanaan->img_pdf) {
+        Storage::delete('public/perencanaan/' . $perencanaan->img_pdf);
+    }
+    $perencanaan->delete();
+
+    return redirect()->route('perencanaan.dashboard')->with('success', 'Dokumen Perencanaan berhasil dihapus');
+    }
+    public function show(Perencanaan $perencanaan)
+    {
+    return view('admin.perencanaan.show', compact('perencanaan'));
     }
 }

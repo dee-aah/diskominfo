@@ -8,13 +8,13 @@
             </div>
             <div id="main-content" class="p-5 border-t border-gray-300 sm:p-6 ">
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
-                    <form action="{{ route('produk_hukum.update', $produk->id) }}" method="POST"
+                    <form action="{{ route('produk_hukum.update', $produk_hukum->id) }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="my-3">
                             <label class="block py-2 text-[15px] text-black font-medium">No Registrasi</label>
-                            <input type="text" name="reg" value="{{ old('reg', $produk->reg) }}"
+                            <input type="text" name="reg" value="{{ old('reg', $produk_hukum->reg) }}"
                                 placeholder=" Masukkan Registrasi"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -23,7 +23,7 @@
                             <div class="mb-3">
                                 <label class="block py-2 text-[15px] text-black font-medium">Judul Hukum</label>
                                 <input type="string" name="judul_peraturan"
-                                    value="{{ old('judul_peraturan', $produk->judul_peraturan) }}"
+                                    value="{{ old('judul_peraturan', $produk_hukum->judul_peraturan) }}"
                                     placeholder=" Masukkan Judul Peraturan"
                                     class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                     required></input>
@@ -31,7 +31,7 @@
                             <div class="mb-3">
                                 <label class="block py-2 text-[15px] text-black font-medium">Jenis Peraturan</label>
                                 <input type="string" name="jenis_peraturan"
-                                    value="{{ old('jenis_peraturan', $produk->jenis_peraturan) }}"
+                                    value="{{ old('jenis_peraturan', $produk_hukum->jenis_peraturan) }}"
                                     placeholder=" Masukkan Jenis Peraturan"
                                     class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                     required></input>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Nomor</label>
-                            <input type="string" name="nomor" value="{{ old('nomor', $produk->nomor) }}"
+                            <input type="string" name="nomor" value="{{ old('nomor', $produk_hukum->nomor) }}"
                                 placeholder=" Masukkan Nomor"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -48,7 +48,7 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Tahun Terbit</label>
                             <input type="year" name="tahun_terbit"
-                                value="{{ old('tahun_terbit', $produk->tahun_terbit) }}"
+                                value="{{ old('tahun_terbit', $produk_hukum->tahun_terbit) }}"
                                 placeholder=" Masukkan Tahun Terbit"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -56,7 +56,7 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Singkatan Jenis</label>
                             <input type="string" name="singkatan_jenis"
-                                value="{{ old('singkatan_jenis', $produk->singkatan_jenis) }}"
+                                value="{{ old('singkatan_jenis', $produk_hukum->singkatan_jenis) }}"
                                 placeholder=" Masukkan Singkatan Jenis"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -64,7 +64,7 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Tahun Penetapan</label>
                             <input type="date" name="tahun_penetapan"
-                                value="{{ old('tahun_penetapan', $produk->tahun_penetapan) }}"
+                                value="{{ old('tahun_penetapan', $produk_hukum->tahun_penetapan) }}"
                                 placeholder=" Masukkan Tahun Penetapan"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -72,21 +72,21 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Tahun Pengundangan</label>
                             <input type="date" name="tanggal_pengundangan"
-                                value="{{ old('tanggal_pengundangan', $produk->tanggal_pengundangan) }}"
+                                value="{{ old('tanggal_pengundangan', $produk_hukum->tanggal_pengundangan) }}"
                                 placeholder=" Masukkan Tahun Pengundangan"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Singkatan Pengarang</label>
-                            <input type="string" name="pengarang" value="{{ old('pengarang', $produk->pengarang) }}"
+                            <input type="string" name="pengarang" value="{{ old('pengarang', $produk_hukum->pengarang) }}"
                                 placeholder=" Masukkan Pengarang"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Sumber</label>
-                            <input type="string" name="sumber" value="{{ old('sumber', $produk->sumber) }}"
+                            <input type="string" name="sumber" value="{{ old('sumber', $produk_hukum->sumber) }}"
                                 placeholder=" Masukkan Sumber"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -94,7 +94,7 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Tempat Terbit</label>
                             <input type="string" name="tempat_terbit"
-                                value="{{ old('tempat_terbit', $produk->tempat_terbit) }}"
+                                value="{{ old('tempat_terbit', $produk_hukum->tempat_terbit) }}"
                                 placeholder=" Masukkan Tempat Terbit"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -102,28 +102,28 @@
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Bidang Hukum</label>
                             <input type="string" name="bidang_hukum"
-                                value="{{ old('bidang_hukum', $produk->bidang_hukum) }}"
+                                value="{{ old('bidang_hukum', $produk_hukum->bidang_hukum) }}"
                                 placeholder=" Masukkan Bidang Hukum"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Subjek</label>
-                            <input type="string" name="subjek" value="{{ old('subjek', $produk->subjek) }}"
+                            <input type="string" name="subjek" value="{{ old('subjek', $produk_hukum->subjek) }}"
                                 placeholder="Masukkan Subjek"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Bahasa</label>
-                            <input type="string" name="bahasa" value="{{ old('bahasa', $produk->bahasa) }}"
+                            <input type="string" name="bahasa" value="{{ old('bahasa', $produk_hukum->bahasa) }}"
                                 placeholder=" Masukkan Bahasa"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium"> Lokasi</label>
-                            <input type="string" name="lokasi" value="{{ old('lokasi', $produk->lokasi) }}"
+                            <input type="string" name="lokasi" value="{{ old('lokasi', $produk_hukum->lokasi) }}"
                                 placeholder=" Masukkan Lokasi"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
@@ -135,10 +135,10 @@
                                 required>
                                 <option value="">-- Pilih Status --</option>
                                 <option value="BERLAKU"
-                                    {{ old('status', $produk->status ?? '') == 'BERLAKU' ? 'selected' : '' }}>BERLAKU
+                                    {{ old('status', $produk_hukum->status ?? '') == 'BERLAKU' ? 'selected' : '' }}>BERLAKU
                                 </option>
                                 <option value="TIDAK BERLAKU"
-                                    {{ old('status', $produk->status ?? '') == 'TIDAK BERLAKU' ? 'selected' : '' }}>TIDAK
+                                    {{ old('status', $produk_hukum->status ?? '') == 'TIDAK BERLAKU' ? 'selected' : '' }}>TIDAK
                                     BERLAKU</option>
                             </select>
                         </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Evaluasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminEvaluasiController extends Controller
@@ -52,7 +53,8 @@ class AdminEvaluasiController extends Controller
     Evaluasi::create([
         'nama' => $request->nama,
         'link' => $request->link,
-        'img_pdf' => $filename
+        'img_pdf' => $filename,
+        'user_id' => Auth::id(),
     ]);
 
     return redirect()->route('evaluasi.dashboard')->with('success', ' Dokumen Evaluasi Berhasil Ditambahkan');
@@ -60,18 +62,16 @@ class AdminEvaluasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Evaluasi $evaluasi)
     {
-        $evaluasi = Evaluasi::findOrFail($id);
         return view('admin.evaluasi.edit', compact('evaluasi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Evaluasi $evaluasi)
     {
-        $evaluasi = Evaluasi::findOrFail($id);
         $filename = $evaluasi->img_pdf;
         if ($request->hasFile('img_pdf')) {
             if ($evaluasi->img_pdf) {
@@ -92,13 +92,17 @@ class AdminEvaluasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Evaluasi $evaluasi)
     {
-        $evaluasi = Evaluasi::findOrFail($id);
-        if ($evaluasi->gambar) {
-            Storage::delete('public/evaluasi/' . $evaluasi->img_pdf);
-        }
-        $evaluasi->delete();
-        return redirect()->back()->with('success', 'Dokumen Evaluasi Berhasil Dihapus');
+        if ($evaluasi->img_pdf) {
+        Storage::delete('public/evaluasi/' . $evaluasi->img_pdf);
+    }
+    $evaluasi->delete();
+
+    return redirect()->route('evaluasi.dashboard')->with('success', 'Dokumen Evaluasi berhasil dihapus');
+    }
+    public function show(Evaluasi $evaluasi)
+    {
+    return view('admin.evaluasi.show', compact('evaluasi'));
     }
 }
