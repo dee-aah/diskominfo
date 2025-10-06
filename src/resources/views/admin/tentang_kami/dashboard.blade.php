@@ -1,16 +1,24 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
         @if (session('success'))
-            <div id="flash-message" class="bg-green-500 text-center text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
+            <div id="flash-message" class="bg-green-100 border text-black text-center border-green-400  px-4 py-2 rounded mb-4 max-w-5xl  mb-4">
+                <div>
+                </div>
+                <div >
+                    {{ session('success') }}
+                </div>
+                    <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         @endif
         @if (session('error'))
-            <div id="flash-message"
-                class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
-                <span>{{ session('error') }}</span>
-                <button onclick="this.parentElement.remove()"></button>
+        <div id="flash-message" class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+            <div>
             </div>
+            <div >
+                <span>{{ session('error') }}</span>
+            </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         @endif
         <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">

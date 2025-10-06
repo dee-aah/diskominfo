@@ -1,7 +1,7 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
         @if (session('success'))
-            <div id="flash-message" class="bg-green-300 text-black flex justify-between max-w-5xl text-center text-green-800 p-3 rounded mb-4">
+            <div id="flash-message" class="bg-green-100 border text-black text-center border-green-400  px-4 py-2 rounded mb-4 max-w-5xl  mb-4">
                 <div>
                 </div>
                 <div >
