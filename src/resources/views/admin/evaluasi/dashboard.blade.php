@@ -1,26 +1,24 @@
 <x-layouts.sidebar>
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2  ">
         @if (session('success'))
-            <div id="flash-message"
-                class="bg-green-300 text-black flex justify-between max-w-5xl text-center text-green-800 p-3 rounded mb-4">
+            <div id="flash-message" class="bg-green-100 border border-green-400 text-black flex justify-between max-w-5xl text-center  p-3 rounded mb-4">
                 <div>
                 </div>
-                <div>
+                <div >
                     {{ session('success') }}
                 </div>
-                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                    <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         @endif
         @if (session('error'))
-            <div id="flash-message"
-                class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
-                <div>
-                </div>
-                <div>
-                    <span>{{ session('error') }}</span>
-                </div>
-                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+        <div id="flash-message" class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+            <div>
             </div>
+            <div >
+                <span>{{ session('error') }}</span>
+            </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         @endif
 <div class="rounded-2xl border  border-gray-200 bg-white ">
             <div class="flex justify-between px-3 grid grid-cols-3 items-center ">

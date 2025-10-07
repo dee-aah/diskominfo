@@ -48,19 +48,7 @@
                     </h1>
                     <div class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
                         {!! $sambutan->deskripsi !!}
-                        <style>
-                            ul {
-                                list-style-type: disc;
-                                padding-left: 1.5rem;
-                                margin-bottom: 0.5rem;
-                            }
-
-                            ol {
-                                list-style-type: decimal;
-                                padding-left: 1.5rem;
-                                margin-bottom: 0.5rem;
-                            }
-                        </style>
+                        
                     </div>
                 </div>
             </div>
@@ -175,7 +163,7 @@
         </section>
 
         <section class="relative max-w-6xl mx-auto rounded-2xl bg-cover my-10 bg-center min-h-screen flex items-center"
-            style="background-image: url('{{ asset('storage/tentang/' . $tentang_kami->gambar) }}');">
+            style="background-image: url('{{ asset('storage/konten/' . $konten->img) }}');">
             <!-- Overlay gelap -->
             <div class="absolute rounded-3xl max-w-6xl max-auto inset-0 bg-black/50"></div>
             <!-- Konten -->
@@ -185,19 +173,7 @@
                     <p class="text-lg  prose text-gray-200">
                         {!! $tentang_kami->deskripsi !!}
                     </p>
-                    <style>
-                        ul {
-                            list-style-type: disc;
-                            padding-left: 1.5rem;
-                            margin-bottom: 0.5rem;
-                        }
-
-                        ol {
-                            list-style-type: decimal;
-                            padding-left: 1.5rem;
-                            margin-bottom: 0.5rem;
-                        }
-                    </style>
+                    
                     <div class="flex flex-wrap justify-center gap-4 pt-4">
                         <a href="{{ url('/tentang') }}"
                             class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
@@ -227,7 +203,7 @@
                 <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
                     @if ($beritatasik)
                         <div class="relative bg-gray-200">
-                            <img src="{{ asset('storage/berita/' . $beritatasik->gambar) }}" alt="Gambar Berita"
+                            <img src="{{ asset('storage/berita/' . $beritatasik->img) }}" alt="Gambar Berita"
                                 class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
@@ -311,7 +287,7 @@
                 <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
                     @if ($berita)
                         <div class="relative">
-                            <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="Gambar Berita"
+                            <img src="{{ asset('storage/berita/' . $berita->img) }}" alt="Gambar Berita"
                                 class="w-full h-100 rounded-3xl p-3 object-cover">
                             <div class="absolute bottom-4 left-4">
                                 <span
@@ -345,7 +321,7 @@
                             </a>
                         </div>
                 </div>
-            @else
+                @else
                 <p class="text-gray-500">Belum ada berita terbaru untuk kategori Kota Tasikmalaya.</p>
                 @endif
                 <!-- Konten Samping -->
@@ -385,11 +361,11 @@
                             </a>
                         </div>
                     @endforeach
-                    <!-- CTA Update -->
                 </div>
             </div>
+            </div>
         </div>
-        <section class="max-w-6xl mx-auto px-6 py-10">
+        <section class="max-w-6xl mx-auto  py-10">
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
                 <div>
@@ -406,7 +382,7 @@
                 @foreach ($artikel as $item)
                     <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
                         <div class="relative">
-                            <img src="{{ asset('storage/artikel/' . $item->gambar) }}" alt="Gambar Artikel"
+                            <img src="{{ asset('storage/artikel/' . $item->img) }}" alt="Gambar Artikel"
                                 class="w-full h-100 object-cover p-3 rounded-2xl">
                             <span
                                 class="absolute bottom-5 left-5 bg-blue-800 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori }}

@@ -74,7 +74,7 @@ class LayananDetailController extends Controller
         'user_id' => Auth::id(),
     ]);
 
-    return redirect()->route('layanan_detail.dashboard')->with('success', 'Berita Berhasil Ditambahkan');
+    return redirect()->route('layanan_detail.dashboard')->with('success', 'Detail Layanan Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
@@ -108,7 +108,7 @@ class LayananDetailController extends Controller
             'layanan_id' => $request->layanan_id,
             'img' => $filename
         ]);
-        return redirect()->route('layanan_detail.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
+        return redirect()->route('layanan_detail.dashboard')->with('success', 'Detail Layanan Berhasil Diperbarui');
     }
 
     /**

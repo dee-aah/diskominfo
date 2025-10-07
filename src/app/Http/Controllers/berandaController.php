@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Http;
 class BerandaController extends Controller
 {
     public function index()
-    {
+    {   
+        $konten = Konten::where('nama','Video Beranda')->get();
         $layananBeranda = LayananBeranda::all();
 
         $response = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/dinas_kependudukan_dan_pencatatan_sipil/jumlah_penduduk_berdasarkan_jenis_kelamin_di_kota_tasikmalaya");
