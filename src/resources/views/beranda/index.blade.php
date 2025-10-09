@@ -3,10 +3,12 @@
     <body class="bg-white">
         <!-- Hero Section -->
         <section class="relative h-screen overflow-hidden pt-16 ">
+        
             <video autoplay muted loop playsinline
                 class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
                 <source src="{{ asset('storage/konten/' . $konten->video) }}" loading="lazy" type="video/mp4" />
             </video>
+            
             <div class="absolute bg-black bg-opacity-50 z-10"></div>
             <!-- Konten Hero -->
             <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
@@ -54,83 +56,79 @@
             </div>
         </div>
 
-        <section id="layanan" class="max-w-6xl mx-auto px-6 py-10 ">
+        <section id="layanan" class="max-w-6xl mx-auto  py-10 ">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold">Layanan Utama</h2>
+            </div>
             <div class="grid grid-cols-3 gap-6 auto-rows-[200px] ">
-
                 <!-- Card 1: Layanan DPPKBP3A -->
-                @if (isset($layananBeranda[0]))
                 <a href="{{ url('/layanans') }}"
                     class="bg-blue-100 p-6 rounded-lg text-sm text-justify shadow hover:shadow-xl transition relative row-span-2 cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[0]->nama}}</h3>
+                    <h3 class="text-lg text-center font-semibold py-4">Layanan DPPKBP3A</h3>
                     <p class=" text-gray-700">
-                        {!!$layananBeranda[0]->deskripsi!!}
+                        Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak (DPPKBP3A) Kota Tasikmalaya menyediakan berbagai layanan mulai dari program pengendalian penduduk, peningkatan partisipasi keluarga dalam program KB, pemberdayaan dan perlindungan hak perempuan, hingga perlindungan serta pemenuhan hak anak. Seluruh layanan ini dirancang untuk meningkatkan kualitas hidup masyarakat serta mewujudkan keluarga yang sejahtera, sehat, dan berdaya
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-                @endif
+                
                 <!-- Card 2: Standar Pelayanan -->
-                @if (isset($layananBeranda[1]))
-                <a href="{{$layananBeranda[1]->link}}"
+                <a href="https://sispek.tasikmalayakota.go.id/"
                     class="bg-rose-100 text-justify p-6 text-sm rounded-lg shadow hover:shadow-xl transition relative col-span-2 cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[1]->nama}}</h3>
-                    <p class=" prose  text-gray-700">
-                        {!!$layananBeranda[1]->deskripsi!!}
+                    <h3 class="text-lg text-center font-semibold py-4">Standar Pelayanan (SISPEK)</h3>
+                    <p class="  text-gray-700">
+                        DPPKBP3A Kota Tasikmalaya menyediakan layanan 
+                        terkait pengendalian penduduk, keluarga berencana, 
+                        pemberdayaan perempuan, serta perlindungan anak 
+                        untuk mendukung kesejahteraan masyarakat.
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
-                </a>
-                @endif
-                @if (isset($layananBeranda[2]))
+                </a>          
                 <!-- Card 3: IKM -->
-                <a href="{{$layananBeranda[2]->link}}"
+                <a href=""
                     class="bg-yellow-100 text-sm text-justify p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[2]->nama}}</h3>
+                    <h3 class="text-lg text-center font-semibold py-4">IKM</h3>
                     <p class=" text-gray-700">
-                        {!!$layananBeranda[2]->deskripsi!!}
+                        Indeks Kepuasan Masyarakat (IKM) Kota Tasikmalaya mengukur tingkat kepuasan publik terhadap kualitas pelayanan pemerintah.
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-                @endif
-
-                @if (isset($layananBeranda[3]))
+                
                 <!-- Card 4: PPID -->
-                <a href="{{$layananBeranda[3]->link}}"
+                <a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/"
                     class="bg-green-100 p-6 text-sm text-justify rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[3]->nama}}</h3>
+                    <h3 class="text-lg text-center font-semibold py-4">PPID</h3>
                     <p class=" text-gray-700">
-                        {!!$layananBeranda[3]->deskripsi!!}
+                        PPID mengelola dan menyediakan informasi publik bagi masyarakat, sekaligus memastikan informasi dapat diakses dengan mudah dan transparan.
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-                @endif
-
-                @if (isset($layananBeranda[4]))
+            </div>
+                <div class="grid grid-cols-2 pt-6 gap-6 ">
+                
                 <!-- Card 5: SP4NLAPOR -->
-                <a href="{{$layananBeranda[4]->link}}"
-                    class="bg-orange-100 p-6 text-sm text-justify rounded-xl shadow hover:shadow-lg transition relative col-span-2 cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">{{$layananBeranda[4]->nama}}</h3>
-                    <p class=" text-gray-700">
-                        {!!$layananBeranda[4]->deskripsi!!}
+                <a href="https://www.lapor.go.id/"
+                    class="bg-orange-100 p-6 text-sm text-justify rounded-xl shadow hover:shadow-lg transition relative  cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-2">SP4N LAPOR</h3>
+                    <p class=" text-gray-700 pb-4">
+                        Layanan aspirasi dan pengaduan online masyarakat untuk meningkatkan kualitas pelayanan publik
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-                @endif
-                @if (isset($layananBeranda[5]))
                 <!-- Card 6: Data Statistik -->
                 <a href="{{url('/sektoral')}}"
-                    class="bg-gray-100 p-6 text-justify text-sm rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold mb-2">{{$layananBeranda[5]->nama}}</h3>
-                    <p class=" text-gray-700">
-                        {!!$layananBeranda[5]->deskripsi!!}
+                    class="bg-gray-100 p-6 text-justify text-sm rounded-xl shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-lg text-center font-semibold py-2">Data Statistik Sektoral</h3>
+                    <p class=" text-gray-700 pb-4">
+                        Menyajikan data kependudukan, keluarga berencana, pemberdayaan perempuan, dan perlindungan anak sebagai dasar perumusan kebijakan
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
-                @endif
+                
             </div>
         </section>
-        <section class="max-w-6xl mx-auto px-6 py-10 bg-white ">
+        <section class="max-w-6xl mx-auto  py-10 bg-white ">
             <div class="text-center mb-6">
                 <h2 class="text-2xl font-bold">Sorotan Data Utama</h2>
-
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
                 <!-- Card Template -->
@@ -196,7 +194,7 @@
             </div>
         </section>
 
-        <div class="max-w-6xl mx-auto mt-6  p-6">
+        <div class="max-w-6xl mx-auto mt-6 ">
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-10">Berita Kota Tasikmalaya</h1>
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Berita Utama -->
@@ -217,13 +215,9 @@
                             <p class=" text-gray-600 mb-4">
                                 {!! Str::limit($beritatasik->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-between items-center  text-sm text-gray-500 my-5">
+                            <div class="flex justify-end items-center  text-sm text-gray-500 my-5">
                                 <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-upload"></i>
-                                    <span>{{ $beritatasik->created_at->translatedFormat('l, d F Y') }}</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-user"></i>
                                     <span>{{ $beritatasik->penulis }}</span>
                                 </div>
                             </div>
@@ -301,13 +295,9 @@
                             <p class=" text-gray-600 mb-4">
                                 {!! Str::limit($berita->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-between items-center text-sm text-gray-500 my-5">
+                            <div class="flex justify-end items-center text-sm text-gray-500 my-5">                                
                                 <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-upload"></i>
-                                    <span>{{ $berita->created_at->translatedFormat('l, d F Y') }}</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <i class="fa-solid fa-user"></i>
                                     <span>{{ $berita->penulis }}</span>
                                 </div>
                             </div>
@@ -391,15 +381,16 @@
                         <div class="p-5 bg-gray-200 space-y-2">
                             <h3 class="text-lg font-semibold">{{ $item->judul }}</h3>
                             <p class="text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</p>
-                            <div class="flex justify-between items-center text-sm pt-3 text-gray-500 mb-4">
+                            <div class="flex justify-end items-center text-sm pt-3 text-gray-500 mb-4">
+                                <div class="flex items-center mr-4 gap-1">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>{{ $item->penulis }}</span>
+                                </div>
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-upload"></i>
                                     <span>{{ $item->created_at->locale('id')->diffForHumans() }}</span>
                                 </div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <span>{{ $item->penulis }}</span>
-                                </div>
+                                
                             </div>
                             <a href="{{ route('artikel.index') }}"
                                 class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">

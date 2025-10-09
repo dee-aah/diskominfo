@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tentang extends Model
 {
+    protected $table = 'tentangs';
     protected $fillable = [
         'deskripsi','img','user_id'
     ];

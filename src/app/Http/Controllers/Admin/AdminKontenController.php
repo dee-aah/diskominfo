@@ -58,7 +58,7 @@ class AdminKontenController extends Controller
     }
     Konten::create([
         'nama' => $request->nama,
-        'link' => $request->link,
+        'deskripsi' => $request->deskripsi,
         'img' => $filename,
         'video' => $filenameVideo,
         'user_id' => Auth::id(),
@@ -88,18 +88,18 @@ class AdminKontenController extends Controller
             $filename =  $file->getClientOriginalName();
             $file->storeAs('konten', $filename);
         }
-        $filenameVideo = $konten->img;
-        if ($request->hasFile('img')) {
-            if ($konten->img) {
-                Storage::delete('public/konten/' . $konten->img);
+        $filenameVideo = $konten->video;
+        if ($request->hasFile('video')) {
+            if ($konten->video) {
+                Storage::delete('public/konten/' . $konten->video);
             }
-            $file = $request->file('img');
+            $file = $request->file('video');
             $filenameVideo =  $file->getClientOriginalName();
             $file->storeAs('konten', $filenameVideo);
         }
         $konten->update([
         'nama' => $request->nama,
-        'link' => $request->link,
+        'deskripsi' => $request->deskripsi,
         'img' => $filename,
         'video' => $filenameVideo,
         ]);

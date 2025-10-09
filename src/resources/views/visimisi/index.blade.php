@@ -3,7 +3,7 @@
     <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
             <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{asset('storage/visi/' . $visi->gambar) }}" alt="">
+                src="{{asset('storage/konten/' . $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute  bg-black bg-opacity-50 z-10"></div>
@@ -27,38 +27,43 @@
             </svg>
         </div>
     </section>
-    <section class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
-        <h2 class="text-2xl  font-bold text-black pb-3">Visi dan Misi DPPKBP3A</h2>
-        <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
-            {{$visi->des_singkat}}
-        </p>
-    </section>
 
     <!-- Container Grid Visi Misi (Atas Bawah) -->
-    <div class="flex justify-center max-w-6xl mx-auto px-4 pb-8 bg-white">
+    <div class="flex justify-center max-w-6xl mx-auto px-4 py-10 bg-white">
         <div class="grid grid-cols-1 gap-6 max-w-6xl w-full">
-
             <!-- Visi -->
-            <div class="bg-white p-6 rounded-[2rem] text-center shadow-md border-2 border-[#476A9A]">
-                <div class="flex items-center justify-center  gap-4">
-                    <img width="50" height="50" class="mb-1" src="https://img.icons8.com/ios/50/stargaze.png" alt="stargaze"/>
-                    <h2 class="text-3xl font-bold  ">Visi</h2>
+            <div class="bg-white py-6 rounded-[1rem] text-center shadow-md border-2 border-[#147DF8]">
+                <div class="flex items-center justify-center mb-4  ">
+                    <div class=" grid grid-flow-col grid-rows-2  mb-2">
+                        <div class="rounded-full row-span-2 text-center flex bg-blue-100 py-6 px-6">
+                            <img width="30" style="color:blue; " height="30" src="https://img.icons8.com/ios-glyphs/30/visible--v1.png" alt="visible--v1"/>
+                        </div>
+                        <div class="col-span-2 row-span-1 "></div>
+                        <div class="col-span-2 align-bottom mt-2 ">
+                            <h2 class="text-xl   font-bold border px-3  text-[#147df8]  rounded-full border-[#147DF8]   ">Visi</h2>
+                        </div>
+                    </div>
                 </div>
-                <hr class="w-29 mx-auto border-t-2 border-blue-300 mb-4" />
-                <p class="text-gray-700 leading-relaxed">
-                    {{$visi->visi}}
+                <p class="text-gray-700 prose  leading-relaxed">
+                    {!!$visi->visi!!}
                 </p>
             </div>
 
             <!-- Misi -->
-            <div class="bg-white p-6 rounded-[2rem] text-center shadow-md border-2 border-[#476A9A]">
-                <div class="flex items-center justify-center  gap-4">
-                    <img width="50" height="50" class="mb-1" src="https://img.icons8.com/external-goofy-line-kerismaker/50/external-Goals-business-goofy-line-kerismaker.png" alt="external-Goals-business-goofy-line-kerismaker"/>
-                    <h2 class="text-3xl font-bold  ">Misi</h2>
+            <div class="bg-white p-6 rounded-[1rem] text-center shadow-md border-2 border-[#36F700]">
+                <div class="flex items-center justify-center mb-4  ">
+                    <div class=" grid grid-flow-col grid-rows-2  mb-2">
+                        <div class="rounded-full row-span-2 text-center flex bg-green-100 py-6 px-6">
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/goal.png" alt="goal"/>
+                        </div>
+                        <div class="col-span-2 row-span-1 "></div>
+                        <div class="col-span-2 align-bottom mt-2 ">
+                            <h2 class="text-xl   font-bold border px-3  text-[#36F700]  rounded-full border-[#36F700]   ">Misi</h2>
+                        </div>
+                    </div>
                 </div>
-                <hr class="w-29 mx-auto border-t-2 border-blue-300 mb-4" />
                 <p class="text-gray-700 leading-relaxed">
-                    {{$visi->misi}}
+                    {!!$visi->misi!!}
                 </p>
             </div>
 

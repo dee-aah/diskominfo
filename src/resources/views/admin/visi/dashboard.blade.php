@@ -2,9 +2,24 @@
     <div class="max-w-5xl mx-auto flex-1  min-h-screen ml-2 ">
 
         @if (session('success'))
-            <div id="flash-message" class="bg-green-100 text-center text-green-800 p-3 rounded mb-4">
-                {{ session('success') }}
+            <div id="flash-message" class="bg-green-100 border border-green-400 text-black flex justify-between max-w-5xl text-center  p-3 rounded mb-4">
+                <div>
+                </div>
+                <div >
+                    {{ session('success') }}
+                </div>
+                    <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
             </div>
+        @endif
+        @if (session('error'))
+        <div id="flash-message" class="flex items-center m-3 justify-between bg-red-500 text-white px-4 py-2 rounded mb-4">
+            <div>
+            </div>
+            <div >
+                <span>{{ session('error') }}</span>
+            </div>
+                <button onclick="this.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
         @endif
 
         <div class="rounded-2xl border  border-gray-200 bg-white ">
@@ -36,46 +51,55 @@
                 <tr class="border-gray-200 border-b">
                     <th class="font-medium border-r  border-gray-200 px-3 py-3">Visi</th>
                     <th class="font-medium border-r  border-gray-200 px-3 py-3">Misi</th>
-                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Deskripsi Singkat</th>
-                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Gambar</th>
+                    <th class="font-medium border-r  border-gray-200 px-3 py-3">Waktu Dibuat</th>
                     <th class="font-medium px-3 py-3">Aksi</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                @forelse ($visis as $visi)
+                @forelse ($visi_misis as $visi)
                     <tr class="text-center mx-3 items-center hover:bg-gray-100 ">
-                        <td class="px-3 border-r  border-gray-200 py-3">{{ $visi->visi }}</td>
-                        <td class="px-3 border-r  border-gray-200 py-3">{{ $visi->misi }}</td>
-                        <td class="px-3 border-r  border-gray-200 py-3">{{ $visi->des_singkat }}</td>
-                        <td class="px-3 border-r  border-gray-200 py-3 text-center">
-                            @if ($visi->gambar)
-                                <img src="{{ asset('storage/visi/' . $visi->gambar) }}"
-                                    class="w-15 h-15 object-cover mx-auto  rounded">
-                            @else
-                                -
-                            @endif
-                        </td>
-                        <td class="p-3  align-middle ">
-                                    <div class="flex justify-center items-center gap-1">
-                            <a href="{{ route('visi.edit', $visi->id) }}"
-                                class=" col-span-2  p-3  ">
-                                    <i class="fa-solid fa-pen text-gray-600 hover:text-yellow-500 cursor-pointer"></i>
-                            </a>
-                            <form action="{{ route('visi.destroy', $visi->id) }}" method="POST"
-                                onsubmit="return confirm(' Anda Yakin ingin menghapus artikel ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class=" col-span-2 p-3  ">
-                                    <i class="fa-solid fa-trash text-gray-600 hover:text-red-500 cursor-pointer"> </i>
-                                </button>
-                            </form>
-                                    </div>
-                        </td>
+                        <td class="px-3 border-r prose  border-gray-200 py-3">{!! $visi->visi !!}</td>
+                        <td class="px-3 border-r prose  border-gray-200 py-3">{!! $visi->misi !!}</td>
+                        <td class="px-3 border-r  border-gray-200 py-3">
+                                            {{ $visi->created_at->translatedFormat('l d F Y.') }}</td>
+                        <td class="p-3  align-middle relative z-10">
+                                            <el-dropdown class="inline-block">
+                                                <button
+                                                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white inset-ring-1 inset-ring-white/5 hover:bg-white/20">
+                                                    <i class="fa-solid fa-ellipsis " style="color: black"
+                                                        data-slot="icon" aria-hidden="true"></i>
+                                                </button>
+                                                <el-menu anchor="bottom end" popover
+                                                    class="w-56 origin-top-right bg-gray-100 shadow rounded-md font-medium border border-gray-300 outline-1 -outline-offset-1 outline-white/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
+                                                    <div class="py-1">
+                                                        <a href="{{ route('visi.show', $visi) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-eye px-3"></i> Lihat Detail
+                                                        </a>
+                                                        <a href="{{ route('visi.edit', $visi) }}"
+                                                            class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
+                                                            <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('visi.destroy', $visi) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Yakin hapus Visi Misi ini?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="flex w-full items-center font-medium gap-2 px-4 py-2 text-sm text-red-600 border-t border-gray-300 hover:bg-red-200">
+                                                                <i class="fa-solid fa-trash text-gray-600 px-3"
+                                                                    style="color: red">
+                                                                </i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </el-menu>
+                                            </el-dropdown>
+                                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="px-3 py-3">Belum ada artikel</td>
+                        <td colspan="5" class="px-3 text-center py-3">Belum ada artikel</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -84,7 +108,8 @@
                 </div>
             </div>
         </div>
-    </div>>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
     <script>
         document.getElementById('toggleAksi').addEventListener('click', function() {
             const aksiKoloms = document.querySelectorAll('.aksi');

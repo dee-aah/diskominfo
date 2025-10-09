@@ -92,17 +92,20 @@ class AdminTentangController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Tentang $tentang_kami)
-    {
-        if ($tentang_kami->img) {
+{
+    if ($tentang_kami->img && Storage::exists('public/tentang/' . $tentang_kami->img)) {
         Storage::delete('public/tentang/' . $tentang_kami->img);
     }
+
     $tentang_kami->delete();
 
-    return redirect()->route('tentang.dashboard')->with('success', 'Sambutan Tentang berhasil dihapus');
-    }
-    public function show(Tentang $tentang_kami)
-{
-    return view('admin.tentang_kami.show', compact('tentang_kami'));
+    return redirect()->route('tentang_kami.dashboard')
+        ->with('success', 'Data Tentang Kami berhasil dihapus.');
 }
+    
+    public function show(Tentang $tentang_kami)
+    {
+    return view('admin.tentang_kami.show', compact('tentang_kami'));
+    }
 
 }

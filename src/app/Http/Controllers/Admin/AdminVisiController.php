@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Visimisi;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 class AdminVisiController extends Controller
 {
     public function dashboard(Request $request)
@@ -15,11 +17,10 @@ class AdminVisiController extends Controller
             $search = $request->d;
             $query->where(function ($q) use ($search) {
                 $q->where('visi', 'like', "%{$search}%")
-                    ->orWhere('misi', 'like', "%{$search}%")
-                    ->orWhere('des_singkat', 'like', "%{$search}%");
+                    ->orWhere('misi', 'like', "%{$search}%");
             });}
-        $visis = $query->latest()->get();
-        return view('admin.visi.dashboard', compact('visis'));
+        $visi_misis = $query->latest()->get();
+        return view('admin.visi.dashboard', compact('visi_misis'));
     }
     public function create()
     {
@@ -31,56 +32,33 @@ class AdminVisiController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'des_singkat' => 'required',
+        $request->validate([
         'visi' => 'required',
         'misi' => 'required',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        
     ]);
-        $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
-            $filename = $file->getClientOriginalName();
-            $file->storeAs('visi', $filename);
-        }
 
     Visimisi::create([
         'visi' => $request->visi,
-        'des_singkat' => $request->des_singkat,
+        'user_id' => Auth::id(),
         'misi' => $request->misi,
-        'gambar' => $filename
     ]);
 
     return redirect()->route('visi.dashboard')->with('success', 'Visi Misi Berhasil Ditambahkan');
     }
-    public function edit(string $id)
+    public function edit(Visimisi $visi)
     {
-        $visi = Visimisi::findOrFail($id);
         return view('admin.visi.edit', compact('visi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Visimisi $visi)
     {
-        $visi = Visimisi::findOrFail($id);
-
-        $filename = $visi->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($visi->gambar) {
-                Storage::delete('public/visi/' . $visi->gambar);
-            }
-            $file = $request->file('gambar');
-            $filename =  $file->getClientOriginalName();
-            $file->storeAs('visi', $filename);
-        }
-
         $visi->update([
             'visi' => $request->visi,
             'misi' => $request->misi,
-            'des_singkat' => $request->des_singkat,
-            'gambar' => $filename
         ]);
         return redirect()->route('visi.dashboard')->with('success', 'Visi Misi Berhasil Diperbarui');
     }
@@ -88,14 +66,14 @@ class AdminVisiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Visimisi $visi)
     {
-        $visi = Visimisi::findOrFail($id);
-        if ($visi->gambar) {
-            Storage::delete('public/visi/' . $visi->gambar);
-        }
-        $visi->delete();
+    $visi->delete();
 
-        return redirect()->back()->with('success', 'Visi Misi Berhasil Dihapus');
+    return redirect()->route('visi.dashboard')->with('success', 'Visi Misi berhasil dihapus');
     }
+    public function show(Visimisi $visi)
+{
+    return view('admin.visi.show', compact('visi'));
+}
 }

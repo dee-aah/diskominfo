@@ -86,7 +86,7 @@
                                                             class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
                                                             <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
                                                         </a>
-                                                        <form action="{{ route('tentang_kami.destroy', $tentang) }}"
+                                                        <form action="{{ route('tentang_kami.destroy', $tentang->id) }}"
                                                             method="POST"
                                                             onsubmit="return confirm('Yakin hapus Tentang ini?')">
                                                             @csrf

@@ -2,7 +2,7 @@
     <main>
         <section class="relative h-screen overflow-hidden "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
             <div>
-                <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5" src="{{ asset('storage/tentang/'. $tentang->gambar) }}" alt="">
+                <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5" src="{{ asset('storage/konten/'. $konten->img) }}" alt="">
             </div>
             <!-- Overlay -->
             <div class="absolute  bg-black bg-opacity-50 z-10"></div>
@@ -26,33 +26,24 @@
                 </svg>
             </div>
         </section>
-        <div class="bg-white mx-auto max-w-6xl py-12 px-4 md:px-12">
+        <div class="bg-white mx-auto max-w-6xl py-12 ">
             <!-- Header dengan logo dan judul sejajar -->
-            <div class="flex items-center justify-center gap-3 mb-2">
-                <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
+            <div class="flex items-center justify-center gap-3 my-4">
+                <h2 class="text-2xl md:text-2xl font-bold text-black pb-9">
                     Tentang Kami
                 </h2>
             </div>
-
-            <!-- Subjudul -->
-            <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
-                {{$tentang->des_singkat}}
-            </p>
             <!-- Konten Utama -->
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 max-w-6xl mx-auto">
                 <!-- Teks -->
                 <div class="md:w-1/2 text-gray-700  text-justify px-2">
-                    <div class="prose prose-gray max-w-none space-y-1">
+                    <div class="prose  max-w-none space-y-1">
                         {!! $tentang->deskripsi !!}
                     </div>
                 </div>
-                <style>
-                    ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
-                    ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
-                </style>
                 <!-- Gambar -->
                 <div class="md:w-1/2">
-                    <img src="{{ asset('storage/tentang/'.$tentang->gambar_cont ) }}" alt="Foto Kegiatan" class="rounded-md shadow-md w-full object-cover" />
+                    <img src="{{ asset('storage/tentang/'.$tentang->img ) }}" alt="Foto Kegiatan" class="rounded-md shadow-md w-full object-cover" />
                 </div>
             </div>
         </div>
@@ -66,13 +57,13 @@
                 <div class="relative overflow-hidden rounded-lg shadow-lg max-w-3xl mx-auto mb-6 h-full ">
                 <!-- Gambar container -->
                     <div id="carousel" class="flex transition-transform duration-500">
-                @foreach ($beritaterbaru as $berita)
-                <div class="relative w-full  flex-shrink-0">
-                    <img src="{{ asset('storage/berita/' . $berita->gambar) }}" class="w-full h-full object-cover w-1/3 rounded-lg shadow">
+                @foreach ($berita as $item)
+                <div class="relative w-full text-white flex-shrink-0">
+                    <img src="{{ asset('storage/berita/' . $item->img ) }}" class="w-full h-full object-cover rounded-lg shadow">
                     <div class="absolute bottom-0 w-full  bg-gradient-to-t from-black/70 text-center to-transparent p-6">
-                    <h3 class="text-white font-bold text-xl">{{ $berita->judul }}</h3>
-                    <p class="text-gray-200 text-sm">
-                    {{ Str::limit($berita->deskripsi, 100) }}
+                    <h3 class="text-white font-bold text-xl">{{ $item->judul }}</h3>
+                    <p class="text-white prose text-sm">
+                    {!! Str::limit($item->deskripsi, 190) !!}
                     </p>
                     </div>
                 </div>

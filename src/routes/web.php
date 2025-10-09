@@ -206,11 +206,18 @@ Route::middleware(['auth'])->group(function () {
 
         // --- Manajemen Visi Misi ---
         Route::get('/visi/dashboard', [AdminVisiController::class, 'dashboard'])->name('visi.dashboard');
-        Route::get('/visi/create', [AdminVisiController::class, 'create'])->name('visi.create');
-        Route::post('/visi', [AdminVisiController::class, 'store'])->name('visi.store');
-        Route::get('/visi/{id}/edit', [AdminVisiController::class, 'edit'])->name('visi.edit');
-        Route::put('/visi/{id}', [AdminVisiController::class, 'update'])->name('visi.update');
-        Route::delete('/visi/{id}', [AdminVisiController::class, 'destroy'])->name('visi.destroy');
+        Route::resource('/visi', AdminVisiController::class)->except(['index']);
+        Route::get('/visi/{visi}/edit', [AdminVisiController::class, 'edit'])
+            ->name('visi.edit')
+            ->middleware('can:update,visi');
+        Route::put('/visi/{visi}', [AdminVisiController::class, 'update'])
+            ->name('visi.update')
+            ->middleware('can:update,visi');
+        Route::delete('/visi/{visi}', [AdminVisiController::class, 'destroy'])
+            ->name('visi.destroy')
+            ->middleware('can:delete,visi');
+        Route::get('/visi/{visi}', [AdminVisiController::class, 'show'])
+            ->name('visi.show');
 
         // ... tupoksi
         Route::get('/tupoksii/dashboard', [AdminTupoksiController::class, 'dashboard'])->name('tupoksii.dashboard');

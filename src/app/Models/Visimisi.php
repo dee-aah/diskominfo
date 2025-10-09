@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Visimisi extends Model
 {
+    protected $table = 'visi_misis';
     protected $fillable = [
-        'user_id','visi', 'misi', 'img'
+        'user_id','visi', 'misi'
     ];
     public function user()
     {

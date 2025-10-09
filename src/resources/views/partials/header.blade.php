@@ -17,7 +17,7 @@
                         <div class="relative group">
                             <button class="{{ request()->is('tentang','visimisi','profil','struktur','tupoksi','maklumatt')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Profil</button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-20">
                                 <a href="{{ url('/tentang') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Tentang
                                     Kami</a>

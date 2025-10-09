@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\Visimisi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +16,8 @@ class VisiController extends Controller
     public function index()
     {
         $visi = Visimisi::first();
-        return view("visimisi.index", compact('visi'));
+        $konten = Konten::where('nama', 'Konten')->first();
+        return view("visimisi.index", compact('visi','konten'));
 
     }
 
