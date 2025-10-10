@@ -3,7 +3,7 @@
     <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
             <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{ asset('storage/struktur/'. $struktur->gambar) }}" alt="">
+                src="{{ asset('storage/konten/'. $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute bg-black bg-opacity-50 z-10"></div>
@@ -29,8 +29,8 @@
             </svg>
         </div>
     </section>
-        <div class="bg-white text-center max-w-6xl mx-auto py-8 -mt-1">
-            <div class="flex items-center justify-center gap-3 mb-2">
+        <div class="bg-white text-center max-w-6xl mx-auto mt-10 py-8 -mt-1">
+            {{-- <div class="flex items-center justify-center gap-3 mb-2">
                 <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
                     Struktur Organisasi
                 </h2>
@@ -39,9 +39,9 @@
             <!-- Subjudul -->
             <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
                 {{$struktur->deskripsi}}
-            </p>
+            </p> --}}
             <div class="flex justify-center my-6">
-                <img src="{{ asset('storage/struktur/'. $struktur->gambar_cont) }}" alt="Gambar" class="w-1/2 mx-auto" />
+                <img src="{{ asset('storage/struktur/'. $struktur->img) }}" alt="Gambar" class="w-1/2 mx-auto" />
             </div>
 
         </div>

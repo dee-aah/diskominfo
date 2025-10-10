@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\Profil;
-use App\Models\Profil_conts;
 use Illuminate\Http\Request;
 
 class ProfilController extends Controller
@@ -14,8 +14,8 @@ class ProfilController extends Controller
     public function index()
     {
         $profil = Profil::all();
-        $profil_cont = Profil_conts::first();
-        return view('profil.index', compact('profil','profil_cont'));
+        $konten = Konten::where('nama', 'Konten')->first();
+        return view('profilPimpinan.index', compact('profil','konten'));
     }
 
     /**

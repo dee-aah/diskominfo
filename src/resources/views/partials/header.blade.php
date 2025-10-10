@@ -15,15 +15,15 @@
                     <div class="hidden md:flex space-x-6 font-medium items-center">
                         <a href="{{ url('/beranda') }}" class="{{ request()->is('beranda') ? 'text-blue-600' : 'hover:text-blue-600' }}">Beranda</a>
                         <div class="relative group">
-                            <button class="{{ request()->is('tentang','visimisi','profil','struktur','tupoksi','maklumatt')
+                            <button class="{{ request()->is('tentang','visimisi','profilPimpinan','struktur','tupoksi','maklumatt')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Profil</button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-20">
+                            <div class="absolute hidden  whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-20">
                                 <a href="{{ url('/tentang') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Tentang
                                     Kami</a>
                                 <a href="{{ url('/visimisi') }}"
                                     class="block px-4 text-center py-2 hover:bg-blue-100">Visi Misi</a>
-                                <a href="{{ url('/profil') }}"
+                                <a href="{{ url('/profilPimpinan') }}"
                                     class="block px-4 text-center py-2 hover:bg-blue-100">Profil
                                     Pimpinan</a>
                                 <a href="{{ url('/struktur') }}"
@@ -34,13 +34,12 @@
                                 <a href="{{ url('/maklumatt') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Maklumat
                                     Pelayanan</a>
-
                             </div>
                         </div>
                         <div class="relative group">
                             <button class="{{ request()->is('layanans')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Layanan</button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <div class="absolute hidden whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/layanans') }}"class="block px-4 text-center py-2 hover:bg-blue-100">Informasi
                                     Layanan</a>
                                 <a href="{{ url('/standarpelayanan') }}"
@@ -57,7 +56,7 @@
                         <div class="relative group">
                             <button class="{{ request()->is('produkhukum','dokumenevaluasi','dokumenperencanaan')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Dokumen</button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <div class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/produkhukum') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Produk
                                     Hukum</a>
@@ -71,7 +70,7 @@
                         <div class="relative group">
                             <button class="{{ request()->is('beritakita','artikel')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Berita</button>
-                            <div class="absolute hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <div class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/beritakita') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Berita</a>
                                 <a href="{{ url('/artikel') }}"

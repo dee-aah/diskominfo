@@ -16,6 +16,7 @@ use App\Models\Perencanaan;
 use App\Models\ProdukHukum;
 use App\Models\Profil;
 use App\Models\SambutanPimpinan;
+use App\Models\Struktur;
 use App\Models\Tentang;
 use App\Models\Tupoksi;
 use App\Models\UraianTugas;
@@ -30,6 +31,7 @@ use App\Policies\PerencanaanPolicy;
 use App\Policies\ProdukHukumPolicy;
 use App\Policies\ProfilPolicy;
 use App\Policies\SambutanPolicy;
+use App\Policies\StrukturPolicy;
 use App\Policies\TentangPolicy;
 use App\Policies\TupoksiPolicy;
 use App\Policies\UraianPolicy;
@@ -65,5 +67,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Perencanaan::class, PerencanaanPolicy::class);
         Gate::policy(Evaluasi::class, EvaluasiPolicy::class);
         Gate::policy(Konten::class, KontenPolicy::class);
+        Gate::policy(Struktur::class, StrukturPolicy::class);
+        Gate::policy(Tentang::class, TentangPolicy::class);
     }
 }

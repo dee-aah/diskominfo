@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\Struktur;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class strukturController extends Controller
     public function index()
     {
         $struktur = Struktur::first();
-        return view('struktur.index',compact('struktur'));
+        $konten = Konten::where('nama', 'Konten')->first();
+        return view('struktur.index',compact('struktur','konten'));
     }
 
     /**

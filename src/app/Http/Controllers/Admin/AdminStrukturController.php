@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Struktur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class AdminStrukturController extends Controller
 {
@@ -19,7 +20,7 @@ class AdminStrukturController extends Controller
                     ->orWhere('uraian', 'like', "%{$search}%");
             });}
         $strukturs = $query->latest()->get();
-        return view('admin.struktur_.dashboard', compact('strukturs'));
+        return view('admin.strukturr.dashboard', compact('strukturs'));
     }
 
     /**
@@ -28,7 +29,7 @@ class AdminStrukturController extends Controller
     public function create()
     {
         $strukturs = Struktur::all();
-        return view('admin.struktur_.create', compact('strukturs'));
+        return view('admin.strukturr.create', compact('strukturs'));
     }
 
     /**
@@ -38,80 +39,67 @@ class AdminStrukturController extends Controller
     {
         $request->validate([
         'deskripsi' => 'required',
-        'gambar_cont' => 'nullable|image|mimes:jpg,jpeg,png',
-        'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+        'img' => 'nullable|image|mimes:jpg,jpeg,png'
     ]);
-        $filenames = null;
-        if ($request->hasFile('gambar_cont')) {
-            $file = $request->file('gambar_cont');
-            $filenames = $file->getClientOriginalName();
-            $file->storeAs('struktur', $filenames);
-        }
-
         $filename = null;
-        if ($request->hasFile('gambar')) {
-            $file = $request->file('gambar');
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
             $filename = $file->getClientOriginalName();
             $file->storeAs('struktur', $filename);
         }
     Struktur::create([
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
+        'user_id' => Auth::id(),
+        'img' => $filename
 
     ]);
 
-    return redirect()->route('struktur_.dashboard')->with('success', 'Tentang Kami Berhasil Ditambahkan');
+    return redirect()->route('struktur.dashboard')->with('success', 'Tentang Kami Berhasil Ditambahkan');
     }
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Struktur $strukturr)
     {
-        $struktur = Struktur::findOrFail($id);
-        return view('admin.struktur_.edit', compact('struktur'));
+        return view('admin.struktur.edit', compact('strukturr'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Struktur $strukturr)
     {
-        $struktur = Struktur::findOrFail($id);
 
-        $filenames = $struktur->gambar_cont;
-        if ($request->hasFile('gambar_cont')) {
-            if ($struktur->gambar_cont) {
-                Storage::delete('public/struktur/' . $struktur->gambar_cont);
+        $filename = $strukturr->img;
+        if ($request->hasFile('img')) {
+            if ($strukturr->img) {
+                Storage::delete('public/struktur/' . $strukturr->img);
             }
-            $file = $request->file('gambar_cont');
-            $filenames =  $file->getClientOriginalName();
-            $file->storeAs('struktur', $filenames);
-        }
-        $filename = $struktur->gambar;
-        if ($request->hasFile('gambar')) {
-            if ($struktur->gambar) {
-                Storage::delete('public/struktur/' . $struktur->gambar);
-            }
-            $file = $request->file('gambar');
+            $file = $request->file('img');
             $filename =  $file->getClientOriginalName();
             $file->storeAs('struktur', $filename);
         }
-        $struktur->update([
+        $strukturr->update([
         'deskripsi' => $request->deskripsi,
-        'gambar_cont' => $filenames,
-        'gambar' => $filename
+        'img' => $filename
         ]);
-        return redirect()->route('struktur_.dashboard')->with('success', 'Struktur Organisasi Berhasil Diperbarui');
+        return redirect()->route('strukturr.dashboard')->with('success', 'Struktur Organisasi Berhasil Diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Struktur $strukturr)
     {
-        $struktur = Struktur::findOrFail($id);
-        $struktur->delete();
-        return redirect()->back()->with('success', 'Struktur Organisasi Berhasil Dihapus');
+        if ($strukturr->img) {
+        Storage::delete('public/strukturr/' . $strukturr->img);
+    }
+    $strukturr->delete();
+
+    return redirect()->route('struktur.dashboard')->with('success', 'Struktur Organisasi berhasil dihapus');
+    }
+    public function show(Struktur $strukturr)
+    {
+        return view('Admin.profil.show', compact('strukturr'));
     }
 }

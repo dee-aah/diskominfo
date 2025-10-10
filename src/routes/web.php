@@ -263,8 +263,20 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/tentang_kami/{tentang_kami}', [AdminTentangController::class, 'show'])
             ->name('tentang_kami.show');
 
-        Route::resource('/struktur_', AdminStrukturController::class)->except(['index', 'show']);
-        Route::get('/struktur_/dashboard', [AdminStrukturController::class, 'dashboard'])->name('struktur_.dashboard');
+        //struktur
+        Route::get('/strukturr/dashboard', [AdminStrukturController::class, 'dashboard'])->name('strukturr.dashboard');
+        Route::resource('/strukturr', AdminStrukturController::class)->except(['index']);
+        Route::get('/strukturr/{strukturr}/edit', [AdminStrukturController::class, 'edit'])
+            ->name('strukturr.edit')
+            ->middleware('can:update,strukturr');
+        Route::put('/strukturr/{strukturr}', [AdminStrukturController::class, 'update'])
+            ->name('strukturr.update')
+            ->middleware('can:update,strukturr');
+        Route::delete('/strukturr/{struktur}', [AdminStrukturController::class, 'destroy'])
+            ->name('strukturr.destroy')
+            ->middleware('can:delete,strukturr');
+        Route::get('/strukturr/{strukturr}', [AdminStrukturController::class, 'show'])
+            ->name('strukturr.show');
         //maklumat
         Route::get('/maklumat/dashboard', [AdminMaklumatController::class, 'dashboard'])->name('maklumat.dashboard');
         Route::resource('/maklumat', AdminMaklumatController::class)->except(['index']);
