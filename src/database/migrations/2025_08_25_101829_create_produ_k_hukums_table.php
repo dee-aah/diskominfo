@@ -17,7 +17,10 @@ return new class extends Migration
                 ->constrained('users')
                 ->cascadeOnDelete();
             $table->string('reg')->nullable();
-            $table->string('jenis_peraturan')->nullable();
+            $table->enum('jenis_peraturan', [
+                'Peraturan Daerah',
+                'Peraturan Walikota'
+            ])->nullable();
             $table->string('judul_peraturan')->nullable();
             $table->string('nomor')->nullable();
             $table->year('tahun_terbit')->nullable();

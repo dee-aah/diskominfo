@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
-use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 
 class ArtikelController extends Controller
@@ -20,29 +20,32 @@ class ArtikelController extends Controller
         $query->where('judul', 'like', '%' . request('d') . '%');
     })
     ->latest()
-    ->paginate(4);
-    // Artikel terbaru untuk 1 di highlight
-    $artikelpopuler = Artikel::whereHas('kategori')
-    ->orderBy('view_count', 'desc')
-    ->take(4)
-    ->get();
+    ->paginate(6);
 
-    return view('artikel.index', compact('artikelpopuler', 'artikellain'));
+    return view('artikel.index', compact( 'artikellain'));
     }
     /**
      * Display the specified resource.
      */
     public function show($slug)
     {
-        $artikel = Artikel::with('kategori')->where('slug', $slug)->firstOrFail();
+        $artikel = Artikel::where('slug', $slug)->firstOrFail();
 
-        $artikelTerkait = Artikel::with('kategori')
-        ->where('kategori_id', $artikel->kategori_id)
+    // Tambah jumlah view
+    $artikel->increment('view_count');
+
+    // Format tanggal
+    Carbon::setLocale('id');
+    $artikel->waktu_formatted = Carbon::parse($artikel->waktu)->translatedFormat('l, d F Y');
+
+    // Ambil berita terkait berdasarkan kategori yang sama
+    $artikelTerkait = Artikel::where('kategori', $artikel->kategori)
         ->where('id', '!=', $artikel->id)
         ->latest()
         ->take(5)
         ->get();
 
+    // Kirim ke view
     return view('artikel.show', compact('artikel', 'artikelTerkait'));
     }
 

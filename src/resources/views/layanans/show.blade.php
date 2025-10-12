@@ -9,14 +9,14 @@
 
         {{-- Gambar utama + judul --}}
         <div class="relative">
-            <img src="{{ asset('storage/layanan/' . $layanan->gambar) }}"
+            <img src="{{ asset('storage/layanan/' . $layanan->img) }}"
                 class="w-300 h-150 brightness-70 object-cover rounded-lg">
             <div class="absolute py-6 flex flex-col inset-x-0 bottom-0 h-35 justify-center  bg-black/40 text-center ">
                 <h2 class="text-white text-[35px] font-bold">{{ $layanan->nama }}</h2>
-                <p class="text-white text-lg mt-2">{{ $layanan->des_singkat }}</p>
+                <div class="text-white prose text-lg mt-2">{!! $layanan->deskripsi_singkat !!}</div>
             </div>
         </div>
-        <p class="mt-4 py-6 text-[16px] font-semibold text-justify text-gray-600">{{ $layanan->deskripsi }}</p>
+        <div class="mt-4 py-6 text-[16px] font-semibold text-justify text-gray-600">{!! $layanan->deskripsi !!}</div>
 
         {{-- Konten utama --}}
         <div class="mt-6 prose max-w-none">
@@ -27,18 +27,14 @@
         <div class="my-8 grid md:grid-cols-2 gap-12">
             @foreach ($layanan->layanan_details as $detail)
                 <div class="bg-gray-200 shadow justify-center rounded-lg overflow-hidden">
-                    <img src="{{ asset('storage/layanan_detail/' . $detail->gambar) }}"
+                    <img src="{{ asset('storage/layanan_detail/' . $detail->img) }}"
                         class="size-80 w-full object-cover">
                     {{-- Teks tujuan --}}
                     <div class="mx-6 py-6 text-[14px] font-normal">
                         <h3 class="font-semibold text-[18px] text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
-                        <p class="list-decimal  prose text-[12px] ml-6">
+                        <div class=" prose text-[12px] ml-6">
                             {!!$detail->deskripsi!!}
-                        </p>
-                        <style>
-                            ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.5rem; }
-                            ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.5rem; }
-                        </style>
+                        </div>
                     </div>
                 </div>
             @endforeach

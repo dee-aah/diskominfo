@@ -23,12 +23,16 @@
                                     class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                     required></input>
                             </div>
-                            <div class="mb-3">
-                                <label class="block py-2 text-[15px] text-black font-medium">Jenis Peraturan</label>
-                                <input type="text" name="jenis_peraturan" placeholder=" Masukkan Jenis Peraturan"
-                                    class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
-                                    required></input>
-                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="my-3">
+                        <label class="block py-2 text-[15px] text-black font-medium">Jenis Peraturan </label>
+                        <select name="jenis_peraturan" class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"required>
+                            <option value="">-- Pilih Jenis Peraturan --</option>
+                            @foreach ($jenisOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Nomor</label>

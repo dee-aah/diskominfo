@@ -25,9 +25,9 @@
         </p>
 
         {{-- Gambar artikel --}}
-        @if ($artikel->gambar)
+        @if ($artikel->img)
             <div class="mb-6">
-                <img src="{{ asset('storage/artikel/' . $artikel->gambar) }}" alt="{{ $artikel->judul }}"
+                <img src="{{ asset('storage/artikel/' . $artikel->img) }}" alt="{{ $artikel->judul }}"
                     class="w-full max-h-[500px] object-cover rounded-lg shadow-md">
             </div>
         @endif

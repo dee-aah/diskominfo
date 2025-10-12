@@ -3,7 +3,7 @@
         <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
             <div>
                 <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                    src="{{ asset('storage/default/mesjid2.jpg') }}" alt="">
+                    src="{{ asset('storage/konten/'. $konten->img ) }}" alt="">
             </div>
             <!-- Overlay -->
             <div class="absolute bg-black bg-opacity-50 z-10"></div>
@@ -13,7 +13,7 @@
                     <h1 id="typewriter"
                         class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap"> Produk
                         Hukum</h1>
-                    <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
+                    <p class="text-lg  mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                         Perlindungan Anak.
                     </p>
                 </div>
@@ -35,7 +35,7 @@
                 <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
                     <!-- Gambar Kiri -->
                     <div class="flex justify-center">
-                        <img src="{{ asset('storage/produkimg/' . $ProdukHukumCont->img_cont) }}"
+                        <img src="{{ asset('storage/konten/' . $produk->img) }}"
                             class="w-70 md:w-100 rounded ">
                     </div>
                     <!-- Konten Teks Kanan -->
@@ -43,9 +43,9 @@
                         <h1 class="text-2xl text-center md:text-3xl font-bold mb-4">
                             <span>JDIH DPPKBP3A</span> Kota Tasikmalaya
                         </h1>
-                        <p class="text-base md:text-lg text-gray-700 mb-6 text-justify leading-relaxed">
-                            {{ $ProdukHukumCont->deskripsi }}
-                        </p>
+                        <div class="text-base md:text-lg prose text-gray-700 mb-6 text-justify leading-relaxed">
+                            {!! $produk->deskripsi !!}
+                        </div>
                     </div>
 
                 </div>
@@ -80,7 +80,7 @@
     @forelse ($produkhukum as $item)
         <div class="{{ $loop->odd ? 'bg-blue-50' : 'bg-gray-100' }} rounded-md shadow p-4 flex items-start gap-10">
             <a href="{{ route('produkhukum.show', $item->id) }}" class="w-24 text-center">
-                <img src="{{ asset('storage/produkimg/' . $ProdukHukumCont->img_pdf) }}"
+                <img src="{{ asset('storage/default/pdf.png') }}"
                      class="mx-auto w-24 h-auto" alt="PDF Thumbnail" />
             </a>
             <div class="flex-1 space-y-2">

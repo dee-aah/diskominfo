@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
-use App\Models\Layanan_detail;
+use App\Models\LayananDetail;
 
 class LayananController extends Controller
 {
@@ -25,7 +25,7 @@ class LayananController extends Controller
     public function show(Layanan $layanan)
     {
         $layanan->load('layanan_details');
-        $layanan_detail = Layanan_detail::first();
+        $layanan_detail = LayananDetail::first();
         return view('layanans.show', compact('layanan','layanan_detail'));
     }
 

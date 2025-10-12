@@ -4,7 +4,7 @@
             <!-- gambar besar kiri -->
             @if (isset($layanann[0]))
                 <div class="w-full flex justify-center lg:w-1/2">
-                    <img src="{{ asset('storage/layanan/' . $layanann[0]->gambar) }}" alt="Ilustrasi layanan"
+                    <img src="{{ asset('storage/layanan/' . $layanann[0]->img) }}" alt="Ilustrasi layanan"
                         class="w-full h-full rounded card-shadow  object-cover" />
                 </div>
             @endif
@@ -24,7 +24,7 @@
                     @foreach ($layananlain as $item)
                         <div class=" gap-3">
                             <a>
-                                <img src="{{ asset('storage/layanan/' . $item->gambar) }}" class="w-50 h-50"
+                                <img src="{{ asset('storage/layanan/' . $item->img) }}" class="w-50 h-50"
                                     alt="{{ $item->nama }}">
                             </a>
                             <p class="text-sm text-center text-slate-600">{{ $item->nama }}</p>
@@ -50,9 +50,9 @@
                             @foreach ($layanan as $detail)
                                 <a href="{{ route('layanans.show', $detail->slug) }}">
                                     <div class="bg-gray-300 text-center overflow-hidden card-shadow">
-                                        <div class="h-40 w-full overflow-hidden">
-                                            <img src="{{ asset('storage/layanan/' . $detail->gambar) }}"
-                                                alt="{{ $detail->nama }}" class="w-full h-full object-cover" />
+                                        <div class="h-full w-full overflow-hidden">
+                                            <img src="{{ asset('storage/layanan/' . $detail->img) }}"
+                                                alt="{{ $detail->nama }}" class="w-full h-50 object-cover" />
                                         </div>
                                         <div class="px-3 py-3 hover:bg-gray-500 hover:text-white transition">
                                             <p class="text-sm  text-black text-center">{{ $detail->nama }}</p>

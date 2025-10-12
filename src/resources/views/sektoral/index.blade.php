@@ -1,15 +1,15 @@
 <x-layouts.app>
     <section class="relative bg-gray-800 text-white rounded-3xl overflow-hidden max-w-6xl mx-auto mt-24">
         <!-- Background Image -->
-        <img src="{{ asset('storage/sektorall/' . $sektoral->gambar) }}" alt="Family"
+        <img src="{{ asset('storage/default/sektoral.jpg') }}" alt="Family"
             class="w-full h-full object-cover bg-white rounded-3xl opacity-80">
 
         <!-- Overlay -->
         <div class="absolute inset-1 bg-gradient-to-r from-gray-900/70 to-transparent flex items-end">
-            <div class="px-8 mb-6 py-10 max-w-2xl">
+            <div class="px-8 mb-6 py-10 max-w-6xl">
                 <h1 class="text-5xl font-bold mb-3">Data Statistik Sektoral</h1>
-                <p class="text-[20px] text-justify prose leading-relaxed">
-                    {!! $sektoral->deskripsi !!}
+                <p class="text-[20px] text-justify ">
+                    Data Statistik Sektoral DPPKBP3A berisi gambaran angka dan informasi seputar penduduk, keluarga berencana, perlindungan anak, serta pemberdayaan perempuan di Kota Tasikmalaya
                 </p>
             </div>
         </div>
@@ -86,7 +86,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" data-tab-target="kbkontrasepsi" role="tab" aria-selected="false" aria-controls="kbkontrasepsi"
+                        <a href="#" data-tab-target="kbkontrasepsi"role="tab" aria-selected="false" aria-controls="kbkontrasepsi"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700">
                             Jumlah Keluarga Berencana Aktip Berdasarkan Metode Alat Kontrasepsi
                         </a>
@@ -355,12 +355,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($datakontrasepsiMetode as $row)
-                                    <tr>
-                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration}}</td>
+                                @foreach ($datakbKec as $row)
+                                    <tr class="text-center">
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $loop->iteration }}</td>
                                         <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_provinsi'] ?? '-' }}</td>
                                         <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kabupaten_kota'] ?? '-' }}</td>
-                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['metode_alat_kontrasepsi'] ?? '-' }}</td>
+                                        <td class="border-2 border-gray-300 px-2 py-1">{{ $row['nama_kecamatan'] ?? '-' }}</td>
                                         <td class="border-2 border-gray-300 px-2 py-1">{{ number_format($row['jumlah_peserta_keluarga_berencana_aktif'] ?? '-', 0, ',', '.') }}</td>
                                         <td class="border-2 border-gray-300 px-2 py-1">{{ $row['satuan'] ?? '-' }}</td>
                                         <td class="border-2 border-gray-300 px-2 py-1">{{ $row['tahun'] ?? '-' }}</td>

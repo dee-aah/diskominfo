@@ -101,11 +101,11 @@ Route::get('/produkhukum/{id}', [ProdukHukumController::class, 'show'])->name('p
 Route::get('/produkhukum/{id}', [App\Http\Controllers\ProdukhukumController::class, 'preview'])->name('produkhukum.preview');
 Route::resource('/dokumenperencanaan', PerencanaanController::class)->only(['index', 'show']);
 Route::resource('/dokumenevaluasi', EvaluasiController::class)->only(['index', 'show']);
-// Rute untuk Berita (Publik)
-Route::get('/beritakita', [BeritaController::class, 'index'])->name('beritakita.index');
-Route::get('/beritakita/{slug}', [BeritaController::class, 'show'])->name('beritakita.show');
-Route::get('/kategori/{slug}', [BeritaController::class, 'kategori_brt'])->name('kategori.berita');
-Route::get('/beritakita/{id}', [BeritaController::class, 'show'])->name('beritakita.show');
+// Rute daftar berita
+Route::get('/berita', [BeritaController::class, 'index'])->name('berita.index');
+Route::get('/kategori/{kategori}', [BeritaController::class, 'kategori'])->name('kategori.berita');
+Route::get('/berita/{slug}', [BeritaController::class, 'show'])->name('berita.show');
+
 
 
 // Rute untuk artikel (Publik)

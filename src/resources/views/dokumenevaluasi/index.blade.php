@@ -1,7 +1,7 @@
 <x-layouts.app>
     <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div><img class="absolute brightness-25 top-0 left-0 w-full h-full object-cover object-top z-0 transform -translate-y-5"
-                src="{{ asset('storage/evaluasicont/' . $evaluasi_cont->img_konten) }}"
+                src="{{ asset('storage/konten/' . $konten->img) }}"
         </div>
         <!-- Overlay -->
         <div class="absolute  bg-black bg-opacity-50 z-10"></div>
@@ -25,23 +25,22 @@
             </svg>
         </div>
     </section>
-    <section class="bg-white text-center max-w-6xl mx-auto py-8 mt-1">
-        <h2 class="text-2xl text-center font-bold text-black pb-3">
+    <section class="bg-white text-center max-w-6xl mx-auto py-8 mt-10">
+        {{-- <h2 class="text-2xl text-center font-bold text-black pb-3">
                 Dokumen Evaluasi
         </h2>
-        <h4 class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
-            {!!$evaluasi_cont->des_singkat!!}
-        </h4>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <h4 class="text-center mx-auto max-w-5xl prose font-medium text-black mb-10">
+            {!!$evaluasi_cont->deskripsi_singkat!!}
+        </h4> --}}
+        <div class="grid grid-cols-2 my-5 md:grid-cols-4 gap-8">
             <!-- Rencana Strategis -->
             @foreach ($evaluasi as $item)
             <a href="{{$item->link}}" target="_blank" class="group">
                 <img src="{{ asset('storage/perencanaan/' . $item->img_pdf) }}" alt="Rencana Strategis"
-                    class="rounded shadow-lg transform group-hover:scale-105 transition duration-300">
+                    class="rounded shadow-lg transform w-4/5 mx-auto group-hover:scale-105 transition duration-300">
                 <p class="mt-2 text-center font-semibold">{{$item->nama}}</p>
             </a>
             @endforeach
-
         </div>
     </section>
 </x-layouts.app>

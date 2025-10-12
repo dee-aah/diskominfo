@@ -12,8 +12,6 @@ class SektoralController extends Controller
 {
     public function index()
 {
-    $sektoral      = Sektoral::first();
-    $sektoral_card = Sektoral_cont::all();
 
     // ==================== Indeks Gender ====================
     $pemberdayaan = Http::get("https://opendata.tasikmalayakota.go.id/api/bigdata/badan_pusat_statistik_kota_tasikmalaya/indeks_pemberdayaan_gender_di_kota_tasikmalaya")->json();
@@ -119,8 +117,6 @@ class SektoralController extends Controller
 
     // ==================== Return ke View ====================
     return view('sektoral.index', compact(
-        'sektoral','sektoral_card',
-
         'datapemberdayaan','recordpemberdayaanterbaru','tahunpemberdayaanterbaru','datapemberdayaanterbaru',
         'tahunPemberdayaanList','indexpemberdayaan','datapembangunan','tahunPembangunanList','indexpembangunan',
 

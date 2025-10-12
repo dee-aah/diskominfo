@@ -1,10 +1,9 @@
 <x-layouts.app>
-
     <body>
         <section class="relative h-screen overflow-hidden pt-20"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
-            <img class="absolute brightness-25  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
-                src="{{ asset('storage/maklumat1/' . $maklumat->gambar) }}" alt="">
+            <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+                src="{{ asset('storage/konten/' . $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute bg-black bg-opacity-50 z-10"></div>
@@ -29,20 +28,20 @@
             </div>
         </section>
         <div class="bg-white justify-center mt-10 max-w-5xl mx-auto">
-            <div class="flex items-center justify-center gap-3 mb-2">
+            {{-- <div class="flex items-center justify-center gap-3 mb-2">
                 <h2 class="text-2xl md:text-2xl font-bold text-black pb-3">
                     Maklumat Pelayanan
                 </h2>
             </div>
-
+             --}}
             <!-- Subjudul -->
             <p class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
-                {{$maklumat->deskripsi}}Tugas Pokok dan Fungsi merupakan pedoman peran strategis dalam mendukung tercapainya visi organisasi.
+                Tugas Pokok dan Fungsi merupakan pedoman peran strategis dalam mendukung tercapainya visi organisasi.
                 Setiap elemen dalam Tupoksi mencerminkan kontribusi nyata terhadap efisiensi, pelayanan, dan
                 pengembangan berkelanjutan.
             </p>
             <div class="flex justify-center my-6">
-                <img src="{{asset('storage/maklumat1/' . $maklumat->gambar_cont)}}" alt="Gambar" class="w-[70%] mx-auto" />
+                <img src="{{asset('storage/maklumat1/' . $maklumat->img)}}" alt="Gambar" class="w-[70%] mx-auto" />
             </div>
     </body>
 </x-layouts.app>

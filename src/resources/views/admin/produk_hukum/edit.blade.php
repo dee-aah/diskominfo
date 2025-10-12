@@ -30,11 +30,17 @@
                             </div>
                             <div class="mb-3">
                                 <label class="block py-2 text-[15px] text-black font-medium">Jenis Peraturan</label>
-                                <input type="string" name="jenis_peraturan"
-                                    value="{{ old('jenis_peraturan', $produk_hukum->jenis_peraturan) }}"
-                                    placeholder=" Masukkan Jenis Peraturan"
+                                <select name="jenis_peraturan"
                                     class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
-                                    required></input>
+                                    required>
+                                    <option value="">-- Pilih Jenis Peraturan--</option>
+                                    @foreach ($jenisOptions as $option)
+                                        <option value="{{ $option }}"
+                                            {{ old('jenis_peraturan', $produk_hukum->jenis_peraturan ?? '') == $option ? 'selected' : '' }}>
+                                            {{ $option }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
 
                         </div>

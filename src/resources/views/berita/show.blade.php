@@ -6,16 +6,14 @@
                 Beranda
             </a>
             <span class="mx-2">></span>
-            <a href="{{ route('beritakita.index') }}" class="inline-block mb-6  hover:underline">
+            <a href="{{ route('berita.index') }}" class="inline-block mb-6  hover:underline">
                 Berita
             </a> <span class="mx-2">></span>
-            <a href="{{ route('beritakita.index') }}" class="inline-block mb-6 hover:underline">
+            <a href="{{ route('berita.index') }}" class="inline-block mb-6 hover:underline">
                 {{ $berita->judul }}
             </a>
         </div>
 
-
-        {{-- Judul artikel --}}
         <h1 class="text-[30px] text-blue-500 text-center font-bold mb-4">{{ $berita->judul }}</h1>
         <p class="text-gray-500 text-center mt-3 text-sm mb-2">
             {{ $berita->penulis }}
@@ -24,15 +22,13 @@
             Dipublikasikan Pada {{ $berita->created_at->translatedFormat('l d F Y.') }}
         </p>
 
-        {{-- Gambar artikel --}}
-        @if ($berita->gambar)
+        @if ($berita->img)
             <div class="mb-6">
-                <img src="{{ asset('storage/berita/' . $berita->gambar) }}" alt="{{ $berita->judul }}"
+                <img src="{{ asset('storage/berita/' . $berita->img) }}" alt="{{ $berita->judul }}"
                     class="w-full max-h-[500px] object-cover rounded-lg shadow-md">
             </div>
         @endif
 
-        {{-- Isi artikel --}}
         <div class="prose max-w-none flex text-justify">
             <p><span style="font-weight:600"> Kota Tasikmalaya - {{ $berita->waktu->translatedFormat('l d F Y.') }}
                 </span>

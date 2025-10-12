@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Konten;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,10 @@ class AdminKontenController extends Controller
     public function create()
     {
         $konten = Konten::all();
-        return view('admin.konten.create', compact('konten'));
+        $enumValues = DB::select("SHOW COLUMNS FROM kontens WHERE Field = 'nama'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.konten.create', compact('konten','jenisOptions'));
     }
 
     /**
@@ -70,8 +74,11 @@ class AdminKontenController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Konten $konten)
-    {
-        return view('admin.konten.edit', compact('konten'));
+    {   
+        $enumValues = DB::select("SHOW COLUMNS FROM kontens WHERE Field = 'nama'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.konten.edit', compact('konten','jenisOptions'));
     }
 
     /**

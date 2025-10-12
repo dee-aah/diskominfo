@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\ProdukHukum;
 use App\Models\ProdukHukumCont;
 use Illuminate\Http\Request;
@@ -33,16 +34,16 @@ class ProdukhukumController extends Controller
 
     // Urutkan terbaru
         $produkhukum = $query->latest()->paginate(10);
-        $ProdukHukumCont = ProdukHukumCont::first();
-        return view ('produkhukum.index',compact('ProdukHukumCont','produkhukum'));
+        $produk = Konten::where('nama', 'Produk Hukum')->first();
+        $konten = Konten::where('nama', 'Konten')->first();
+        return view ('produkhukum.index',compact('konten','produkhukum','produk'));
     }
     public function download($id)
-{
+    {
     $produk = ProdukHukum::findOrFail($id);
     $filePath = storage_path('app/public/produk/'. $produk->lampiran);
-
-    return response()->download($filePath, $produk->judul.'.pdf');
-}
+    return response()->download($filePath, $produk->judul_peraturan.'.pdf');
+    }
     public function preview($id)
 {
     $produk = ProdukHukum::findOrFail($id);
@@ -77,8 +78,8 @@ class ProdukhukumController extends Controller
         if ($produk->lampiran) {
         $pdfUrl = asset('storage/produk/' , $produk->lampiran);
         }
-    $ProdukHukumCont = ProdukHukumCont::first();
-    return view('produkhukum.show', compact('produk','ProdukHukumCont','pdfUrl'));
+    $konten = Konten::where('nama', 'Konten')->first();
+    return view('produkhukum.show', compact('produk','konten','pdfUrl'));
 
     }
 

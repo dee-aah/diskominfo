@@ -10,10 +10,15 @@
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8   ">
                 <form action="{{ route('konten.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="my-3">
-                        <label class="block py-2 text-[15px] text-black font-medium">Nama Konten</label>
-                        <input type="string" name="nama"  placeholder=" Masukkan Nama Konten "
-                            class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2" required></input>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="my-3">
+                        <label class="block py-2 text-[15px] text-black font-medium">Nama </label>
+                        <select name="nama" class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"required>
+                            <option value="">-- Pilih Nama Konten --</option>
+                            @foreach ($jenisOptions as $option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Deskripsi </label>

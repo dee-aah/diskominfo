@@ -16,7 +16,11 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained('users')
                 ->cascadeOnDelete();
-            $table->text('nama');
+            $table->enum('nama', [
+                'Beranda',
+                'Produk Hukum',
+                'Konten'
+            ])->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('img')->nullable();
             $table->string('video')->nullable();

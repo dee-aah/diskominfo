@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProdukHukum;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,7 +32,10 @@ class AdminProdukHukumController extends Controller
     public function create()
     {
         $produk_hukum = ProdukHukum::all();
-        return view('admin.produk_hukum.create', compact('produk_hukum'));
+        $enumValues = DB::select("SHOW COLUMNS FROM produk_hukums WHERE Field = 'jenis_peraturan'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.produk_hukum.create', compact('produk_hukum','jenisOptions'));
     }
 
     /**
@@ -103,8 +107,11 @@ if ($request->hasFile('naskah_akademik')) {
      * Show the form for editing the specified resource.
      */
     public function edit(ProdukHukum $produk_hukum)
-    {
-        return view('admin.produk_hukum.edit', compact('produk_hukum'));
+    {   
+        $enumValues = DB::select("SHOW COLUMNS FROM produk_hukums WHERE Field = 'jenis_peraturan'");
+        preg_match("/^enum\('(.*)'\)$/", $enumValues[0]->Type, $matches);
+        $jenisOptions = explode("','", $matches[1]);
+        return view('admin.produk_hukum.edit', compact('produk_hukum','jenisOptions'));
     }
 
     /**

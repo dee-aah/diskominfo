@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
-use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
@@ -16,27 +15,56 @@ class BeritaController extends Controller
      * Logika pengambilan data dirapikan agar tidak berulang.
      */
     public function index(Request $request)
-    {
-        // Daftar nama kategori untuk pemfilteran
-        $kategoriDinas = [
-            'Berita DPPKBP3A', 'Pengendalian Penduduk', 'Keluarga Berencana',
-            'Pemberdayaan Perempuan', 'Perlindungan Anak'
-        ];
-        $kategoriTasik = ['Berita Kota Tasikmalaya'];
+    {   
+        // Berita DPPKBP3A
+    $beritapopuler = Berita::where('kategori', 'Berita DPPKBP3A')
+        ->orderByDesc('view_count')
+        ->take(4)
+        ->get();
 
-        // Mengambil semua data yang dibutuhkan dengan satu set query yang efisien
-        $beritapopuler = $this->getBeritaByKategori($kategoriDinas, 'view_count', 4);
-        $beritapopulertasik = $this->getBeritaByKategori($kategoriTasik, 'view_count', 4);
-        $beritaterbaru = $this->getBeritaByKategori($kategoriDinas, 'created_at', 6);
-        $beritaterbarutasik = $this->getBeritaByKategori($kategoriTasik, 'created_at', 6);
+    $beritaterbaru = Berita::where('kategori', 'Berita DPPKBP3A')
+        ->orderByDesc('created_at')
+        ->take(6)
+        ->get();
 
-        // Untuk "Berita Lain" dan "Selengkapnya", kita bisa ambil dari koleksi "terbaru"
-        $beritalain = $beritaterbaru->take(4);
-        $beritaselengkapnya = $beritaterbaru->take(1);
-        $beritalaintasik = $beritaterbarutasik->take(4);
-        $beritaselengkapnyatasik = $beritaterbarutasik->take(1);
+    $beritalain = $beritaterbaru->take(4);
+    $beritaselengkapnya = $beritaterbaru->take(2);
+    // Berita Kota Tasikmalaya
+    $beritapopulertasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
+        ->orderByDesc('view_count')
+        ->take(4)
+        ->get();
 
-        return view('beritakita.index', compact(
+    $beritaterbarutasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
+        ->orderByDesc('created_at')
+        ->take(6)
+        ->get();
+
+    $beritalaintasik = $beritaterbarutasik->skip(1)->take(4);
+    $beritaselengkapnyatasik = $beritaterbarutasik->take(1);
+
+    $collections = [
+        $beritapopuler,
+        $beritaterbaru,
+        $beritalain,
+        $beritaselengkapnya,
+        $beritapopulertasik,
+        $beritaterbarutasik,
+        $beritalaintasik,
+        $beritaselengkapnyatasik
+    ];
+
+    foreach ($collections as $collection) {
+        $collection->transform(function ($berita) {
+            $berita->slug_kategori = match ($berita->kategori) {
+                'Berita DPPKBP3A' => 'berita-dppkbp3a',
+                'Berita Kota Tasikmalaya' => 'berita-kota-tasikmalaya',
+                default => 'lainnya'
+            };
+            return $berita;
+        });}
+
+        return view('berita.index', compact(
             'beritapopuler',
             'beritapopulertasik',
             'beritaterbaru',
@@ -47,53 +75,50 @@ class BeritaController extends Controller
             'beritaselengkapnyatasik'
         ));
     }
-
-    /**
-     * Helper method untuk mengambil berita berdasarkan nama kategori.
-     * Ini untuk menghindari penulisan query yang berulang-ulang.
-     */
-    private function getBeritaByKategori(array $kategoriNames, string $orderByColumn, int $limit)
-    {
-        return Berita::with('kategori')
-            ->whereHas('kategori', function ($query) use ($kategoriNames) {
-                $query->whereIn('nama', $kategoriNames);
-            })
-            ->orderBy($orderByColumn, 'desc')
-            ->take($limit)
-            ->get();
-    }
     /**
      * Menampilkan detail satu berita.
      */
     public function show($slug)
     {
-        $berita = Berita::with('kategori')->where('slug', $slug)->firstOrFail();
-        $berita->increment('view_count'); // Menambah jumlah view setiap kali berita dibuka
+        // Ambil berita berdasarkan slug
+    $berita = Berita::where('slug', $slug)->firstOrFail();
 
-        Carbon::setLocale('id');
-        $berita->waktu_formatted = Carbon::parse($berita->waktu)->translatedFormat('l, d F Y');
+    // Tambah jumlah view
+    $berita->increment('view_count');
 
-        $beritaTerkait = Berita::with('kategori')
-            ->where('kategori_id', $berita->kategori_id)
-            ->where('id', '!=', $berita->id)
-            ->latest()
-            ->take(5)
-            ->get();
+    // Format tanggal
+    Carbon::setLocale('id');
+    $berita->waktu_formatted = Carbon::parse($berita->waktu)->translatedFormat('l, d F Y');
 
-        return view('beritakita.show', compact('berita', 'beritaTerkait'));
+    // Ambil berita terkait berdasarkan kategori yang sama
+    $beritaTerkait = Berita::where('kategori', $berita->kategori)
+        ->where('id', '!=', $berita->id)
+        ->latest()
+        ->take(5)
+        ->get();
+
+    // Kirim ke view
+    return view('berita.show', compact('berita', 'beritaTerkait'));
     }
 
     /**
      * Menampilkan berita berdasarkan kategori.
      */
-    public function kategori_brt($slug)
-    {
-        $kategori = Kategori::where('slug', $slug)->firstOrFail();
-        $beritas = Berita::where('kategori_id', $kategori->id)
-            ->latest()
-            ->paginate(6);
+    public function kategori($kategori)
+{
+     // Ubah slug ke nama kategori asli
+    $kategoriNama = match ($kategori) {
+        'berita-kota-tasikmalaya' => 'Berita Kota Tasikmalaya',
+        'berita-dppkbp3a' => 'Berita DPPKBP3A',
+        default => abort(404),
+    };
 
+    // Ambil semua berita sesuai kategori
+    $beritas = Berita::where('kategori', $kategoriNama)
+        ->orderByDesc('created_at')
+        ->paginate(10);
 
-        return view('beritakita.kategori_berita', compact('kategori', 'beritas'));
-    }
+    return view('berita.kategori', compact('kategoriNama', 'beritas'));
+}
+
 }
