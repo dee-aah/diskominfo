@@ -1,7 +1,7 @@
 <x-layouts.app>
-    <div class="max-w-6xl mx-auto mt-20 p-4">
+    <div class="max-w-6xl mx-auto mt-20 p-5">
         {{-- Breadcrumb --}}
-        <nav class="text-[13px] mb-4 text-gray-500">
+        <nav class="sm:text-sm text-xs  mb-4 text-gray-500">
             <a href="{{ url('/beranda') }}" class="hover:underline">Beranda</a> >
             <a href="{{ url('/layanans') }}" class="hover:underline">Layanan</a> >
             <span class="text-gray-700">{{ $layanan->nama }}</span>
@@ -10,29 +10,24 @@
         {{-- Gambar utama + judul --}}
         <div class="relative">
             <img src="{{ asset('storage/layanan/' . $layanan->img) }}"
-                class="w-300 h-150 brightness-70 object-cover rounded-lg">
-            <div class="absolute py-6 flex flex-col inset-x-0 bottom-0 h-35 justify-center  bg-black/40 text-center ">
-                <h2 class="text-white text-[35px] font-bold">{{ $layanan->nama }}</h2>
-                <div class="text-white prose text-lg mt-2">{!! $layanan->deskripsi_singkat !!}</div>
+                class="md:w-300 md:h-130 sm:w-150 sm:h-75 h-55 w-100 brightness-70 object-cover object-top rounded-lg">
+            <div class="absolute py-6 flex flex-col inset-x-0 bottom-0 h-15 sm:h-25 md:h-30 justify-center  bg-black/40 text-center ">
+                <h2 class="text-white text-sm sm:text-1xl md:text-2xl font-bold">{{ $layanan->nama }}</h2>
+                <div class="text-white prose text-xs sm:text-lg sm:mt-2">{!! $layanan->deskripsi_singkat !!}</div>
             </div>
         </div>
-        <div class="mt-4 py-6 text-[16px] font-semibold text-justify text-gray-600">{!! $layanan->deskripsi !!}</div>
-
-        {{-- Konten utama --}}
-        <div class="mt-6 prose max-w-none">
-            {!! $layanan->isi !!}
-        </div>
+        <div class="mt-6  text-sm sm:text-xl prose font-semibold text-justify text-gray-600">{!! $layanan->deskripsi !!}</div>
 
         {{-- Detail layanan --}}
-        <div class="my-8 grid md:grid-cols-2 gap-12">
+        <div class="my-8 grid grid-cols-2 md:gap-12 sm:gap-8 gap-3">
             @foreach ($layanan->layanan_details as $detail)
                 <div class="bg-gray-200 shadow justify-center rounded-lg overflow-hidden">
                     <img src="{{ asset('storage/layanan_detail/' . $detail->img) }}"
-                        class="size-80 w-full object-cover">
+                        class="md:size-80 md:w-full sixe-40 h-40 object-cover">
                     {{-- Teks tujuan --}}
-                    <div class="mx-6 py-6 text-[14px] font-normal">
-                        <h3 class="font-semibold text-[18px] text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
-                        <div class=" prose text-[12px] ml-6">
+                    <div class="md:mx-6 py-6 font-normal">
+                        <h3 class="font-semibold text-sm sm:text-lg md:text-xl text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
+                        <div class=" prose text-xs sm:text-base md:text-lg ">
                             {!!$detail->deskripsi!!}
                         </div>
                     </div>

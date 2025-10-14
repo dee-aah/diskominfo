@@ -1,19 +1,17 @@
 <x-layouts.app>
-    <body>
-    <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+    <section class=" relative h-80 sm:h-screen md:h-screen overflow-hidden pt-20 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
-            <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+            <img class="absolute brightness-50   sm:object-top left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
                 src="{{asset('storage/konten/' . $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute  bg-black bg-opacity-50 z-10"></div>
         <!-- Konten Hero -->
-        <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
-            <div class="text-white max-w-2xl">
-                <h1 id="typewriter"
-                    class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Visi dan Misi
+        <div class="relative z-20 flex items-center justify-center sm:min-h-screen text-center px-4 sm:pt-5 md:pt-5 pt-8 pb-8">
+            <div class="text-white sm:max-w-2xl sm:mt-5 md:mt-5 mt-8 mx-auto">
+                <h1 id="typewriter" class="text-lg sm:text-4xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Visi dan Misi
                 </h1>
-                <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
+                <p class="text-xs sm:text-lg md:text-lg sm:mb-6 mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                     Perlindungan Anak.</p>
             </div>
         </div>
@@ -35,39 +33,38 @@
             <div class="bg-white py-6 rounded-[1rem] text-center shadow-md border-2 border-[#147DF8]">
                 <div class="flex items-center justify-center mb-4  ">
                     <div class=" grid grid-flow-col grid-rows-2  mb-2">
-                        <div class="rounded-full row-span-2 text-center flex bg-blue-100 py-6 px-6">
-                            <img width="30" style="color:blue; " height="30" src="https://img.icons8.com/ios-glyphs/30/visible--v1.png" alt="visible--v1"/>
+                        <div class="rounded-full row-span-2 text-center flex bg-blue-100 p-5 sm:p-5 md:p-5 ">
+                            <img width="30" style="color:blue; " height="30" src="https://img.icons8.com/ios-glyphs/30/visible--v1.png" alt="visible--v1" class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"/>
                         </div>
                         <div class="col-span-2 row-span-1 "></div>
-                        <div class="col-span-2 align-bottom mt-2 ">
-                            <h2 class="text-xl   font-bold border px-3  text-[#147df8]  rounded-full border-[#147DF8]   ">Visi</h2>
+                        <div class="col-span-2 align-bottom  ">
+                            <h2 class="text-lg sm:text-xl  font-bold border px-3  text-[#147df8]  rounded-full border-[#147DF8]   ">Visi</h2>
                         </div>
                     </div>
                 </div>
-                <p class="text-gray-700 prose  leading-relaxed">
+                <div class="text-gray-700 font-medium prose text-xs sm:text-lg md:text-xl  leading-relaxed">
                     {!!$visi->visi!!}
-                </p>
+                </div>
             </div>
 
             <!-- Misi -->
             <div class="bg-white p-6 rounded-[1rem] text-center shadow-md border-2 border-[#36F700]">
                 <div class="flex items-center justify-center mb-4  ">
                     <div class=" grid grid-flow-col grid-rows-2  mb-2">
-                        <div class="rounded-full row-span-2 text-center flex bg-green-100 py-6 px-6">
-                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/goal.png" alt="goal"/>
+                        <div class="rounded-full row-span-2 text-center flex bg-green-100 p-5 sm:p-5 md:p-5">
+                            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/goal.png" alt="goal" class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"/>
                         </div>
                         <div class="col-span-2 row-span-1 "></div>
-                        <div class="col-span-2 align-bottom mt-2 ">
-                            <h2 class="text-xl   font-bold border px-3  text-[#36F700]  rounded-full border-[#36F700]   ">Misi</h2>
+                        <div class="col-span-2 align-bottom  ">
+                            <h2 class="text-lg  sm:text-xl font-bold border px-3  text-[#36F700]  rounded-full border-[#36F700]   ">Misi</h2>
                         </div>
                     </div>
                 </div>
-                <p class="text-gray-700 leading-relaxed">
+                <div class="text-gray-700 font-medium text-xs sm:text-lg md:text-xl leading-relaxed">
                     {!!$visi->misi!!}
-                </p>
+                </div>
             </div>
 
         </div>
     </div>
-    </body>
 </x-layouts.app>

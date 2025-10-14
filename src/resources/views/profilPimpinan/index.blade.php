@@ -1,19 +1,17 @@
 <x-layouts.app>
-    <main>
-        <section class="relative h-screen overflow-hidden pt-15 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
+    <section class=" relative h-80 sm:h-screen md:h-screen overflow-hidden pt-20 "> <!-- tambahkan pt-16 untuk kompensasi navbar -->
         <div>
-            <img class="absolute brightness-50  left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+            <img class="absolute brightness-50   sm:object-top left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
                 src="{{asset('storage/konten/' . $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute  bg-black bg-opacity-50 z-10"></div>
         <!-- Konten Hero -->
-        <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
-            <div class="text-white max-w-2xl">
-                <h1 id="typewriter"
-                    class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Profil Pimpinan
+        <div class="relative z-20 flex items-center justify-center sm:min-h-screen text-center px-4 sm:pt-5 md:pt-5 pt-8 pb-8">
+            <div class="text-white sm:max-w-2xl sm:mt-5 md:mt-5 mt-8 mx-auto">
+                <h1 id="typewriter" class="text-lg sm:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Profil Pimpinan
                 </h1>
-                <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
+                <p class="text-xs sm:text-lg md:text-lg sm:mb-6 mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                     Perlindungan Anak.</p>
             </div>
         </div>
@@ -27,12 +25,12 @@
             </svg>
         </div>
     </section>
-        <section class="bg-white text-center max-w-6xl mx-auto py-8 mt-10">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        <section class="bg-white text-center max-w-6xl mx-auto  mt-8 sm:pt-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-5 mt-8">
       <!-- Card -->
         @foreach ($profil as $item )
         <div class="bg-[#f3f3f3] shadow rounded-lg p-4 flex items-center gap-4">
-            <div class="w-24 h-24 rounded-full overflow-hidden flex-shrink-0 relative">
+            <div class="w-16 h-16 sm:w-18 sm:h-18 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0 relative">
                 <div class="absolute inset-0 bg-red-600 rounded-full"></div>
                     <img src="{{asset('storage/profil/'. $item->img)}}" alt="Foto" class="relative w-full h-full object-cover">
             </div>
@@ -44,5 +42,4 @@
         @endforeach
     </div>
   </section>
-    </main>
 </x-layouts.app>

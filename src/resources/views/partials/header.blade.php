@@ -71,7 +71,7 @@
                             <button class="{{ request()->is('beritakita','artikel')
                                 ? 'text-blue-600 ': 'hover:text-blue-600' }}">Berita</button>
                             <div class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
-                                <a href="{{ url('/beritakita') }}"
+                                <a href="{{ url('/berita') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Berita</a>
                                 <a href="{{ url('/artikel') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Artikel</a>
@@ -96,7 +96,7 @@
             <!-- Hanya satu div dengan id="mobile-menu" -->
             <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
 
-                <a href="#" class="block text-gray-700 hover:text-blue-600">Beranda</a>
+                <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600">Beranda</a>
 
                 <!-- Profil Dropdown -->
                 <div>
@@ -109,12 +109,12 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="footer.html">Visi Misi</a></li>
-                        <li><a href="#">Tupoksi</a></li>
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Struktur Organisasi</a></li>
-                        <li><a href="#">Maklumat Pelayanan</a></li>
-                        <li><a href="profil.html">Profil Pimpinan</a></li>
+                        <li><a href="/visimisi">Visi Misi</a></li>
+                        <li><a href="/tupoksi">Tupoksi</a></li>
+                        <li><a href="/tentang">Tentang Kami</a></li>
+                        <li><a href="/struktur">Struktur Organisasi</a></li>
+                        <li><a href="/maklumatt">Maklumat Pelayanan</a></li>
+                        <li><a href="/profilPimpinan">Profil Pimpinan</a></li>
                     </ul>
                 </div>
 
@@ -129,11 +129,12 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="#">Standar Pelayanan</a></li>
+                        <li><a href="/layanans">Informasi Layanan</a></li>
+                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/">Standar Pelayanan</a></li>
                         <li><a href="#">IKM</a></li>
                         <li><a href="#">PPID</a></li>
-                        <li><a href="#">SP4N Lapor</a></li>
-                        <li><a href="#">Informasi Layanan</a></li>
+                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/">SP4N Lapor</a></li>
+                        
                     </ul>
                 </div>
 
@@ -149,9 +150,9 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="#">Produk Hukum</a></li>
-                        <li><a href="#">Dokumen Evaluasi</a></li>
-                        <li><a href="#">Dokumen Perencanaan</a></li>
+                        <li><a href="/produk_hukum">Produk Hukum</a></li>
+                        <li><a href="/dokumenevaluasi">Dokumen Evaluasi</a></li>
+                        <li><a href="/dokumenperencanaan">Dokumen Perencanaan</a></li>
                     </ul>
                 </div>
 
@@ -171,10 +172,8 @@
                         <li><a href="#">Artikel</a></li>
                     </ul>
                 </div>
-                <a href="#" class="block text-gray-700 hover:text-blue-600">Data Statistik Sektoral</a>
-                <input type="text" placeholder="Cari..."
-                    class="w-full px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500" />
-            </div>
+                <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600">Data Statistik Sektoral</a>
+                </div>
         </nav>
     </body>
     <script>

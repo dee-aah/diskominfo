@@ -221,7 +221,7 @@
                                     <span>{{ $beritatasik->penulis }}</span>
                                 </div>
                             </div>
-                            <a href="{{ route('beritakita.show', $beritatasik->slug) }}"
+                            <a href="{{ route('berita.show', $beritatasik->slug) }}"
                                 class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
@@ -238,7 +238,7 @@
                 <div class="space-y-4">
                     <div class="flex justify-between pb-2">
                         <h2 class="font-bold">Berita Lainnya</h2>
-                        <a href="{{ url('/beritakita') }}"
+                        <a href="{{ url('/berita') }}"
                             class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
                             Selengkapnya
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
@@ -261,7 +261,7 @@
                             <p class=" text-gray-600 mb-2 line-clamp-2">
                                 {!! Str::limit(strip_tags($item->deskripsi), 120) !!}
                             </p>
-                            <a href="{{ route('beritakita.show', $item->slug) }}"
+                            <a href="{{ route('berita.show', $item->slug) }}"
                                 class="text-blue-700 text-[11px] inline-flex items-center gap-1 hover:underline">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
@@ -301,7 +301,7 @@
                                     <span>{{ $berita->penulis }}</span>
                                 </div>
                             </div>
-                            <a href="{{ route('beritakita.show', $berita->slug) }}"
+                            <a href="{{ route('berita.show', $berita->slug) }}"
                                 class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
@@ -318,7 +318,7 @@
                 <div class="space-y-4">
                     <div class="flex justify-between pb-10">
                         <h2 class="font-bold">Berita Lainnya</h2>
-                        <a href="{{ url('/beritakita') }}"
+                        <a href="{{ url('/berita') }}"
                             class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
                             Selengkapnya
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
@@ -341,7 +341,7 @@
                             <p class=" mb-2 line-clamp-2">
                                 {!! Str::limit(strip_tags($item->deskripsi), 120) !!}
                             </p>
-                            <a href="{{ route('beritakita.show', $item->slug) }}"
+                            <a href="{{ route('berita.show', $item->slug) }}"
                                 class="text-blue-700 text-[11px] inline-flex items-center gap-1 hover:underline">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"

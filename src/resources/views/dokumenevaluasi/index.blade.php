@@ -1,17 +1,21 @@
 <x-layouts.app>
-    <section class="relative h-screen overflow-hidden pt-16"> <!-- tambahkan pt-16 untuk kompensasi navbar -->
-        <div><img class="absolute brightness-25 top-0 left-0 w-full h-full object-cover object-top z-0 transform -translate-y-5"
-                src="{{ asset('storage/konten/' . $konten->img) }}"
+    <section class=" relative h-80 sm:h-screen md:h-screen overflow-hidden pt-20 ">
+        <!-- tambahkan pt-16 untuk kompensasi navbar -->
+        <div>
+            <img class="absolute brightness-50   sm:object-top left-0 w-full h-full object-cover object-top z-0 transform-translate-y-5"
+                src="{{ asset('storage/konten/' . $konten->img) }}" alt="">
         </div>
         <!-- Overlay -->
         <div class="absolute  bg-black bg-opacity-50 z-10"></div>
         <!-- Konten Hero -->
-        <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
-            <div class="text-white max-w-2xl">
+        <div
+            class="relative z-20 flex items-center justify-center sm:min-h-screen text-center px-4 sm:pt-5 md:pt-5 pt-8 pb-8">
+            <div class="text-white sm:max-w-2xl sm:mt-5 md:mt-5 mt-8 mx-auto">
                 <h1 id="typewriter"
-                    class="text-4xl md:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Dokumen
-                    Evaluasi</h1>
-                <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
+                    class="text-lg sm:text-5xl font-bold leading-normal mb-4 text-white whitespace-nowrap">Dokumen Evaluasi
+                </h1>
+                <p class="text-xs sm:text-lg md:text-lg sm:mb-6 mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana,
+                    Pemberdayaan Perempuan, dan
                     Perlindungan Anak.</p>
             </div>
         </div>
@@ -25,20 +29,20 @@
             </svg>
         </div>
     </section>
-    <section class="bg-white text-center max-w-6xl mx-auto py-8 mt-10">
+    <section class="bg-white text-center max-w-6xl mx-auto py-8 sm:mt-10">
         {{-- <h2 class="text-2xl text-center font-bold text-black pb-3">
                 Dokumen Evaluasi
         </h2>
         <h4 class="text-center mx-auto max-w-5xl prose font-medium text-black mb-10">
             {!!$evaluasi_cont->deskripsi_singkat!!}
         </h4> --}}
-        <div class="grid grid-cols-2 my-5 md:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 p-5 sm:my-5 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             <!-- Rencana Strategis -->
             @foreach ($evaluasi as $item)
             <a href="{{$item->link}}" target="_blank" class="group">
                 <img src="{{ asset('storage/perencanaan/' . $item->img_pdf) }}" alt="Rencana Strategis"
                     class="rounded shadow-lg transform w-4/5 mx-auto group-hover:scale-105 transition duration-300">
-                <p class="mt-2 text-center font-semibold">{{$item->nama}}</p>
+                <p class="mt-2 text-center text-sm sm:text-base font-semibold">{{$item->nama}}</p>
             </a>
             @endforeach
         </div>
