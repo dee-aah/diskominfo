@@ -1,22 +1,18 @@
 <x-layouts.app>
-
-    <body class="bg-white">
-        <!-- Hero Section -->
-        <section class="relative h-screen overflow-hidden pt-16 ">
-        
-            <video autoplay muted loop playsinline
-                class="brightness-50 absolute top-0 left-0 w-full h-full object-cover z-0 pointer-events-none">
-                <source src="{{ asset('storage/konten/' . $konten->video) }}" loading="lazy" type="video/mp4" />
-            </video>
+    <section class="relative h-95 sm:h-150 md:h-screen overflow-hidden pt-20 ">
+        <video autoplay muted loop playsinline
+            class="brightness-50 absolute top-0 left-0 h-100 w-110 sm:h-150 md:w-full md:h-full object-cover z-0 pointer-events-none">
+            <source src="{{ asset('storage/konten/' . $konten->video) }}" loading="lazy" type="video/mp4" />
+        </video>
             
-            <div class="absolute bg-black bg-opacity-50 z-10"></div>
+            <div class="absolute insert-0 bg-black bg-opacity-50 z-10"></div>
             <!-- Konten Hero -->
             <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
                 <div class="text-white max-w-2xl mx-auto">
                     <h1 id="typewriter"
                         class="text-4xl text-white md:text-5xl font-bold leading-normal mb-4  whitespace-nowrap overflow-hidden typewriter">
                     </h1>
-                    <p class="text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
+                    <p class="text-sm sm:text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
                         Perlindungan Anak.</p>
                     <a href="#layanan"
                         class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition">Lihat Layanan
@@ -33,39 +29,38 @@
                 </svg>
             </div>
         </section>
-        <div class="min-h-screen flex max-w-6xl mx-auto items-center justify-center px-6 py-12 bg-white">
+        <div class=" sm:min-h-screen flex max-w-6xl mx-auto items-center justify-center py-5 px-6 sm:py-12 bg-white">
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Gambar Kiri -->
                 <div class="flex justify-center">
                     <img src="{{ asset('storage/pimpinan/' . $sambutan->img) }}" loading="lazy" alt="pimpinan"
-                        class="w-72 md:w-76 ">
+                        class="w-40 md:w-76 ">
                 </div>
                 <!-- Konten Teks Kanan -->
                 <div>
-                    <p class="text-sm font-semibold text-blue-600 uppercase tracking-wide mb-2">
+                    <p class="text-sm font-semibold sm:text-justify text-center text-blue-600 uppercase tracking-wide mb-2">
                         Kepala Dinas
                     </p>
-                    <h1 class="text-2xl md:text-4xl font-bold mb-4">
+                    <h1 class="text-xl sm:text-2xl md:text-4xl sm:text-justify text-center font-bold mb-4">
                         {{ $sambutan->nama }}
                     </h1>
-                    <div class="text-base md:text-lg text-justify prose text-gray-700 mb-6 leading-relaxed">
+                    <div class="text-sm sm:text-base md:text-lg text-justify prose text-gray-700 sm:mb-6 leading-relaxed">
                         {!! $sambutan->deskripsi !!}
                         
                     </div>
                 </div>
             </div>
         </div>
-
-        <section id="layanan" class="max-w-6xl mx-auto  py-10 ">
+        <section id="layanan" class="max-w-6xl mx-auto  p-5 md:py-10 ">
             <div class="text-center mb-6">
-                <h2 class="text-2xl font-bold">Layanan Utama</h2>
+                <h2 class="text-xl sm:text-2xl font-bold">Layanan Utama</h2>
             </div>
-            <div class="grid grid-cols-3 gap-6 auto-rows-[200px] ">
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-6 auto-rows-[200px] ">
                 <!-- Card 1: Layanan DPPKBP3A -->
                 <a href="{{ url('/layanans') }}"
-                    class="bg-blue-100 p-6 rounded-lg text-sm text-justify shadow hover:shadow-xl transition relative row-span-2 cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">Layanan DPPKBP3A</h3>
-                    <p class=" text-gray-700">
+                    class="bg-blue-100 p-2 sm:p-6 rounded-lg text-sm text-justify shadow col-span-2 sm:col-1 hover:shadow-xl transition relative sm:row-span-2 cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-4">Layanan DPPKBP3A</h3>
+                    <p class=" text-xs sm:text-sm text-justify text-gray-700">
                         Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan dan Perlindungan Anak (DPPKBP3A) Kota Tasikmalaya menyediakan berbagai layanan mulai dari program pengendalian penduduk, peningkatan partisipasi keluarga dalam program KB, pemberdayaan dan perlindungan hak perempuan, hingga perlindungan serta pemenuhan hak anak. Seluruh layanan ini dirancang untuk meningkatkan kualitas hidup masyarakat serta mewujudkan keluarga yang sejahtera, sehat, dan berdaya
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
@@ -73,9 +68,9 @@
                 
                 <!-- Card 2: Standar Pelayanan -->
                 <a href="https://sispek.tasikmalayakota.go.id/"
-                    class="bg-rose-100 text-justify p-6 text-sm rounded-lg shadow hover:shadow-xl transition relative col-span-2 cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">Standar Pelayanan (SISPEK)</h3>
-                    <p class="  text-gray-700">
+                    class="bg-rose-100 text-justify p-2 sm:p-6 text-sm rounded-lg shadow hover:shadow-xl transition relative col-span-2 cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-4">Standar Pelayanan (SISPEK)</h3>
+                    <p class=" text-xs sm:text-sm  text-gray-700">
                         DPPKBP3A Kota Tasikmalaya menyediakan layanan 
                         terkait pengendalian penduduk, keluarga berencana, 
                         pemberdayaan perempuan, serta perlindungan anak 
@@ -85,9 +80,9 @@
                 </a>          
                 <!-- Card 3: IKM -->
                 <a href=""
-                    class="bg-yellow-100 text-sm text-justify p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">IKM</h3>
-                    <p class=" text-gray-700">
+                    class="bg-yellow-100 text-sm text-justify p-2 sm:p-6 rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-4">IKM</h3>
+                    <p class="text-xs sm:text-sm text-gray-700">
                         Indeks Kepuasan Masyarakat (IKM) Kota Tasikmalaya mengukur tingkat kepuasan publik terhadap kualitas pelayanan pemerintah.
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
@@ -95,30 +90,30 @@
                 
                 <!-- Card 4: PPID -->
                 <a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/"
-                    class="bg-green-100 p-6 text-sm text-justify rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-4">PPID</h3>
-                    <p class=" text-gray-700">
+                    class="bg-green-100 p-2 sm:p-6 text-sm text-justify rounded-lg shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-4">PPID</h3>
+                    <p class=" text-xs sm:text-sm text-gray-700">
                         PPID mengelola dan menyediakan informasi publik bagi masyarakat, sekaligus memastikan informasi dapat diakses dengan mudah dan transparan.
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
             </div>
-                <div class="grid grid-cols-2 pt-6 gap-6 ">
+                <div class="grid grid-cols-2 pt-2 sm:pt-6 gap-2 sm:gap-4 md:gap-6 ">
                 
                 <!-- Card 5: SP4NLAPOR -->
                 <a href="https://www.lapor.go.id/"
-                    class="bg-orange-100 p-6 text-sm text-justify rounded-xl shadow hover:shadow-lg transition relative  cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-2">SP4N LAPOR</h3>
-                    <p class=" text-gray-700 pb-4">
+                    class="bg-orange-100 sm:p-6 p-2 text-sm text-justify rounded-xl shadow hover:shadow-lg transition relative  cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-2">SP4N LAPOR</h3>
+                    <p class=" text-xs sm:text-sm text-gray-700 pb-4">
                         Layanan aspirasi dan pengaduan online masyarakat untuk meningkatkan kualitas pelayanan publik
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
                 </a>
                 <!-- Card 6: Data Statistik -->
                 <a href="{{url('/sektoral')}}"
-                    class="bg-gray-100 p-6 text-justify text-sm rounded-xl shadow hover:shadow-xl transition relative cursor-pointer block">
-                    <h3 class="text-lg text-center font-semibold py-2">Data Statistik Sektoral</h3>
-                    <p class=" text-gray-700 pb-4">
+                    class="bg-gray-100 sm:p-6 p-2 text-justify text-sm rounded-xl shadow hover:shadow-xl transition relative cursor-pointer block">
+                    <h3 class="text-sm sm:text-lg text-center font-semibold py-2">Data Statistik Sektoral</h3>
+                    <p class=" text-xs sm:text-sm  text-gray-700 pb-4">
                         Menyajikan data kependudukan, keluarga berencana, pemberdayaan perempuan, dan perlindungan anak sebagai dasar perumusan kebijakan
                     </p>
                     <span class="absolute bottom-3 right-3 text-gray-600">↗</span>
@@ -126,32 +121,32 @@
                 
             </div>
         </section>
-        <section class="max-w-6xl mx-auto  py-10 bg-white ">
+        <section class="max-w-6xl mx-auto  p-5 md:py-10 bg-white ">
             <div class="text-center mb-6">
-                <h2 class="text-2xl font-bold">Sorotan Data Utama</h2>
+                <h2 class="text-xl sm:text-2xl font-bold">Sorotan Data Utama</h2>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
+            <div class="grid grid-cols-2 sm:grid-rows-4 gap-4 ">
                 <!-- Card Template -->
                 <!-- Repeat untuk setiap data dengan gaya seragam -->
                 <div class="bg-yellow-100 rounded-lg shadow-xl p-5 text-center">
                     <p class="text-black text-sm mb-2">Total Penduduk</p>
-                    <p class="text-2xl font-bold text-black">{{ number_format($totalpenduduk, 0, ',', '.') }}</p>
-                    <p class="text-black text-sm">Jiwa Terdaftar Pada Tahun {{ $tahunpenduduk }}</p>
+                    <p class=" sm:text-xl text-lg md:text-2xl mb-2 font-bold text-black">{{ number_format($totalpenduduk, 0, ',', '.') }}</p>
+                    <p class="text-black text-xs sm:text-sm">Jiwa Terdaftar Pada Tahun {{ $tahunpenduduk }}</p>
                 </div>
                 <div class="bg-rose-100 rounded-lg shadow-xl p-5 text-center">
                     <p class="text-black text-sm mb-2">Peserta KB</p>
-                    <p class="text-2xl font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }} </p>
-                    <p class="text-black text-sm">Akseptor Aktif Tahun {{ $tahunkbterbaru }}</p>
+                    <p class="sm:text-xl text-lg md:text-2xl mb-2 font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }} </p>
+                    <p class="text-black text-xs sm:text-sm">Akseptor Aktif Tahun {{ $tahunkbterbaru }}</p>
                 </div>
                 <div class=" bg-blue-100 shadow-xl/30 rounded-lg shadow-xl p-5 text-center">
                     <p class="text-black text-sm mb-2">Pasangan Usia Subur</p>
-                    <p class="text-2xl font-bold text-black">{{ number_format($datasuburterbaru, 0, ',', '.') }}</p>
-                    <p class="text-black text-sm">Total Data Per Tahun {{ $tahunsuburterbaru }} </p>
+                    <p class="sm:text-xl text-lg md:text-2xl mb-2 font-bold text-black">{{ number_format($datasuburterbaru, 0, ',', '.') }}</p>
+                    <p class="text-black text-xs sm:text-sm">Total Data Per Tahun {{ $tahunsuburterbaru }} </p>
                 </div>
                 <div class="bg-orange-100 rounded-lg shadow-xl p-5 text-center">
                     <p class="text-black text-sm mb-2">Kasus Kekerasan Anak</p>
-                    <p class="text-2xl font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }}</p>
-                    <p class="text-black text-sm">Kasus Tahun {{ $tahunkasusterbaru }}</p>
+                    <p class="sm:text-xl text-lg md:text-2xl mb-2 font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }}</p>
+                    <p class="text-black text-xs sm:text-sm">Kasus Tahun {{ $tahunkasusterbaru }}</p>
                 </div>
 
             </div>
@@ -159,22 +154,21 @@
                 class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0 md:space-x-6">
             </div>
         </section>
-
-        <section class="relative max-w-6xl mx-auto rounded-2xl bg-cover my-10 bg-center min-h-screen flex items-center"
+        <section class="relative max-w-90 sm:max-w-6xl mx-auto rounded-2xl bg-cover  my-10 bg-center md:min-h-screen flex items-center"
             style="background-image: url('{{ asset('storage/konten/' . $konten->img) }}');">
             <!-- Overlay gelap -->
             <div class="absolute rounded-3xl max-w-6xl max-auto inset-0 bg-black/50"></div>
             <!-- Konten -->
-            <div class="relative z-10 w-full px-6 md:px-16 lg:px-24">
+            <div class="relative z-10 w-full px-6 my-5 md:px-16 lg:px-24">
                 <div class="max-w-5xl text-center  text-white space-y-4">
-                    <p class="text-2xl text-center font-medium tracking-wider text-gray-200">Tentang Kami</p>
-                    <p class="text-lg  prose text-gray-200">
+                    <p class="sm:text-xl text-lg md:text-2xl text-center font-medium tracking-wider text-gray-200">Tentang Kami</p>
+                    <div class="sm:text-lg text-sm prose text-gray-200">
                         {!! $tentang_kami->deskripsi !!}
-                    </p>
+                    </div>
                     
                     <div class="flex flex-wrap justify-center gap-4 pt-4">
                         <a href="{{ url('/tentang') }}"
-                            class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                            class="inline-flex items-center px-4 text-sm sm:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Selengkapnya
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -182,7 +176,7 @@
                             </svg>
                         </a>
                         <a href="{{ url('/profil') }}"
-                            class="inline-flex items-center px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                            class="inline-flex items-center px-4 text-sm sm:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Profil Pimpinan
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -194,8 +188,8 @@
             </div>
         </section>
 
-        <div class="max-w-6xl mx-auto mt-6 ">
-            <h1 class="text-2xl font-bold text-center text-gray-800 mb-10">Berita Kota Tasikmalaya</h1>
+        <div class="max-w-6xl mx-auto p-4 sm:p-0 mt-6 ">
+            <h1 class="md:text-2xl sm:text-xl text-lg font-bold text-center text-gray-800 mb-10">Berita Kota Tasikmalaya</h1>
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Berita Utama -->
                 <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
@@ -212,10 +206,10 @@
                             <h2 class="text-lg font-semibold text-gray-800 mb-2">
                                 {{ $beritatasik->judul }}
                             </h2>
-                            <p class=" text-gray-600 mb-4">
+                            <div class=" text-sm text-gray-600 mb-4">
                                 {!! Str::limit($beritatasik->deskripsi, 200) !!}
-                            </p>
-                            <div class="flex justify-end items-center  text-sm text-gray-500 my-5">
+                            </div>
+                            <div class="flex justify-end items-center  text-xs sm:text-sm text-gray-500 my-5">
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-user"></i>
                                     <span>{{ $beritatasik->penulis }}</span>
@@ -239,7 +233,7 @@
                     <div class="flex justify-between pb-2">
                         <h2 class="font-bold">Berita Lainnya</h2>
                         <a href="{{ url('/berita') }}"
-                            class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+                            class="text-blue-700 text-xs sm:text-sm inline-flex items-center gap-1 hover:underline">
                             Selengkapnya
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -275,7 +269,7 @@
 
                 </div>
             </div>
-            <h1 class="text-2xl font-bold text-center text-gray-800 my-10">Berita DPPKBP3A</h1>
+            <h1 class="md:text-2xl sm:text-xl text-lg font-bold text-center text-gray-800 my-10">Berita DPPKBP3A</h1>
             <div class="grid md:grid-cols-3 gap-6">
                 <!-- Berita Utama -->
                 <div class="md:col-span-2 bg-gray-200 rounded-lg shadow overflow-hidden">
@@ -295,7 +289,7 @@
                             <p class=" text-gray-600 mb-4">
                                 {!! Str::limit($berita->deskripsi, 200) !!}
                             </p>
-                            <div class="flex justify-end items-center text-sm text-gray-500 my-5">                                
+                            <div class="flex justify-end items-center text-xs sm:text-sm text-gray-500 my-5">                                
                                 <div class="flex items-center gap-1">
                                     <i class="fa-solid fa-user"></i>
                                     <span>{{ $berita->penulis }}</span>
@@ -316,10 +310,10 @@
                 @endif
                 <!-- Konten Samping -->
                 <div class="space-y-4">
-                    <div class="flex justify-between pb-10">
+                    <div class="flex justify-between pb-2">
                         <h2 class="font-bold">Berita Lainnya</h2>
                         <a href="{{ url('/berita') }}"
-                            class="text-blue-700 text-sm inline-flex items-center gap-1 hover:underline">
+                            class="text-blue-700 text-xs sm:text-sm inline-flex items-center gap-1 hover:underline">
                             Selengkapnya
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -355,15 +349,15 @@
             </div>
             </div>
         </div>
-        <section class="max-w-6xl mx-auto  py-10">
+        <section class="max-w-6xl mx-auto p-4 sm:p-0 py-10">
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
                 <div>
-                    <h2 class="text-2xl font-bold md:text-2xl ">Artikel Terbaru</h2>
-                    <p class="text-gray-500 text-sm md:text-base">Informasi dan Update Terkini Terkait DPPKBP3A</p>
+                    <h2 class="sm:text-xl text-lg md:text-2xl font-bold md:text-2xl ">Artikel Terbaru</h2>
+                    <p class="text-gray-500 text-xs sm:text-sm md:text-base">Informasi dan Update Terkini Terkait DPPKBP3A</p>
                 </div>
                 <a href="{{ route('artikel.index') }}"
-                    class="border border-gray-300 text-gray-700 px-4 py-2 text-sm rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat
+                    class="border border-gray-300 text-gray-700 px-4 py-2 text-xs sm:text-sm rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat
                     Semua</a>
             </div>
             <!-- Cards -->
@@ -380,8 +374,8 @@
                         </div>
                         <div class="p-5 bg-gray-200 space-y-2">
                             <h3 class="text-lg font-semibold">{{ $item->judul }}</h3>
-                            <p class="text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</p>
-                            <div class="flex justify-end items-center text-sm pt-3 text-gray-500 mb-4">
+                            <div class="text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</div>
+                            <div class="flex justify-between sm:justify-end  items-center text-xs sm:text-sm pt-3 text-gray-500 mb-4">
                                 <div class="flex items-center mr-4 gap-1">
                                     <i class="fa-solid fa-user"></i>
                                     <span>{{ $item->penulis }}</span>

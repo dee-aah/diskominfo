@@ -96,12 +96,12 @@
             <!-- Hanya satu div dengan id="mobile-menu" -->
             <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
 
-                <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600">Beranda</a>
+                <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600 active:text-blue-700">Beranda</a>
 
                 <!-- Profil Dropdown -->
                 <div>
                     <button
-                        class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+                        class="flex justify-between items-center w-full hover:text-blue-600 active:text-blue-700 font-semibold text-gray-700 mobile-dropdown-toggle">
                         Profil
                         <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -109,19 +109,19 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="/visimisi">Visi Misi</a></li>
-                        <li><a href="/tupoksi">Tupoksi</a></li>
-                        <li><a href="/tentang">Tentang Kami</a></li>
-                        <li><a href="/struktur">Struktur Organisasi</a></li>
-                        <li><a href="/maklumatt">Maklumat Pelayanan</a></li>
-                        <li><a href="/profilPimpinan">Profil Pimpinan</a></li>
+                        <li><a href="/visimisi" class="block hover:text-blue-600 active:text-blue-700">Visi Misi</a></li>
+                        <li><a href="/tupoksi" class="block hover:text-blue-600 active:text-blue-700">Tupoksi</a></li>
+                        <li><a href="/tentang" class="block hover:text-blue-600 active:text-blue-700">Tentang Kami</a></li>
+                        <li><a href="/struktur" class="block hover:text-blue-600 active:text-blue-700">Struktur Organisasi</a></li>
+                        <li><a href="/maklumatt" class="block hover:text-blue-600 active:text-blue-700">Maklumat Pelayanan</a></li>
+                        <li><a href="/profilPimpinan" class="block hover:text-blue-600 active:text-blue-700">Profil Pimpinan</a></li>
                     </ul>
                 </div>
 
                 <!-- Layanan Dropdown -->
                 <div>
                     <button
-                        class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+                        class="flex justify-between items-center w-full hover:text-blue-600 active:text-blue-700 font-semibold text-gray-700 mobile-dropdown-toggle">
                         Layanan
                         <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -129,11 +129,11 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="/layanans">Informasi Layanan</a></li>
-                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/">Standar Pelayanan</a></li>
-                        <li><a href="#">IKM</a></li>
-                        <li><a href="#">PPID</a></li>
-                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/">SP4N Lapor</a></li>
+                        <li><a href="/layanans" class="block hover:text-blue-600 active:text-blue-700">Informasi Layanan</a></li>
+                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/" class="block hover:text-blue-600 active:text-blue-700">Standar Pelayanan</a></li>
+                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">IKM</a></li>
+                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">PPID</a></li>
+                        <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/" class="block hover:text-blue-600 active:text-blue-700">SP4N Lapor</a></li>
                         
                     </ul>
                 </div>
@@ -141,7 +141,7 @@
                 <!-- Dokumen Dropdown -->
                 <div>
                     <button
-                        class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+                        class="flex justify-between items-center w-full hover:text-blue-600 active:text-blue-700 font-semibold text-gray-700 mobile-dropdown-toggle">
                         Dokumen
                         <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -150,16 +150,16 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="/produk_hukum">Produk Hukum</a></li>
-                        <li><a href="/dokumenevaluasi">Dokumen Evaluasi</a></li>
-                        <li><a href="/dokumenperencanaan">Dokumen Perencanaan</a></li>
+                        <li><a href="/produk_hukum" class="block hover:text-blue-600 active:text-blue-700">Produk Hukum</a></li>
+                        <li><a href="/dokumenevaluasi" class="block hover:text-blue-600 active:text-blue-700">Dokumen Evaluasi</a></li>
+                        <li><a href="/dokumenperencanaan" class="block hover:text-blue-600 active:text-blue-700">Dokumen Perencanaan</a></li>
                     </ul>
                 </div>
 
                 <!-- Berita Dropdown -->
                 <div>
                     <button
-                        class="flex justify-between items-center w-full font-semibold text-gray-700 mobile-dropdown-toggle">
+                        class="flex justify-between items-center w-full hover:text-blue-600 active:text-blue-700 font-semibold text-gray-700 mobile-dropdown-toggle">
                         Berita
                         <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
@@ -168,11 +168,11 @@
                         </svg>
                     </button>
                     <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="#">Berita</a></li>
-                        <li><a href="#">Artikel</a></li>
+                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">Berita</a></li>
+                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">Artikel</a></li>
                     </ul>
                 </div>
-                <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600">Data Statistik Sektoral</a>
+                <a href="#" class="block text-gray-700 font-semibold  hover:text-blue-600 active:text-blue-700">Data Statistik Sektoral</a>
                 </div>
         </nav>
     </body>
