@@ -1,7 +1,7 @@
 <x-layouts.app>
     <div class=" container max-w-6xl mx-auto mt-20 px-4 py-8">
         {{-- Tombol kembali --}}
-        <div class="flex text-[13px] text-gray-500 justify-start">
+        <div class="flex text-[10px] md:text-sm text-gray-500 justify-start">
             <a href="{{ url('/beranda') }}" class="inline-block mb-6  hover:underline">
                 Beranda
             </a>
@@ -14,11 +14,11 @@
             </a>
         </div>
 
-        <h1 class="text-[30px] text-blue-500 text-center font-bold mb-4">{{ $berita->judul }}</h1>
-        <p class="text-gray-500 text-center mt-3 text-sm mb-2">
+        <h1 class="text-xl sm:text-2xl md:text-3xl text-blue-500 text-center font-bold mb-4">{{ $berita->judul }}</h1>
+        <p class="text-gray-500 text-center mt-3 text-xs mb:text-sm mb-2">
             {{ $berita->penulis }}
         </p>
-        <p class="text-gray-500 text-center text-sm mb-3">
+        <p class="text-gray-500 text-center text-xs mb:text-sm mb-3">
             Dipublikasikan Pada {{ $berita->created_at->translatedFormat('l d F Y.') }}
         </p>
 
@@ -30,15 +30,16 @@
         @endif
 
         <div class="prose max-w-none flex text-justify">
-            <p><span style="font-weight:600"> Kota Tasikmalaya - {{ $berita->waktu->translatedFormat('l d F Y.') }}
+            <div class="prose text-sm sm:text-base"><span style="font-weight:600"> Kota Tasikmalaya - {{ $berita->waktu->translatedFormat('l d F Y.') }}
                 </span>
-                {!! preg_replace('/^<p>(.*?)<\/p>$/', '$1', $berita->deskripsi) !!}</p>
+                {!! preg_replace('/^<p>(.*?)<\/p>$/', '$1', $berita->deskripsi) !!}
+            </div>
         </div>
-        <div class="mt-6 font-semibold text-black text-[18px]">#Tagline
+        <div class="mt-6 font-semibold text-black text:sm md:text-lg">#Tagline
             @php
                 $tags = explode(',', $berita->tag); // pecah string jadi array
             @endphp
-            <p class=" text-[14px] text-white h-10 mt-3 mb-6 ">
+            <p class=" text-xs md:text-sm text-white h-10 mt-3 mb-6 ">
                 @foreach ($tags as $tag)
                     <span class="bg-gray-700 text-white px-2 py-1 mr-3">
                         {{ trim($tag) }}

@@ -28,7 +28,7 @@ class BeritaController extends Controller
         ->get();
 
     $beritalain = $beritaterbaru->take(4);
-    $beritaselengkapnya = $beritaterbaru->take(2);
+    $beritaselengkapnya = $beritaterbaru->take(1);
     // Berita Kota Tasikmalaya
     $beritapopulertasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
         ->orderByDesc('view_count')

@@ -1,34 +1,50 @@
 <x-layouts.app>
-    <section class="relative h-95 sm:h-150 md:h-screen overflow-hidden pt-20 ">
-        <video autoplay muted loop playsinline
-            class="brightness-50 absolute top-0 left-0 h-100 w-110 sm:h-150 md:w-full md:h-full object-cover z-0 pointer-events-none">
-            <source src="{{ asset('storage/konten/' . $konten->video) }}" loading="lazy" type="video/mp4" />
-        </video>
-            
-            <div class="absolute insert-0 bg-black bg-opacity-50 z-10"></div>
-            <!-- Konten Hero -->
-            <div class="relative z-20 flex items-center justify-center min-h-screen text-center px-4 pt-8 pb-8">
-                <div class="text-white max-w-2xl mx-auto">
-                    <h1 id="typewriter"
-                        class="text-4xl text-white md:text-5xl font-bold leading-normal mb-4  whitespace-nowrap overflow-hidden typewriter">
-                    </h1>
-                    <p class="text-sm sm:text-lg mb-6">Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan
-                        Perlindungan Anak.</p>
-                    <a href="#layanan"
-                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition">Lihat Layanan
-                        Kami</a>
-                </div>
-            </div>
-            <!-- Wave SVG -->
-            <div class="absolute bottom-0 left-0 right-0  overflow-hidden leading-[0] z-20">
-                <svg class="relative block w-full h-[100px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"
-                    preserveAspectRatio="none">
-                    <path fill="#ffffff" fill-opacity="1"
-                        d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
-                    </path>
-                </svg>
-            </div>
-        </section>
+    <section class="relative h-[40vh] sm:h-[70vh] md:h-[100vh] overflow-hidden pt-20 bg-black">
+    <!-- Video Background -->
+    <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        class="absolute top-0 left-0 w-full h-[50vh] md:h-full object-cover brightness-50 z-0"
+    >
+        <source src="{{ asset('storage/konten/' . $konten->video) }}" type="video/mp4" />
+        <!-- Fallback image -->
+        <img src="{{ asset('storage/konten/fallback.jpg') }}" alt="Background" class="w-full h-full object-cover" />
+    </video>
+
+    <!-- Overlay -->
+    <div class="absolute inset-1  bg-opacity-40 z-10"></div>
+
+    <!-- Konten Hero -->
+    <div class="relative z-20 flex items-center justify-center h-full text-center px-4">
+        <div class="text-white max-w-5xl mx-auto">
+            <h1 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+                Selamat Datang di DPPKBP3A
+            </h1>
+            <p class="text-sm sm:text-lg mb-6">
+                Dinas Pengendalian Penduduk, Keluarga Berencana, Pemberdayaan Perempuan, dan Perlindungan Anak.
+            </p>
+            <a href="#layanan" class="bg-blue-600 hover:bg-blue-700 text-white  md:px-6 px-4 py-2 text-xs md:text-sm md:py-3 rounded-full transition">
+                Lihat Layanan Kami
+            </a>
+        </div>
+    </div>
+
+    <!-- Wave SVG -->
+    <div class="absolute bottom-0 left-0 right-0 overflow-hidden leading-[0] z-20">
+        <svg class="relative block w-full h-[80px]" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#ffffff" fill-opacity="1"
+                d="M0,128L48,154.7C96,181,192,235,288,234.7C384,235,480,181,576,149.3C672,117,768,107,864,122.7C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160L1440,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+</section>
+
+
+
         <div class=" sm:min-h-screen flex max-w-6xl mx-auto items-center justify-center py-5 px-6 sm:py-12 bg-white">
             <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
                 <!-- Gambar Kiri -->
@@ -38,10 +54,10 @@
                 </div>
                 <!-- Konten Teks Kanan -->
                 <div>
-                    <p class="text-sm font-semibold sm:text-justify text-center text-blue-600 uppercase tracking-wide mb-2">
+                    <p class="text-xs font-semibold sm:text-justify text-center text-blue-600 uppercase tracking-wide mb-2">
                         Kepala Dinas
                     </p>
-                    <h1 class="text-xl sm:text-2xl md:text-4xl sm:text-justify text-center font-bold mb-4">
+                    <h1 class="text-lg sm:text-2xl md:text-4xl sm:text-justify text-center font-bold mb-4">
                         {{ $sambutan->nama }}
                     </h1>
                     <div class="text-sm sm:text-base md:text-lg text-justify prose text-gray-700 sm:mb-6 leading-relaxed">
@@ -53,7 +69,7 @@
         </div>
         <section id="layanan" class="max-w-6xl mx-auto  p-5 md:py-10 ">
             <div class="text-center mb-6">
-                <h2 class="text-xl sm:text-2xl font-bold">Layanan Utama</h2>
+                <h2 class="text-lg sm:text-2xl font-bold">Layanan Utama</h2>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4 md:gap-6 auto-rows-[200px] ">
                 <!-- Card 1: Layanan DPPKBP3A -->
@@ -121,11 +137,11 @@
                 
             </div>
         </section>
-        <section class="max-w-6xl mx-auto  p-5 md:py-10 bg-white ">
+        <section class="max-w-6xl mx-auto  p-5 md:p-0 md:py-10 bg-white ">
             <div class="text-center mb-6">
-                <h2 class="text-xl sm:text-2xl font-bold">Sorotan Data Utama</h2>
+                <h2 class="text-lg md:text-2xl font-bold">Sorotan Data Utama</h2>
             </div>
-            <div class="grid grid-cols-2 sm:grid-rows-4 gap-4 ">
+            <div class="grid grid-cols-2 sm:grid-cols-1 lg:grid-cols-1 xl:grid-cols-4 gap-4  ">
                 <!-- Card Template -->
                 <!-- Repeat untuk setiap data dengan gaya seragam -->
                 <div class="bg-yellow-100 rounded-lg shadow-xl p-5 text-center">
@@ -148,11 +164,10 @@
                     <p class="sm:text-xl text-lg md:text-2xl mb-2 font-bold text-black">{{ number_format($datakbterbaru, 0, ',', '.') }}</p>
                     <p class="text-black text-xs sm:text-sm">Kasus Tahun {{ $tahunkasusterbaru }}</p>
                 </div>
-
             </div>
-            <div
+            {{-- <div
                 class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between space-y-4 md:space-y-0 md:space-x-6">
-            </div>
+            </div> --}}
         </section>
         <section class="relative max-w-90 sm:max-w-6xl mx-auto rounded-2xl bg-cover  my-10 bg-center md:min-h-screen flex items-center"
             style="background-image: url('{{ asset('storage/konten/' . $konten->img) }}');">
@@ -168,7 +183,7 @@
                     
                     <div class="flex flex-wrap justify-center gap-4 pt-4">
                         <a href="{{ url('/tentang') }}"
-                            class="inline-flex items-center px-4 text-sm sm:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                            class="inline-flex items-center px-4 text-xs sm:text-sm md:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Selengkapnya
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -176,7 +191,7 @@
                             </svg>
                         </a>
                         <a href="{{ url('/profil') }}"
-                            class="inline-flex items-center px-4 text-sm sm:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
+                            class="inline-flex items-center px-4 text-xs sm:text-sm md:text-base sm:px-6 py-2 border border-white text-white rounded-full hover:bg-white hover:text-black transition">
                             Profil Pimpinan
                             <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -349,7 +364,7 @@
             </div>
             </div>
         </div>
-        <section class="max-w-6xl mx-auto p-4 sm:p-0 py-10">
+        <section class="max-w-6xl mx-auto p-4 md:p-2 md:p-0 py-10">
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
                 <div>
@@ -357,7 +372,7 @@
                     <p class="text-gray-500 text-xs sm:text-sm md:text-base">Informasi dan Update Terkini Terkait DPPKBP3A</p>
                 </div>
                 <a href="{{ route('artikel.index') }}"
-                    class="border border-gray-300 text-gray-700 px-4 py-2 text-xs sm:text-sm rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat
+                    class="border border-gray-300 text-gray-700 px-4 py-2 text-xs md:text-sm sm:text-xs rounded-md  hover:bg-[#476A9A] hover:text-white transition">Lihat
                     Semua</a>
             </div>
             <!-- Cards -->
@@ -367,15 +382,15 @@
                     <div class="bg-gray-200 rounded-xl shadow overflow-hidden hover:shadow-lg transition duration-300">
                         <div class="relative">
                             <img src="{{ asset('storage/artikel/' . $item->img) }}" alt="Gambar Artikel"
-                                class="w-full h-100 object-cover p-3 rounded-2xl">
+                                class="w-full h-80 object-cover p-3 rounded-2xl">
                             <span
                                 class="absolute bottom-5 left-5 bg-blue-800 text-white text-xs px-3 py-1 rounded-full shadow">{{ $item->kategori }}
                             </span>
                         </div>
                         <div class="p-5 bg-gray-200 space-y-2">
-                            <h3 class="text-lg font-semibold">{{ $item->judul }}</h3>
-                            <div class="text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</div>
-                            <div class="flex justify-between sm:justify-end  items-center text-xs sm:text-sm pt-3 text-gray-500 mb-4">
+                            <h3 class="text-base md:text-lg font-semibold">{{ $item->judul }}</h3>
+                            <div class=" text-sm md:text-sm text-justify text-gray-600">{!! Str::limit($item->deskripsi, 150) !!}</div>
+                            <div class="flex justify-between md:justify-end  items-center text-[10px] sm:text-xs md:text-sm pt-3 text-gray-500 mb-4">
                                 <div class="flex items-center mr-4 gap-1">
                                     <i class="fa-solid fa-user"></i>
                                     <span>{{ $item->penulis }}</span>
@@ -387,7 +402,7 @@
                                 
                             </div>
                             <a href="{{ route('artikel.index') }}"
-                                class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-sm rounded hover:bg-blue-800 transition">
+                                class="inline-flex mt-4 items-center justify-center w-full px-6 py-2 bg-[#476A9A] text-white text-xs md:text-sm rounded hover:bg-blue-800 transition">
                                 Baca Selengkapnya
                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2"
                                     viewBox="0 0 24 24">

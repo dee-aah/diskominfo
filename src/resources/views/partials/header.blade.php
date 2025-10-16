@@ -4,11 +4,11 @@
         <!-- Navbar -->
         <nav class="bg-white shadow-md w-full fixed top-0 z-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-20 items-center">
+                <div class="flex justify-between h-15 md:h-20 items-center">
                     <div class="flex items-center">
                         <img src="{{ asset('storage/default/Logo_Kota_Tasikmalaya.png') }}" alt="Logo"
-                            class="h-10 mr-3">
-                        <span class="text-xl font-bold font-sans text-[#476A9A]">DPPKBP3A</span>
+                            class="md:h-10 h-7 mr-3">
+                        <span class="md:text-xl text-base sm:text-lg font-bold font-sans text-[#476A9A]">DPPKBP3A</span>
                     </div>
 
                     <!-- Desktop Menu -->
@@ -94,7 +94,7 @@
             </div>
 
             <!-- Hanya satu div dengan id="mobile-menu" -->
-            <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
+            <div id="mobile-menu" class="hidden md:hidden text-sm  px-4 pb-4 space-y-4 pt-2 bg-white shadow-md rounded-b-lg">
 
                 <a href="#" class="block text-gray-700 font-semibold hover:text-blue-600 active:text-blue-700">Beranda</a>
 
@@ -108,7 +108,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+                    <ul class="pl-4 text-gray-600 text-sm space-y-1 mt-1 hidden">
                         <li><a href="/visimisi" class="block hover:text-blue-600 active:text-blue-700">Visi Misi</a></li>
                         <li><a href="/tupoksi" class="block hover:text-blue-600 active:text-blue-700">Tupoksi</a></li>
                         <li><a href="/tentang" class="block hover:text-blue-600 active:text-blue-700">Tentang Kami</a></li>
@@ -128,7 +128,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+                    <ul class="pl-4 text-gray-600 text-sm space-y-1 mt-1 hidden">
                         <li><a href="/layanans" class="block hover:text-blue-600 active:text-blue-700">Informasi Layanan</a></li>
                         <li><a href="https://ppid.tasikmalayakota.go.id/mekanisme-pengaduan/" class="block hover:text-blue-600 active:text-blue-700">Standar Pelayanan</a></li>
                         <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">IKM</a></li>
@@ -149,7 +149,7 @@
                                 d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
+                    <ul class="pl-4 text-gray-600 text-sm space-y-1 mt-1 hidden">
                         <li><a href="/produk_hukum" class="block hover:text-blue-600 active:text-blue-700">Produk Hukum</a></li>
                         <li><a href="/dokumenevaluasi" class="block hover:text-blue-600 active:text-blue-700">Dokumen Evaluasi</a></li>
                         <li><a href="/dokumenperencanaan" class="block hover:text-blue-600 active:text-blue-700">Dokumen Perencanaan</a></li>
@@ -167,12 +167,12 @@
                                 d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
-                    <ul class="pl-4 text-gray-600 space-y-1 mt-1 hidden">
-                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">Berita</a></li>
-                        <li><a href="#" class="block hover:text-blue-600 active:text-blue-700">Artikel</a></li>
+                    <ul class="pl-4 text-gray-600 space-y-1 text-sm mt-1 hidden">
+                        <li><a href="/berita" class="block hover:text-blue-600 active:text-blue-700">Berita</a></li>
+                        <li><a href="/artikel" class="block hover:text-blue-600 active:text-blue-700">Artikel</a></li>
                     </ul>
                 </div>
-                <a href="#" class="block text-gray-700 font-semibold  hover:text-blue-600 active:text-blue-700">Data Statistik Sektoral</a>
+                <a href="/sektoral" class="block text-gray-700 font-semibold  hover:text-blue-600 active:text-blue-700">Data Statistik Sektoral</a>
                 </div>
         </nav>
     </body>
