@@ -334,8 +334,7 @@ Route::middleware(['auth'])->group(function () {
             ->name('pimpinan.update')
             ->middleware('can:update,pimpinan');
         Route::delete('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'destroy'])
-            ->name('pimpinan.destroy')
-            ->middleware('can:delete,pimpinan');
+            ->name('pimpinan.destroy');
         Route::get('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'show'])
             ->name('pimpinan.show');
 

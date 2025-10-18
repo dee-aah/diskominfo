@@ -99,9 +99,9 @@ class AdminPimpinanController extends Controller
         Storage::delete('public/pimpinan/' . $pimpinan->img);
     }
     $pimpinan->delete();
-
     return redirect()->route('pimpinan.dashboard')->with('success', 'Sambutan Pimpinan berhasil dihapus');
     }
+
     public function show(SambutanPimpinan $pimpinan)
     {
         return view('Admin.pimpinan.show', compact('pimpinan'));

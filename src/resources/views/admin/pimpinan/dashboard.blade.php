@@ -87,9 +87,9 @@
                                                             class="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-300">
                                                             <i class="fa-solid fa-pen text-gray-600 px-3"></i> Edit
                                                         </a>
-                                                        <form action="{{ route('pimpinan.destroy', $pimpinan) }}"
+                                                        <form action="{{ route('pimpinan.destroy', $pimpinan->id) }}"
                                                             method="POST"
-                                                            onsubmit="return confirm('Yakin hapus Sambutan pimpinan ini?')">
+                                                            onsubmit="return confirm('Yakin hapus Sambutan Pimpinan ini?')">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
