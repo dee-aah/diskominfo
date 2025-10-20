@@ -54,7 +54,7 @@
                 </div>
                 <!-- Konten Teks Kanan -->
                 <div>
-                    <p class="text-xs font-semibold sm:text-justify text-center text-blue-600 uppercase tracking-wide mb-2">
+                    <p class="text-xs font-semibold sm:text-justify text-center  uppercase tracking-wide mb-2">
                         Kepala Dinas
                     </p>
                     <h1 class="text-lg sm:text-2xl md:text-4xl sm:text-justify text-center font-bold mb-4">
