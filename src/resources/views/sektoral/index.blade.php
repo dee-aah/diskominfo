@@ -56,13 +56,13 @@
                 <h2 class="font-semibold text-gray-700 mb-4 text-center md:text-left">Pengendalian Penduduk</h2>
                 <ul class="space-y-2 " role="tablist">
                     <li>
-                        <a href="#" data-tab-target="subur" role="tab" aria-selected="true"
+                        <a href="#subur" data-tab-target="subur" role="tab" aria-selected="true"
                             aria-controls="subur" class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700 text-center md:text-left">
                             Jumlah Pasangan Subur
                         </a>
                     </li>
                     <li>
-                        <a href="#" data-tab-target="suburkecamatan" role="tab" aria-selected="false"
+                        <a href="suburkecamatan" data-tab-target="suburkecamatan" role="tab" aria-selected="false"
                             aria-controls="suburkecamatan"
                             class="block bg-gray-200 px-3 py-2 rounded text-sm text-gray-700 text-center md:text-left">
                             Jumlah Pasangan Subur Berdasarkan Kecamatan

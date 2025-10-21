@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <!-- Deskripsi -->
-                        <p class="mt-4 text-gray-700 text-xs sm:text-sm prose text-justify">
+                        <p class="mt-4 text-gray-700 text-xs sm:text-sm md:text-base prose text-justify">
                             {!! Str::limit($berita->deskripsi, 150, '...') !!}
                         </p>
                         <!-- Footer -->
@@ -195,13 +195,13 @@
                             </div>
                         </div>
                         <!-- Deskripsi -->
-                        <div class="mt-4 text-gray-700 prose text-xs md:sm text-justify">
+                        <div class="mt-4 text-gray-700 prose text-xs sm:text-sm md:text-base text-justify">
                             {!! Str::limit($berita->deskripsi, 150, '...') !!}
                         </div>
                         <!-- Footer -->
                         <div class="flex items-center justify-between mt-4 text-xs text-gray-500">
                             <div class="flex items-center gap-1">
-                                <i class="fa-solid fa-upload mr-3"></i>
+                                <i class="fa-regular fa-clock mr-3"></i>
                                 <span>{{ $berita->created_at->translatedFormat('d F Y') }}</span>
                             </div>
                             <div class="flex items-center gap-1">

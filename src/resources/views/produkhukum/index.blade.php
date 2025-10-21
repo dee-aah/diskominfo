@@ -57,11 +57,11 @@
                     <select name="jenis_peraturan"
                         class="border-1 border-gray-300 w-20 sm:w-30 md:w-30 placeholder:text-sm
                         text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500   placeholder:italic rounded-xl px-2 py-1">
-                        <option class="text-xs sm:text-sm md:text-lg" value="">Filter</option>
-                        <option value="Peraturan Daerah" class="text-xs sm:text-sm md:text-lg"
+                        <option class="text-xs sm:text-sm" value="">Filter</option>
+                        <option value="Peraturan Daerah" class="text-xs sm:text-sm "
                             {{ request('jenis_peraturan') == 'Peraturan Daerah' ? 'selected' : '' }}>Peraturan Daerah
                         </option>
-                        <option value="Peraturan Walikota" class="text-xs sm:text-sm md:text-lg"
+                        <option value="Peraturan Walikota" class="text-xs sm:text-sm "
                             {{ request('jenis_peraturan') == 'Peraturan Walikota' ? 'selected' : '' }}>Peraturan
                             Walikota</option>
                     </select>
