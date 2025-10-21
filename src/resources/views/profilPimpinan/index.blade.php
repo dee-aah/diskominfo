@@ -25,7 +25,7 @@
             </svg>
         </div>
     </section>
-        <section class="bg-white text-center max-w-6xl mx-auto  mt-8 sm:pt-10">
+        <section class="bg-white text-center max-w-6xl mx-auto  mt-8 sm:py-10">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-5 mt-8">
       <!-- Card -->
         @foreach ($profil as $item )

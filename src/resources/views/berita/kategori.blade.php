@@ -13,7 +13,7 @@
                 <h2 class="mt-2 text-base md:text-lg font-bold hover:text-blue-600">
                     <a href="{{ route('berita.show', $berita->slug) }}">{{ $berita->judul }}</a>
                 </h2>
-                <a href="{{ route('berita.show', $berita->slug) }}" class="text-gray-500 my-4  text-center text-xs md:text-sm">
+                <a href="{{ route('berita.show', $berita->slug) }}" class="text-gray-500 my-5  text-center text-xs sm:text-sm ">
                     BACA SELENGKAPNYA...
                 </a>
             </div>

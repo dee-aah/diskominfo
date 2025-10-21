@@ -10,20 +10,13 @@
                 <div class="overflow-hidden rounded border  border-gray-300 px-6 bg-white pb-8  ">
                     <form action="{{ route('produk_hukum.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="my-3">
                             <label class="block py-2 text-[15px] text-black font-medium">No Registrasi</label>
                             <input type="text" name="reg" placeholder=" Masukkan Registrasi"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="mb-3">
-                                <label class="block py-2 text-[15px] text-black font-medium">Judul Peraturan</label>
-                                <input type="text" name="judul_peraturan" placeholder=" Masukkan Judul Peraturan"
-                                    class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
-                                    required></input>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="my-3">
                         <label class="block py-2 text-[15px] text-black font-medium">Jenis Peraturan </label>
                         <select name="jenis_peraturan" class="w-full border  border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"required>
@@ -32,8 +25,16 @@
                             <option value="{{ $option }}">{{ $option }}</option>
                             @endforeach
                         </select>
-                    </div>
+                         </div>
                         </div>
+                            <div class="mb-3">
+                                <label class="block py-2 text-[15px] text-black font-medium">Judul Peraturan</label>
+                                <input type="text" name="judul_peraturan" placeholder=" Masukkan Judul Peraturan"
+                                    class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
+                                    required></input>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Nomor</label>
                             <input type="number" name="nomor" placeholder=" Masukkan Nomor"
@@ -46,6 +47,7 @@
                                 placeholder=" Masukkan Tahun Terbit"
                                 class="w-full border border-gray-300 placeholder:text-sm text-sm rounded-lg p-2"
                                 required></input>
+                        </div>
                         </div>
                         <div class="mb-3">
                             <label class="block py-2 text-[15px] text-black font-medium">Singkatan Jenis</label>
