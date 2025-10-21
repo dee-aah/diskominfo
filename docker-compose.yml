@@ -16,9 +16,10 @@ services:
     environment:
       PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
 
+
   nginx:
     image: nginx:latest
-    container_name: laravel_nginx
+    container_name: server_nginx
     ports:
       - "8080:80"
     volumes:
@@ -31,7 +32,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: laravel_mysql
+    container_name: db_mysql
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: laravel
@@ -47,7 +48,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: laravel_phpmyadmin
+    container_name: phpmyadmin
     restart: always
     ports:
       - "8081:80"
