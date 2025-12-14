@@ -61,7 +61,7 @@ class AdminStrukturController extends Controller
      */
     public function edit(Struktur $strukturr)
     {
-        return view('admin.struktur.edit', compact('strukturr'));
+        return view('admin.strukturr.edit', compact('strukturr'));
     }
 
     /**

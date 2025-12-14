@@ -7,6 +7,7 @@ use App\Models\SambutanPimpinan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class AdminPimpinanController extends Controller
 {
@@ -64,6 +65,7 @@ class AdminPimpinanController extends Controller
      */
     public function edit(SambutanPimpinan $pimpinan)
     {
+        Gate::authorize('update', $pimpinan);
         return view('admin.pimpinan.edit', compact('pimpinan'));
     }
 
@@ -72,7 +74,7 @@ class AdminPimpinanController extends Controller
      */
     public function update(Request $request, SambutanPimpinan $pimpinan)
     {
-
+        Gate::authorize('update', $pimpinan);
         $filename = $pimpinan->img;
         if ($request->hasFile('img')) {
             if ($pimpinan->img) {

@@ -324,19 +324,27 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/produk_hukum_cont', AdminPHContController::class)->except(['index', 'show']);
         Route::get('/produk_hukum_cont/dashboard', [AdminPHContController::class, 'dashboard'])->name('produk_hukum_cont.dashboard');
 
+        // Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])
+        // ->name('pimpinan.dashboard');
+        // Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index']);
+        // Route::get('/pimpinan/{pimpinan}/edit', [AdminPimpinanController::class, 'edit'])
+        //     ->name('pimpinan.edit')
+        //     ->middleware('can:update,pimpinan');
+        // Route::put('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'update'])
+        //     ->name('pimpinan.update')
+        //     ->middleware('can:update,pimpinan');
+        // Route::delete('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'destroy'])
+        //     ->name('pimpinan.destroy');
+        // Route::get('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'show'])
+        //     ->name('pimpinan.show');
+        Route::middleware('auth')->group(function () {
         Route::get('/pimpinan/dashboard', [AdminPimpinanController::class, 'dashboard'])
-        ->name('pimpinan.dashboard');
-        Route::resource('/pimpinan', AdminPimpinanController::class)->except(['index']);
-        Route::get('/pimpinan/{pimpinan}/edit', [AdminPimpinanController::class, 'edit'])
-            ->name('pimpinan.edit')
-            ->middleware('can:update,pimpinan');
-        Route::put('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'update'])
-            ->name('pimpinan.update')
-            ->middleware('can:update,pimpinan');
-        Route::delete('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'destroy'])
-            ->name('pimpinan.destroy');
-        Route::get('/pimpinan/{pimpinan}', [AdminPimpinanController::class, 'show'])
-            ->name('pimpinan.show');
+            ->name('pimpinan.dashboard');
+
+        Route::resource('pimpinan', AdminPimpinanController::class)
+            ->except(['index']);
+        });
+
 
         Route::resource('/sektorall', AdminSektoralController::class)->except(['index', 'show']);
         Route::get('/sektoral/dashboard', [AdminSektoralController::class, 'dashboard'])->name('sektorall.dashboard');

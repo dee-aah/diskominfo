@@ -80,7 +80,7 @@
                     @forelse ($produkhukum as $item)
                         <div class="{{ $loop->odd ? 'bg-blue-50' : 'bg-gray-100' }} rounded-md shadow p-4 flex items-start gap-4 sm:gap-7 md:gap-10">
                             <a href="{{ route('produkhukum.show', $item->id) }}" class="w-24 text-center">
-                                <img src="{{ asset('storage/default/pdf.png') }}" class="mx-auto w-18 md:w-24 md:h-auto"
+                                <img src="{{ asset('storage/default/pdf.jpg') }}" class="mx-auto w-18 md:w-24 md:h-auto"
                                     alt="PDF Thumbnail" />
                             </a>
                             <div class="flex-1 space-y-2">

@@ -6,14 +6,14 @@ use App\Models\SambutanPimpinan;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class SambutanPolicy
+class SambutanPimpinanPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class SambutanPolicy
      */
     public function view(User $user, SambutanPimpinan $pimpinan): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class SambutanPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class SambutanPolicy
      */
     public function restore(User $user, SambutanPimpinan $pimpinan): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,13 @@ class SambutanPolicy
      */
     public function forceDelete(User $user, SambutanPimpinan $pimpinan): bool
     {
-        return false;
+        return true;
     }
+    public function before(User $user, $ability)
+{
+    if ($user->role === 'admin') {
+        return true;
+    }
+}
+
 }

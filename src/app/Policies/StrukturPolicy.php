@@ -13,7 +13,7 @@ class StrukturPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class StrukturPolicy
      */
     public function view(User $user, Struktur $struktur): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class StrukturPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class StrukturPolicy
      */
     public function restore(User $user, Struktur $strukturr): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -61,6 +61,6 @@ class StrukturPolicy
      */
     public function forceDelete(User $user, Struktur $struktur): bool
     {
-        return false;
+        return true;
     }
 }
