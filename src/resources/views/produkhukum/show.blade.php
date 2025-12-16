@@ -7,7 +7,7 @@
         <div class="grid grid-cols-1 md:grid-cols-4  gap-3">
             <!-- Thumbnail + Unduh -->
             <div class="text-center justify-start">
-                <a href="{{ route('produkhukum.download', $produk->id) }}"><img src="{{ asset('storage/default/pdf.png') }}" alt="Thumbnail"
+                <a href="{{ route('produkhukum.download', $produk->id) }}"><img src="{{ asset('storage/default/pdf.jpg') }}" alt="Thumbnail"
                     class=" w-full  shadow-lg rounded" /></a>
                 <a href="{{ route('produkhukum.download', $produk->id) }}"
                     class="mt-3 inline-block bg-[#728DB2] hover:bg-gray-700 text-white text-sm px-8 py-2 rounded">

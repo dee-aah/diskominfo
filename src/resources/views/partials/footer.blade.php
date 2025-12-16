@@ -5,8 +5,8 @@
             <ul class="space-y-2 text-sm text-ligt">
                 <li>
                     <a href="https://maps.app.goo.gl/MwXGxt5hHYp9X7gr7" class="flex items-start space-x-2">
-                        <img width="20" height="20" class="mr-4"
-                            src="https://img.icons8.com/fluency/48/place-marker.png" alt="place-marker" />
+                        <img width="25" height="25" class="mr-4"
+                            src="https://img.icons8.com/?size=100&id=85049&format=png&color=ffffff" alt="place-marker" />
                         <span>
                             Jl. Perintis Kemerdekaan No 283, Kelurahan Kersamenak, Kecamatan Kawalu, Kota
                             Tasikmalaya 46182
@@ -17,7 +17,7 @@
                 <li>
                     <a href="" class="flex items-center space-x-2">
                         <img width="20" height="20" class="mr-4"
-                            src="https://img.icons8.com/fluency/48/phone.png" alt="phone" />
+                            src="https://img.icons8.com/?size=100&id=85059&format=png&color=ffffff" alt="phone" />
                         <span>(021) 123-4567</span>
                     </a>
                 </li>
@@ -25,7 +25,7 @@
                 <li>
                     <a href="" class="flex items-center space-x-2">
                         <img width="20" height="20" class="mr-4"
-                            src="https://img.icons8.com/fluency/48/gmail-new.png" alt="gmail-new" />
+                            src="https://img.icons8.com/?size=100&id=85467&format=png&color=ffffff" alt="gmail-new" />
                         <span>dppkbp3atasikmalayakota.go.id</span>
                     </a>
                 </li>
@@ -33,8 +33,8 @@
                 <li>
                     <a href="https://www.instagram.com/dppkbp3a_kotatasikmalaya?igsh=OXhqdTBxOGV3MjAz"
                         class="flex items-center space-x-2">
-                        <img width="25" height="25" class="mr-4"
-                            src="https://img.icons8.com/fluency/48/instagram-new.png" alt="instagram-new" />
+                        <img width="25" height="25" class="mr-3"
+                            src="https://img.icons8.com/?size=100&id=85154&format=png&color=ffffff" alt="instagram-new" />
                         <span>dppkbp3a_kotatasikmalaya</span>
                     </a>
                 </li>

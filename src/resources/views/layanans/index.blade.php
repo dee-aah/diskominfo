@@ -1,13 +1,10 @@
 <x-layouts.app>
     <div class="max-w-6xl mx-auto mt-15 sm:py-12 sm:mt-15 md:mt-20">
         <div class="flex flex-col  lg:flex-row gap-5 items-start">
-            <!-- gambar besar kiri -->
-            @if (isset($layanann[0]))
                 <div class="w-full flex justify-center lg:w-1/2">
-                    <img src="{{ asset('storage/layanan/' . $layanann[0]->img) }}" alt="Ilustrasi layanan"
-                        class="w-full h-full rounded card-shadow  object-cover" />
+                    <img src="{{ asset('storage/default/layanan.jpg')}}" alt="Ilustrasi layanan"
+                        class="w-full h-100 rounded card-shadow  object-cover" />
                 </div>
-            @endif
             <!-- teks kanan -->
             <div class="w-full lg:w-1/2 flex flex-col justify-start">
                 <h1 class="text-xl sm:text-2xl lg:text-3xl md:mx-4 text-center sm:text-justify font-extrabold leading-tight">
@@ -20,16 +17,29 @@
                 </p>
 
                 <!-- thumbnail kecil di bawah judul -->
-                <div class=" m-3 sm:mt-4 md:mt-6 flex sm:gap-4 ">
-                    @foreach ($layananlain as $item)
-                        <div class="  sm:gap-3">
+                <div class=" m-3 sm:mt-4 md:mt-6 flex sm:gap-3 ">
+                        <div class="  sm:gap-2">
                             <a>
-                                <img src="{{ asset('storage/layanan/' . $item->img) }}" class="w-40 h-40 md:w-50 md:h-50 mx-auto px-2 sm:px-0 object-cover"
-                                    alt="{{ $item->nama }}">
+                                <img src="{{ asset('storage/default/layanan1.jpg')}}" class="w-40 h-40 md:w-50 md:h-50 mx-auto px-2 sm:px-0 object-cover"
+                                    alt="">
                             </a>
-                            <p class="text-sm text-center text-slate-600">{{ $item->nama }}</p>
+                            <p class="text-sm text-center pt-3 text-slate-600">Keluarga Berencana</p>
                         </div>
-                    @endforeach
+                        <div class="  sm:gap-2">
+                            <a>
+                                <img src="{{ asset('storage/default/layanan2.jpg')}}" class="w-40 h-40 md:w-50 md:h-50 mx-auto px-2 sm:px-0 object-cover"
+                                    alt="">
+                            </a>
+                            <p class="text-sm text-center pt-3 text-slate-600">Perlindungan Anak</p>
+                        </div>
+                        <div class="  sm:gap-2">
+                            <a>
+                                <img src="{{ asset('storage/default/layanan3.jpg')}}" class="w-40 h-40 md:w-50 md:h-50 mx-auto px-2 sm:px-0 object-cover"
+                                    alt="">
+                            </a>
+                            <p class="text-sm text-center pt-3 text-slate-600">Pemberdayaan Perempuan</p>
+                        </div>
+                    
                 </div>
             </div>
         </div>

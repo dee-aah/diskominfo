@@ -101,7 +101,7 @@ class AdminLayananController extends Controller
             'deskripsi_singkat' => $request->deskripsi_singkat,
             'deskripsi' => $request->deskripsi,
             'program' => $request->program,
-            'imgr' => $filename
+            'img' => $filename
         ]);
         return redirect()->route('layanan.dashboard')->with('success', 'Layanan Berhasil Diperbarui');
     }

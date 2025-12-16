@@ -32,7 +32,7 @@ class BeritaController extends Controller
     // Berita Kota Tasikmalaya
     $beritapopulertasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')
         ->orderByDesc('view_count')
-        ->take(4)
+        ->take(5)
         ->get();
 
     $beritaterbarutasik = Berita::where('kategori', 'Berita Kota Tasikmalaya')

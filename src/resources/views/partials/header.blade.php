@@ -15,9 +15,16 @@
                     <div class="hidden md:flex space-x-6 font-medium items-center">
                         <a href="{{ url('/beranda') }}" class="{{ request()->is('beranda') ? 'text-blue-600' : 'hover:text-blue-600' }}">Beranda</a>
                         <div class="relative group">
-                            <button class="{{ request()->is('tentang','visimisi','profilPimpinan','struktur','tupoksi','maklumatt')
-                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Profil</button>
-                            <div class="absolute hidden  whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-20">
+                            <button class="flex items-center {{ request()->is('tentang','visimisi','profilPimpinan','struktur','tupoksi','maklumatt')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}"onclick="toggleMenu('Menu1')">Profil
+                            <svg class="w-4 h-4 ml-2 transition-transform" id="icon-Menu1"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                            </button>
+                            <div id="Menu1" class="absolute hidden  whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-20">
                                 <a href="{{ url('/tentang') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Tentang
                                     Kami</a>
@@ -37,9 +44,16 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="{{ request()->is('layanans')
-                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Layanan</button>
-                            <div class="absolute hidden whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-10">
+                            <button class=" flex items-center {{ request()->is('layanans')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }} " onclick="toggleMenu('Menu2')" >Layanan
+                            <svg class="w-4 h-4 ml-2 transition-transform" id="icon-Menu2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>    
+                            </button>
+                            <div id="Menu2" class="absolute hidden whitespace-nowrap w-auto min-w-0 group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/layanans') }}"class="block px-4 text-center py-2 hover:bg-blue-100">Informasi
                                     Layanan</a>
                                 <a href="{{ url('/standarpelayanan') }}"
@@ -54,9 +68,16 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="{{ request()->is('produkhukum','dokumenevaluasi','dokumenperencanaan')
-                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Dokumen</button>
-                            <div class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <button class=" flex items-center {{ request()->is('produkhukum','dokumenevaluasi','dokumenperencanaan')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}"  onclick="toggleMenu('Menu3')">Dokumen
+                            <svg class="w-4 h-4 ml-2 transition-transform" id="icon-Menu3"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>     
+                            </button>
+                            <div id="Menu3" class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/produkhukum') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Produk
                                     Hukum</a>
@@ -68,9 +89,16 @@
                             </div>
                         </div>
                         <div class="relative group">
-                            <button class="{{ request()->is('beritakita','artikel')
-                                ? 'text-blue-600 ': 'hover:text-blue-600' }}">Berita</button>
-                            <div class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
+                            <button class=" flex items-center {{ request()->is('beritakita','artikel')
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}" onclick="toggleMenu('Menu4')">Berita
+                            <svg class="w-4 h-4 ml-2 transition-transform" id="icon-Menu4"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>     
+                            </button>
+                            <div id="Menu4" class="absolute whitespace-nowrap w-auto min-w-0 hidden group-hover:block bg-white shadow-md py-2 z-10">
                                 <a href="{{ url('/berita') }}"
                                     class="block text-center px-4 py-2 hover:bg-blue-100">Berita</a>
                                 <a href="{{ url('/artikel') }}"
@@ -198,5 +226,11 @@
                 document.getElementById("mobile-menu").classList.toggle("hidden");
             });
         });
+        function toggleMenu(id) {
+            const menu = document.getElementById(id);
+            const icon = document.getElementById("icon-" + id);
+            menu.classList.toggle("hidden");
+            icon.classList.toggle("rotate-180");
+        }
     </script>
 </header>

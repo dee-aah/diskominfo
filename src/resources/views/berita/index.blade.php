@@ -13,7 +13,7 @@
                         </a>
                         <div class="absolute flex-col md:p-4 inset-x-0 bottom-0 h-10 sm:h-10 md:h-20 justify-center mx-auto  bg-black/50 text-white ">
                             <h3 class="text-xs sm:text-sm md:text-base text-center sm:text-justify font-semibold">
-                                {{ $beritapopuler[0]->kategori ?? 'Tanpa Kategori' }}</h3>
+                                {{ $beritapopuler[0]->judul ?? 'Tanpa judul' }}</h3>
                             <p class="text-sm hidden md:block text-center sm:text-justify">{{ $beritapopuler[0]->created_at->format('d F Y') }}</p>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             <!-- Gambar kecil -->
                             <div class="w-28 flex-shrink-0">
                                 <img src="{{ asset('storage/berita/' . $berita->img) }}" alt="{{ $berita->judul }}"
-                                    class="rounded w-full h-auto object-cover">
+                                    class="rounded w-70 h-30 object-cover">
                             </div>
                             <!-- Judul dan kategori -->
                             <div class="flex flex-col text-xs ">
@@ -147,7 +147,7 @@
                         <img src="{{ asset('storage/berita/' . $beritapopulertasik[0]->img) }}" alt="Berita Besar"
                             class="w-full h-full object-cover shadow">
                         <a href="{{ route('berita.show', $beritapopulertasik[0]->slug) }}" class="absolute flex-col inset-x-0 bottom-0 h-15 md:h-20 justify-center text-white p-2 bg-black/50 text-sm p-4">
-                            <h3 class="text-base md:text-base font-semibold">{{ $beritapopulertasik[0]->kategori ?? 'Tanpa Kategori' }}
+                            <h3 class="text-base md:text-base font-semibold">{{ $beritapopulertasik[0]->judul ?? 'judul' }}
                             </h3>
                             <p class="text-xs  md:text-sm">{{ $beritapopulertasik[0]->created_at->format('d F Y') }}</p>
                         </a>
@@ -159,14 +159,16 @@
                 <div class="md:col-span-2 grid grid-cols-2 ">
                     <!-- Gambar 1 -->
                     @foreach ($beritapopulertasik as $berita)
+                    @if ($loop->iteration > 1)
                     <div class="relative">
                         <img src="{{asset('storage/berita/'.$berita->img)}}" alt="Berita"
-                            class="w-full h-48 md:h-64 object-cover  shadow">
+                            class="w-full h-48 md:h-72 object-cover  shadow">
                         <div class="absolute flex-col inset-x-0 bottom-0 h-10 md:h-20 justify-center text-white  bg-black/50 text-xs md:text-sm">
-                            <h3 class="font-semibold text-center md:text-justify">{{$berita->judul}}</h3>
-                            <p class="hidden md:block">{{ $berita->created_at->format('d F Y') }}</p>
+                            <h3 class="font-semibold text-center pt-4 pl-4 md:text-justify">{{$berita->judul}}</h3>
+                            <p class="hidden pl-4 md:block">{{ $berita->created_at->format('d F Y') }}</p>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -180,7 +182,7 @@
                             <!-- Gambar kecil -->
                             <div class="w-28 flex-shrink-0">
                                 <img src="{{ asset('storage/berita/' . $berita->img) }}"
-                                    alt="{{ $berita->judul }}" class="rounded w-full h-auto object-cover">
+                                    alt="{{ $berita->judul }}" class="rounded w-70 h-30  object-cover">
                             </div>
                             <!-- Judul dan kategori -->
                             <div class="flex flex-col ">

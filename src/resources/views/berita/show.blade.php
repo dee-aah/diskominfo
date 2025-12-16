@@ -25,7 +25,7 @@
         @if ($berita->img)
             <div class="mb-6">
                 <img src="{{ asset('storage/berita/' . $berita->img) }}" alt="{{ $berita->judul }}"
-                    class="w-full max-h-[500px] object-cover rounded-lg shadow-md">
+                    class="w-full max-h-full object-cover rounded-lg shadow-md">
             </div>
         @endif
 

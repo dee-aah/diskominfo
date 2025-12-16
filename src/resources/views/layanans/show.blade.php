@@ -19,15 +19,15 @@
         <div class="mt-6  text-sm sm:text-xl prose font-semibold text-justify text-gray-600">{!! $layanan->deskripsi !!}</div>
 
         {{-- Detail layanan --}}
-        <div class="my-8 grid grid-cols-2 md:gap-12 sm:gap-8 gap-3">
+        <div class="my-8 grid grid-cols-3  sm:gap-8 gap-3">
             @foreach ($layanan->layanan_details as $detail)
                 <div class="bg-gray-200 shadow justify-center rounded-lg overflow-hidden">
                     <img src="{{ asset('storage/layanan_detail/' . $detail->img) }}"
-                        class="md:size-80 md:w-full sixe-40 h-40 object-cover">
+                        class="md:size-80 md:w-full size-40 h-40 object-cover">
                     {{-- Teks tujuan --}}
                     <div class="md:mx-6 py-6 font-normal">
-                        <h3 class="font-semibold text-sm sm:text-lg md:text-xl text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
-                        <div class=" prose text-xs sm:text-base md:text-lg ">
+                        <h3 class="font-semibold text-sm sm:text-lg  text-center p-3 text-gray-800">{{ $detail->jenis }}</h3>
+                        <div class=" prose text-xs sm:text-base  ">
                             {!!$detail->deskripsi!!}
                         </div>
                     </div>
