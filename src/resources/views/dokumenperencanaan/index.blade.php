@@ -36,7 +36,7 @@
         <h4 class="text-center mx-auto max-w-5xl font-medium text-black mb-10">
             {!!$perencanaan_cont->des_singkat!!}
         </h4> --}}
-        <div class="grid grid-cols-2 p-5 sm:my-5 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div class="grid grid-cols-2 p-5 sm:my-5 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             <!-- Rencana Strategis -->
             @foreach ($perencanaan as $item)
             <a href="{{$item->link}}" target="_blank" class="group">

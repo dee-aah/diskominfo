@@ -204,7 +204,7 @@
                         </a>
                     @endif
                 </li>
-                <li class="mb-2">
+                {{-- <li class="mb-2">
                     @if (auth()->check() && auth()->user()->role === 'admin')
                         <button
                             class="flex items-center p-2 font-medium justify-between text-gray-700 rounded w-55 hover:bg-blue-100"
@@ -230,7 +230,7 @@
                             </li>
                         </ul>
                     @endif
-                </li>
+                </li> --}}
                 <li x-data="{ open: {{ Request::is('konten*') ? 'true' : 'false' }} }"
                     class="mb-2 w-55 rounded hover:bg-blue-100">
                     @if (auth()->check() && auth()->user()->role === 'admin')

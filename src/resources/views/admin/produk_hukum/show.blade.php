@@ -21,7 +21,7 @@
             <div class="grid grid-cols-1 md:grid-cols-4  gap-3">
         <!-- Thumbnail + Unduh -->
         <div class="text-center justify-start">
-            <img src="{{ asset('storage/default/dok.png') }}"
+            <img src="{{ asset('storage/default/pdf.jpg') }}"
                  alt="Thumbnail"
                  class="mx-auto w-48 shadow-md border rounded" />
             {{-- <a href="{{ route('produkhukum.download', $produk->id) }}"
