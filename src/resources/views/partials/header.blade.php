@@ -90,7 +90,7 @@
                         </div>
                         <div class="relative group">
                             <button class=" flex items-center {{ request()->is('beritakita','artikel')
-                                ? 'text-blue-600 ': 'hover:text-blue-600' }}" onclick="toggleMenu('Menu4')">Berita
+                                ? 'text-blue-600 ': 'hover:text-blue-600' }}" onclick="toggleMenu('Menu4')">Informasi
                             <svg class="w-4 h-4 ml-2 transition-transform" id="icon-Menu4"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -188,7 +188,7 @@
                 <div>
                     <button
                         class="flex justify-between items-center w-full hover:text-blue-600 active:text-blue-700 font-semibold text-gray-700 mobile-dropdown-toggle">
-                        Berita
+                        Informasi
                         <svg class="h-5 w-5 transition-transform transform" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

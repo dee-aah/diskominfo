@@ -87,7 +87,7 @@ class AdminPimpinanController extends Controller
         $pimpinan->update([
         'nama' => $request->nama,
         'deskripsi' => $request->deskripsi,
-        'gambar' => $filename
+        'img' => $filename
         ]);
         return redirect()->route('pimpinan.dashboard')->with('success', 'Pimpinan Berhasil Diperbarui');
     }
